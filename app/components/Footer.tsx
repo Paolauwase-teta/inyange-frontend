@@ -15,10 +15,10 @@ const HillPath = ({ d, fill, delay }: { d: string, fill: string, delay: number }
 );
 
 const socialLinks = [
-    { label: 'Instagram', href: 'https://www.instagram.com/sicilylabs/' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/sicily-labs' },
-    { label: 'Email', href: 'mailto:info@sicilylabs.rw' },
-    { label: 'TikTok', href: 'https://www.tiktok.com/@sicilylabs' },
+    { label: 'Instagram', href: 'https://www.instagram.com/' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
+    { label: 'Email', href: 'mailto:info@inyangeindustries.rw' },
+    { label: 'TikTok', href: 'https://www.tiktok.com/' },
 ];
 
 export default function Footer() {
@@ -58,9 +58,9 @@ export default function Footer() {
                 {/* Top Grid: Minimal Navigation */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
                     <div className="col-span-2 md:col-span-1">
-                        <h2 className="text-sm font-black uppercase tracking-tighter mb-4 text-black">SICILYLABS</h2>
+                        <h2 className="text-sm font-black uppercase tracking-tighter mb-4 text-[#1668b2]">INYANGE INDUSTRIES</h2>
                         <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest leading-relaxed">
-                            Visual Engineering Studio.
+                            Food Processing & Dairy / Beverages.
                         </p>
                     </div>
 
@@ -72,21 +72,21 @@ export default function Footer() {
                             { label: 'Studio', href: '#' },
                             { label: 'Team', href: '/team' }
                         ].map(item => (
-                            <a key={item.label} href={item.href} className="text-[11px] font-bold uppercase text-zinc-600 hover:text-black transition-colors">{item.label}</a>
+                            <a key={item.label} href={item.href} className="text-[11px] font-bold uppercase text-zinc-600 hover:text-[#00adef] transition-colors">{item.label}</a>
                         ))}
                     </div>
 
                     <div className="flex flex-col gap-2">
                         <span className="text-[9px] font-black uppercase tracking-[0.2em] text-zinc-300 mb-2">Connect</span>
                         {socialLinks.map(item => (
-                            <a key={item.label} href={item.href} target={item.href.startsWith('mailto:') ? undefined : '_blank'} rel="noopener noreferrer" className="text-[11px] font-bold uppercase text-zinc-600 hover:text-black transition-colors">{item.label}</a>
+                            <a key={item.label} href={item.href} target={item.href.startsWith('mailto:') ? undefined : '_blank'} rel="noopener noreferrer" className="text-[11px] font-bold uppercase text-zinc-600 hover:text-[#00adef] transition-colors">{item.label}</a>
                         ))}
                     </div>
 
                     <div className="flex flex-col gap-2">
                         <span className="text-[9px] font-black uppercase tracking-[0.2em] text-zinc-300 mb-2">Lab</span>
                         <p className="text-[11px] font-bold uppercase text-zinc-500">
-                            Available for <br /> Q4 2026.
+                            Operating since <br /> 1997.
                         </p>
                     </div>
                 </div>
@@ -94,7 +94,7 @@ export default function Footer() {
                 {/* Bottom Bar: Ultra Clean */}
                 <div className="flex flex-col md:flex-row justify-between items-end md:items-center pt-8 border-t border-zinc-100 gap-4">
                     <p className="text-[9px] font-black uppercase tracking-[0.2em] text-zinc-300">
-                        © 2026 SICILYLABS. ALL RIGHTS RESERVED.
+                        © 2026 INYANGE INDUSTRIES. ALL RIGHTS RESERVED.
                     </p>
 
                     <div className="flex items-center gap-6">
@@ -107,8 +107,8 @@ export default function Footer() {
 
                 {/* Branding Hook at the very bottom */}
                 <div className="mt-24 text-center">
-                    <p className="text-[12vw] font-black text-black/5 leading-none select-none uppercase tracking-tighter">
-                        SicilyLabs
+                    <p className="text-[12vw] font-black text-[#1668b2]/10 leading-none select-none uppercase tracking-tighter">
+                        Inyange
                     </p>
                 </div>
             </div>

@@ -164,7 +164,7 @@ export default function ContactPage() {
 
                         <div className="mt-16">
                             <span className="text-black text-xs md:text-sm font-bold tracking-wide italic opacity-40">
-                                young Innovators
+                                Inyange Industries
                             </span>
                         </div>
                     </motion.div>

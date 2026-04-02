@@ -57,7 +57,7 @@ export default function BlogPostDetail() {
                 <Navbar />
                 <h1 className="text-4xl font-black tracking-tighter text-black mb-4">Post Not Found</h1>
                 <p className="text-zinc-500 font-medium mb-8">The story you're looking for doesn't exist or has been moved.</p>
-                <Link href="/blog" className="bg-black text-white text-[11px] font-black uppercase tracking-widest px-6 py-3 rounded-full hover:bg-zinc-800 transition-colors">
+                <Link href="/blog" className="bg-[#1668b2] text-white text-[11px] font-black uppercase tracking-widest px-6 py-3 rounded-full hover:bg-[#0b4a7d] transition-colors">
                     Back to Blogs
                 </Link>
             </main>
@@ -107,11 +107,11 @@ export default function BlogPostDetail() {
                     transition={{ duration: 0.5, delay: 0.3 }}
                     className="flex items-center justify-center gap-4"
                 >
-                    <div className="w-10 h-10 rounded-full overflow-hidden bg-black flex items-center justify-center">
-                        <Image src="/logo.png" alt="SicilyLabs" width={40} height={40} className="w-full h-full object-cover" />
-                    </div>
+                        <div className="w-10 h-10 rounded-full overflow-hidden bg-white border border-[#1668b2]/25 flex items-center justify-center">
+                            <Image src="/logo.png" alt="Inyange Industries" width={40} height={40} className="w-full h-full object-contain" />
+                        </div>
                     <div className="text-left">
-                        <p className="text-[12px] font-black text-black">SicilyLabs Team</p>
+                        <p className="text-[12px] font-black text-[#1668b2]">Inyange Industries Team</p>
                         <p className="text-[10px] text-zinc-400 font-medium uppercase tracking-wider">{post.date}</p>
                     </div>
                 </motion.div>
@@ -144,7 +144,7 @@ export default function BlogPostDetail() {
                     transition={{ duration: 0.6, delay: 0.5 }}
                 >
                     <div
-                        className="prose prose-zinc prose-lg mx-auto w-full max-w-none break-words prose-p:text-zinc-600 prose-headings:text-black prose-a:text-black hover:prose-a:text-zinc-500 whitespace-pre-wrap leading-relaxed marker:text-black"
+                        className="prose prose-zinc prose-lg mx-auto w-full max-w-none break-words prose-p:text-zinc-600 prose-headings:text-[#1668b2] prose-a:text-[#1668b2] hover:prose-a:text-zinc-500 whitespace-pre-wrap leading-relaxed marker:text-[#1668b2]"
                         dangerouslySetInnerHTML={{ __html: post.content }}
                     />
                 </motion.div>
@@ -156,10 +156,10 @@ export default function BlogPostDetail() {
                     <h3 className="text-2xl font-black tracking-tighter mb-4">Enjoyed this story?</h3>
                     <p className="text-sm font-medium text-zinc-500 mb-8">Reach out to us to start building your next big project.</p>
                     <div className="flex justify-center gap-4">
-                        <Link href="/blog" className="px-6 py-3 rounded-full border border-zinc-200 text-[11px] font-black uppercase tracking-widest text-zinc-600 hover:bg-white hover:text-black transition-colors">
+                        <Link href="/blog" className="px-6 py-3 rounded-full border border-zinc-200 text-[11px] font-black uppercase tracking-widest text-zinc-600 hover:bg-white hover:text-[#00adef] transition-colors">
                             More Stories
                         </Link>
-                        <Link href="/contact" className="px-6 py-3 rounded-full bg-black text-[11px] font-black uppercase tracking-widest text-white hover:bg-zinc-800 transition-colors">
+                        <Link href="/contact" className="px-6 py-3 rounded-full bg-[#1668b2] text-[11px] font-black uppercase tracking-widest text-white hover:bg-[#0b4a7d] transition-colors">
                             Get in Touch
                         </Link>
                     </div>

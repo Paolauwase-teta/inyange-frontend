@@ -136,7 +136,7 @@ export default function MilestonesAdmin() {
                                         </div>
                                         <div style={{ ...fieldStyle, gridColumn: '1 / -1' }}>
                                             <label style={labelStyle}>Company</label>
-                                            <input className="modal-input" style={inputStyle} value={form.company} onChange={e => setForm({ ...form, company: e.target.value })} placeholder="SicilyLabs" />
+                                            <input className="modal-input" style={inputStyle} value={form.company} onChange={e => setForm({ ...form, company: e.target.value })} placeholder="Inyange Industries" />
                                         </div>
                                     </div>
 

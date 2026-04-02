@@ -10,10 +10,10 @@ interface ProjectIconProps {
 function ProjectIcon({ label, icon }: ProjectIconProps) {
     return (
         <div className="flex flex-col items-center gap-1.5 group cursor-default">
-            <div className="w-9 h-9 rounded-lg bg-zinc-50 border border-black/5 flex items-center justify-center text-black/60 group-hover:bg-black group-hover:text-white transition-all duration-300">
+            <div className="w-9 h-9 rounded-lg bg-[#00adef]/10 border border-[#1668b2]/20 flex items-center justify-center text-[#1668b2]/80 group-hover:bg-[#1668b2] group-hover:text-white transition-all duration-300">
                 {icon}
             </div>
-            <span className="text-[8px] font-bold uppercase tracking-widest text-black/40 group-hover:text-black transition-colors">{label}</span>
+            <span className="text-[8px] font-bold uppercase tracking-widest text-[#1668b2]/60 group-hover:text-[#1668b2] transition-colors">{label}</span>
         </div>
     );
 }
@@ -26,34 +26,27 @@ function ProjectIcon({ label, icon }: ProjectIconProps) {
 const UI_ASSETS: Record<string, { icons: { label: string, svg: React.ReactNode }[], mockup: React.ReactNode }> = {
     '01': {
         icons: [
-            { label: 'Inventory', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" /><path d="m3.3 7 8.7 5 8.7-5" /><path d="M12 22V12" /></svg> },
-            { label: 'Ledger', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4Z" /></svg> },
-            { label: 'Analytics', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M3 3v18h18" /><path d="m19 9-5 5-4-4-3 3" /></svg> },
+            { label: 'Packaging', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" /><path d="m3.3 7 8.7 5 8.7-5" /><path d="M12 22V12" /></svg> },
+            { label: 'Quality', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6 9 17l-5-5" /></svg> },
+            { label: 'Nutrition', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M3 3v18h18" /><path d="m19 9-5 5-4-4-3 3" /></svg> },
         ],
         mockup: (
-            <div className="relative w-44 h-[360px] bg-zinc-950 rounded-[24px] border-[5px] border-zinc-900 shadow-2xl rotate-y-[-25deg] rotate-x-[10deg] rotate-z-[5deg] group-hover:rotate-y-[-15deg] transition-all duration-700">
-                <div className="absolute inset-0 bg-white m-0.5 rounded-[20px] overflow-hidden flex flex-col p-4 font-sans text-left">
+            <div className="relative w-[260px] h-[300px] bg-[#eaf7ff] rounded-[26px] border border-[#1668b2]/25 shadow-2xl rotate-y-[-18deg] rotate-x-[8deg] rotate-z-[4deg] group-hover:rotate-y-[-10deg] transition-all duration-700">
+                <div className="absolute inset-0 rounded-[26px] overflow-hidden p-4 font-sans text-left">
                     <div className="flex justify-between items-center mb-4">
-                        <div className="w-5 h-0.5 bg-black/20 rounded-full" />
-                        <div className="w-2 h-2 rounded-full border border-black/10 flex items-center justify-center"><div className="w-0.5 h-0.5 rounded-full bg-black/20" /></div>
+                        <div className="w-8 h-1 bg-[#1668b2]/20 rounded-full" />
+                        <span className="text-[8px] font-bold uppercase tracking-wider text-[#1668b2]">Milk</span>
                     </div>
-                    <h4 className="text-sm font-black mb-0.5">STOCKA</h4>
-                    <p className="text-[7px] text-black/40 font-bold uppercase tracking-tight mb-2">Inventory Ledger</p>
-                    <div className="space-y-1.5 mb-3">
-                        {[1, 2].map((i) => (
-                            <div key={i} className="p-1.5 bg-zinc-50 border border-black/5 rounded-lg">
-                                <div className="flex justify-between items-center mb-1">
-                                    <span className="text-[7px] font-bold">Item {i}</span>
-                                    <span className="text-[6px] font-black uppercase text-emerald-500">In Stock</span>
-                                </div>
-                                <div className="w-full bg-black/5 h-0.5 rounded-full"><div className="h-full bg-black w-2/3" /></div>
-                            </div>
-                        ))}
+                    <h4 className="text-sm font-black mb-0.5 text-[#1668b2]">Premium Dairy</h4>
+                    <p className="text-[7px] text-[#1668b2]/60 font-bold uppercase tracking-tight mb-3">3D Product Showcase</p>
+                    <div className="h-40 rounded-xl bg-white border border-[#1668b2]/10 flex items-end justify-center gap-2 p-3">
+                        <div className="w-10 h-24 rounded-t-lg bg-[#00adef]/30 border border-[#1668b2]/20" />
+                        <div className="w-12 h-28 rounded-t-lg bg-[#1668b2]/25 border border-[#1668b2]/30" />
+                        <div className="w-9 h-20 rounded-t-lg bg-[#00adef]/25 border border-[#1668b2]/20" />
                     </div>
-                    <div className="mt-auto p-1.5 bg-black text-white rounded-lg flex items-center gap-1.5">
-                        <div className="w-3.5 h-3.5 rounded-full bg-white/20" />
-                        <span className="text-[6px] font-bold">K. Sam</span>
-                        <span className="text-[6px] font-black ml-auto">$450</span>
+                    <div className="mt-3 p-2 bg-[#1668b2] text-white rounded-lg flex items-center gap-1.5">
+                        <span className="text-[7px] font-bold">High Calcium</span>
+                        <span className="text-[7px] font-black ml-auto">Family Pack</span>
                     </div>
                 </div>
             </div>
@@ -61,28 +54,26 @@ const UI_ASSETS: Record<string, { icons: { label: string, svg: React.ReactNode }
     },
     '02': {
         icons: [
-            { label: 'Map Engine', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M3 7l6-3 6 3 6-3v13l-6 3-6-3-6 3V7z" /><path d="M9 4v13" /><path d="M15 7v13" /></svg> },
-            { label: 'Digital Pay', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="2" y="5" width="20" height="14" rx="2" /><line x1="2" y1="10" x2="22" y2="10" /></svg> },
-            { label: 'Ticketing', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z" /><path d="M15 12h.01" /></svg> },
+            { label: 'Bottling', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M9 2h6" /><path d="M10 2v4l-3 4v10a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V10l-3-4V2" /></svg> },
+            { label: 'Purity', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 2s7 7 7 12a7 7 0 1 1-14 0c0-5 7-12 7-12Z" /></svg> },
+            { label: 'Distribution', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M1 3h15v13H1z" /><path d="M16 8h4l3 3v5h-7z" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" /></svg> },
         ],
         mockup: (
-            <div className="relative w-44 h-[360px] bg-zinc-950 rounded-[24px] border-[5px] border-zinc-900 shadow-2xl rotate-y-[-25deg] rotate-x-[10deg] rotate-z-[5deg] group-hover:rotate-y-[-15deg] transition-all duration-700">
-                <div className="absolute inset-0 bg-white m-0.5 rounded-[20px] overflow-hidden flex flex-col p-4 font-sans text-left">
+            <div className="relative w-[260px] h-[300px] bg-[#eef8ff] rounded-[26px] border border-[#1668b2]/25 shadow-2xl rotate-y-[-18deg] rotate-x-[8deg] rotate-z-[4deg] group-hover:rotate-y-[-10deg] transition-all duration-700">
+                <div className="absolute inset-0 rounded-[26px] overflow-hidden p-4 font-sans text-left">
                     <div className="flex justify-between items-center mb-4">
-                        <div className="w-5 h-0.5 bg-black/20 rounded-full" />
-                        <div className="w-2 h-2 rounded-full bg-black/5" />
+                        <div className="w-8 h-1 bg-[#1668b2]/20 rounded-full" />
+                        <span className="text-[8px] font-bold uppercase tracking-wider text-[#1668b2]">Water</span>
                     </div>
-                    <h4 className="text-sm font-black mb-0.5">NGWINO</h4>
-                    <p className="text-[7px] text-black/40 font-bold uppercase tracking-tight mb-2">Community Super-App</p>
-                    <div className="space-y-2 mb-3">
-                        <div className="w-full h-20 bg-zinc-100 rounded-lg flex items-center justify-center"><span className="text-[8px] font-black text-black/20">MAP VIEW</span></div>
-                        <div className="flex gap-1.5">
-                            <div className="flex-1 h-10 bg-zinc-50 border border-black/5 rounded-lg p-1.5"><div className="w-full h-1 bg-black/10 rounded mb-1" /><div className="w-2/3 h-1 bg-black/10 rounded" /></div>
-                            <div className="flex-1 h-10 bg-black rounded-lg p-1.5"><div className="w-full h-1 bg-white/20 rounded mb-1" /><div className="w-2/3 h-1 bg-white/20 rounded" /></div>
-                        </div>
+                    <h4 className="text-sm font-black mb-0.5 text-[#1668b2]">Mineral Water</h4>
+                    <p className="text-[7px] text-[#1668b2]/60 font-bold uppercase tracking-tight mb-3">3D Product Showcase</p>
+                    <div className="h-40 rounded-xl bg-white border border-[#1668b2]/10 flex items-end justify-center gap-2 p-3">
+                        <div className="w-8 h-28 rounded-full bg-[#00adef]/30 border border-[#1668b2]/20" />
+                        <div className="w-9 h-32 rounded-full bg-[#1668b2]/25 border border-[#1668b2]/30" />
+                        <div className="w-8 h-24 rounded-full bg-[#00adef]/25 border border-[#1668b2]/20" />
                     </div>
-                    <div className="mt-auto flex justify-between gap-1">
-                        {[1, 2, 3].map(i => <div key={i} className={`w-7 h-7 rounded-full ${i === 2 ? 'bg-black' : 'bg-zinc-100'}`} />)}
+                    <div className="mt-3 flex justify-between gap-2">
+                        {[1, 2, 3].map(i => <div key={i} className={`h-5 rounded-md flex-1 ${i === 2 ? 'bg-[#1668b2]' : 'bg-[#00adef]/20'}`} />)}
                     </div>
                 </div>
             </div>
@@ -90,36 +81,29 @@ const UI_ASSETS: Record<string, { icons: { label: string, svg: React.ReactNode }
     },
     '03': {
         icons: [
-            { label: 'Visual Story', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" /></svg> },
-            { label: 'Order Flow', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" /></svg> },
-            { label: 'Retail Ops', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M3 3h18v18H3z" /><path d="M3 9h18" /><path d="M9 3v18" /></svg> },
+            { label: 'Flavor', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 22s8-4 8-12V4l-8-2-8 2v6c0 8 8 12 8 12z" /></svg> },
+            { label: 'Freshness', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 3v18" /><path d="M5 10c0-4 3-7 7-7s7 3 7 7-3 7-7 7-7-3-7-7z" /></svg> },
+            { label: 'Shelf Ready', svg: <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M3 3h18v18H3z" /><path d="M3 9h18" /><path d="M9 3v18" /></svg> },
         ],
         mockup: (
-            <div className="relative w-44 h-[360px] bg-zinc-950 rounded-[24px] border-[5px] border-zinc-900 shadow-2xl rotate-y-[25deg] rotate-x-[10deg] rotate-z-[-5deg] group-hover:rotate-y-[15deg] transition-all duration-700">
-                <div className="absolute inset-0 bg-white m-0.5 rounded-[20px] overflow-hidden flex flex-col p-4 font-sans text-left">
+            <div className="relative w-[260px] h-[300px] bg-[#eef8ff] rounded-[26px] border border-[#1668b2]/25 shadow-2xl rotate-y-[18deg] rotate-x-[8deg] rotate-z-[-4deg] group-hover:rotate-y-[10deg] transition-all duration-700">
+                <div className="absolute inset-0 rounded-[26px] overflow-hidden p-4 font-sans text-left">
                     <div className="flex justify-between items-center mb-4">
-                        <div className="w-5 h-0.5 bg-black/20 rounded-full" />
-                        <div className="w-2 h-2 rounded-full border border-black/10 flex items-center justify-center"><div className="w-0.5 h-0.5 rounded-full bg-black/20" /></div>
+                        <div className="w-8 h-1 bg-[#1668b2]/20 rounded-full" />
+                        <span className="text-[8px] font-bold uppercase tracking-wider text-[#1668b2]">Juice</span>
                     </div>
-                    <h4 className="text-sm font-black mb-0.5">LAVENDER</h4>
-                    <p className="text-[7px] text-black/40 font-bold uppercase tracking-tight mb-2">Retail Boutique</p>
-                    <div className="space-y-2 mb-3">
-                        <div className="w-full h-24 bg-zinc-50 border border-black/5 rounded-lg overflow-hidden flex items-center justify-center">
-                            <span className="text-[8px] font-black text-black/10 uppercase italic tracking-widest">Premium Look</span>
-                        </div>
-                        <div className="flex justify-between items-center px-1">
-                            <div className="flex flex-col">
-                                <span className="text-[7px] font-bold">Summer Gown</span>
-                                <span className="text-[6px] opacity-40">$120.00</span>
-                            </div>
-                            <div className="w-5 h-5 rounded-full bg-black flex items-center justify-center"><span className="text-white text-[8px]">+</span></div>
-                        </div>
+                    <h4 className="text-sm font-black mb-0.5 text-[#1668b2]">Fruit Juices</h4>
+                    <p className="text-[7px] text-[#1668b2]/60 font-bold uppercase tracking-tight mb-3">3D Product Showcase</p>
+                    <div className="h-40 rounded-xl bg-white border border-[#1668b2]/10 flex items-end justify-center gap-2 p-3">
+                        <div className="w-10 h-24 rounded-md bg-[#00adef]/20 border border-[#1668b2]/20" />
+                        <div className="w-10 h-28 rounded-md bg-[#1668b2]/25 border border-[#1668b2]/30" />
+                        <div className="w-10 h-24 rounded-md bg-[#00adef]/25 border border-[#1668b2]/20" />
                     </div>
-                    <div className="mt-auto h-8 flex items-center justify-center bg-zinc-50 border-t border-black/5">
-                        <div className="flex gap-4">
-                            <div className="w-1.5 h-1.5 rounded-full bg-black/40" />
-                            <div className="w-1.5 h-1.5 rounded-full bg-black/40" />
-                            <div className="w-1.5 h-1.5 rounded-full bg-black/40" />
+                    <div className="mt-3 h-8 flex items-center justify-center bg-[#00adef]/10 border border-[#1668b2]/10 rounded-lg">
+                        <div className="flex gap-2">
+                            <div className="w-2 h-2 rounded-full bg-[#1668b2]/45" />
+                            <div className="w-2 h-2 rounded-full bg-[#1668b2]/45" />
+                            <div className="w-2 h-2 rounded-full bg-[#1668b2]/45" />
                         </div>
                     </div>
                 </div>
@@ -174,7 +158,7 @@ export default function ProjectShowcase() {
     if (loading) {
         return (
             <div className="relative min-h-[500px] flex items-center justify-center py-12 md:py-20 text-zinc-400 font-medium">
-                Loading projects...
+                Loading featured products...
             </div>
         );
     }
@@ -182,7 +166,7 @@ export default function ProjectShowcase() {
     if (projects.length === 0) {
         return (
             <div className="relative min-h-[500px] flex items-center justify-center py-12 md:py-20 text-zinc-400 font-medium">
-                No featured projects right now.
+                No featured products right now.
             </div>
         );
     }
@@ -199,9 +183,9 @@ export default function ProjectShowcase() {
             {/* ── SECTION HEADER ── */}
             <div className="max-w-5xl mx-auto px-6 md:px-12 pt-8 md:pt-12 pb-4 border-t border-black/[0.03]">
                 <div className="flex flex-col gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Work & Engineering</span>
-                    <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-4 md:mb-6 text-zinc-200">
-                        Featured & <span className="text-black">Finished</span> Projects.
+                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#1668b2]">Featured Products</span>
+                    <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-4 md:mb-6 text-[#1668b2]/25">
+                        3D <span className="text-[#1668b2]">Product</span> Showcase.
                     </h2>
                 </div>
             </div>
@@ -215,19 +199,19 @@ export default function ProjectShowcase() {
                         {ui.mockup}
 
                         {/* Background Polish */}
-                        <div className={`absolute -top-10 w-24 h-24 bg-zinc-50 border border-black/5 rounded-2xl -z-10 ${project.mirrored ? '-right-10 -rotate-12' : '-left-10 rotate-12'}`} />
-                        <div className={`absolute -bottom-10 w-20 h-20 bg-zinc-100/50 rounded-full -z-10 blur-xl ${project.mirrored ? '-left-10' : '-right-10'}`} />
+                        <div className={`absolute -top-10 w-24 h-24 bg-[#00adef]/10 border border-[#1668b2]/20 rounded-2xl -z-10 ${project.mirrored ? '-right-10 -rotate-12' : '-left-10 rotate-12'}`} />
+                        <div className={`absolute -bottom-10 w-20 h-20 bg-[#1668b2]/10 rounded-full -z-10 blur-xl ${project.mirrored ? '-left-10' : '-right-10'}`} />
                     </div>
 
                     {/* Content Container */}
                     <div className={`w-full md:w-1/2 text-left ${project.mirrored ? 'md:pl-0 md:pr-10' : ''}`}>
                         <div className="flex items-center gap-2 mb-4">
-                            <span className="text-zinc-300 font-bold text-sm tracking-tight">{project.id} /</span>
-                            <span className="text-black font-black uppercase tracking-widest text-[9px]">{project.tag}</span>
+                            <span className="text-[#1668b2]/35 font-bold text-sm tracking-tight">{project.id} /</span>
+                            <span className="text-[#1668b2] font-black uppercase tracking-widest text-[9px]">{project.tag}</span>
                         </div>
 
                         <h3 className="text-4xl md:text-5xl font-black text-black uppercase tracking-tighter mb-4 leading-none">
-                            {project.title} <span className="text-zinc-200">{project.accent}</span>
+                            {project.title} <span className="text-[#1668b2]/25">{project.accent}</span>
                         </h3>
 
                         <p className="text-black/60 text-sm md:text-base leading-relaxed mb-8 font-medium max-w-md">
@@ -247,7 +231,7 @@ export default function ProjectShowcase() {
                                 <button
                                     key={i}
                                     onClick={() => { setIsAnimating(true); setTimeout(() => { setCurrentIdx(i); setIsAnimating(false); }, 500); }}
-                                    className={`h-1 rounded-full transition-all duration-500 ${currentIdx === i ? 'w-12 bg-black' : 'w-4 bg-zinc-100 hover:bg-zinc-200'}`}
+                                    className={`h-1 rounded-full transition-all duration-500 ${currentIdx === i ? 'w-12 bg-[#1668b2]' : 'w-4 bg-[#1668b2]/20 hover:bg-[#1668b2]/40'}`}
                                 />
                             ))}
                         </div>

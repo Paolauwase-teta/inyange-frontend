@@ -85,7 +85,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                         overflow: 'hidden',
                         margin: '0 auto 16px',
                     }}>
-                        <img src="/logo.png" alt="SicilyLabs" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <img src="/logo.png" alt="Inyange Industries" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                     </div>
                     <div style={{
                         fontSize: '11px',
@@ -221,7 +221,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                                 overflow: 'hidden',
                                 flexShrink: 0,
                             }}>
-                                <Image src="/logo.png" alt="SicilyLabs" width={36} height={36} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                <Image src="/logo.png" alt="Inyange Industries" width={36} height={36} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                             </div>
                             <div>
                                 <h1 style={{
@@ -231,7 +231,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                                     color: '#000',
                                     margin: 0,
                                     lineHeight: 1.2,
-                                }}>SicilyLabs</h1>
+                                }}>Inyange Industries</h1>
                                 <p style={{
                                     fontSize: '10px',
                                     fontWeight: 600,

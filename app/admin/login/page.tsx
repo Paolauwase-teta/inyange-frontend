@@ -175,7 +175,7 @@ export default function LoginPage() {
                                 marginBottom: '24px',
                                 display: 'inline-block',
                             }}>
-                                <img src="/logo.png" alt="SicilyLabs Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                <img src="/logo.png" alt="Inyange Industries Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                             </div>
                             <h1 style={{
                                 fontSize: '28px',
@@ -242,7 +242,7 @@ export default function LoginPage() {
                             fontWeight: 600,
                             letterSpacing: '0.1em',
                             textTransform: 'uppercase' as const,
-                        }}>Secured by Sicily Labs</p>
+                        }}>Secured by Inyange Industries</p>
                     </div>
                 </div>
 
@@ -254,9 +254,9 @@ export default function LoginPage() {
                         opacity: mounted ? 1 : 0,
                         transition: 'opacity 1.5s ease 0.3s',
                     }}>
-                        <SplineErrorBoundary fallback={
+                            <SplineErrorBoundary fallback={
                             <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <img src="/logo.png" alt="SicilyLabs Logo" style={{ width: '80px', height: '80px', objectFit: 'contain', opacity: 0.15 }} />
+                                <img src="/logo.png" alt="Inyange Industries Logo" style={{ width: '80px', height: '80px', objectFit: 'contain', opacity: 0.15 }} />
                             </div>
                         }>
                             <Spline

@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SICILYLABS",
-  description: "young Innovators focused on high-end engineering.",
+  title: "Inyange Industry Portfolio",
+  description: "Inyange Industries food processing and dairy & beverage manufacturing.",
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",

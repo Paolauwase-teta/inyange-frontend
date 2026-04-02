@@ -68,11 +68,11 @@ export default function BlogPage() {
 
             {/* Top right profile / logo */}
             <div className="pt-28 px-8 max-w-6xl mx-auto w-full flex justify-end items-center">
-                <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full overflow-hidden bg-black flex items-center justify-center">
-                        <Image src="/logo.png" alt="SicilyLabs" width={32} height={32} className="w-full h-full object-cover" />
+                    <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full overflow-hidden bg-white border border-[#1668b2]/25 flex items-center justify-center">
+                        <Image src="/logo.png" alt="Inyange Industries" width={32} height={32} className="w-full h-full object-contain" />
                     </div>
-                    <span className="text-[11px] font-bold text-zinc-700 hidden sm:block">SicilyLabs</span>
+                    <span className="text-[11px] font-bold text-[#1668b2] hidden sm:block">Inyange Industries</span>
                     <div className="w-1.5 h-1.5 rounded-full bg-zinc-200" />
                 </div>
             </div>
@@ -113,7 +113,7 @@ export default function BlogPage() {
                     >
                         <Link
                             href={`/blog/${featured.slug}`}
-                            className="inline-flex items-center gap-2 bg-black text-white text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-full hover:bg-zinc-800 transition-colors"
+                            className="inline-flex items-center gap-2 bg-[#1668b2] text-white text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-full hover:bg-[#0b4a7d] transition-colors"
                         >
                             Start reading →
                         </Link>
@@ -133,11 +133,11 @@ export default function BlogPage() {
                         >
                             {/* Author row */}
                             <div className="flex items-center gap-3 mb-6">
-                                <div className="w-9 h-9 rounded-full overflow-hidden bg-black flex items-center justify-center shrink-0">
-                                    <Image src="/logo.png" alt="SicilyLabs" width={36} height={36} className="w-full h-full object-cover" />
+                                <div className="w-9 h-9 rounded-full overflow-hidden bg-white border border-[#1668b2]/25 flex items-center justify-center shrink-0">
+                                    <Image src="/logo.png" alt="Inyange Industries" width={36} height={36} className="w-full h-full object-contain" />
                                 </div>
                                 <div>
-                                    <p className="text-[11px] font-black text-black">SicilyLabs</p>
+                                    <p className="text-[11px] font-black text-[#1668b2]">Inyange Industries</p>
                                     <p className="text-[9px] text-zinc-400 font-medium">{featured.date} · {featured.readTime} read</p>
                                 </div>
                                 <div className="ml-auto">
@@ -160,7 +160,7 @@ export default function BlogPage() {
                                     <button
                                         onClick={scrollLeft}
                                         disabled={active === 0}
-                                        className="w-8 h-8 rounded-full border border-zinc-100 flex items-center justify-center text-zinc-400 hover:text-black hover:border-zinc-300 transition-all disabled:opacity-30"
+                                        className="w-8 h-8 rounded-full border border-zinc-100 flex items-center justify-center text-zinc-400 hover:text-[#00adef] hover:border-[#00adef]/30 transition-all disabled:opacity-30"
                                     >
                                         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -169,7 +169,7 @@ export default function BlogPage() {
                                     <button
                                         onClick={scrollRight}
                                         disabled={active === posts.length - 1}
-                                        className="w-8 h-8 rounded-full border border-zinc-100 flex items-center justify-center text-zinc-400 hover:text-black hover:border-zinc-300 transition-all disabled:opacity-30"
+                                        className="w-8 h-8 rounded-full border border-zinc-100 flex items-center justify-center text-zinc-400 hover:text-[#00adef] hover:border-[#00adef]/30 transition-all disabled:opacity-30"
                                     >
                                         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -197,11 +197,11 @@ export default function BlogPage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: i * 0.05 }}
                             className={`snap-start shrink-0 w-[200px] text-left rounded-2xl p-5 border transition-all duration-300 ${active === i
-                                ? 'bg-black text-white border-black shadow-xl scale-[1.02]'
-                                : 'bg-white text-black border-zinc-100 hover:border-zinc-300 hover:shadow-sm'
+                                ? 'bg-[#1668b2] text-white border-[#1668b2] shadow-xl scale-[1.02]'
+                                : 'bg-white text-black border-zinc-100 hover:border-[#00adef]/30 hover:shadow-sm'
                                 }`}
                         >
-                            <span className={`text-[8px] font-black uppercase tracking-[0.2em] mb-3 block ${active === i ? 'text-zinc-400' : 'text-zinc-300'}`}>
+                            <span className={`text-[8px] font-black uppercase tracking-[0.2em] mb-3 block ${active === i ? 'text-zinc-200' : 'text-zinc-300'}`}>
                                 {post.category}
                             </span>
                             <h3 className={`text-[12px] font-black tracking-tight leading-snug mb-3 ${active === i ? 'text-white' : 'text-black'}`}>
@@ -212,7 +212,7 @@ export default function BlogPage() {
                                 <Link
                                     href={`/blog/${post.slug}`}
                                     onClick={e => e.stopPropagation()}
-                                    className={`text-[8px] font-black uppercase ${active === i ? 'text-zinc-400 hover:text-white' : 'text-zinc-300 hover:text-black'} transition-colors`}
+                                    className={`text-[8px] font-black uppercase ${active === i ? 'text-zinc-200 hover:text-white' : 'text-zinc-300 hover:text-[#00adef]'} transition-colors`}
                                 >
                                     Read →
                                 </Link>
