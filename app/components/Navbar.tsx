@@ -133,6 +133,7 @@ export default function Navbar() {
                     ]} />
                     <NavLink label="Services" href="/services" dropdown={serviceItems.length > 0 ? serviceItems : undefined} />
                     <NavLink label="Distributors" href="/distributors" />
+                    <NavLink label="Testimony" href="/testimony" />
                     <NavLink label="Blog" href="/blog" />
                     <NavLink label="Our Team" href="/team" dropdown={teamItems.length > 0 ? teamItems : undefined} />
                     <NavLink label="Contact Us" href="/contact" />

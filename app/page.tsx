@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import OnboardingGuide from './components/OnboardingGuide';
-import ProjectShowcase from './components/ProjectShowcase';
 import Link from 'next/link';
 
 const containerVariants: Variants = {
@@ -445,8 +444,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <div id="projects"><ProjectShowcase /></div>
 
       <OnboardingGuide />
       <Footer />

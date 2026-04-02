@@ -4,28 +4,28 @@ import React, { useState, useEffect } from 'react';
 
 const steps = [
     {
-        title: "Rapid Innovation",
-        description: "We do Design & Software, delivering your high-end MVP in just 12 days. Fast, refined, and ready to scale.",
+        title: "Welcome to Inyange",
+        description: "Inyange is a proudly Rwandan brand that has grown into a trusted household name in dairy, juice, and bottled water.",
         video: "/TourVideo.MOV"
     },
     {
-        title: "Studio Quality",
-        description: "Our core philosophy is simple: push boundaries. We focus on high-impact visual layouts that resonate with modern aesthetics.",
+        title: "Our Journey Since 1997",
+        description: "The Inyange brand began in 1997, expanding from milk and yoghurt into wider beverage lines to serve families across Rwanda.",
         video: "/TourVideo.MOV"
     },
     {
-        title: "Interactive Lab",
-        description: "Scroll down to discover our interactive 'About Us' section. Each card presents a unique facet of our creative journey.",
+        title: "Built on Quality",
+        description: "From raw material sourcing to final delivery, quality and hygiene standards are maintained at every stage of production.",
         video: "/TourVideo.MOV"
     },
     {
-        title: "Global Aesthetic",
-        description: "We draw inspiration from minimal, blocky, and industrial design patterns, combining them with high-end typography.",
+        title: "Serving Rwanda and Beyond",
+        description: "With modern production capacity and a growing distribution network, Inyange continues to reach more communities every year.",
         video: "/TourVideo.MOV"
     },
     {
-        title: "Join the Innovation",
-        description: "Ready to start? Use the navigation buttons and explore the site. We are happy to have you here at the lab.",
+        title: "Our Promise",
+        description: "Nutritious, tasty, and reliable products for everyday life. Thank you for visiting the Inyange Industry Portfolio.",
         video: "/TourVideo.MOV"
     }
 ];
@@ -81,12 +81,12 @@ export default function OnboardingGuide() {
 
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm transition-all duration-500 animate-in fade-in">
-            <div className="bg-white w-full max-w-[600px] rounded-[2.5rem] shadow-2xl p-10 relative overflow-hidden transition-all duration-300 scale-in-center">
+            <div className="bg-white w-full max-w-[600px] rounded-[2.5rem] shadow-2xl p-10 relative overflow-hidden transition-all duration-300 scale-in-center border border-[#1668b2]/15">
 
                 {/* Header: Progress Indicator */}
                 <div className="flex flex-col gap-4 mb-8">
-                    <div className="flex justify-between items-center text-xs font-black text-gray-400 uppercase tracking-widest">
-                        <span>Guide</span>
+                    <div className="flex justify-between items-center text-xs font-black text-[#1668b2]/50 uppercase tracking-widest">
+                        <span>Inyange Story</span>
                         <span>{currentStep + 1} / {steps.length}</span>
                     </div>
 
@@ -95,7 +95,7 @@ export default function OnboardingGuide() {
                         {steps.map((_, idx) => (
                             <div
                                 key={idx}
-                                className={`flex-1 h-1.5 rounded-full transition-all duration-500 ${idx <= currentStep ? 'bg-black' : 'bg-gray-100'}`}
+                                className={`flex-1 h-1.5 rounded-full transition-all duration-500 ${idx <= currentStep ? 'bg-[#1668b2]' : 'bg-gray-100'}`}
                             />
                         ))}
                     </div>
@@ -104,7 +104,7 @@ export default function OnboardingGuide() {
                 {/* Content: Main Body */}
                 <div className="flex flex-col md:flex-row items-center gap-8 mb-10 transition-all duration-300">
                     {/* Visual Container */}
-                    <div className="w-full md:w-[45%] aspect-[4/3] bg-black rounded-[2rem] flex items-center justify-center relative group overflow-hidden border border-gray-100/50 flex-shrink-0">
+                    <div className="w-full md:w-[45%] aspect-[4/3] bg-[#1668b2] rounded-[2rem] flex items-center justify-center relative group overflow-hidden border border-[#1668b2]/20 flex-shrink-0">
                         <video
                             ref={videoRef}
                             src={steps[currentStep].video}
@@ -125,10 +125,10 @@ export default function OnboardingGuide() {
                     </div>
 
                     <div className="flex flex-col gap-4 text-left">
-                        <h2 className="text-2xl font-black text-black tracking-tight leading-tight">
+                        <h2 className="text-2xl font-black text-[#1668b2] tracking-tight leading-tight">
                             {steps[currentStep].title}
                         </h2>
-                        <p className="text-sm text-gray-500 font-medium leading-relaxed">
+                        <p className="text-sm text-black/65 font-medium leading-relaxed">
                             {steps[currentStep].description}
                         </p>
                     </div>
@@ -139,23 +139,23 @@ export default function OnboardingGuide() {
                     <button
                         onClick={handlePrev}
                         disabled={currentStep === 0}
-                        className={`flex-1 py-4 px-8 rounded-2xl font-black uppercase text-xs transition-all flex items-center justify-center gap-2 ${currentStep === 0 ? 'bg-gray-100 text-gray-300 cursor-not-allowed' : 'bg-gray-100 text-black hover:bg-gray-200'}`}
+                        className={`flex-1 py-4 px-8 rounded-2xl font-black uppercase text-xs transition-all flex items-center justify-center gap-2 ${currentStep === 0 ? 'bg-gray-100 text-gray-300 cursor-not-allowed' : 'bg-gray-100 text-[#1668b2] hover:bg-[#00adef]/10'}`}
                     >
                         ← Previous
                     </button>
 
                     <button
                         onClick={handleNext}
-                        className="flex-[1.5] py-4 px-8 rounded-2xl bg-black text-white font-black uppercase text-xs hover:bg-gray-800 transition-all flex items-center justify-center gap-2 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.3)] active:scale-95"
+                        className="flex-[1.5] py-4 px-8 rounded-2xl bg-[#1668b2] text-white font-black uppercase text-xs hover:bg-[#0b4a7d] transition-all flex items-center justify-center gap-2 shadow-[0_15px_35px_-10px_rgba(22,104,178,0.35)] active:scale-95"
                     >
-                        {currentStep === steps.length - 1 ? "Get Started →" : "Next →"}
+                        {currentStep === steps.length - 1 ? "Enter Inyange →" : "Next →"}
                     </button>
                 </div>
 
                 {/* Close Button - Subtle Corner */}
                 <button
                     onClick={handleComplete}
-                    className="absolute top-4 right-4 z-50 p-2 bg-white/50 backdrop-blur-sm rounded-full text-gray-400 hover:text-black hover:bg-gray-100 transition-colors"
+                    className="absolute top-4 right-4 z-50 p-2 bg-white/50 backdrop-blur-sm rounded-full text-[#1668b2]/50 hover:text-[#1668b2] hover:bg-[#00adef]/10 transition-colors"
                 >
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                         <line x1="18" y1="6" x2="6" y2="18" />

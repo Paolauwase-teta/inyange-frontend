@@ -48,6 +48,7 @@ export default function TeamPage() {
     const [members, setMembers] = useState<TeamMember[]>([]);
     const [categories, setCategories] = useState<{ name: string; id: string }[]>([]);
     const [loading, setLoading] = useState(true);
+    const workerOfTheYear = members[0];
 
     useEffect(() => {
         Promise.all([
@@ -123,6 +124,46 @@ export default function TeamPage() {
                         expertises to deliver studio-quality solutions that push the boundaries of digital experiences.
                     </motion.p>
                 </section>
+
+                {/* Worker of the Year Highlight */}
+                {workerOfTheYear && (
+                    <section className="mb-14 md:mb-16">
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="rounded-3xl border border-[#1668b2]/20 bg-gradient-to-br from-[#00adef]/10 via-white to-[#1668b2]/10 p-4 md:p-6"
+                        >
+                            <div className="grid grid-cols-1 md:grid-cols-[120px_1fr_auto] gap-4 items-center">
+                                <div className="w-[110px] h-[110px] rounded-2xl overflow-hidden border border-[#1668b2]/20 bg-white">
+                                    {workerOfTheYear.imageUrl ? (
+                                        <img src={workerOfTheYear.imageUrl} alt={workerOfTheYear.name} className="w-full h-full object-cover" />
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center text-4xl font-black text-[#1668b2]/35">
+                                            {workerOfTheYear.name.charAt(0).toUpperCase()}
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#1668b2] mb-2">Worker of the Year</p>
+                                    <h2 className="text-2xl md:text-3xl font-black text-black leading-tight">{workerOfTheYear.name}</h2>
+                                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#1668b2]/70 mt-1">{workerOfTheYear.role}</p>
+                                    {workerOfTheYear.bio && (
+                                        <p className="text-sm text-black/60 mt-2 max-w-2xl leading-relaxed">{workerOfTheYear.bio}</p>
+                                    )}
+                                </div>
+
+                                <div className="self-start md:self-center">
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1668b2] text-white text-[10px] font-black uppercase tracking-widest">
+                                        <span>*</span>
+                                        2026 Highlight
+                                    </span>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </section>
+                )}
 
                 {/* Categories Sections */}
                 <div className="flex flex-col gap-16">

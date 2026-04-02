@@ -149,7 +149,7 @@ const MOCK_TEAM: TeamMember[] = [
     roleId: 'role-1',
     category: 'Engineering',
     bio: 'Architects the core systems, keeps the quality bar high, and mentors the team.',
-    imageUrl: '',
+    imageUrl: 'https://randomuser.me/api/portraits/men/32.jpg',
     socialLinks: { github: 'https://github.com/', linkedin: 'https://linkedin.com/', email: 'sam@example.com' },
   },
   {
@@ -159,7 +159,7 @@ const MOCK_TEAM: TeamMember[] = [
     roleId: 'role-3',
     category: 'Product',
     bio: 'Turns ambiguity into milestones, builds roadmaps, and aligns teams around impact.',
-    imageUrl: '',
+    imageUrl: 'https://randomuser.me/api/portraits/women/44.jpg',
     socialLinks: { linkedin: 'https://linkedin.com/', email: 'lavender@example.com' },
   },
   {
@@ -169,7 +169,7 @@ const MOCK_TEAM: TeamMember[] = [
     roleId: 'role-2',
     category: 'Design',
     bio: 'Designs experiences that feel premium: typography, motion, and interaction details.',
-    imageUrl: '',
+    imageUrl: 'https://randomuser.me/api/portraits/men/67.jpg',
     socialLinks: { github: 'https://github.com/', linkedin: 'https://linkedin.com/' },
   },
   {
@@ -179,7 +179,7 @@ const MOCK_TEAM: TeamMember[] = [
     roleId: 'role-1',
     category: 'Engineering',
     bio: 'Delivers performant, accessible interfaces with modern React patterns.',
-    imageUrl: '',
+    imageUrl: 'https://randomuser.me/api/portraits/women/68.jpg',
     socialLinks: { github: 'https://github.com/', email: 'retail@example.com' },
   },
   {
@@ -189,7 +189,7 @@ const MOCK_TEAM: TeamMember[] = [
     roleId: 'role-1',
     category: 'Engineering',
     bio: 'Connects signals to decisions with dashboards, pipelines, and reliable data models.',
-    imageUrl: '',
+    imageUrl: 'https://randomuser.me/api/portraits/men/75.jpg',
     socialLinks: { linkedin: 'https://linkedin.com/' },
   },
   {
@@ -199,7 +199,7 @@ const MOCK_TEAM: TeamMember[] = [
     roleId: 'role-2',
     category: 'Design',
     bio: 'Bridges design and engineering for smooth animations and cohesive component systems.',
-    imageUrl: '',
+    imageUrl: 'https://randomuser.me/api/portraits/women/12.jpg',
     socialLinks: { email: 'systems@example.com' },
   },
 ];
