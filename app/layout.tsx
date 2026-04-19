@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Jost } from "next/font/google";
 import "./globals.css";
 import NavbarWrapper from "./components/NavbarWrapper";
+import ChatBox from "./components/ChatBox";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -32,6 +33,7 @@ export default function RootLayout({
       >
         <NavbarWrapper />
         {children}
+        <ChatBox />
         <ToastContainer position="bottom-right" theme="dark" />
       </body>
     </html>
