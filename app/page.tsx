@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion, Variants, AnimatePresence } from 'framer-motion';
 import OnboardingGuide from './components/OnboardingGuide';
 import Link from 'next/link';
 
@@ -71,11 +71,38 @@ interface Service {
   number: string;
 }
 
+const HERO_SLIDES = [
+  {
+    video: "/videos/milkpouring.mp4",
+    giantText: "INYANGE INDUSTRIES",
+    tagline: "Premium Dairy & Beverages",
+    heading: "PURITY IN EVERY DROP",
+    cardTitle: "Crafted for Quality",
+    cardText: "We transform the finest ingredients into refreshing dairy and beverage products your family can trust."
+  },
+  {
+    video: "/videos/cooking.mp4",
+    giantText: "EVERYDAY MEALS",
+    tagline: "Versatile Ingredients",
+    heading: "ELEVATE YOUR COOKING",
+    cardTitle: "Perfect for Every Recipe",
+    cardText: "From breakfast to baking, our products are the perfect companion to use in your everyday meals."
+  }
+];
+
 export default function Home() {
   const [activeNode, setActiveNode] = useState<number | null>(null);
   const [milestones, setMilestones] = useState<Milestone[]>([]);
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 8000); // Rotate every 8 seconds
+    return () => clearInterval(timer);
+  }, []);
 
   React.useEffect(() => {
     Promise.all([
@@ -121,83 +148,99 @@ export default function Home() {
 
       {/* ── SECTION 1: HERO ── */}
       <section id="hero" className="relative min-h-[85vh] flex flex-col justify-end overflow-hidden bg-black">
-        {/* Background Video */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/videos/milkpouring.mp4" type="video/mp4" />
-        </video>
+        {/* Background Videos Slider */}
+        {HERO_SLIDES.map((slide, index) => (
+          <video
+            key={slide.video}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              currentSlide === index ? "opacity-100 z-0" : "opacity-0 -z-10"
+            }`}
+          >
+            <source src={slide.video} type="video/mp4" />
+          </video>
+        ))}
         
         {/* Dark overlay for lower brightness */}
-        <div className="absolute inset-0 bg-black/65" />
+        <div className="absolute inset-0 bg-black/65 z-0" />
 
-        {/* Giant background title */}
-        <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none px-12 z-0">
-            <motion.span
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.2, ease: 'easeOut' }}
-                className="text-[9vw] lg:text-[11vw] font-black uppercase text-white/10 leading-none tracking-tighter text-center"
-            >
-                INYANGE INDUSTRIES
-            </motion.span>
-        </div>
-
-        {/* Floating White Card and Title */}
-        <div className="relative z-10 px-8 pb-16 pt-32 md:pt-40 max-w-6xl mx-auto w-full flex flex-col md:flex-row items-end justify-between gap-8">
-            {/* Left: Title */}
-            <div className="flex-1">
-                <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 0.6 }}
-                    className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.3em] text-white/70 mb-4"
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+            className="absolute inset-0 flex flex-col justify-end"
+          >
+            {/* Giant background title */}
+            <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none px-12 z-0">
+                <motion.span
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.2, ease: 'easeOut' }}
+                    className="text-[9vw] lg:text-[11vw] font-black uppercase text-white/10 leading-none tracking-tighter text-center"
                 >
-                    Premium Dairy & Beverages
-                </motion.p>
-                <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.8 }}
-                    className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-tight max-w-2xl"
-                >
-                    PURITY IN EVERY DROP
-                </motion.h1>
+                    {HERO_SLIDES[currentSlide].giantText}
+                </motion.span>
             </div>
 
-            {/* Right: Floating Utility Card */}
-            <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.9, ease: 'easeOut' }}
-                className="w-full md:w-[420px] bg-white rounded-[2rem] p-8 shadow-[0_30px_80px_rgba(0,0,0,0.6)]"
-            >
-                <h2 className="text-xl font-black tracking-tighter mb-2 text-[#1668b2]">Crafted for Quality</h2>
-                <p className="text-[13px] font-medium text-zinc-500 mb-8 leading-relaxed">
-                    We transform the finest ingredients into refreshing dairy and beverage products your family can trust.
-                </p>
-
-                <div className="flex gap-3">
-                    <div className="flex-1 flex items-center gap-2 bg-zinc-50 border border-zinc-100 rounded-xl px-4 py-3">
-                        <svg className="w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                            <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
-                        </svg>
-                        <input 
-                            type="text" 
-                            placeholder="Find a product..." 
-                            className="bg-transparent border-none outline-none text-[12px] font-medium text-zinc-600 w-full placeholder:text-zinc-400"
-                        />
-                    </div>
-                    <Link href="/services" className="bg-[#1668b2] text-white text-[12px] font-black uppercase tracking-widest px-6 rounded-xl hover:bg-[#0b4a7d] transition-colors flex items-center justify-center">
-                        Explore
-                    </Link>
+            {/* Floating White Card and Title */}
+            <div className="relative z-10 px-8 pb-16 pt-32 md:pt-40 max-w-6xl mx-auto w-full flex flex-col md:flex-row items-end justify-between gap-8 pointer-events-auto">
+                {/* Left: Title */}
+                <div className="flex-1">
+                    <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3, duration: 0.6 }}
+                        className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.3em] text-white/70 mb-4"
+                    >
+                        {HERO_SLIDES[currentSlide].tagline}
+                    </motion.p>
+                    <motion.h1
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4, duration: 0.8 }}
+                        className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-tight max-w-2xl"
+                    >
+                        {HERO_SLIDES[currentSlide].heading}
+                    </motion.h1>
                 </div>
-            </motion.div>
-        </div>
+
+                {/* Right: Floating Utility Card */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6, duration: 0.9, ease: 'easeOut' }}
+                    className="w-full md:w-[420px] bg-white rounded-[2rem] p-8 shadow-[0_30px_80px_rgba(0,0,0,0.6)]"
+                >
+                    <h2 className="text-xl font-black tracking-tighter mb-2 text-[#1668b2]">{HERO_SLIDES[currentSlide].cardTitle}</h2>
+                    <p className="text-[13px] font-medium text-zinc-500 mb-8 leading-relaxed">
+                        {HERO_SLIDES[currentSlide].cardText}
+                    </p>
+
+                    <div className="flex gap-3">
+                        <div className="flex-1 flex items-center gap-2 bg-zinc-50 border border-zinc-100 rounded-xl px-4 py-3">
+                            <svg className="w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
+                            </svg>
+                            <input 
+                                type="text" 
+                                placeholder="Find a product..." 
+                                className="bg-transparent border-none outline-none text-[12px] font-medium text-zinc-600 w-full placeholder:text-zinc-400"
+                            />
+                        </div>
+                        <Link href="/services" className="bg-[#1668b2] text-white text-[12px] font-black uppercase tracking-widest px-6 rounded-xl hover:bg-[#0b4a7d] transition-colors flex items-center justify-center">
+                            Explore
+                        </Link>
+                    </div>
+                </motion.div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </section>
 
       {/* ── SECTION 2: OUR SERVICES ── */}
