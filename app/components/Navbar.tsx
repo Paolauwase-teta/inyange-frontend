@@ -60,56 +60,53 @@ function NavLink({ label, href, dropdown }: NavLinkProps) {
     );
 }
 
-interface Service {
-    id: number;
-    slug: string;
-    title: string;
-}
-
-interface Role {
-    id: number;
-    name: string;
-}
+const NAV_ITEMS: NavLinkProps[] = [
+    { label: "Home", href: "/" },
+    { label: "Our Brands", href: "/brands", dropdown: [
+        { label: 'Milk', href: '/brands/milk' },
+        { label: 'Milk Products', href: '/brands/milk-products' },
+        { label: 'Juice', href: '/brands/juice' },
+        { label: 'Water', href: '/brands/water' }
+    ]},
+    { label: "Recipes", href: "/recipes", dropdown: [
+        { label: 'Breakfast', href: '/recipes/breakfast' },
+        { label: 'Cooking', href: '/recipes/cooking' },
+        { label: 'Baking', href: '/recipes/baking' },
+        { label: 'Desserts', href: '/recipes/desserts' }
+    ]},
+    { label: "About", href: "/about", dropdown: [
+        { label: 'About Us', href: '/about-us' },
+        { label: 'Leaders', href: '/leaders' },
+        { label: 'Careers', href: '/careers' }
+    ]},
+    { label: "Editorial", href: "/editorial" },
+    { label: "Reach Out", href: "/reach-out" }
+];
 
 export default function Navbar() {
-    const [serviceItems, setServiceItems] = useState<DropdownItem[]>([]);
-    const [teamItems, setTeamItems] = useState<DropdownItem[]>([]);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [expandedMobileItem, setExpandedMobileItem] = useState<string | null>(null);
 
-    useEffect(() => {
-        // Fetch services for dropdown
-        fetch('/api/services')
-            .then(r => r.json())
-            .then((data: Service[]) => {
-                if (Array.isArray(data)) {
-                    setServiceItems(data.map(s => ({
-                        label: s.title,
-                        href: `/services/${s.slug}`,
-                    })));
-                }
-            })
-            .catch(() => { });
-
-        // Fetch roles for team dropdown
-        fetch('/api/roles')
-            .then(r => r.json())
-            .then((data: Role[]) => {
-                if (Array.isArray(data)) {
-                    setTeamItems(data.map(r => ({
-                        label: r.name,
-                        href: `/team#${r.name.toLowerCase().replace(/\s+/g, '-')}`,
-                    })));
-                }
-            })
-            .catch(() => { });
-    }, []);
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(prev => !prev);
+        if (isMobileMenuOpen) setExpandedMobileItem(null); // Reset accordions when closing
+    };
 
     return (
-        <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-[100] w-full max-w-4xl px-4 pointer-events-none">
-            <div className="w-full bg-white/80 backdrop-blur-md border border-[#1668b2]/20 rounded-full h-11 shadow-2xl pointer-events-auto flex items-center justify-between px-5 relative transition-all duration-300">
+        <>
+            {/* Blurry Backdrop Overlay for Mobile Menu */}
+            <div 
+                className={`fixed inset-0 z-[90] bg-black/10 backdrop-blur-md transition-opacity duration-300 md:hidden ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`} 
+                onClick={() => setIsMobileMenuOpen(false)}
+            />
 
-                {/* Left: Logo */}
-                <div className="flex items-center">
-                    <Link href="/" className="flex items-center gap-2 group">
+            <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-[100] w-full max-w-4xl px-4 pointer-events-none">
+                <div className={`w-full bg-white/80 backdrop-blur-md border border-[#1668b2]/20 shadow-2xl pointer-events-auto flex flex-col relative transition-all duration-300 rounded-[22px]`}>
+                    
+                    {/* Top Bar Wrapper */}
+                <div className="flex items-center justify-between px-5 h-11 shrink-0 w-full">
+                    {/* Left: Logo */}
+                    <Link href="/" className="flex items-center gap-2 group" onClick={() => setIsMobileMenuOpen(false)}>
                         <div className="w-6 h-6 rounded-full overflow-hidden border-2 border-[#1668b2] bg-white flex items-center justify-center group-hover:border-[#00adef]/60 transition-all">
                             <Image
                                 src="/logo.png"
@@ -119,26 +116,77 @@ export default function Navbar() {
                                 className="w-full h-full object-contain"
                             />
                         </div>
-                        <span className="text-xs font-black tracking-tighter text-[#1668b2] uppercase hidden sm:block">INYANGE</span>
+                        <span className="text-xs font-black tracking-tighter text-[#1668b2] uppercase">INYANGE</span>
                     </Link>
+
+                    {/* Right: Desktop Links */}
+                    <div className="hidden md:flex h-full items-center">
+                        {NAV_ITEMS.map((item, idx) => (
+                            <NavLink key={idx} {...item} />
+                        ))}
+                    </div>
+
+                    {/* Right: Hamburger Menu (Mobile) */}
+                    <button 
+                        onClick={toggleMobileMenu}
+                        className="md:hidden text-[#1668b2] hover:text-[#00adef] focus:outline-none p-1"
+                    >
+                        <svg className="w-5 h-5 flex shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            {isMobileMenuOpen ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                            ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16" />
+                            )}
+                        </svg>
+                    </button>
                 </div>
 
-                {/* Right: Links Grouped */}
-                <div className="flex h-full items-center">
-                    <NavLink label="Home" href="/" />
-                    <NavLink label="Newsroom" href="/newsroom" dropdown={[
-                        { label: 'Latest Stories', href: '/newsroom' },
-                        { label: 'Company Updates', href: '/newsroom' },
-                        { label: 'Industry Insights', href: '/newsroom' },
-                    ]} />
-                    <NavLink label="Services" href="/services" dropdown={serviceItems.length > 0 ? serviceItems : undefined} />
-                    <NavLink label="Distributors" href="/distributors" />
-                    <NavLink label="Testimony" href="/testimony" />
-                    <NavLink label="Blog" href="/blog" />
-                    <NavLink label="Our Team" href="/team" dropdown={teamItems.length > 0 ? teamItems : undefined} />
-                    <NavLink label="Contact Us" href="/contact" />
+                {/* Mobile Menu Dropdown */}
+                <div className={`md:hidden overflow-hidden transition-all duration-300 w-full ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                    <div className="px-5 pb-5 pt-2 flex flex-col gap-3 border-t border-[#1668b2]/10 mt-2 overflow-y-auto">
+                        {NAV_ITEMS.map((item, idx) => (
+                            <div key={idx} className="flex flex-col">
+                                {item.dropdown ? (
+                                    <button 
+                                        onClick={() => setExpandedMobileItem(expandedMobileItem === item.label ? null : item.label)}
+                                        className={`text-left text-xs font-black uppercase tracking-wider py-1 flex justify-between items-center transition-colors ${expandedMobileItem === item.label ? 'text-[#00adef]' : 'text-[#1668b2] hover:text-[#00adef]'}`}
+                                    >
+                                        {item.label}
+                                        <svg className={`w-3 h-3 transition-transform ${expandedMobileItem === item.label ? 'rotate-180 text-[#00adef]' : 'text-[#1668b2]/40'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </button>
+                                ) : (
+                                    <Link 
+                                        href={item.href} 
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="text-xs font-black uppercase tracking-wider text-[#1668b2] hover:text-[#00adef] py-1"
+                                    >
+                                        {item.label}
+                                    </Link>
+                                )}
+                                
+                                {item.dropdown && (
+                                    <div className={`overflow-hidden transition-all duration-300 ${expandedMobileItem === item.label ? 'max-h-40 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
+                                        <div className="pl-4 flex flex-col gap-1 border-l-2 border-[#1668b2]/10">
+                                            {item.dropdown.map((subItem, subIdx) => (
+                                                <Link 
+                                                    key={subIdx} 
+                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                    href={subItem.href} 
+                                                    className="text-[10px] font-bold uppercase tracking-tight text-[#1668b2]/60 hover:text-[#00adef] py-1.5 border-b border-[#1668b2]/[0.02] last:border-0"
+                                                >
+                                                    {subItem.label}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
                 </div>
+
             </div>
         </nav>
+        </>
     );
 }

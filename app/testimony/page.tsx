@@ -86,7 +86,7 @@ export default function TestimonyPage() {
                                 className="w-[240px] md:w-[260px] rounded-2xl border border-[#1668b2]/15 bg-white shadow-sm overflow-hidden"
                             >
                                 <div className="h-[170px] overflow-hidden">
-                                    <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                                    <img src={item.image} alt={item.product} className="w-full h-full object-cover" />
                                 </div>
                                 <div className="p-4">
                                     <span className="inline-block mb-2 text-[9px] font-black uppercase tracking-wider text-[#1668b2] bg-[#00adef]/10 px-2 py-1 rounded-full">
