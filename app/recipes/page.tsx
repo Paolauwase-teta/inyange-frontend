@@ -71,15 +71,15 @@ export default function RecipesOverviewPage() {
                 
                 {/* Circle Categories */}
                 <div className="mb-20">
-                    <div className="flex flex-wrap justify-center gap-8 md:gap-16 pt-8">
+                    <div className="flex flex-wrap justify-center gap-6 md:gap-12 pt-8">
                         {CATEGORIES.map(cat => (
                             <Link key={cat.title} href={cat.link} className="group flex flex-col items-center gap-4">
-                                <div className="relative w-32 h-32 md:w-44 md:h-44 rounded-full bg-[#f5f3ec] p-2 md:p-3 transition-all duration-300 ring-4 ring-transparent group-hover:ring-[#1668b2] group-hover:shadow-xl">
+                                <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-full bg-[#f5f3ec] p-2 md:p-3 transition-all duration-300 ring-4 ring-transparent group-hover:ring-[#1668b2] group-hover:shadow-xl">
                                     <div className="relative w-full h-full rounded-full overflow-hidden">
                                         <Image src={cat.image} alt={cat.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
                                     </div>
                                 </div>
-                                <span className="text-sm md:text-base font-bold text-[#0f2e5a] group-hover:text-[#1668b2] transition-colors tracking-wide">{cat.title}</span>
+                                <span className="text-xs md:text-sm font-bold text-[#0f2e5a] group-hover:text-[#1668b2] transition-colors tracking-wide">{cat.title}</span>
                             </Link>
                         ))}
                     </div>
