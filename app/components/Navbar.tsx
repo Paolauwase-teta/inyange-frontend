@@ -66,7 +66,8 @@ const NAV_ITEMS: NavLinkProps[] = [
     { label: "Recipes", href: "/recipes", dropdown: [
         { label: 'Breakfast', href: '/recipes/breakfast' },
         { label: 'Cooking', href: '/recipes/cooking' },
-        { label: 'Baking and Topping', href: '/recipes/baking-and-topping' }
+        { label: 'Baking', href: '/recipes/baking' },
+        { label: 'Desserts', href: '/recipes/desserts' }
     ]},
     { label: "About", href: "/about", dropdown: [
         { label: 'About Us', href: '/about-us' },
@@ -79,8 +80,12 @@ const NAV_ITEMS: NavLinkProps[] = [
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [expandedMobileItem, setExpandedMobileItem] = useState<string | null>(null);
 
-    const toggleMobileMenu = () => setIsMobileMenuOpen(prev => !prev);
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(prev => !prev);
+        if (isMobileMenuOpen) setExpandedMobileItem(null); // Reset accordions when closing
+    };
 
     return (
         <>
@@ -136,25 +141,38 @@ export default function Navbar() {
                     <div className="px-5 pb-5 pt-2 flex flex-col gap-3 border-t border-[#1668b2]/10 mt-2 overflow-y-auto">
                         {NAV_ITEMS.map((item, idx) => (
                             <div key={idx} className="flex flex-col">
-                                <Link 
-                                    href={item.href} 
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="text-xs font-black uppercase tracking-wider text-[#1668b2] hover:text-[#00adef] py-1"
-                                >
-                                    {item.label}
-                                </Link>
+                                {item.dropdown ? (
+                                    <button 
+                                        onClick={() => setExpandedMobileItem(expandedMobileItem === item.label ? null : item.label)}
+                                        className={`text-left text-xs font-black uppercase tracking-wider py-1 flex justify-between items-center transition-colors ${expandedMobileItem === item.label ? 'text-[#00adef]' : 'text-[#1668b2] hover:text-[#00adef]'}`}
+                                    >
+                                        {item.label}
+                                        <svg className={`w-3 h-3 transition-transform ${expandedMobileItem === item.label ? 'rotate-180 text-[#00adef]' : 'text-[#1668b2]/40'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </button>
+                                ) : (
+                                    <Link 
+                                        href={item.href} 
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="text-xs font-black uppercase tracking-wider text-[#1668b2] hover:text-[#00adef] py-1"
+                                    >
+                                        {item.label}
+                                    </Link>
+                                )}
+                                
                                 {item.dropdown && (
-                                    <div className="pl-4 flex flex-col mt-1 gap-1 border-l-2 border-[#1668b2]/10">
-                                        {item.dropdown.map((subItem, subIdx) => (
-                                            <Link 
-                                                key={subIdx} 
-                                                onClick={() => setIsMobileMenuOpen(false)}
-                                                href={subItem.href} 
-                                                className="text-[10px] font-bold uppercase tracking-tight text-[#1668b2]/60 hover:text-[#00adef] py-1"
-                                            >
-                                                {subItem.label}
-                                            </Link>
-                                        ))}
+                                    <div className={`overflow-hidden transition-all duration-300 ${expandedMobileItem === item.label ? 'max-h-40 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
+                                        <div className="pl-4 flex flex-col gap-1 border-l-2 border-[#1668b2]/10">
+                                            {item.dropdown.map((subItem, subIdx) => (
+                                                <Link 
+                                                    key={subIdx} 
+                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                    href={subItem.href} 
+                                                    className="text-[10px] font-bold uppercase tracking-tight text-[#1668b2]/60 hover:text-[#00adef] py-1.5 border-b border-[#1668b2]/[0.02] last:border-0"
+                                                >
+                                                    {subItem.label}
+                                                </Link>
+                                            ))}
+                                        </div>
                                     </div>
                                 )}
                             </div>

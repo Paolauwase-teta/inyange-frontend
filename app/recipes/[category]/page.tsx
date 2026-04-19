@@ -12,26 +12,45 @@ export default function RecipeCategoryPage() {
     const title = category.replace(/-/g, ' ').toUpperCase();
 
     // Mock recipes for the layout
-    const MOCK_RECIPES = [
-        { id: 1, title: 'Lemon Basil Fish', image: '/Products.jpeg' },
-        { id: 2, title: 'Creamy Yoghurt Bowl', image: '/Inyange_Industry.jpg' },
-        { id: 3, title: 'Fresh Juice Smoothie', image: '/Products.jpeg' },
-        { id: 4, title: 'Baked Dairy Treats', image: '/Products.jpeg' },
-        { id: 5, title: 'Morning Breakfast Deluxe', image: '/Products.jpeg' }
-    ];
+    const MOCK_RECIPES_BY_CATEGORY: Record<string, { id: number, title: string, image: string }[]> = {
+        'cooking': [
+            { id: 1, title: 'Lemon Basil Fish', image: '/food/cooked1.jpg' },
+            { id: 2, title: 'Spicy Grilled Chicken', image: '/food/cooked2.jpg' },
+            { id: 3, title: 'Garlic Butter Penne', image: '/food/cooked3.jpg' }
+        ],
+        'baking': [
+            { id: 4, title: 'Classic Banana Bread', image: '/food/baked1.jpg' },
+            { id: 5, title: 'Chocolate Chip Muffins', image: '/food/baked2.jpg' },
+            { id: 6, title: 'Artisan Sourdough', image: '/food/baked3.jpg' }
+        ],
+        'desserts': [
+            { id: 7, title: 'Cream Cheese Frosting', image: '/food/topping1.jpg' },
+            { id: 8, title: 'Berries Jubilee', image: '/food/topping2.jpeg' },
+            { id: 9, title: 'Smooth Caramel Drizzle', image: '/food/topping3.jpg' }
+        ],
+        'breakfast': [
+            { id: 10, title: 'Morning Pancakes', image: '/food/breakfast1.jpg' },
+            { id: 11, title: 'Healthy Granola Bowl', image: '/food/breakfast2.jpg' },
+            { id: 12, title: 'Creamy Avocado Toast', image: '/food/breakfast3.jpg' }
+        ]
+    };
+
+    const currentRecipes = MOCK_RECIPES_BY_CATEGORY[category] || MOCK_RECIPES_BY_CATEGORY['cooking'];
+    const videoSrc = category === 'baking' ? '/videos/bread.mp4' : '/videos/cooking.mp4';
 
     return (
         <main className="min-h-screen bg-[#fcfbf7] font-sans pb-24">
             {/* Banner Section with Video */}
             <div className="relative w-full h-[30vh] md:h-[40vh] overflow-hidden">
                 <video
+                    key={videoSrc}
                     autoPlay
                     loop
                     muted
                     playsInline
                     className="absolute inset-0 w-full h-full object-cover"
                 >
-                    <source src="/videos/cooking.mp4" type="video/mp4" />
+                    <source src={videoSrc} type="video/mp4" />
                 </video>
                 {/* Subtle fade overlay to blend into the background color */}
                 <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#fcfbf7] to-transparent pointer-events-none" />
@@ -74,7 +93,7 @@ export default function RecipeCategoryPage() {
 
                     {/* Center: Results Count */}
                     <span className="text-[#0f2e5a]/60 text-xs font-bold tracking-wide">
-                        31 results
+                        {currentRecipes.length} results
                     </span>
 
                     {/* Right: Sort By */}
@@ -91,7 +110,7 @@ export default function RecipeCategoryPage() {
 
                 {/* Recipe Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                    {MOCK_RECIPES.map((recipe) => (
+                    {currentRecipes.map((recipe) => (
                         <div key={recipe.id} className="group flex flex-col bg-transparent cursor-pointer">
                             {/* Card Image */}
                             <div className="w-full relative h-[250px] md:h-[280px] rounded-3xl overflow-hidden bg-zinc-200 mb-4 shadow-sm group-hover:shadow-md transition-all duration-300">
