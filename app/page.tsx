@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
 import OnboardingGuide from './components/OnboardingGuide';
 import Link from 'next/link';
+import Image from 'next/image';
+import ProjectShowcase from './components/ProjectShowcase';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -88,6 +90,13 @@ const HERO_SLIDES = [
     cardTitle: "Perfect for Every Recipe",
     cardText: "From breakfast to baking, our products are the perfect companion to use in your everyday meals."
   }
+];
+
+const FEATURED_RECIPES = [
+  { title: 'French Onion Soup', image: '/food/recipe_soup.png', desc: 'Delicious classic comfort', stats: { prep: '1h', serves: '4', skill: 'Easy' } },
+  { title: 'Chicken Corn Chowder', image: '/food/recipe_chowder.png', desc: 'Creamy and hearty delight', stats: { prep: '30m', serves: '6', skill: 'Easy' } },
+  { title: 'Lemon Basil Fish', image: '/food/recipe_fish.png', desc: 'Fresh and zesty grilled fillet', stats: { prep: '20m', serves: '2', skill: 'Medium' } },
+  { title: 'Classic Banana Bread', image: '/food/recipe_bread.png', desc: 'Perfectly moist homemade treat', stats: { prep: '1h 15m', serves: '10', skill: 'Easy' } },
 ];
 
 export default function Home() {
@@ -233,14 +242,160 @@ export default function Home() {
                                 className="bg-transparent border-none outline-none text-[12px] font-medium text-zinc-600 w-full placeholder:text-zinc-400"
                             />
                         </div>
-                        <Link href="/services" className="bg-[#1668b2] text-white text-[12px] font-black uppercase tracking-widest px-6 rounded-xl hover:bg-[#0b4a7d] transition-colors flex items-center justify-center">
+                        <Link href="/services" className="bg-[#1668b2] text-white text-[10px] md:text-[12px] font-black uppercase tracking-widest px-6 rounded-xl hover:bg-[#0b4a7d] transition-colors flex items-center justify-center">
                             Explore
+                        </Link>
+                        <Link href="#showcase" className="bg-white border-2 border-[#1668b2] text-[#1668b2] text-[10px] md:text-[12px] font-black uppercase tracking-widest px-6 py-3 rounded-xl hover:bg-[#1668b2] hover:text-white transition-all flex items-center justify-center gap-2">
+                            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+                            </svg>
+                            3D View
                         </Link>
                     </div>
                 </motion.div>
             </div>
           </motion.div>
         </AnimatePresence>
+      </section>
+
+      {/* ── SECTION 2: OUR BRANDS (OVERVIEW) ── */}
+      <section id="brands" className="bg-[#fcfbf7] py-24 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+            <div className="max-w-2xl">
+              <motion.p 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="text-[10px] font-black uppercase tracking-[0.4em] text-[#1668b2] mb-4"
+              >
+                Inyange Product Universe
+              </motion.p>
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#1668b2] leading-none"
+              >
+                OUR <span className="text-[#00adef]">BRANDS</span>.
+              </motion.h2>
+            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+            >
+              <Link href="/brands" className="group flex items-center gap-4 bg-white border border-zinc-200 px-8 py-4 rounded-2xl hover:border-[#00adef] transition-all">
+                <span className="text-xs font-black uppercase tracking-widest text-[#1668b2]">Explore All Ranges</span>
+                <span className="w-8 h-8 rounded-full bg-[#1668b2] text-white flex items-center justify-center group-hover:bg-[#00adef] transition-colors">→</span>
+              </Link>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: 'Milk', href: '/brands/milk', img: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?q=80&w=600', color: '#1668b2' },
+              { title: 'Milk Products', href: '/brands/milk-products', img: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=600', color: '#00adef' },
+              { title: 'Juice', href: '/brands/juice', img: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?q=80&w=600', color: '#1668b2' },
+              { title: 'Water', href: '/brands/water', img: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=600', color: '#00adef' },
+            ].map((brand, idx) => (
+              <motion.div
+                key={brand.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="group relative h-[450px] rounded-[2.5rem] overflow-hidden"
+              >
+                <Image src={brand.img} alt={brand.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <div className="absolute inset-x-8 bottom-8">
+                  <h3 className="text-2xl font-black text-white uppercase tracking-tighter mb-4">{brand.title}</h3>
+                  <Link href={brand.href} className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-colors">
+                    Explore Range <span className="text-[#00adef]">→</span>
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 3: RECIPES (OVERVIEW) ── */}
+      <section id="recipes-overview" className="bg-white py-24 overflow-hidden relative">
+        <div className="max-w-7xl mx-auto px-8 mb-16 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-[#1668b2] mb-2 leading-tight">
+                OUR <span className="text-[#00adef]">PICKS</span>
+              </h2>
+              <p className="text-zinc-500 font-medium text-sm">Delicious recipes we chose for you</p>
+            </motion.div>
+        </div>
+
+        {/* Continuous Moving Carousel */}
+        <div className="relative w-full flex overflow-hidden">
+          <motion.div 
+            className="flex gap-8 whitespace-nowrap py-10 px-8"
+            animate={{ x: [0, -1600] }} // Adjust based on card width + gap
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 40,
+                ease: "linear",
+              },
+            }}
+            style={{ width: "fit-content" }}
+            whileHover={{ transition: { duration: 10000 } }} // Hacky way to "pause" or slow down significantly
+          >
+            {[...FEATURED_RECIPES, ...FEATURED_RECIPES, ...FEATURED_RECIPES, ...FEATURED_RECIPES].map((recipe, idx) => (
+              <motion.div 
+                key={idx}
+                className="inline-flex w-[450px] bg-white border border-[#1668b2]/10 rounded-3xl p-6 items-center gap-6 shadow-xl shadow-black/5 hover:shadow-2xl hover:border-[#00adef]/30 transition-all cursor-pointer group"
+              >
+                {/* Circle Image */}
+                <div className="relative w-32 h-32 rounded-full overflow-hidden shrink-0 border-4 border-[#fcfbf7] group-hover:border-[#00adef]/20 transition-all">
+                  <Image src={recipe.image} alt={recipe.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col text-left">
+                  <h3 className="text-xl font-black text-[#1668b2] mb-1 uppercase tracking-tight">{recipe.title}</h3>
+                  <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-4 truncate w-56">{recipe.desc}</p>
+                  
+                  {/* Stats Grid */}
+                  <div className="grid grid-cols-3 gap-6 border-t border-[#1668b2]/5 pt-4">
+                    <div className="flex flex-col">
+                      <span className="text-[8px] font-black uppercase text-zinc-300 tracking-tighter">Prep Time</span>
+                      <span className="text-xs font-black text-[#1668b2]">{recipe.stats.prep}</span>
+                    </div>
+                    <div className="flex flex-col">
+                        <span className="text-[8px] font-black uppercase text-zinc-300 tracking-tighter">Serves</span>
+                        <span className="text-xs font-black text-[#1668b2]">{recipe.stats.serves}</span>
+                    </div>
+                    <div className="flex flex-col">
+                        <span className="text-[8px] font-black uppercase text-zinc-300 tracking-tighter">Skill</span>
+                        <span className="text-xs font-black text-[#00adef]">{recipe.stats.skill}</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* CTA Button */}
+        <div className="flex justify-center mt-12">
+          <Link href="/recipes" className="group flex items-center gap-4 bg-[#1668b2] text-white px-10 py-5 rounded-2xl hover:bg-[#0b4a7d] transition-all shadow-xl shadow-[#1668b2]/20">
+            <span className="text-xs font-black uppercase tracking-widest">See More Recipes</span>
+            <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold">→</span>
+          </Link>
+        </div>
       </section>
 
       {/* ── SECTION 2: OUR SERVICES ── */}
@@ -294,7 +449,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 3: ABOUT US / EVOLUTION TIMELINE ── */}
+      {/* ── SECTION 5: OUR STORY ── */}
       <section id="about" className="bg-white pt-16 pb-8 md:pt-24 md:pb-12 overflow-hidden">
         <div className="relative w-full max-w-5xl mx-auto px-6 md:px-12">
 
@@ -472,6 +627,80 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 6: 3D PROJECT SHOWCASE (NEW) ── */}
+      <section id="showcase">
+        <ProjectShowcase />
+      </section>
+
+      {/* ── SECTION 7: EDITORIAL (OVERVIEW) ── */}
+      <section id="editorial-overview" className="bg-[#fcfbf7] py-24">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="text-center mb-16">
+            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-[#1668b2] mb-4">Latest from Inyange</p>
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#1668b2]">
+              INYANGE <span className="text-[#00adef]">EDITORIAL</span>.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { date: 'Oct 12, 2023', title: 'Sustainable Farming: Our Commitment to the Future', tag: 'Sustainability' },
+              { date: 'Sep 28, 2023', title: 'Inyange Awarded Best Beverage Producer of the Year', tag: 'Awards' },
+              { date: 'Sep 15, 2023', title: 'New Fortified Milk Range: Nutrition Redefined', tag: 'Innovation' },
+            ].map((news, idx) => (
+              <motion.div
+                key={news.title}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-white rounded-3xl p-8 border border-zinc-100 hover:shadow-2xl transition-all group"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-[#00adef]">{news.tag}</span>
+                  <span className="text-[10px] font-bold text-zinc-300">{news.date}</span>
+                </div>
+                <h3 className="text-xl font-black text-[#1668b2] mb-8 leading-tight group-hover:text-[#00adef] transition-colors">{news.title}</h3>
+                <Link href="/editorial" className="text-[10px] font-black uppercase tracking-widest text-[#1668b2] flex items-center gap-2">
+                  Read Story <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 7: REACH OUT (OVERVIEW) ── */}
+      <section id="reach-out-overview" className="relative py-32 bg-[#1668b2] overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] border-[50px] border-white rounded-full -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] border-[30px] border-white rounded-full translate-y-1/2 -translate-x-1/2" />
+        </div>
+        
+        <div className="max-w-4xl mx-auto px-8 text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter mb-8 leading-none">
+              WANT TO GET <br /> <span className="text-[#00adef]">IN TOUCH?</span>
+            </h2>
+            <p className="text-white/70 font-medium mb-12 max-w-2xl mx-auto leading-loose text-sm md:text-base">
+              Whether you're a customer, a potential partner, or looking for a career, we're here to listen and grow together. Reach out to our dedicated support teams today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/reach-out" className="bg-[#00adef] text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white hover:text-[#1668b2] transition-all">
+                Contact Us Now
+              </Link>
+              <Link href="/about/careers" className="bg-transparent border-2 border-white/20 text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:border-white transition-all">
+                Join Our Team
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
