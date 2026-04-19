@@ -62,7 +62,12 @@ function NavLink({ label, href, dropdown }: NavLinkProps) {
 
 const NAV_ITEMS: NavLinkProps[] = [
     { label: "Home", href: "/" },
-    { label: "Our Brands", href: "/brands" },
+    { label: "Our Brands", href: "/brands", dropdown: [
+        { label: 'Milk', href: '/brands/milk' },
+        { label: 'Milk Products', href: '/brands/milk-products' },
+        { label: 'Juice', href: '/brands/juice' },
+        { label: 'Water', href: '/brands/water' }
+    ]},
     { label: "Recipes", href: "/recipes", dropdown: [
         { label: 'Breakfast', href: '/recipes/breakfast' },
         { label: 'Cooking', href: '/recipes/cooking' },
