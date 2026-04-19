@@ -119,97 +119,84 @@ export default function Home() {
   return (
     <div className="bg-white min-h-screen">
 
-      {/* ── SECTION 1: HERO (REFERENCE STYLE) ── */}
-      <section id="hero" className="bg-white pt-32 pb-6 md:pt-36 md:pb-8 px-12 md:px-24 lg:px-36">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-start justify-between gap-6 mb-4">
-            <div>
-              <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tight leading-none text-black mb-2">
-                Inyange Dairy,
-                <br />
-                Built With Quality
-              </h1>
-              <p className="text-sm md:text-base text-black/45 font-semibold">
-                Trusted milk, yoghurt, juice, and water production from modern hygienic facilities.
-              </p>
-            </div>
-            <Link
-              href="/services"
-              className="shrink-0 mt-1 rounded-xl bg-[#1668b2] text-white text-xs md:text-sm font-bold px-5 py-2.5 hover:bg-[#0b4a7d] transition-colors"
+      {/* ── SECTION 1: HERO ── */}
+      <section id="hero" className="relative min-h-[85vh] flex flex-col justify-end overflow-hidden bg-black">
+        {/* Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/videos/milkpouring.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Dark overlay for lower brightness */}
+        <div className="absolute inset-0 bg-black/65" />
+
+        {/* Giant background title */}
+        <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none px-12 z-0">
+            <motion.span
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.2, ease: 'easeOut' }}
+                className="text-[9vw] lg:text-[11vw] font-black uppercase text-white/10 leading-none tracking-tighter text-center"
             >
-              Our Lines
-            </Link>
-          </div>
+                INYANGE INDUSTRIES
+            </motion.span>
+        </div>
 
-          <div className="rounded-3xl border border-black/10 bg-white p-2 md:p-2.5 mb-3">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-2.5">
-            <div className="relative rounded-2xl overflow-hidden border border-black/10 h-[210px] md:h-[250px]">
-              <img
-                src="/Inyange_Industry.jpg"
-                alt="Inyange industry food production"
-                className="w-full h-full object-cover"
-              />
-              {/* Softer gradient + tighter panel so the image stays visible */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
-              <div className="absolute left-4 right-4 bottom-2 bg-black/20 backdrop-blur-md border border-white/15 rounded-2xl px-2.5 md:px-3 py-1.5 flex items-center justify-between gap-2.5">
-                <div>
-                  <span className="inline-block text-[9px] font-bold uppercase tracking-wider text-white/80 mb-0.5">Inyange Industries</span>
-                  <h3 className="text-white text-[15px] md:text-base font-extrabold leading-tight">
-                    Leaders in dairy & beverage production
-                  </h3>
-                  <p className="text-white/70 text-[10px] md:text-xs mt-0.5 max-w-lg">
-                    From raw material procurement to final delivery, quality stays at the center of every batch.
-                  </p>
+        {/* Floating White Card and Title */}
+        <div className="relative z-10 px-8 pb-16 pt-32 md:pt-40 max-w-6xl mx-auto w-full flex flex-col md:flex-row items-end justify-between gap-8">
+            {/* Left: Title */}
+            <div className="flex-1">
+                <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.6 }}
+                    className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.3em] text-white/70 mb-4"
+                >
+                    Premium Dairy & Beverages
+                </motion.p>
+                <motion.h1
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 0.8 }}
+                    className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-tight max-w-2xl"
+                >
+                    PURITY IN EVERY DROP
+                </motion.h1>
+            </div>
+
+            {/* Right: Floating Utility Card */}
+            <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.9, ease: 'easeOut' }}
+                className="w-full md:w-[420px] bg-white rounded-[2rem] p-8 shadow-[0_30px_80px_rgba(0,0,0,0.6)]"
+            >
+                <h2 className="text-xl font-black tracking-tighter mb-2 text-[#1668b2]">Crafted for Quality</h2>
+                <p className="text-[13px] font-medium text-zinc-500 mb-8 leading-relaxed">
+                    We transform the finest ingredients into refreshing dairy and beverage products your family can trust.
+                </p>
+
+                <div className="flex gap-3">
+                    <div className="flex-1 flex items-center gap-2 bg-zinc-50 border border-zinc-100 rounded-xl px-4 py-3">
+                        <svg className="w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
+                        </svg>
+                        <input 
+                            type="text" 
+                            placeholder="Find a product..." 
+                            className="bg-transparent border-none outline-none text-[12px] font-medium text-zinc-600 w-full placeholder:text-zinc-400"
+                        />
+                    </div>
+                    <Link href="/services" className="bg-[#1668b2] text-white text-[12px] font-black uppercase tracking-widest px-6 rounded-xl hover:bg-[#0b4a7d] transition-colors flex items-center justify-center">
+                        Explore
+                    </Link>
                 </div>
-                <div className="w-8 h-8 rounded-full bg-white/90 text-black flex items-center justify-center text-sm font-black shrink-0">
-                  ↗
-                </div>
-              </div>
-            </div>
-
-            <div className="relative rounded-2xl overflow-hidden border border-black/10 h-[210px] md:h-[250px]">
-              <img
-                src="/Products.jpeg"
-                alt="Inyange products"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/8 to-transparent" />
-              <div className="absolute left-4 bottom-3 bg-white/90 backdrop-blur-md border border-black/10 rounded-xl px-4 py-2">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#1668b2]">Products</span>
-              </div>
-            </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="rounded-2xl border border-black/10 bg-white p-3.5 shadow-sm">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-[8px] font-black uppercase tracking-[0.16em] text-[#1668b2] bg-[#00adef]/10 px-2 py-0.5 rounded-full">Heritage</span>
-                <span className="text-[9px] font-bold text-black/30">01</span>
-              </div>
-              <p className="text-xl md:text-2xl font-black text-black leading-none">1997</p>
-              <p className="text-[9px] font-bold uppercase tracking-widest text-black/35 mt-1.5">Brand Started</p>
-              <p className="text-[10px] text-black/45 mt-1.5">Inyange begins operations in Rwanda.</p>
-            </div>
-            <div className="rounded-2xl border border-black/10 bg-white p-3.5 shadow-sm">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-[8px] font-black uppercase tracking-[0.16em] text-[#1668b2] bg-[#00adef]/10 px-2 py-0.5 rounded-full">Scale</span>
-                <span className="text-[9px] font-bold text-black/30">02</span>
-              </div>
-              <p className="text-xl md:text-2xl font-black text-black leading-none">10x</p>
-              <p className="text-[9px] font-bold uppercase tracking-widest text-black/35 mt-1.5">Capacity Growth</p>
-              <p className="text-[10px] text-black/45 mt-1.5">Masaka expansion enables higher output.</p>
-            </div>
-            <div className="rounded-2xl border border-[#1668b2] bg-[#1668b2] p-3.5 shadow-sm">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-[8px] font-black uppercase tracking-[0.16em] text-white bg-white/20 px-2 py-0.5 rounded-full">Market</span>
-                <span className="text-[9px] font-bold text-white/60">03</span>
-              </div>
-              <p className="text-xl md:text-2xl font-black text-white leading-none">EAC</p>
-              <p className="text-[9px] font-bold uppercase tracking-widest text-white/75 mt-1.5">Regional Market Reach</p>
-              <p className="text-[10px] text-white/75 mt-1.5">Expanding distribution across neighboring markets.</p>
-            </div>
-          </div>
+            </motion.div>
         </div>
       </section>
 
