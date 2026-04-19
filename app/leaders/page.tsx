@@ -42,8 +42,7 @@ export default function LeadersPage() {
 
     return (
         <main className="min-h-screen bg-[#fcfbf7] font-sans pb-24">
-            
-            {/* ── SECTION 1: HERO ── */}
+                        {/* ── SECTION 1: HERO ── */}
             <section className="relative w-full h-[50vh] md:h-[65vh] bg-[#1668b2] overflow-hidden flex items-center justify-center">
                 {/* Background Watermark */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
@@ -66,39 +65,11 @@ export default function LeadersPage() {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter leading-[0.9]"
+                            className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9]"
                         >
                             OUR <br /> <span className="text-[#00adef]">LEADERS</span>.
                         </motion.h1>
                     </div>
-
-                    {/* Right: Floating Info Card */}
-                    <motion.div 
-                        initial={{ opacity: 0, scale: 0.9, x: 20 }}
-                        animate={{ opacity: 1, scale: 1, x: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="w-full max-w-[440px] bg-white rounded-[2.5rem] p-8 shadow-2xl"
-                    >
-                        <h2 className="text-xl md:text-2xl font-black text-[#1668b2] mb-3 leading-tight tracking-tight">Visionary Innovation.</h2>
-                        <p className="text-xs md:text-sm font-medium text-zinc-500 leading-relaxed mb-8">
-                            Meet the diverse team driving Inyange Industries forward. Our leaders combine decades of experience in dairy science, manufacturing, and global commerce to deliver excellence in every product.
-                        </p>
-
-                        <div className="relative flex items-center">
-                            <div className="absolute left-5 text-zinc-400">
-                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                    <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
-                                </svg>
-                            </div>
-                            <input 
-                                type="text"
-                                placeholder="Search our leadership..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full bg-zinc-50 border border-zinc-100 rounded-2xl py-4 pl-14 pr-6 text-sm font-bold text-[#1668b2] outline-none focus:ring-4 focus:ring-[#00adef]/10 transition-all placeholder:text-zinc-300"
-                            />
-                        </div>
-                    </motion.div>
                 </div>
             </section>
 
