@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
 
 interface Service {
@@ -29,8 +29,6 @@ export default function ServicesPage() {
 
   return (
     <main className="min-h-screen bg-white font-sans">
-      <Navbar />
-
       {/* Hero */}
       <section className="pt-36 pb-16 px-8 max-w-6xl mx-auto">
         <motion.p
@@ -95,6 +93,7 @@ export default function ServicesPage() {
           )}
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

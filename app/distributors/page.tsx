@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
-import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 type Availability = 'High' | 'Medium' | 'Low';
 
@@ -53,8 +53,6 @@ export default function DistributorsPage() {
 
     return (
         <main className="min-h-screen bg-[#f7f8fa] pb-10">
-            <Navbar />
-
             <section className="pt-32 px-8 md:px-12 max-w-6xl mx-auto">
                 <div className="mb-4 md:mb-6">
                     <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#1668b2]/65 mb-2">Distributor Network</p>
@@ -143,6 +141,7 @@ export default function DistributorsPage() {
                     </div>
                 </div>
             </section>
+            <Footer />
         </main>
     );
 }

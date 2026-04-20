@@ -133,12 +133,20 @@ export default function Home() {
                 Trusted milk, yoghurt, juice, and water production from modern hygienic facilities.
               </p>
             </div>
-            <Link
-              href="/services"
-              className="shrink-0 mt-1 rounded-xl bg-[#1668b2] text-white text-xs md:text-sm font-bold px-5 py-2.5 hover:bg-[#0b4a7d] transition-colors"
-            >
-              Our Lines
-            </Link>
+            <div className="shrink-0 mt-1 flex gap-2">
+              <Link
+                href="/services"
+                className="rounded-xl bg-[#1668b2] text-white text-xs md:text-sm font-bold px-5 py-2.5 hover:bg-[#0b4a7d] transition-colors"
+              >
+                Our Lines
+              </Link>
+              <Link
+                href="/product"
+                className="rounded-xl border border-[#1668b2] text-[#1668b2] text-xs md:text-sm font-bold px-5 py-2.5 hover:bg-[#1668b2] hover:text-white transition-colors"
+              >
+                3D Product
+              </Link>
+            </div>
           </div>
 
           <div className="rounded-3xl border border-black/10 bg-white p-2 md:p-2.5 mb-3">

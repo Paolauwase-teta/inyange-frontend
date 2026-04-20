@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 
 interface BlogPost {
     id: string;
@@ -45,7 +45,6 @@ export default function BlogPostDetail() {
     if (loading) {
         return (
             <main className="min-h-screen bg-[#f9f9f9] font-sans flex flex-col items-center justify-center">
-                <Navbar />
                 <p className="text-zinc-400 font-medium">Loading story...</p>
             </main>
         );
@@ -54,7 +53,6 @@ export default function BlogPostDetail() {
     if (!post) {
         return (
             <main className="min-h-screen bg-[#f9f9f9] font-sans flex flex-col items-center justify-center">
-                <Navbar />
                 <h1 className="text-4xl font-black tracking-tighter text-black mb-4">Post Not Found</h1>
                 <p className="text-zinc-500 font-medium mb-8">The story you're looking for doesn't exist or has been moved.</p>
                 <Link href="/blog" className="bg-[#1668b2] text-white text-[11px] font-black uppercase tracking-widest px-6 py-3 rounded-full hover:bg-[#0b4a7d] transition-colors">
@@ -66,8 +64,6 @@ export default function BlogPostDetail() {
 
     return (
         <main className="min-h-screen bg-white font-sans flex flex-col">
-            <Navbar />
-
             {/* Hero Section */}
             <section className="pt-32 pb-16 px-8 max-w-4xl mx-auto w-full text-center">
                 <motion.div
@@ -165,6 +161,7 @@ export default function BlogPostDetail() {
                     </div>
                 </div>
             </section>
+            <Footer />
         </main>
     );
 }

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 interface BlogPost {
     id: number;
@@ -60,7 +60,6 @@ export default function NewsroomPage() {
     if (loading) {
         return (
             <main className="min-h-screen bg-[#f9f9f9] font-sans flex flex-col items-center justify-center">
-                <Navbar />
                 <p className="text-zinc-400 font-medium">Loading stories...</p>
             </main>
         );
@@ -69,7 +68,6 @@ export default function NewsroomPage() {
     if (posts.length === 0) {
         return (
             <main className="min-h-screen bg-[#f9f9f9] font-sans flex flex-col items-center justify-center">
-                <Navbar />
                 <p className="text-zinc-400 font-medium">No stories currently available.</p>
             </main>
         );
@@ -77,8 +75,6 @@ export default function NewsroomPage() {
 
     return (
         <main className="min-h-screen bg-[#f7f8fa] font-sans pb-14">
-            <Navbar />
-
             <section className="pt-32 px-6 md:px-10 lg:px-12 max-w-6xl mx-auto">
                 <div className="mb-8 md:mb-10 flex items-end justify-between gap-4">
                     <div>
@@ -261,6 +257,7 @@ export default function NewsroomPage() {
                 </>
                 )}
             </section>
+            <Footer />
         </main>
     );
 }

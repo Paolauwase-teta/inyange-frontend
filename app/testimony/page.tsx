@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const testimonies = [
     {
@@ -55,38 +55,38 @@ export default function TestimonyPage() {
     const marqueeItems = [...testimonies, ...testimonies];
 
     return (
-        <main className="min-h-screen bg-[#f7f8fa]">
-            <Navbar />
+        <main className="min-h-screen bg-white">
+            <section className="pt-32 pb-16 overflow-hidden">
+                <div className="max-w-6xl mx-auto px-8 md:px-12">
+                    <div className="text-center mb-8 md:mb-12">
+                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#1668b2] mb-3">
+                            Client Voice
+                        </p>
 
-            <section className="pt-32 pb-16 min-h-screen overflow-hidden">
-                <div className="text-center mb-10 md:mb-14 px-6">
-                    <p className="text-[10px] md:text-[14px] font-black uppercase tracking-[0.45em] text-black/50 mb-3 md:mb-5">
-                        Real Client
-                    </p>
+                        <h1 className="uppercase tracking-tight leading-none mb-3 md:mb-4">
+                            <span className="text-[54px] md:text-[120px] font-black text-black/75">TES</span>
+                            <span className="text-[54px] md:text-[120px] font-black text-[#1668b2]/35">TI</span>
+                            <span className="text-[54px] md:text-[120px] font-black text-black/75">MONY</span>
+                        </h1>
 
-                    <h1 className="uppercase tracking-tight leading-none mb-3 md:mb-4">
-                        <span className="text-[54px] md:text-[120px] font-black text-black/75">TES</span>
-                        <span className="text-[54px] md:text-[120px] font-black text-black/20">TI</span>
-                        <span className="text-[54px] md:text-[120px] font-black text-black/75">MONY</span>
-                    </h1>
-
-                    <p className="text-[10px] md:text-[14px] font-black uppercase tracking-[0.45em] text-black/50">
-                        With Inyange Products
-                    </p>
+                        <p className="text-sm md:text-base text-black/55 font-medium max-w-2xl mx-auto">
+                            Real customer experiences with Inyange products across Rwanda.
+                        </p>
+                    </div>
                 </div>
 
                 <div className="relative">
-                    <div className="absolute left-0 top-0 h-full w-16 md:w-24 bg-gradient-to-r from-[#f7f8fa] to-transparent z-10 pointer-events-none" />
-                    <div className="absolute right-0 top-0 h-full w-16 md:w-24 bg-gradient-to-l from-[#f7f8fa] to-transparent z-10 pointer-events-none" />
+                    <div className="absolute left-0 top-0 h-full w-16 md:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+                    <div className="absolute right-0 top-0 h-full w-16 md:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
                     <div className="marquee-track flex gap-5 w-max px-2 md:px-4">
                         {marqueeItems.map((item, idx) => (
                             <article
                                 key={`${item.clientName}-${idx}`}
-                                className="w-[240px] md:w-[260px] rounded-2xl border border-[#1668b2]/15 bg-white shadow-sm overflow-hidden"
+                                className="w-[240px] md:w-[260px] rounded-2xl border border-[#1668b2]/20 bg-white shadow-sm overflow-hidden"
                             >
                                 <div className="h-[170px] overflow-hidden">
-                                    <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                                    <img src={item.image} alt={item.clientName} className="w-full h-full object-cover" />
                                 </div>
                                 <div className="p-4">
                                     <span className="inline-block mb-2 text-[9px] font-black uppercase tracking-wider text-[#1668b2] bg-[#00adef]/10 px-2 py-1 rounded-full">
@@ -135,6 +135,7 @@ export default function TestimonyPage() {
                     }
                 }
             `}</style>
+            <Footer />
         </main>
     );
 }

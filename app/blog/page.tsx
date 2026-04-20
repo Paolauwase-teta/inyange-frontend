@@ -4,7 +4,7 @@ import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 interface BlogPost {
     id: number;
@@ -47,7 +47,6 @@ export default function BlogPage() {
     if (loading) {
         return (
             <main className="min-h-screen bg-[#f9f9f9] font-sans flex flex-col items-center justify-center">
-                <Navbar />
                 <p className="text-zinc-400 font-medium">Loading stories...</p>
             </main>
         );
@@ -56,7 +55,6 @@ export default function BlogPage() {
     if (posts.length === 0 || !featured) {
         return (
             <main className="min-h-screen bg-[#f9f9f9] font-sans flex flex-col items-center justify-center">
-                <Navbar />
                 <p className="text-zinc-400 font-medium">No stories currently available.</p>
             </main>
         );
@@ -64,8 +62,6 @@ export default function BlogPage() {
 
     return (
         <main className="min-h-screen bg-[#f9f9f9] font-sans flex flex-col">
-            <Navbar />
-
             {/* Top right profile / logo */}
             <div className="pt-28 px-8 max-w-6xl mx-auto w-full flex justify-end items-center">
                     <div className="flex items-center gap-3">
@@ -221,6 +217,7 @@ export default function BlogPage() {
                     ))}
                 </div>
             </section>
+            <Footer />
         </main>
     );
 }
