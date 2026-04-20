@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
-import OnboardingGuide from './components/OnboardingGuide';
+import dynamic from 'next/dynamic';
+const OnboardingGuide = dynamic(() => import('./components/OnboardingGuide'), { ssr: false });
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -126,20 +127,21 @@ export default function Home() {
 
       {/* ── SECTION 1: HERO ── */}
       <section id="hero" className="relative min-h-[85vh] flex flex-col justify-end overflow-hidden bg-black">
-        {/* Background Videos Slider */}
+        {/* Background Videos Slider: Optimized to render only the active video for performance */}
         {HERO_SLIDES.map((slide, index) => (
-          <video
-            key={slide.video}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-              currentSlide === index ? "opacity-100 z-0" : "opacity-0 -z-10"
-            }`}
-          >
-            <source src={slide.video} type="video/mp4" />
-          </video>
+          currentSlide === index && (
+            <video
+              key={slide.video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src={slide.video} type="video/mp4" />
+            </video>
+          )
         ))}
         
         {/* Dark overlay for lower brightness */}

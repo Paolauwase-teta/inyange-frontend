@@ -48,6 +48,8 @@ export default function RecipeCategoryPage() {
                     loop
                     muted
                     playsInline
+                    preload="metadata"
+                    poster="/food/cooked1.jpg"
                     className="absolute inset-0 w-full h-full object-cover"
                 >
                     <source src={videoSrc} type="video/mp4" />

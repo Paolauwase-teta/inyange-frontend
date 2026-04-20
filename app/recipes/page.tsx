@@ -36,6 +36,8 @@ export default function RecipesOverviewPage() {
                     loop
                     muted
                     playsInline
+                    preload="metadata"
+                    poster="/food/breakfast1.jpg"
                     className="absolute inset-0 w-full h-full object-cover"
                 >
                     <source src="/videos/cooking.mp4" type="video/mp4" />
