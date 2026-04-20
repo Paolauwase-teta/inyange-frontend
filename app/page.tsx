@@ -232,11 +232,11 @@ export default function Home() {
         </AnimatePresence>
       </section>
 
-      {/* ── SECTION 2: OUR BRANDS (OVERVIEW) ── */}
       <section id="brands" className="bg-[#fcfbf7] py-24 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
-            <div className="max-w-2xl">
+        <div className="max-w-6xl mx-auto px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            {/* Left Column: Text & CTA */}
+            <div className="lg:w-1/2">
               <motion.p 
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -250,55 +250,55 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#1668b2] leading-none"
+                className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#1668b2] leading-tight mb-8"
               >
                 OUR <span className="text-[#00adef]">BRANDS</span>.
               </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-zinc-500 font-medium text-lg mb-10 leading-relaxed max-w-xl"
+              >
+                Experience the pure essence of Rwanda through our premium selection of dairy, refreshing juices, and crystal-clear mineral water. Each Inyange brand represents our unwavering commitment to quality, nutrition, and the well-being of our community.
+              </motion.p>
+              <motion.div
+                 initial={{ opacity: 0, y: 20 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+                 transition={{ delay: 0.3 }}
+              >
+                <Link href="/brands" className="group flex items-center gap-4 bg-[#1668b2] text-white px-8 py-4 rounded-2xl hover:bg-[#00adef] transition-all w-fit shadow-xl shadow-[#1668b2]/20">
+                  <span className="text-xs font-black uppercase tracking-widest">Discover our brands</span>
+                  <span className="w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center group-hover:bg-white group-hover:text-[#00adef] transition-colors">→</span>
+                </Link>
+              </motion.div>
             </div>
-            <motion.div
+
+            {/* Right Column: Image */}
+            <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="lg:w-1/2 relative h-[400px] md:h-[600px] w-full"
             >
-              <Link href="/brands" className="group flex items-center gap-4 bg-white border border-zinc-200 px-8 py-4 rounded-2xl hover:border-[#00adef] transition-all">
-                <span className="text-xs font-black uppercase tracking-widest text-[#1668b2]">Explore All Ranges</span>
-                <span className="w-8 h-8 rounded-full bg-[#1668b2] text-white flex items-center justify-center group-hover:bg-[#00adef] transition-colors">→</span>
-              </Link>
+              <Image 
+                src="/inyangebrand.png" 
+                alt="Inyange Brands Collection" 
+                fill 
+                className="object-contain"
+                priority
+              />
             </motion.div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { title: 'Milk', href: '/brands/milk', img: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?q=80&w=600', color: '#1668b2' },
-              { title: 'Milk Products', href: '/brands/milk-products', img: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=600', color: '#00adef' },
-              { title: 'Juice', href: '/brands/juice', img: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?q=80&w=600', color: '#1668b2' },
-              { title: 'Water', href: '/brands/water', img: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=600', color: '#00adef' },
-            ].map((brand, idx) => (
-              <motion.div
-                key={brand.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="group relative h-[450px] rounded-[2.5rem] overflow-hidden"
-              >
-                <Image src={brand.img} alt={brand.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute inset-x-8 bottom-8">
-                  <h3 className="text-2xl font-black text-white uppercase tracking-tighter mb-4">{brand.title}</h3>
-                  <Link href={brand.href} className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-colors">
-                    Explore Range <span className="text-[#00adef]">→</span>
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
 
       {/* ── SECTION 3: RECIPES (OVERVIEW) ── */}
       <section id="recipes-overview" className="bg-white py-24 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-8 mb-16 text-center">
+        <div className="max-w-6xl mx-auto px-8 mb-16 text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -307,8 +307,8 @@ export default function Home() {
               <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-[#1668b2] mb-4 leading-tight">
                 OUR <span className="text-[#00adef]">PICKS</span>
               </h2>
-              <p className="text-zinc-500 font-medium text-sm max-w-2xl mx-auto leading-relaxed">
-                Delicious recipes we chose for you. Discover how Inyange's premium dairy, juices, and mineral water can elevate your everyday meals. From protein-packed breakfasts to gourmet dinner bases, our products are the secret ingredient to a healthier, more flavorful lifestyle.
+              <p className="text-zinc-500 font-medium text-sm max-w-2xl leading-relaxed">
+                Delicious recipes we chose for you. Discover how Inyange's premium dairy, juices, and mineral water can elevate your everyday meals.
               </p>
             </motion.div>
         </div>
@@ -379,7 +379,7 @@ export default function Home() {
 
       {/* ── SECTION 4: TRUSTED BY WORLDWIDE (NEW) ── */}
       <section id="certifications" className="bg-white py-24 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-8 mb-16 text-center">
+        <div className="max-w-6xl mx-auto px-8 mb-16 text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -389,8 +389,8 @@ export default function Home() {
               <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-[#1668b2] mb-6 leading-tight">
                 TRUSTED BY PEOPLE <span className="text-[#00adef]">WORLDWIDE</span>
               </h2>
-              <p className="text-zinc-500 font-medium text-sm max-w-2xl mx-auto leading-relaxed">
-                Inyange Industries operates with uncompromising dedication to international food safety and quality management standards. Our global qualifications ensure that every product leaving our facilities is safe, nutritious, and produced under the world's most rigorous oversight.
+              <p className="text-zinc-500 font-medium text-sm max-w-2xl leading-relaxed">
+                Inyange Industries operates with uncompromising dedication to international food safety and quality management standards.
               </p>
             </motion.div>
         </div>
@@ -424,7 +424,7 @@ export default function Home() {
 
       {/* ── SECTION 5: ABOUT US (NEW) ── */}
       <section id="about" className="bg-[#fcfbf7] py-16 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-8 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <div className="max-w-6xl mx-auto px-8 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           
           {/* Left: Content */}
           <motion.div 
@@ -534,8 +534,8 @@ export default function Home() {
 
       {/* ── SECTION 7: EDITORIAL (OVERVIEW) ── */}
       <section id="editorial-overview" className="bg-[#fcfbf7] py-24">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center mb-16">
+        <div className="max-w-6xl mx-auto px-8">
+          <div className="text-left mb-16">
             <p className="text-[10px] font-black uppercase tracking-[0.4em] text-[#1668b2] mb-4">Latest from Inyange</p>
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#1668b2]">
               INYANGE <span className="text-[#00adef]">EDITORIAL</span>.

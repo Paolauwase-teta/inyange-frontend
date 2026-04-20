@@ -181,7 +181,7 @@ export default function ProjectShowcase() {
     return (
         <div className="bg-white overflow-hidden">
             {/* ── SECTION HEADER ── */}
-            <div className="max-w-5xl mx-auto px-6 md:px-12 pt-8 md:pt-12 pb-4 border-t border-black/[0.03]">
+            <div className="max-w-6xl mx-auto px-8 pt-8 md:pt-12 pb-4 border-t border-black/[0.03]">
                 <div className="flex flex-col gap-2">
                     <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#1668b2]">Featured Products</span>
                     <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-4 md:mb-6 text-[#1668b2]/25">
