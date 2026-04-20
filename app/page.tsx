@@ -100,12 +100,12 @@ const HOME_LEADERS = [
 ];
 
 const CERTIFICATIONS = [
-  { name: 'BRC Food Safety', image: 'https://www.logotypes101.com/logos/933/67C08A4E1B3A0D18B1A2C08A4E1B3A0D/brcfood.png' },
+  { name: 'BRC Food Safety', image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/BRC_Global_Standards_Logo.svg/1024px-BRC_Global_Standards_Logo.svg.png' },
   { name: 'EU Organic', image: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/EU_Organic_Logo_Colour.png' },
-  { name: 'Halal Certified', image: 'https://halalfoodcouncil.eu/wp-content/uploads/2019/02/hfce-logo-small.png' },
-  { name: 'ISO 14001', image: 'https://www.aenor.com/PublishingImages/Marcas/GA.jpg' },
-  { name: 'IFS Food', image: 'https://www.ifs-certification.com/images/logos/IFS_Food_Logo_CMYK.png' },
-  { name: 'Kosher', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Orthodox_Union_Kosher_logo.svg/1200px-Orthodox_Union_Kosher_logo.svg.png' },
+  { name: 'Halal Certified', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Halal_mark.svg/1200px-Halal_mark.svg.png' },
+  { name: 'ISO 14001', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/ISO_14001_Logo.svg/1200px-ISO_14001_Logo.svg.png' },
+  { name: 'ISO 22000', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/ISO_22000_Logo.svg/1200px-ISO_22000_Logo.svg.png' },
+  { name: 'HACCP', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/HACCP_logo.svg/1280px-HACCP_logo.svg.png' },
 ];
 
 export default function Home() {
@@ -232,11 +232,11 @@ export default function Home() {
         </AnimatePresence>
       </section>
 
-      {/* ── SECTION 2: OUR BRANDS (OVERVIEW) ── */}
       <section id="brands" className="bg-[#fcfbf7] py-24 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
-            <div className="max-w-2xl">
+        <div className="max-w-6xl mx-auto px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            {/* Left Column: Text & CTA */}
+            <div className="lg:w-1/2">
               <motion.p 
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -250,55 +250,55 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#1668b2] leading-none"
+                className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#1668b2] leading-tight mb-8"
               >
                 OUR <span className="text-[#00adef]">BRANDS</span>.
               </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-zinc-500 font-medium text-lg mb-10 leading-relaxed max-w-xl"
+              >
+                Experience the pure essence of Rwanda through our premium selection of dairy, refreshing juices, and crystal-clear mineral water. Each Inyange brand represents our unwavering commitment to quality, nutrition, and the well-being of our community.
+              </motion.p>
+              <motion.div
+                 initial={{ opacity: 0, y: 20 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+                 transition={{ delay: 0.3 }}
+              >
+                <Link href="/brands" className="group flex items-center gap-4 bg-[#1668b2] text-white px-8 py-4 rounded-2xl hover:bg-[#00adef] transition-all w-fit shadow-xl shadow-[#1668b2]/20">
+                  <span className="text-xs font-black uppercase tracking-widest">Discover our brands</span>
+                  <span className="w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center group-hover:bg-white group-hover:text-[#00adef] transition-colors">→</span>
+                </Link>
+              </motion.div>
             </div>
-            <motion.div
+
+            {/* Right Column: Image */}
+            <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="lg:w-1/2 relative h-[400px] md:h-[600px] w-full"
             >
-              <Link href="/brands" className="group flex items-center gap-4 bg-white border border-zinc-200 px-8 py-4 rounded-2xl hover:border-[#00adef] transition-all">
-                <span className="text-xs font-black uppercase tracking-widest text-[#1668b2]">Explore All Ranges</span>
-                <span className="w-8 h-8 rounded-full bg-[#1668b2] text-white flex items-center justify-center group-hover:bg-[#00adef] transition-colors">→</span>
-              </Link>
+              <Image 
+                src="/inyangebrand.png" 
+                alt="Inyange Brands Collection" 
+                fill 
+                className="object-contain"
+                priority
+              />
             </motion.div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { title: 'Milk', href: '/brands/milk', img: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?q=80&w=600', color: '#1668b2' },
-              { title: 'Milk Products', href: '/brands/milk-products', img: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=600', color: '#00adef' },
-              { title: 'Juice', href: '/brands/juice', img: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?q=80&w=600', color: '#1668b2' },
-              { title: 'Water', href: '/brands/water', img: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=600', color: '#00adef' },
-            ].map((brand, idx) => (
-              <motion.div
-                key={brand.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="group relative h-[450px] rounded-[2.5rem] overflow-hidden"
-              >
-                <Image src={brand.img} alt={brand.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute inset-x-8 bottom-8">
-                  <h3 className="text-2xl font-black text-white uppercase tracking-tighter mb-4">{brand.title}</h3>
-                  <Link href={brand.href} className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-colors">
-                    Explore Range <span className="text-[#00adef]">→</span>
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
 
       {/* ── SECTION 3: RECIPES (OVERVIEW) ── */}
       <section id="recipes-overview" className="bg-white py-24 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-8 mb-16 text-center">
+        <div className="max-w-6xl mx-auto px-8 mb-16 text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -307,8 +307,8 @@ export default function Home() {
               <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-[#1668b2] mb-4 leading-tight">
                 OUR <span className="text-[#00adef]">PICKS</span>
               </h2>
-              <p className="text-zinc-500 font-medium text-sm max-w-2xl mx-auto leading-relaxed">
-                Delicious recipes we chose for you. Discover how Inyange's premium dairy, juices, and mineral water can elevate your everyday meals. From protein-packed breakfasts to gourmet dinner bases, our products are the secret ingredient to a healthier, more flavorful lifestyle.
+              <p className="text-zinc-500 font-medium text-sm max-w-2xl leading-relaxed">
+                Delicious recipes we chose for you. Discover how Inyange's premium dairy, juices, and mineral water can elevate your everyday meals.
               </p>
             </motion.div>
         </div>
@@ -379,7 +379,7 @@ export default function Home() {
 
       {/* ── SECTION 4: TRUSTED BY WORLDWIDE (NEW) ── */}
       <section id="certifications" className="bg-white py-24 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-8 mb-16 text-center">
+        <div className="max-w-6xl mx-auto px-8 mb-16 text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -389,8 +389,8 @@ export default function Home() {
               <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-[#1668b2] mb-6 leading-tight">
                 TRUSTED BY PEOPLE <span className="text-[#00adef]">WORLDWIDE</span>
               </h2>
-              <p className="text-zinc-500 font-medium text-sm max-w-2xl mx-auto leading-relaxed">
-                Inyange Industries operates with uncompromising dedication to international food safety and quality management standards. Our global qualifications ensure that every product leaving our facilities is safe, nutritious, and produced under the world's most rigorous oversight.
+              <p className="text-zinc-500 font-medium text-sm max-w-2xl leading-relaxed">
+                Inyange Industries operates with uncompromising dedication to international food safety and quality management standards.
               </p>
             </motion.div>
         </div>
@@ -424,7 +424,7 @@ export default function Home() {
 
       {/* ── SECTION 5: ABOUT US (NEW) ── */}
       <section id="about" className="bg-[#fcfbf7] py-16 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-8 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <div className="max-w-6xl mx-auto px-8 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           
           {/* Left: Content */}
           <motion.div 
@@ -533,37 +533,78 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 7: EDITORIAL (OVERVIEW) ── */}
-      <section id="editorial-overview" className="bg-[#fcfbf7] py-24">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center mb-16">
-            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-[#1668b2] mb-4">Latest from Inyange</p>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#1668b2]">
-              INYANGE <span className="text-[#00adef]">EDITORIAL</span>.
+      <section id="editorial-overview" className="bg-white py-24">
+        <div className="max-w-6xl mx-auto px-8">
+          <div className="flex flex-col gap-6 mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-black tracking-tight leading-none">
+              From our <span className="text-[#1668b2]">newsroom</span>.
             </h2>
+            <Link href="/editorial" className="group flex items-center gap-3 bg-black text-white px-6 py-2.5 rounded-full w-fit hover:bg-[#1668b2] transition-all">
+              <span className="text-[10px] font-black uppercase tracking-widest">News Room</span>
+              <span className="text-sm group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { date: 'Oct 12, 2023', title: 'Sustainable Farming: Our Commitment to the Future', tag: 'Sustainability' },
-              { date: 'Sep 28, 2023', title: 'Inyange Awarded Best Beverage Producer of the Year', tag: 'Awards' },
-              { date: 'Sep 15, 2023', title: 'New Fortified Milk Range: Nutrition Redefined', tag: 'Innovation' },
+              { 
+                date: 'Oct 12, 2023', 
+                title: 'Sustainable Farming: Our Commitment to the Future', 
+                excerpt: 'Inyange remains at the forefront of agricultural innovation, supporting local farmers with modern techniques.',
+                image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=600',
+                tag: 'Sustainability' 
+              },
+              { 
+                date: 'Sep 28, 2023', 
+                title: 'Awarded Best Beverage Producer of the Year', 
+                excerpt: 'We are honored to receive the 2023 Excellence Award for our consistent quality and safety standards.',
+                image: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=600',
+                tag: 'Awards' 
+              },
+              { 
+                date: 'Sep 15, 2023', 
+                title: 'New Fortified Milk Range: Nutrition Redefined', 
+                excerpt: 'Introducing our latest product line designed to meet the growing nutritional needs of the East African market.',
+                image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?q=80&w=800',
+                tag: 'Innovation' 
+              },
+              { 
+                date: 'Aug 30, 2023', 
+                title: 'Community Outreach: Supporting Local Schools', 
+                excerpt: 'Our recent initiative provided nutritional dairy products to school children across Rwanda villages.',
+                image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=600',
+                tag: 'Community' 
+              },
             ].map((news, idx) => (
               <motion.div
                 key={news.title}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white rounded-3xl p-8 border border-zinc-100 hover:shadow-2xl transition-all group"
+                className="group flex flex-col cursor-pointer"
               >
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-[#00adef]">{news.tag}</span>
-                  <span className="text-[10px] font-bold text-zinc-300">{news.date}</span>
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-zinc-100">
+                  <Image 
+                    src={news.image} 
+                    alt={news.title} 
+                    fill 
+                    className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-white/90 backdrop-blur-sm text-[#1668b2] text-[8px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">
+                      {news.tag}
+                    </span>
+                  </div>
                 </div>
-                <h3 className="text-xl font-black text-[#1668b2] mb-8 leading-tight group-hover:text-[#00adef] transition-colors">{news.title}</h3>
-                <Link href="/editorial" className="text-[10px] font-black uppercase tracking-widest text-[#1668b2] flex items-center gap-2">
-                  Read Story <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </Link>
+                
+                <span className="text-[10px] font-bold text-zinc-400 mb-2">{news.date}</span>
+                <h3 className="text-lg font-black text-black leading-tight mb-3 group-hover:text-[#1668b2] transition-colors line-clamp-2">
+                  {news.title}
+                </h3>
+                <p className="text-[11px] text-zinc-500 font-medium leading-relaxed line-clamp-3">
+                  {news.excerpt}
+                </p>
               </motion.div>
             ))}
           </div>
