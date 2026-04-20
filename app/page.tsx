@@ -100,12 +100,12 @@ const HOME_LEADERS = [
 ];
 
 const CERTIFICATIONS = [
-  { name: 'BRC Food Safety', image: 'https://www.logotypes101.com/logos/933/67C08A4E1B3A0D18B1A2C08A4E1B3A0D/brcfood.png' },
+  { name: 'BRC Food Safety', image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/BRC_Global_Standards_Logo.svg/1024px-BRC_Global_Standards_Logo.svg.png' },
   { name: 'EU Organic', image: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/EU_Organic_Logo_Colour.png' },
-  { name: 'Halal Certified', image: 'https://halalfoodcouncil.eu/wp-content/uploads/2019/02/hfce-logo-small.png' },
-  { name: 'ISO 14001', image: 'https://www.aenor.com/PublishingImages/Marcas/GA.jpg' },
-  { name: 'IFS Food', image: 'https://www.ifs-certification.com/images/logos/IFS_Food_Logo_CMYK.png' },
-  { name: 'Kosher', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Orthodox_Union_Kosher_logo.svg/1200px-Orthodox_Union_Kosher_logo.svg.png' },
+  { name: 'Halal Certified', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Halal_mark.svg/1200px-Halal_mark.svg.png' },
+  { name: 'ISO 14001', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/ISO_14001_Logo.svg/1200px-ISO_14001_Logo.svg.png' },
+  { name: 'ISO 22000', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/ISO_22000_Logo.svg/1200px-ISO_22000_Logo.svg.png' },
+  { name: 'HACCP', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/HACCP_logo.svg/1280px-HACCP_logo.svg.png' },
 ];
 
 export default function Home() {

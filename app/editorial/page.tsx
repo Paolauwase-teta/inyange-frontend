@@ -101,87 +101,15 @@ export default function EditorialPage() {
 
             <div className="max-w-6xl mx-auto px-8 py-16">
                 
-                {/* ── SECTION 2: MAGAZINE SPOTLIGHT (IMAGE 1 STYLE) ── */}
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-20">
-                    
-                    {/* Left: 2 Small Visual Cards */}
-                    <div className="hidden lg:flex flex-col gap-6">
-                        {spotlight_cards.map((post, i) => (
-                            <Link href={`/blog/${post.slug}`} key={i} className="group relative flex-1 rounded-2xl overflow-hidden bg-white border border-black/5 shadow-sm">
-                                <Image src={getCategoryImage(post.category)} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                                <div className="absolute inset-x-5 bottom-5">
-                                    <span className="text-[7px] font-black uppercase text-[#00adef] tracking-widest block mb-2">{post.category}</span>
-                                    <h3 className="text-xs font-black text-white leading-tight line-clamp-2">{post.title}</h3>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-
-                    {/* Center: Main Featured Card */}
-                    <div className="lg:col-span-2">
-                        {spotlight_main && (
-                            <Link href={`/blog/${spotlight_main.slug}`} className="group relative block h-[500px] rounded-3xl overflow-hidden bg-[#1668b2] text-white shadow-2xl">
-                                <Image src={getCategoryImage(spotlight_main.category)} alt={spotlight_main.title} fill className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-1000" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#1668b2]/90 via-transparent to-transparent" />
-                                <div className="absolute inset-10 flex flex-col justify-end">
-                                    <span className="bg-[#1668b2] text-[9.5px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full w-fit mb-6 shadow-xl">
-                                        Major Story
-                                    </span>
-                                    <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-[0.95] mb-6">
-                                        {spotlight_main.title}
-                                    </h2>
-                                    <p className="text-sm text-white/70 font-medium leading-relaxed max-w-lg mb-8 line-clamp-3">
-                                        {spotlight_main.excerpt}
-                                    </p>
-                                    <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-[#00adef]">
-                                        <span>{spotlight_main.date}</span>
-                                        <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
-                                        <span>Read Story →</span>
-                                    </div>
-                                </div>
-                            </Link>
-                        )}
-                    </div>
-
-                    {/* Right: Trending List + Post */}
-                    <div className="flex flex-col gap-8">
-                        <div className="bg-white rounded-2xl p-6 border border-black/5 shadow-sm">
-                            <h3 className="text-[10px] font-black uppercase tracking-widest text-[#1668b2]/40 mb-6 border-b pb-4">Trending Posts</h3>
-                            <div className="space-y-6">
-                                {spotlight_trending.map((post, i) => (
-                                    <Link href={`/blog/${post.slug}`} key={i} className="flex gap-4 group">
-                                        <span className="text-2xl font-black text-[#1668b2]/10 group-hover:text-[#00adef] transition-colors">{i + 1}</span>
-                                        <div className="flex flex-col gap-1">
-                                            <span className="text-[8px] font-bold text-[#1668b2] uppercase tracking-widest">{post.category}</span>
-                                            <h4 className="text-[11px] font-black text-black leading-tight group-hover:text-[#1668b2] transition-colors">{post.title}</h4>
-                                        </div>
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
-
-                        {spotlight_secondary && (
-                            <Link href={`/blog/${spotlight_secondary.slug}`} className="group relative flex-1 rounded-2xl overflow-hidden bg-white border border-black/5 shadow-sm min-h-[120px]">
-                                <Image src={getCategoryImage(spotlight_secondary.category)} alt={spotlight_secondary.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-                                <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
-                                    <h3 className="text-sm font-black text-white uppercase tracking-tighter leading-tight drop-shadow-lg">
-                                        {spotlight_secondary.title}
-                                    </h3>
-                                </div>
-                            </Link>
-                        )}
-                    </div>
-                </div>
-
-                {/* ── SECTION 3: LATEST NEWS GRID (IMAGE 2 STYLE) ── */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-16 border-t border-black/5">
+            <div className="max-w-6xl mx-auto px-8 py-16">
+                
+                {/* ── SECTION 2: LATEST NEWS GRID (IMAGE 2 STYLE) ── */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
                     
                     {/* Main Column: Big News Card */}
                     <div className="lg:col-span-5">
                         <div className="flex items-center gap-3 mb-8">
-                            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#1668b2]">Latest News</h3>
+                            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#1668b2]">Featured Editorial</h3>
                             <div className="h-[1px] flex-1 bg-black/5" />
                         </div>
                         {feed_main && (
@@ -199,7 +127,7 @@ export default function EditorialPage() {
                                 <div className="flex items-center gap-4 text-[10px] font-black uppercase text-zinc-400">
                                     <span>{feed_main.date}</span>
                                     <span>•</span>
-                                    <span>By Editorial Team</span>
+                                    <span>In-Depth Analysis</span>
                                 </div>
                             </Link>
                         )}
@@ -211,13 +139,12 @@ export default function EditorialPage() {
                         <div className="space-y-8">
                             {feed_list.map((post, i) => (
                                 <Link href={`/blog/${post.slug}`} key={i} className="flex gap-6 group">
-                                    <div className="relative w-28 h-20 shrink-0 rounded-2xl overflow-hidden bg-zinc-100 border border-black/5">
+                                    <div className="relative w-24 h-18 md:w-28 md:h-20 shrink-0 rounded-2xl overflow-hidden bg-zinc-100 border border-black/5">
                                         <Image src={getCategoryImage(post.category)} alt={post.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                     </div>
                                     <div className="flex flex-col justify-center">
                                         <div className="flex items-center gap-2 mb-1.5">
                                             <span className="text-[8px] font-black uppercase text-[#1668b2] tracking-widest">{post.category}</span>
-                                            {i === 1 && <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />}
                                         </div>
                                         <h4 className="text-[13px] font-black text-black leading-tight group-hover:text-[#1668b2] transition-colors line-clamp-2">
                                             {post.title}
@@ -231,11 +158,11 @@ export default function EditorialPage() {
                     {/* Right Sidebar */}
                     <div className="lg:col-span-3">
                          <div className="flex items-center gap-3 mb-8">
-                            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-zinc-300">Featured</h3>
+                            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-zinc-300">Quick Reads</h3>
                             <div className="h-[1px] flex-1 bg-black/5" />
                         </div>
                         {feed_sidebar_img && (
-                            <Link href={`/blog/${feed_sidebar_img.slug}`} className="group relative block aspect-[3/4] rounded-2xl overflow-hidden bg-zinc-100 border border-black/5 shadow-sm">
+                            <Link href={`/blog/${feed_sidebar_img.slug}`} className="group relative block aspect-[3/4] rounded-24 overflow-hidden bg-zinc-100 border border-black/5 shadow-sm">
                                 <Image src={getCategoryImage(feed_sidebar_img.category)} alt={feed_sidebar_img.title} fill className="object-cover group-hover:scale-105 transition-transform duration-1000" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                                 <div className="absolute inset-6 flex flex-col justify-end">
@@ -246,20 +173,44 @@ export default function EditorialPage() {
                                 </div>
                             </Link>
                         )}
-
-                        <div className="mt-10 pt-10 border-t border-black/5">
-                            <h4 className="text-[10px] font-black uppercase tracking-widest text-[#1668b2] mb-6">Must Read</h4>
-                            <div className="space-y-4">
-                                {safePosts.slice(0, 3).map((post, i) => (
-                                    <Link href={`/blog/${post.slug}`} key={i} className="block text-[11px] font-medium text-zinc-500 hover:text-[#1668b2] transition-colors">
-                                        • {post.title}
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
                     </div>
 
                 </div>
+
+                {/* ── SECTION 3: IN THE MEDIA (NEWSPAPERS, BLOGS) ── */}
+                <div className="mt-24 pt-20 border-t border-black/5">
+                    <div className="flex flex-col items-center text-center mb-16">
+                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#1668b2] mb-4">In the Spotlight</span>
+                        <h2 className="text-3xl md:text-5xl font-black text-black tracking-tight uppercase">
+                            MEDIA & <span className="text-[#00adef]">PRESS</span>.
+                        </h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[
+                          { source: 'The New Times', date: 'Dec 12, 2023', title: 'Inyange remains leader in dairy sector innovation', type: 'Newspaper' },
+                          { source: 'Rwanda Today', date: 'Nov 05, 2023', title: 'New processing plant to double Inyange juice production', type: 'Press' },
+                          { source: 'Agri-Business Blog', date: 'Oct 20, 2023', title: 'How Inyange is transforming local dairy farming', type: 'Blog' },
+                          { source: 'Forbes Africa', date: 'Sep 15, 2023', title: 'Sustainability at the core of Inyange industry', type: 'Magazine' },
+                        ].map((media, i) => (
+                            <div key={i} className="bg-white p-6 rounded-3xl border border-black/5 hover:shadow-xl transition-all group">
+                                <div className="flex items-center justify-between mb-4">
+                                    <span className="text-[9px] font-black uppercase tracking-widest text-[#00adef]">{media.type}</span>
+                                    <span className="text-[10px] font-bold text-zinc-300">{media.date}</span>
+                                </div>
+                                <h4 className="text-lg font-black text-[#1668b2] leading-tight mb-6 group-hover:text-[#00adef] transition-colors">{media.title}</h4>
+                                <div className="flex items-center justify-between mt-auto">
+                                    <span className="text-[10px] font-black text-black uppercase tracking-tighter">{media.source}</span>
+                                    <div className="w-8 h-8 rounded-full bg-zinc-50 flex items-center justify-center text-[#1668b2] group-hover:bg-[#1668b2] group-hover:text-white transition-all">
+                                        →
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+            </div>
 
             </div>
             
