@@ -105,7 +105,6 @@ const CERTIFICATIONS = [
 ];
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   React.useEffect(() => {
@@ -115,10 +114,6 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  React.useEffect(() => {
-      // Logic for services removal (already implemented in section)
-      setLoading(false);
-  }, []);
 
 
 
