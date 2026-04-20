@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
-import Navbar from '../components/Navbar';
 
 const ReachOutMap = dynamic(() => import('./ReachOutMap'), { ssr: false });
 
@@ -52,7 +51,6 @@ export default function ReachOutPage() {
 
     return (
         <main className="min-h-screen bg-[#fcfbf7] font-sans">
-            <Navbar />
 
             {/* ── SECTION 1: HERO ── */}
             <section className="relative w-full h-[40vh] md:h-[55vh] bg-[#0d55a0] overflow-hidden flex items-center justify-center pt-20">

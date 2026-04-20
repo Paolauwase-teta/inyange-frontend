@@ -95,10 +95,10 @@ export default function BlogPage() {
                         Keep the<br />story going..
                     </motion.h1>
                     <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="text-[12px] font-medium text-zinc-500 leading-relaxed mb-8 max-w-xs"
+                        className="text-[12px] font-medium text-zinc-500 leading-relaxed mb-6 max-w-xs"
                     >
                         Don't let the story end just yet. Real accounts from the lab — how we build, what we've learned, and what's next.
                     </motion.p>
