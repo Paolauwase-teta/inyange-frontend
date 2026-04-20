@@ -100,7 +100,7 @@ export default function Navbar() {
                 onClick={() => setIsMobileMenuOpen(false)}
             />
 
-            <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-[100] w-full max-w-4xl px-4 pointer-events-none">
+            <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-[9999] w-full max-w-4xl px-4 pointer-events-none">
                 <div className={`w-full bg-white/80 backdrop-blur-md border border-[#1668b2]/20 shadow-2xl pointer-events-auto flex flex-col relative transition-all duration-300 rounded-[22px]`}>
                     
                     {/* Top Bar Wrapper */}

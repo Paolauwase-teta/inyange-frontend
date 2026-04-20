@@ -130,7 +130,7 @@ export default function ServiceDetail() {
                             </div>
 
                             {/* Explore Button → Contact */}
-                            <Link href="/contact" className="bg-[#1668b2] text-white text-[11px] font-black uppercase tracking-widest px-5 rounded-xl hover:bg-[#0b4a7d] transition-colors flex items-center">
+                            <Link href="/reach-out" className="bg-[#1668b2] text-white text-[11px] font-black uppercase tracking-widest px-5 rounded-xl hover:bg-[#0b4a7d] transition-colors flex items-center">
                                 Explore
                             </Link>
                         </div>
@@ -199,7 +199,7 @@ export default function ServiceDetail() {
                 </motion.h2>
                 <p className="text-zinc-200 text-sm font-medium mb-10 max-w-md mx-auto">Let’s strengthen your production lines with consistent quality—built for growth.</p>
                 <Link
-                    href="/contact"
+                    href="/reach-out"
                     className="inline-block bg-white text-black text-[11px] font-black uppercase tracking-[0.2em] px-10 py-4 rounded-full hover:bg-zinc-100 transition-colors"
                 >
                     Start a Project →

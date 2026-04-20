@@ -219,12 +219,7 @@ export default function Home() {
                         <Link href="/services" className="bg-[#1668b2] text-white text-[10px] md:text-[12px] font-black uppercase tracking-widest px-6 rounded-xl hover:bg-[#0b4a7d] transition-colors flex items-center justify-center">
                             Explore
                         </Link>
-                        <Link href="#showcase" className="bg-white border-2 border-[#1668b2] text-[#1668b2] text-[10px] md:text-[12px] font-black uppercase tracking-widest px-6 py-3 rounded-xl hover:bg-[#1668b2] hover:text-white transition-all flex items-center justify-center gap-2">
-                            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
-                            </svg>
-                            3D View
-                        </Link>
+
                     </div>
                 </motion.div>
             </div>

@@ -159,7 +159,7 @@ export default function BlogPostDetail() {
                         <Link href="/blog" className="px-6 py-3 rounded-full border border-zinc-200 text-[11px] font-black uppercase tracking-widest text-zinc-600 hover:bg-white hover:text-[#00adef] transition-colors">
                             More Stories
                         </Link>
-                        <Link href="/contact" className="px-6 py-3 rounded-full bg-[#1668b2] text-[11px] font-black uppercase tracking-widest text-white hover:bg-[#0b4a7d] transition-colors">
+                        <Link href="/reach-out" className="px-6 py-3 rounded-full bg-[#1668b2] text-[11px] font-black uppercase tracking-widest text-white hover:bg-[#0b4a7d] transition-colors">
                             Get in Touch
                         </Link>
                     </div>
