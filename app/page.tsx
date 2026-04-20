@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 const OnboardingGuide = dynamic(() => import('./components/OnboardingGuide'), { ssr: false });
 import Link from 'next/link';
 import Image from 'next/image';
+import { getAsset } from '@/lib/getAsset';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -66,7 +67,7 @@ interface Service {
 
 const HERO_SLIDES = [
   {
-    video: "/milkpouring.mp4",
+    video: getAsset("/milkpouring.mp4"),
     giantText: "INYANGE INDUSTRIES",
     tagline: "Premium Dairy & Beverages",
     heading: "PURITY IN EVERY DROP",
@@ -74,7 +75,7 @@ const HERO_SLIDES = [
     cardText: "We transform the finest ingredients into refreshing dairy and beverage products your family can trust."
   },
   {
-    video: "/cooking.mp4",
+    video: getAsset("/cooking.mp4"),
     giantText: "EVERYDAY MEALS",
     tagline: "Versatile Ingredients",
     heading: "ELEVATE YOUR COOKING",
@@ -84,10 +85,10 @@ const HERO_SLIDES = [
 ];
 
 const FEATURED_RECIPES = [
-  { title: 'French Onion Soup', image: '/recipe_soup.png', desc: 'Delicious classic comfort', stats: { prep: '1h', serves: '4', skill: 'Easy' } },
-  { title: 'Chicken Corn Chowder', image: '/recipe_chowder.png', desc: 'Creamy and hearty delight', stats: { prep: '30m', serves: '6', skill: 'Easy' } },
-  { title: 'Lemon Basil Fish', image: '/recipe_fish.png', desc: 'Fresh and zesty grilled fillet', stats: { prep: '20m', serves: '2', skill: 'Medium' } },
-  { title: 'Classic Banana Bread', image: '/recipe_bread.png', desc: 'Perfectly moist homemade treat', stats: { prep: '1h 15m', serves: '10', skill: 'Easy' } },
+  { title: 'French Onion Soup', image: getAsset('/recipe_soup.png'), desc: 'Delicious classic comfort', stats: { prep: '1h', serves: '4', skill: 'Easy' } },
+  { title: 'Chicken Corn Chowder', image: getAsset('/recipe_chowder.png'), desc: 'Creamy and hearty delight', stats: { prep: '30m', serves: '6', skill: 'Easy' } },
+  { title: 'Lemon Basil Fish', image: getAsset('/recipe_fish.png'), desc: 'Fresh and zesty grilled fillet', stats: { prep: '20m', serves: '2', skill: 'Medium' } },
+  { title: 'Classic Banana Bread', image: getAsset('/recipe_bread.png'), desc: 'Perfectly moist homemade treat', stats: { prep: '1h 15m', serves: '10', skill: 'Easy' } },
 ];
 
 const HOME_LEADERS = [
@@ -98,10 +99,10 @@ const HOME_LEADERS = [
 ];
 
 const CERTIFICATIONS = [
-  { name: 'Quality Standard 01', image: '/quality1.png' },
-  { name: 'Quality Standard 02', image: '/quality2.jpg' },
-  { name: 'Quality Standard 03', image: '/quality3.jpg' },
-  { name: 'Quality Standard 04', image: '/quality4.png' },
+  { name: 'Quality Standard 01', image: getAsset('/quality1.png') },
+  { name: 'Quality Standard 02', image: getAsset('/quality2.jpg') },
+  { name: 'Quality Standard 03', image: getAsset('/quality3.jpg') },
+  { name: 'Quality Standard 04', image: getAsset('/quality4.png') },
 ];
 
 export default function Home() {
@@ -272,7 +273,7 @@ export default function Home() {
               className="lg:w-1/2 relative h-[400px] md:h-[600px] w-full"
             >
               <Image 
-                src="/inyangebrand.png" 
+                src={getAsset("/inyangebrand.png")} 
                 alt="Inyange Brands Collection" 
                 fill 
                 className="object-contain"
@@ -291,7 +292,7 @@ export default function Home() {
           className="absolute bottom-0 right-0 w-32 md:w-48 h-32 md:h-48 pointer-events-none select-none overflow-hidden"
         >
           <Image 
-            src="/decobird.png" 
+            src={getAsset("/decobird.png")} 
             alt="Decoration Bird" 
             fill 
             className="object-contain translate-x-1/4 translate-y-1/4 rotate-[-15deg]"
@@ -517,7 +518,7 @@ export default function Home() {
               transition={{ delay: 0.2 }}
               className="w-24 md:w-36 h-[280px] md:h-[380px] rounded-[5rem] overflow-hidden shadow-xl relative translate-y-8"
             >
-              <Image src="/about_processing.png" fill className="object-cover" alt="Processing" />
+              <Image src={getAsset("/about_processing.png")} fill className="object-cover" alt="Processing" />
               <div className="absolute inset-0 bg-[#0d55a0]/10" />
             </motion.div>
 
@@ -630,7 +631,7 @@ export default function Home() {
         {/* Background Pattern Overlay */}
         <div 
             className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.03] bg-repeat bg-[length:400px]"
-            style={{ backgroundImage: "url('/pattern.png')" }}
+            style={{ backgroundImage: `url('${getAsset('/pattern.png')}')` }}
         />
 
         <div className="absolute inset-0 opacity-10">

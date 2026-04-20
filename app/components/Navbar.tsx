@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getAsset } from '@/lib/getAsset';
 
 interface DropdownItem {
     label: string;
@@ -112,7 +113,7 @@ export default function Navbar() {
                     <Link href="/" className="flex items-center group py-1" onClick={() => setIsMobileMenuOpen(false)}>
                         <div className="relative w-14 h-14 transition-transform group-hover:scale-105 duration-300">
                             <Image
-                                src="/inyangelogo.png"
+                                src={getAsset("/inyangelogo.png")}
                                 alt="Inyange Logo"
                                 fill
                                 className="object-contain"

@@ -3,27 +3,28 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getAsset } from '@/lib/getAsset';
 
 const CATEGORIES = [
-    { title: 'Breakfast', link: '/recipes/breakfast', image: '/breakfast2.jpg', desc: 'Start your day right' },
-    { title: 'Cooking', link: '/recipes/cooking', image: '/cooked1.jpg', desc: 'Savoury main meals' },
-    { title: 'Baking', link: '/recipes/baking', image: '/baked1.jpg', desc: 'Fresh from the oven' },
-    { title: 'Desserts', link: '/recipes/desserts', image: '/topping2.jpeg', desc: 'Sweet treats & toppings' },
+    { title: 'Breakfast', link: '/recipes/breakfast', image: getAsset('/breakfast2.jpg'), desc: 'Start your day right' },
+    { title: 'Cooking', link: '/recipes/cooking', image: getAsset('/cooked1.jpg'), desc: 'Savoury main meals' },
+    { title: 'Baking', link: '/recipes/baking', image: getAsset('/baked1.jpg'), desc: 'Fresh from the oven' },
+    { title: 'Desserts', link: '/recipes/desserts', image: getAsset('/topping2.jpeg'), desc: 'Sweet treats & toppings' },
 ];
 
 const ALL_RECIPES = [
-    { id: 10, title: 'Morning Pancakes', image: '/breakfast1.jpg', category: 'Breakfast' },
-    { id: 1, title: 'Lemon Basil Fish', image: '/cooked1.jpg', category: 'Cooking' },
-    { id: 4, title: 'Classic Banana Bread', image: '/baked1.jpg', category: 'Baking' },
-    { id: 8, title: 'Berries Jubilee', image: '/topping2.jpeg', category: 'Desserts' },
-    { id: 2, title: 'Spicy Grilled Chicken', image: '/cooked2.jpg', category: 'Cooking' },
-    { id: 11, title: 'Healthy Granola Bowl', image: '/breakfast2.jpg', category: 'Breakfast' },
-    { id: 5, title: 'Chocolate Chip Muffins', image: '/baked2.jpg', category: 'Baking' },
-    { id: 7, title: 'Cream Cheese Frosting', image: '/topping1.jpg', category: 'Desserts' },
-    { id: 3, title: 'Garlic Butter Penne', image: '/cooked3.jpg', category: 'Cooking' },
-    { id: 12, title: 'Creamy Avocado Toast', image: '/breakfast3.jpg', category: 'Breakfast' },
-    { id: 6, title: 'Artisan Sourdough', image: '/baked3.jpg', category: 'Baking' },
-    { id: 9, title: 'Smooth Caramel Drizzle', image: '/topping3.jpg', category: 'Desserts' }
+    { id: 10, title: 'Morning Pancakes', image: getAsset('/breakfast1.jpg'), category: 'Breakfast' },
+    { id: 1, title: 'Lemon Basil Fish', image: getAsset('/cooked1.jpg'), category: 'Cooking' },
+    { id: 4, title: 'Classic Banana Bread', image: getAsset('/baked1.jpg'), category: 'Baking' },
+    { id: 8, title: 'Berries Jubilee', image: getAsset('/topping2.jpeg'), category: 'Desserts' },
+    { id: 2, title: 'Spicy Grilled Chicken', image: getAsset('/cooked2.jpg'), category: 'Cooking' },
+    { id: 11, title: 'Healthy Granola Bowl', image: getAsset('/breakfast2.jpg'), category: 'Breakfast' },
+    { id: 5, title: 'Chocolate Chip Muffins', image: getAsset('/baked2.jpg'), category: 'Baking' },
+    { id: 7, title: 'Cream Cheese Frosting', image: getAsset('/topping1.jpg'), category: 'Desserts' },
+    { id: 3, title: 'Garlic Butter Penne', image: getAsset('/cooked3.jpg'), category: 'Cooking' },
+    { id: 12, title: 'Creamy Avocado Toast', image: getAsset('/breakfast3.jpg'), category: 'Breakfast' },
+    { id: 6, title: 'Artisan Sourdough', image: getAsset('/baked3.jpg'), category: 'Baking' },
+    { id: 9, title: 'Smooth Caramel Drizzle', image: getAsset('/topping3.jpg'), category: 'Desserts' }
 ];
 
 export default function RecipesOverviewPage() {
@@ -37,10 +38,10 @@ export default function RecipesOverviewPage() {
                     muted
                     playsInline
                     preload="metadata"
-                    poster="/breakfast1.jpg"
+                    poster={getAsset("/breakfast1.jpg")}
                     className="absolute inset-0 w-full h-full object-cover"
                 >
-                    <source src="/cooking.mp4" type="video/mp4" />
+                    <source src={getAsset("/cooking.mp4")} type="video/mp4" />
                 </video>
                 <div className="absolute inset-0 bg-black/40" />
                 <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#fcfbf7] to-transparent pointer-events-none" />
