@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import Footer from '../../components/Footer';
 
 interface ServiceStep {
     year: string;
@@ -68,7 +69,6 @@ export default function ServiceDetail() {
 
     return (
         <main className="min-h-screen bg-white font-sans">
-
             {/* IPAC-Style Hero */}
             {/* This section is the primary themed banner (dark blue) */}
             <section className="relative min-h-[85vh] flex flex-col justify-end overflow-hidden bg-[#0d55a0]">
@@ -202,6 +202,7 @@ export default function ServiceDetail() {
                     Start a Project →
                 </Link>
             </section>
+            <Footer />
         </main>
     );
 }

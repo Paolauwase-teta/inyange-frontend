@@ -4,6 +4,7 @@ import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import Footer from '../components/Footer';
 
 interface BlogPost {
     id: number;
@@ -61,7 +62,6 @@ export default function BlogPage() {
 
     return (
         <main className="min-h-screen bg-[#f9f9f9] font-sans flex flex-col">
-
             {/* Top right profile / logo */}
             <div className="pt-28 px-8 max-w-6xl mx-auto w-full flex justify-end items-center">
                     <div className="flex items-center gap-3">
@@ -217,6 +217,7 @@ export default function BlogPage() {
                     ))}
                 </div>
             </section>
+            <Footer />
         </main>
     );
 }

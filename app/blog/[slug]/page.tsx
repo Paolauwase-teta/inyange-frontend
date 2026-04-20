@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Footer from '../../components/Footer';
 
 interface BlogPost {
     id: string;
@@ -63,7 +64,6 @@ export default function BlogPostDetail() {
 
     return (
         <main className="min-h-screen bg-white font-sans flex flex-col">
-
             {/* Hero Section */}
             <section className="pt-32 pb-16 px-8 max-w-4xl mx-auto w-full text-center">
                 <motion.div
@@ -161,6 +161,7 @@ export default function BlogPostDetail() {
                     </div>
                 </div>
             </section>
+            <Footer />
         </main>
     );
 }

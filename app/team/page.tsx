@@ -87,7 +87,6 @@ export default function TeamPage() {
 
     return (
         <div className="bg-white min-h-screen pt-24 pb-12">
-
             <main className="max-w-6xl mx-auto px-6 md:px-12 mt-10">
 
                 {/* Header Section */}
