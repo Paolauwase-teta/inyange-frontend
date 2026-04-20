@@ -4,6 +4,7 @@ import "./globals.css";
 import NavbarWrapper from "./components/NavbarWrapper";
 import Footer from "./components/Footer";
 import ChatBox from "./components/ChatBox";
+import Preloader from "./components/Preloader";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body
         className="antialiased"
       >
+        <Preloader />
         <NavbarWrapper />
         {children}
         <Footer />
