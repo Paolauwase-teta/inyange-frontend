@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 // Removed Jost import to use Arial (system font) instead
 import "./globals.css";
 import NavbarWrapper from "./components/NavbarWrapper";
+import Footer from "./components/Footer";
 import ChatBox from "./components/ChatBox";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -30,6 +31,7 @@ export default function RootLayout({
       >
         <NavbarWrapper />
         {children}
+        <Footer />
         <ChatBox />
         <ToastContainer position="bottom-right" theme="dark" />
       </body>

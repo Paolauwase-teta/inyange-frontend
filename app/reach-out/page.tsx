@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 const ReachOutMap = dynamic(() => import('./ReachOutMap'), { ssr: false });
 
@@ -57,11 +56,11 @@ export default function ReachOutPage() {
 
             {/* ── SECTION 1: HERO ── */}
             <section className="relative w-full h-[40vh] md:h-[55vh] bg-[#0d55a0] overflow-hidden flex items-center justify-center pt-20">
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-                    <span className="font-black uppercase tracking-tighter leading-none whitespace-nowrap text-white/5 text-[15vw] md:text-[20vw]">
-                        REACH OUT
-                    </span>
-                </div>
+                {/* Background Pattern Overlay */}
+                <div 
+                    className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.03] bg-repeat bg-[length:400px]"
+                    style={{ backgroundImage: "url('/pattern.png')" }}
+                />
                 <div className="relative z-10 w-full max-w-6xl mx-auto px-8">
                     <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] text-white/60 mb-4">Connection Points</motion.p>
                     <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9]">
@@ -188,7 +187,6 @@ export default function ReachOutPage() {
                 </div>
             </section>
 
-            <Footer />
         </main>
     );
 }

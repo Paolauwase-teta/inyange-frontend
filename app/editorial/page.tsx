@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 interface BlogPost {
     id: number;
@@ -72,11 +71,11 @@ export default function EditorialPage() {
             {/* ── SECTION 1: HERO (LEADERS STYLE) ── */}
             <section className="relative w-full h-[45vh] md:h-[55vh] bg-[#0d55a0] overflow-hidden flex items-center justify-center">
                 {/* Background Watermark */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-                    <span className="font-black uppercase tracking-tighter leading-none whitespace-nowrap text-white/5 text-[15vw] md:text-[18vw]">
-                        EDITORIAL
-                    </span>
-                </div>
+                {/* Background Pattern Overlay */}
+                <div 
+                    className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.03] bg-repeat bg-[length:400px]"
+                    style={{ backgroundImage: "url('/pattern.png')" }}
+                />
 
                 <div className="relative z-10 w-full max-w-6xl mx-auto px-8">
                     <div className="flex-1 text-left">
@@ -99,8 +98,6 @@ export default function EditorialPage() {
                 </div>
             </section>
 
-            <div className="max-w-6xl mx-auto px-8 py-16">
-                
             <div className="max-w-6xl mx-auto px-8 py-16">
                 
                 {/* ── SECTION 2: LATEST NEWS GRID (IMAGE 2 STYLE) ── */}
@@ -210,11 +207,7 @@ export default function EditorialPage() {
                     </div>
                 </div>
 
-            </div>
-
-            </div>
-            
-            <Footer />
+                </div>
         </main>
     );
 }

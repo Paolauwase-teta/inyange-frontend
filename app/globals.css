@@ -18,12 +18,7 @@
   --font-sans: Arial, Helvetica, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Remove dark mode override to maintain consistent light branding */
 
 body {
   background: var(--background);

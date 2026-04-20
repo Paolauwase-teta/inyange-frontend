@@ -45,11 +45,11 @@ export default function LeadersPage() {
                         {/* ── SECTION 1: HERO ── */}
             <section className="relative w-full h-[50vh] md:h-[65vh] bg-[#0d55a0] overflow-hidden flex items-center justify-center">
                 {/* Background Watermark */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-                    <span className="font-black uppercase tracking-tighter leading-none whitespace-nowrap text-white/5 text-[15vw] md:text-[20vw]">
-                        LEADERSHIP
-                    </span>
-                </div>
+                {/* Background Pattern Overlay */}
+                <div 
+                    className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.03] bg-repeat bg-[length:400px]"
+                    style={{ backgroundImage: "url('/pattern.png')" }}
+                />
 
                 <div className="relative z-10 w-full max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-12">
                     {/* Left: Title Area */}
@@ -138,7 +138,6 @@ export default function LeadersPage() {
                     </div>
                 )}
             </div>
-
         </main>
     );
 }

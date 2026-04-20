@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 const MILESTONES = [
   {
@@ -75,11 +74,11 @@ export default function AboutUsPage() {
             {/* ── SECTION 1: HERO ── */}
             <section className="relative w-full h-[50vh] md:h-[65vh] bg-[#0d55a0] overflow-hidden flex items-center justify-center">
                 {/* Background Watermark */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-                    <span className="font-black uppercase tracking-tighter leading-none whitespace-nowrap text-white/5 text-[15vw] md:text-[20vw]">
-                        HISTORY
-                    </span>
-                </div>
+                {/* Background Pattern Overlay */}
+                <div 
+                    className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.03] bg-repeat bg-[length:400px]"
+                    style={{ backgroundImage: "url('/pattern.png')" }}
+                />
 
                 <div className="relative z-10 w-full max-w-6xl mx-auto px-8 flex flex-col items-start">
                     <motion.p 
@@ -145,14 +144,11 @@ export default function AboutUsPage() {
             {/* ── SECTION 3: EVOLUTION JOURNEY (LIGHT SLEEK REDESIGN) ── */}
             <section className="bg-white py-32 overflow-hidden relative border-y border-black/5">
                 {/* Evolution Watermark - Background */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-                    <span 
-                        className="font-black uppercase tracking-tighter leading-none whitespace-nowrap opacity-[0.03]"
-                        style={{ fontSize: 'clamp(100px, 15vw, 220px)', color: '#0d55a0' }}
-                    >
-                        EVOLUTION
-                    </span>
-                </div>
+                {/* Background Pattern Overlay */}
+                <div 
+                    className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.03] bg-repeat bg-[length:400px]"
+                    style={{ backgroundImage: "url('/pattern.png')" }}
+                />
 
                 <div className="max-w-6xl mx-auto px-8 mb-20 relative z-10">
                     <div className="flex flex-col gap-2">
@@ -324,7 +320,6 @@ export default function AboutUsPage() {
                 </div>
             </section>
 
-            <Footer />
         </main>
     );
 }

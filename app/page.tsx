@@ -5,7 +5,6 @@ import { motion, Variants, AnimatePresence } from 'framer-motion';
 import OnboardingGuide from './components/OnboardingGuide';
 import Link from 'next/link';
 import Image from 'next/image';
-import ProjectShowcase from './components/ProjectShowcase';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -46,8 +45,6 @@ const PATH_D_SERVICES =
 // SVG viewBox dimensions for references if needed
 const VB_W_REF = 900;
 const VB_H_REF = 340;
-
-import Footer from './components/Footer';
 
 // Milestone and Service interfaces
 interface Milestone {
@@ -100,12 +97,10 @@ const HOME_LEADERS = [
 ];
 
 const CERTIFICATIONS = [
-  { name: 'BRC Food Safety', image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/BRC_Global_Standards_Logo.svg/1024px-BRC_Global_Standards_Logo.svg.png' },
-  { name: 'EU Organic', image: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/EU_Organic_Logo_Colour.png' },
-  { name: 'Halal Certified', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Halal_mark.svg/1200px-Halal_mark.svg.png' },
-  { name: 'ISO 14001', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/ISO_14001_Logo.svg/1200px-ISO_14001_Logo.svg.png' },
-  { name: 'ISO 22000', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/ISO_22000_Logo.svg/1200px-ISO_22000_Logo.svg.png' },
-  { name: 'HACCP', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/HACCP_logo.svg/1280px-HACCP_logo.svg.png' },
+  { name: 'Quality Standard 01', image: '/certify/quality1.png' },
+  { name: 'Quality Standard 02', image: '/certify/quality2.jpg' },
+  { name: 'Quality Standard 03', image: '/certify/quality3.jpg' },
+  { name: 'Quality Standard 04', image: '/certify/quality4.png' },
 ];
 
 export default function Home() {
@@ -289,6 +284,22 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
+
+        {/* Decorative Element: Bird */}
+        <motion.div 
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 0.4, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5, duration: 1 }}
+          className="absolute bottom-0 right-0 w-32 md:w-48 h-32 md:h-48 pointer-events-none select-none overflow-hidden"
+        >
+          <Image 
+            src="/decorations/decobird.png" 
+            alt="Decoration Bird" 
+            fill 
+            className="object-contain translate-x-1/4 translate-y-1/4 rotate-[-15deg]"
+          />
+        </motion.div>
       </section>
 
       {/* ── SECTION 3: RECIPES (OVERVIEW) ── */}
@@ -391,29 +402,45 @@ export default function Home() {
         </div>
 
         {/* Global Certifications Carousel */}
-        <div className="relative w-full flex overflow-hidden">
-          <motion.div 
-            className="flex gap-16 whitespace-nowrap py-4 px-8 items-center"
-            animate={{ x: [0, -1200] }} 
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 30,
-                ease: "linear",
-              },
-            }}
-            style={{ width: "fit-content" }}
-          >
-            {[...CERTIFICATIONS, ...CERTIFICATIONS, ...CERTIFICATIONS].map((cert, idx) => (
-              <div key={idx} className="inline-flex flex-col items-center gap-4 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer min-w-[150px]">
-                <div className="relative w-24 h-24 flex items-center justify-center">
-                  <Image src={cert.image} alt={cert.name} fill className="object-contain" />
-                </div>
-                <span className="text-[8px] font-black uppercase tracking-widest text-[#0d55a0] text-center">{cert.name}</span>
-              </div>
-            ))}
-          </motion.div>
+        <div className="relative w-full overflow-hidden py-10">
+            <motion.div 
+                className="flex gap-16 w-fit items-center"
+                animate={{ 
+                    x: [0, -1000],
+                }}
+                transition={{ 
+                    x: {
+                        repeat: Infinity,
+                        repeatType: "loop",
+                        duration: 30,
+                        ease: "linear",
+                    },
+                }}
+            >
+                {/* Duplicate items for infinite effect */}
+                {[...CERTIFICATIONS, ...CERTIFICATIONS, ...CERTIFICATIONS, ...CERTIFICATIONS].map((cert, idx) => (
+                    <div 
+                        key={idx}
+                        className="flex flex-col items-center gap-6 shrink-0 w-36"
+                    >
+                        <div className="relative w-24 h-24 bg-white rounded-3xl p-4 shadow-sm border border-black/5 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group cursor-pointer">
+                            <Image 
+                                src={cert.image} 
+                                alt={cert.name} 
+                                fill 
+                                className="object-contain p-2 grayscale hover:grayscale-0 transition-all opacity-40 hover:opacity-100" 
+                            />
+                        </div>
+                        <span className="text-[8px] font-black uppercase tracking-widest text-[#0d55a0] text-center opacity-40 hover:opacity-100 transition-all">
+                            {cert.name}
+                        </span>
+                    </div>
+                ))}
+            </motion.div>
+            
+            {/* Gradient Fades for Smooth Edges */}
+            <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
         </div>
       </section>
 
@@ -522,11 +549,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 6: 3D PROJECT SHOWCASE (NEW) ── */}
-      <section id="showcase">
-        <ProjectShowcase />
-      </section>
-
       {/* ── SECTION 7: EDITORIAL (OVERVIEW) ── */}
       <section id="editorial-overview" className="bg-white py-24">
         <div className="max-w-6xl mx-auto px-8">
@@ -607,7 +629,13 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 8: REACH OUT (OVERVIEW) ── */}
-      <section id="reach-out-overview" className="relative py-32 bg-[#0d55a0] overflow-hidden">
+      <section id="reach-out-overview" className="relative py-20 bg-[#0d55a0] overflow-hidden">
+        {/* Background Pattern Overlay */}
+        <div 
+            className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.03] bg-repeat bg-[length:400px]"
+            style={{ backgroundImage: "url('/pattern.png')" }}
+        />
+
         <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 right-0 w-[500px] h-[500px] border-[50px] border-white rounded-full -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-[300px] h-[300px] border-[30px] border-white rounded-full translate-y-1/2 -translate-x-1/2" />
@@ -619,10 +647,10 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter mb-8 leading-none">
+            <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-8 leading-none">
               WANT TO GET <br /> <span className="text-[#33a4df]">IN TOUCH?</span>
             </h2>
-            <p className="text-white/70 font-medium mb-12 max-w-2xl mx-auto leading-loose text-sm md:text-base">
+            <p className="text-white/70 font-medium mb-10 max-w-2xl mx-auto leading-loose text-sm md:text-base">
               Whether you're a customer, a potential partner, or looking for a career, we're here to listen and grow together. Reach out to our dedicated support teams today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -638,7 +666,6 @@ export default function Home() {
       </section>
 
       <OnboardingGuide />
-      <Footer />
     </div>
   );
 }

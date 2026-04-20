@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -254,7 +253,6 @@ export default function TeamPage() {
                 </div>
             </main>
 
-            <Footer />
         </div>
     );
 }
