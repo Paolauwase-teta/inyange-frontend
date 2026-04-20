@@ -533,37 +533,78 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 7: EDITORIAL (OVERVIEW) ── */}
-      <section id="editorial-overview" className="bg-[#fcfbf7] py-24">
+      <section id="editorial-overview" className="bg-white py-24">
         <div className="max-w-6xl mx-auto px-8">
-          <div className="text-left mb-16">
-            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-[#1668b2] mb-4">Latest from Inyange</p>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#1668b2]">
-              INYANGE <span className="text-[#00adef]">EDITORIAL</span>.
+          <div className="flex flex-col gap-6 mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-black tracking-tight leading-none">
+              From our <span className="text-[#1668b2]">newsroom</span>.
             </h2>
+            <Link href="/editorial" className="group flex items-center gap-3 bg-black text-white px-6 py-2.5 rounded-full w-fit hover:bg-[#1668b2] transition-all">
+              <span className="text-[10px] font-black uppercase tracking-widest">News Room</span>
+              <span className="text-sm group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { date: 'Oct 12, 2023', title: 'Sustainable Farming: Our Commitment to the Future', tag: 'Sustainability' },
-              { date: 'Sep 28, 2023', title: 'Inyange Awarded Best Beverage Producer of the Year', tag: 'Awards' },
-              { date: 'Sep 15, 2023', title: 'New Fortified Milk Range: Nutrition Redefined', tag: 'Innovation' },
+              { 
+                date: 'Oct 12, 2023', 
+                title: 'Sustainable Farming: Our Commitment to the Future', 
+                excerpt: 'Inyange remains at the forefront of agricultural innovation, supporting local farmers with modern techniques.',
+                image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=600',
+                tag: 'Sustainability' 
+              },
+              { 
+                date: 'Sep 28, 2023', 
+                title: 'Awarded Best Beverage Producer of the Year', 
+                excerpt: 'We are honored to receive the 2023 Excellence Award for our consistent quality and safety standards.',
+                image: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=600',
+                tag: 'Awards' 
+              },
+              { 
+                date: 'Sep 15, 2023', 
+                title: 'New Fortified Milk Range: Nutrition Redefined', 
+                excerpt: 'Introducing our latest product line designed to meet the growing nutritional needs of the East African market.',
+                image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?q=80&w=800',
+                tag: 'Innovation' 
+              },
+              { 
+                date: 'Aug 30, 2023', 
+                title: 'Community Outreach: Supporting Local Schools', 
+                excerpt: 'Our recent initiative provided nutritional dairy products to school children across Rwanda villages.',
+                image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=600',
+                tag: 'Community' 
+              },
             ].map((news, idx) => (
               <motion.div
                 key={news.title}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white rounded-3xl p-8 border border-zinc-100 hover:shadow-2xl transition-all group"
+                className="group flex flex-col cursor-pointer"
               >
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-[#00adef]">{news.tag}</span>
-                  <span className="text-[10px] font-bold text-zinc-300">{news.date}</span>
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-zinc-100">
+                  <Image 
+                    src={news.image} 
+                    alt={news.title} 
+                    fill 
+                    className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-white/90 backdrop-blur-sm text-[#1668b2] text-[8px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">
+                      {news.tag}
+                    </span>
+                  </div>
                 </div>
-                <h3 className="text-xl font-black text-[#1668b2] mb-8 leading-tight group-hover:text-[#00adef] transition-colors">{news.title}</h3>
-                <Link href="/editorial" className="text-[10px] font-black uppercase tracking-widest text-[#1668b2] flex items-center gap-2">
-                  Read Story <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </Link>
+                
+                <span className="text-[10px] font-bold text-zinc-400 mb-2">{news.date}</span>
+                <h3 className="text-lg font-black text-black leading-tight mb-3 group-hover:text-[#1668b2] transition-colors line-clamp-2">
+                  {news.title}
+                </h3>
+                <p className="text-[11px] text-zinc-500 font-medium leading-relaxed line-clamp-3">
+                  {news.excerpt}
+                </p>
               </motion.div>
             ))}
           </div>
