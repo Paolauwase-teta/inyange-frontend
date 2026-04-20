@@ -106,17 +106,16 @@ export default function Navbar() {
                     {/* Top Bar Wrapper */}
                 <div className="flex items-center justify-between px-5 h-11 shrink-0 w-full">
                     {/* Left: Logo */}
-                    <Link href="/" className="flex items-center gap-2 group" onClick={() => setIsMobileMenuOpen(false)}>
-                        <div className="w-6 h-6 rounded-full overflow-hidden border-2 border-[navy] bg-white flex items-center justify-center group-hover:border-[teal]/60 transition-all">
+                    <Link href="/" className="flex items-center group py-1" onClick={() => setIsMobileMenuOpen(false)}>
+                        <div className="relative w-14 h-14 transition-transform group-hover:scale-105 duration-300">
                             <Image
-                                src="/logo.png"
+                                src="/inyangelogo.png"
                                 alt="Inyange Logo"
-                                width={24}
-                                height={24}
-                                className="w-full h-full object-contain"
+                                fill
+                                className="object-contain"
+                                priority
                             />
                         </div>
-                        <span className="text-xs font-black tracking-tighter text-[navy] uppercase">INYANGE</span>
                     </Link>
 
                     {/* Right: Desktop Links */}

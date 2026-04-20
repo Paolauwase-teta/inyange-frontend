@@ -435,7 +435,7 @@ export default function Home() {
             <div className="w-16 h-1 bg-[#0d55a0]/10 mb-6" />
             
             <p className="text-zinc-500 font-medium leading-relaxed mb-8 max-w-lg text-sm">
-              Inyange Industries is Rwanda's leading food and beverage processor, dedicated to enriching lives through high-quality products. From farm to bottle, we ensure every drop of our milk, juice, and water meets the highest standards of purity and taste. 
+              Inyange Industries is a leading food processing company in Rwanda, manufacturing a wide range of products under its household brand name—"Inyange". Known for high-quality mineral water, fruit juices, and dairy products, we have become the regional standard for modern and hygienic production.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">

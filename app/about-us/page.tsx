@@ -19,40 +19,47 @@ const MILESTONES = [
   },
   {
     id: 2,
-    year: '2001',
-    tag: 'EXPANSION',
-    title: 'Diversifying Product Lines',
-    description: 'We expanded beyond dairy to include pure juices and bottled mineral water, ensuring high-quality hydration for the nation.',
-    cx: 350,
-    cy: 180,
+    year: '1999',
+    tag: 'DAIRY START',
+    title: 'Pasteurized Milk & Yoghurt',
+    description: 'Operations expanded to include processing and selling high-quality pasteurized milk and yoghurt for the Rwandan market.',
+    cx: 280,
+    cy: 220,
   },
   {
     id: 3,
-    year: '2010',
-    tag: 'MASAKA PLANT',
-    title: 'Industrial Revolution',
-    description: 'The inauguration of our state-of-the-art plant in Masaka. This multi-million dollar facility set new standards for production in the region.',
-    cx: 600,
-    cy: 240,
+    year: '2001',
+    tag: 'WATER',
+    title: 'Mineral Water Processing',
+    description: 'The plant introduced mineral water processing and packaging, quickly becoming a standard for hygienic drinking water.',
+    cx: 460,
+    cy: 160,
   },
   {
     id: 4,
-    year: '2025',
-    tag: 'GLOBAL PRIDE',
-    title: 'East African Excellence',
-    description: 'Today, Inyange stands as an international symbol of quality, exporting high-standard dairy and beverage products across the continent.',
-    cx: 800,
+    year: '2010',
+    tag: 'MASAKA PLANT',
+    title: 'USD 27M Expansion',
+    description: 'Construction of a state-of-the-art production plant in Masaka, increasing production capacity tenfold to meet rising domestic demand.',
+    cx: 640,
+    cy: 220,
+  },
+  {
+    id: 5,
+    year: 'PRESENT',
+    tag: 'REGIONAL REACH',
+    title: 'EAC Expansion',
+    description: 'Leveraging Rwanda\'s position in the East African Community to export premium quality dairy, juices, and water to neighboring countries.',
+    cx: 820,
     cy: 100,
   },
 ];
 
 const CERTIFICATIONS = [
-  { name: 'BRC Food Safety', image: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/BRC_Global_Standards_Logo.svg/1024px-BRC_Global_Standards_Logo.svg.png' },
-  { name: 'EU Organic', image: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/EU_Organic_Logo_Colour.png' },
-  { name: 'Halal Certified', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Halal_mark.svg/1200px-Halal_mark.svg.png' },
-  { name: 'ISO 14001', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/ISO_14001_Logo.svg/1200px-ISO_14001_Logo.svg.png' },
-  { name: 'ISO 22000', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/ISO_22000_Logo.svg/1200px-ISO_22000_Logo.svg.png' },
-  { name: 'HACCP', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/HACCP_logo.svg/1280px-HACCP_logo.svg.png' },
+  { name: 'Quality Standard 01', image: '/certify/quality1.png' },
+  { name: 'Quality Standard 02', image: '/certify/quality2.jpg' },
+  { name: 'Quality Standard 03', image: '/certify/quality3.jpg' },
+  { name: 'Quality Standard 04', image: '/certify/quality4.png' },
 ];
 
 const VB_W = 900;
@@ -105,7 +112,7 @@ export default function AboutUsPage() {
                         The Pride of Rwanda's <br /> <span className="text-[#33a4df]">Dairy Industry</span>.
                     </h2>
                     <p className="text-zinc-500 font-medium leading-relaxed mb-8 text-sm md:text-base">
-                        Inyange Industries is a leading food and beverage processor in Rwanda, manufacturing a variety of products under its brand name—Inyange. Since its inception in 1997, the company has grown significantly, evolving into a household name that represents purity, quality, and health.
+                        Operating in modern and hygienic production facilities, Inyange manufactures a wide range of products and has quickly become a household name in Rwanda's fast-moving consumer goods industry. We are renowned for our high-quality mineral drinking water, fruit juices, milk, and dairy products that set the standard for excellence.
                     </p>
                     <div className="grid grid-cols-2 gap-8 border-t border-black/5 pt-8">
                         <div>
@@ -244,24 +251,46 @@ export default function AboutUsPage() {
                         </h2>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-                        {CERTIFICATIONS.map((cert, idx) => (
-                            <motion.div 
-                                key={idx}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: idx * 0.1 }}
-                                className="group flex flex-col items-center gap-6"
-                            >
-                                <div className="relative w-24 h-24 bg-white rounded-3xl p-4 shadow-sm border border-black/5 group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-500">
-                                    <Image src={cert.image} alt={cert.name} fill className="object-contain p-2 grayscale group-hover:grayscale-0 transition-all" />
+                    {/* Moving Carousel Wrapper */}
+                    <div className="relative w-full overflow-hidden py-10">
+                        <motion.div 
+                            className="flex gap-12 w-fit"
+                            animate={{ 
+                                x: [0, -1000],
+                            }}
+                            transition={{ 
+                                x: {
+                                    repeat: Infinity,
+                                    repeatType: "loop",
+                                    duration: 20,
+                                    ease: "linear",
+                                },
+                            }}
+                        >
+                            {/* Duplicate items for infinite effect */}
+                            {[...CERTIFICATIONS, ...CERTIFICATIONS, ...CERTIFICATIONS, ...CERTIFICATIONS].map((cert, idx) => (
+                                <div 
+                                    key={idx}
+                                    className="flex flex-col items-center gap-6 shrink-0 w-32"
+                                >
+                                    <div className="relative w-24 h-24 bg-white rounded-3xl p-4 shadow-sm border border-black/5 hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                                        <Image 
+                                            src={cert.image} 
+                                            alt={cert.name} 
+                                            fill 
+                                            className="object-contain p-2 grayscale hover:grayscale-0 transition-all" 
+                                        />
+                                    </div>
+                                    <span className="text-[8px] font-black uppercase tracking-widest text-[#0d55a0] text-center opacity-40 hover:opacity-100 transition-all">
+                                        {cert.name}
+                                    </span>
                                 </div>
-                                <span className="text-[8px] font-black uppercase tracking-widest text-[#0d55a0] text-center opacity-40 group-hover:opacity-100 transition-all">
-                                    {cert.name}
-                                </span>
-                            </motion.div>
-                        ))}
+                            ))}
+                        </motion.div>
+                        
+                        {/* Gradient Fades for Smooth Edges */}
+                        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#fcfbf7] to-transparent z-10 pointer-events-none" />
+                        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#fcfbf7] to-transparent z-10 pointer-events-none" />
                     </div>
                 </div>
             </section>
