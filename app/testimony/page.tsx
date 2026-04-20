@@ -1,7 +1,6 @@
 "use client";
 
 import React from 'react';
-import Navbar from '../components/Navbar';
 
 const testimonies = [
     {
@@ -56,8 +55,6 @@ export default function TestimonyPage() {
 
     return (
         <main className="min-h-screen bg-[#f7f8fa]">
-            <Navbar />
-
             <section className="pt-32 pb-16 min-h-screen overflow-hidden">
                 <div className="text-center mb-10 md:mb-14 px-6">
                     <p className="text-[10px] md:text-[14px] font-black uppercase tracking-[0.45em] text-black/50 mb-3 md:mb-5">

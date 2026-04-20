@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, Variants } from 'framer-motion';
-import Navbar from '../components/Navbar';
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -79,7 +78,6 @@ export default function TeamPage() {
     if (loading) {
         return (
             <div className="bg-white min-h-screen pt-24 pb-12">
-                <Navbar />
                 <div className="flex items-center justify-center py-32">
                     <p className="text-zinc-400 text-sm">Loading team...</p>
                 </div>
@@ -89,7 +87,6 @@ export default function TeamPage() {
 
     return (
         <div className="bg-white min-h-screen pt-24 pb-12">
-            <Navbar />
 
             <main className="max-w-6xl mx-auto px-6 md:px-12 mt-10">
 

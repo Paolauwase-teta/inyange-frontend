@@ -74,12 +74,15 @@ const NAV_ITEMS: NavLinkProps[] = [
         { label: 'Baking', href: '/recipes/baking' },
         { label: 'Desserts', href: '/recipes/desserts' }
     ]},
-    { label: "About", href: "/about", dropdown: [
+    { label: "About", href: "/about-us", dropdown: [
         { label: 'About Us', href: '/about-us' },
         { label: 'Leaders', href: '/leaders' },
-        { label: 'Careers', href: '/careers' }
+        { label: 'Team', href: '/team' }
     ]},
-    { label: "Editorial", href: "/editorial" },
+    { label: "Editorial", href: "/editorial", dropdown: [
+        { label: 'Newsroom', href: '/editorial' },
+        { label: 'Blog', href: '/blog' }
+    ]},
     { label: "Reach Out", href: "/reach-out" }
 ];
 

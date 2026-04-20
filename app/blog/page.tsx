@@ -4,7 +4,6 @@ import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import Navbar from '../components/Navbar';
 
 interface BlogPost {
     id: number;
@@ -47,7 +46,6 @@ export default function BlogPage() {
     if (loading) {
         return (
             <main className="min-h-screen bg-[#f9f9f9] font-sans flex flex-col items-center justify-center">
-                <Navbar />
                 <p className="text-zinc-400 font-medium">Loading stories...</p>
             </main>
         );
@@ -56,7 +54,6 @@ export default function BlogPage() {
     if (posts.length === 0 || !featured) {
         return (
             <main className="min-h-screen bg-[#f9f9f9] font-sans flex flex-col items-center justify-center">
-                <Navbar />
                 <p className="text-zinc-400 font-medium">No stories currently available.</p>
             </main>
         );
@@ -64,7 +61,6 @@ export default function BlogPage() {
 
     return (
         <main className="min-h-screen bg-[#f9f9f9] font-sans flex flex-col">
-            <Navbar />
 
             {/* Top right profile / logo */}
             <div className="pt-28 px-8 max-w-6xl mx-auto w-full flex justify-end items-center">
@@ -99,10 +95,10 @@ export default function BlogPage() {
                         Keep the<br />story going..
                     </motion.h1>
                     <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="text-[12px] font-medium text-zinc-500 leading-relaxed mb-8 max-w-xs"
+                        className="text-[12px] font-medium text-zinc-500 leading-relaxed mb-6 max-w-xs"
                     >
                         Don't let the story end just yet. Real accounts from the lab — how we build, what we've learned, and what's next.
                     </motion.p>
