@@ -19,9 +19,9 @@ interface Distributor {
 }
 
 function markerColor(level: Availability) {
-    if (level === 'High') return '#00adef';
-    if (level === 'Medium') return '#1668b2';
-    return '#7aaed0';
+    if (level === 'High') return '#5bb63a';
+    if (level === 'Medium') return '#0d55a0';
+    return '#33a4df';
 }
 
 interface DistributorMapProps {
@@ -40,8 +40,8 @@ function MapMarkers({ selected, filtered, onSelect }: DistributorMapProps) {
 
         const focusCircle = L.circle([selected.lat, selected.lng], {
             radius: 45000,
-            color: '#1668b2',
-            fillColor: '#00adef',
+            color: '#0d55a0',
+            fillColor: '#5bb63a',
             fillOpacity: 0.16,
         }).addTo(map);
         layers.push(focusCircle);

@@ -66,7 +66,7 @@ export default function AboutUsPage() {
             <Navbar />
 
             {/* ── SECTION 1: HERO ── */}
-            <section className="relative w-full h-[50vh] md:h-[65vh] bg-[#1668b2] overflow-hidden flex items-center justify-center">
+            <section className="relative w-full h-[50vh] md:h-[65vh] bg-[#0d55a0] overflow-hidden flex items-center justify-center">
                 {/* Background Watermark */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
                     <span className="font-black uppercase tracking-tighter leading-none whitespace-nowrap text-white/5 text-[15vw] md:text-[20vw]">
@@ -88,7 +88,7 @@ export default function AboutUsPage() {
                         transition={{ delay: 0.1 }}
                         className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9]"
                     >
-                        OUR <span className="text-[#00adef]">STORY</span>.
+                        OUR <span className="text-[#33a4df]">STORY</span>.
                     </motion.h1>
                 </div>
             </section>
@@ -100,20 +100,20 @@ export default function AboutUsPage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                 >
-                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#00adef] mb-4 block">The Brand</span>
-                    <h2 className="text-3xl md:text-5xl font-black text-[#1668b2] uppercase tracking-tighter leading-[0.95] mb-8">
-                        The Pride of Rwanda's <br /> <span className="text-[#00adef]">Dairy Industry</span>.
+                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#33a4df] mb-4 block">The Brand</span>
+                    <h2 className="text-3xl md:text-5xl font-black text-[#0d55a0] uppercase tracking-tighter leading-[0.95] mb-8">
+                        The Pride of Rwanda's <br /> <span className="text-[#33a4df]">Dairy Industry</span>.
                     </h2>
                     <p className="text-zinc-500 font-medium leading-relaxed mb-8 text-sm md:text-base">
                         Inyange Industries is a leading food and beverage processor in Rwanda, manufacturing a variety of products under its brand name—Inyange. Since its inception in 1997, the company has grown significantly, evolving into a household name that represents purity, quality, and health.
                     </p>
                     <div className="grid grid-cols-2 gap-8 border-t border-black/5 pt-8">
                         <div>
-                            <span className="text-3xl font-black text-[#1668b2]">1997</span>
+                            <span className="text-3xl font-black text-[#0d55a0]">1997</span>
                             <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mt-1">Year Founded</p>
                         </div>
                         <div>
-                            <span className="text-3xl font-black text-[#00adef]">100%</span>
+                            <span className="text-3xl font-black text-[#33a4df]">100%</span>
                             <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mt-1">Quality Guaranteed</p>
                         </div>
                     </div>
@@ -131,7 +131,7 @@ export default function AboutUsPage() {
                         fill 
                         className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-[#1668b2]/10 mix-blend-overlay" />
+                    <div className="absolute inset-0 bg-[#0d55a0]/10 mix-blend-overlay" />
                 </motion.div>
             </div>
 
@@ -141,7 +141,7 @@ export default function AboutUsPage() {
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
                     <span 
                         className="font-black uppercase tracking-tighter leading-none whitespace-nowrap opacity-[0.03]"
-                        style={{ fontSize: 'clamp(100px, 15vw, 220px)', color: '#1668b2' }}
+                        style={{ fontSize: 'clamp(100px, 15vw, 220px)', color: '#0d55a0' }}
                     >
                         EVOLUTION
                     </span>
@@ -149,9 +149,9 @@ export default function AboutUsPage() {
 
                 <div className="max-w-6xl mx-auto px-8 mb-20 relative z-10">
                     <div className="flex flex-col gap-2">
-                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#00adef]">Our Journey</span>
-                        <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#1668b2]">
-                            THE <span className="text-[#00adef]">CHRONOLOGY</span>.
+                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#5bb63a]">Our Journey</span>
+                        <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#0d55a0]">
+                            THE <span className="text-[#5bb63a]">CHRONOLOGY</span>.
                         </h2>
                     </div>
                 </div>
@@ -170,7 +170,7 @@ export default function AboutUsPage() {
                             viewport={{ once: true }}
                             transition={{ duration: 2, ease: "easeInOut" }}
                             d="M 100 320 C 250 320, 300 180, 350 180 C 450 180, 500 280, 600 240 C 700 200, 750 100, 800 100" 
-                            stroke="#1668b2" 
+                            stroke="#0d55a0" 
                             strokeWidth="3" 
                         />
                     </svg>
@@ -189,18 +189,18 @@ export default function AboutUsPage() {
                         >
                             {/* Milestone Label (Below) */}
                             <div className="absolute top-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-center">
-                                <span className="text-[10px] font-black text-[#00adef] block leading-none mb-1 opacity-40 group-hover:opacity-100 transition-opacity">0{milestone.id}.</span>
-                                <span className={`text-[11px] font-black uppercase tracking-tighter transition-colors ${activeMilestone.id === milestone.id ? 'text-[#1668b2]' : 'text-[#1668b2]/20 group-hover:text-[#1668b2]/60'}`}>
+                                <span className="text-[10px] font-black text-[#5bb63a] block leading-none mb-1 opacity-40 group-hover:opacity-100 transition-opacity">0{milestone.id}.</span>
+                                <span className={`text-[11px] font-black uppercase tracking-tighter transition-colors ${activeMilestone.id === milestone.id ? 'text-[#0d55a0]' : 'text-[#0d55a0]/20 group-hover:text-[#0d55a0]/60'}`}>
                                     {milestone.tag}
                                 </span>
                             </div>
 
                             {/* Dot */}
-                            <div className={`relative w-4 h-4 rounded-full transition-all duration-500 ${activeMilestone.id === milestone.id ? 'bg-[#1668b2] scale-150 shadow-[0_0_20px_rgba(22,104,178,0.2)]' : 'bg-white border-2 border-[#1668b2]/20 group-hover:border-[#1668b2]'}`}>
+                            <div className={`relative w-4 h-4 rounded-full transition-all duration-500 ${activeMilestone.id === milestone.id ? 'bg-[#0d55a0] scale-150 shadow-[0_0_20px_rgba(22,104,178,0.2)]' : 'bg-white border-2 border-[#0d55a0]/20 group-hover:border-[#0d55a0]'}`}>
                                 {activeMilestone.id === milestone.id && (
                                     <motion.div 
                                         layoutId="glow"
-                                        className="absolute inset-0 rounded-full bg-[#1668b2] blur-md opacity-30" 
+                                        className="absolute inset-0 rounded-full bg-[#0d55a0] blur-md opacity-30" 
                                     />
                                 )}
                             </div>
@@ -215,8 +215,8 @@ export default function AboutUsPage() {
                                         className="absolute bottom-10 left-1/2 -translate-x-1/2 w-64 md:w-80 bg-white border border-black/5 rounded-2xl p-6 shadow-2xl z-30 mb-2"
                                     >
                                         <div className="relative">
-                                            <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#00adef] mb-2 block">{milestone.year}</span>
-                                            <h3 className="text-lg font-black text-[#1668b2] uppercase tracking-tighter leading-tight mb-3">
+                                            <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#5bb63a] mb-2 block">{milestone.year}</span>
+                                            <h3 className="text-lg font-black text-[#0d55a0] uppercase tracking-tighter leading-tight mb-3">
                                                 {milestone.title}
                                             </h3>
                                             <p className="text-[11px] text-zinc-500 font-medium leading-relaxed">
@@ -238,9 +238,9 @@ export default function AboutUsPage() {
             <section className="py-24 bg-[#fcfbf7]">
                 <div className="max-w-6xl mx-auto px-8">
                     <div className="text-center mb-16">
-                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#00adef] mb-4 block">Quality Standards</span>
-                        <h2 className="text-3xl md:text-5xl font-black text-[#1668b2] uppercase tracking-tighter">
-                            AWARDS & <span className="text-[#00adef]">CERTIFICATIONS</span>.
+                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#5bb63a] mb-4 block">Quality Standards</span>
+                        <h2 className="text-3xl md:text-5xl font-black text-[#0d55a0] uppercase tracking-tighter">
+                            AWARDS & <span className="text-[#5bb63a]">CERTIFICATIONS</span>.
                         </h2>
                     </div>
 
@@ -257,7 +257,7 @@ export default function AboutUsPage() {
                                 <div className="relative w-24 h-24 bg-white rounded-3xl p-4 shadow-sm border border-black/5 group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-500">
                                     <Image src={cert.image} alt={cert.name} fill className="object-contain p-2 grayscale group-hover:grayscale-0 transition-all" />
                                 </div>
-                                <span className="text-[8px] font-black uppercase tracking-widest text-[#1668b2] text-center opacity-40 group-hover:opacity-100 transition-all">
+                                <span className="text-[8px] font-black uppercase tracking-widest text-[#0d55a0] text-center opacity-40 group-hover:opacity-100 transition-all">
                                     {cert.name}
                                 </span>
                             </motion.div>
@@ -271,10 +271,10 @@ export default function AboutUsPage() {
                 <div className="max-w-6xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-12">
                     <motion.div 
                         whileHover={{ y: -10 }}
-                        className="bg-[#1668b2] p-12 rounded-[3rem] text-white shadow-2xl relative overflow-hidden"
+                        className="bg-[#0d55a0] p-12 rounded-[3rem] text-white shadow-2xl relative overflow-hidden"
                     >
                         <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full translate-x-10 -translate-y-10" />
-                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#00adef] mb-6 block">The Goal</span>
+                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#5bb63a] mb-6 block">The Goal</span>
                         <h3 className="text-4xl font-black uppercase tracking-tighter leading-tight mb-6">Our Vision</h3>
                         <p className="text-sm md:text-base text-white/70 font-medium leading-relaxed">
                             To be the leading East and Central African dairy and beverage brand, producing high quality products while enhancing shareholder value for all our stakeholders across the globe.
@@ -283,10 +283,10 @@ export default function AboutUsPage() {
 
                     <motion.div 
                         whileHover={{ y: -10 }}
-                        className="bg-[#fcfbf7] p-12 rounded-[3rem] border border-[#1668b2]/10 shadow-xl relative overflow-hidden text-[#1668b2]"
+                        className="bg-[#fcfbf7] p-12 rounded-[3rem] border border-[#0d55a0]/10 shadow-xl relative overflow-hidden text-[#0d55a0]"
                     >
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#1668b2]/5 rounded-full translate-x-10 -translate-y-10" />
-                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#00adef] mb-6 block">The Mission</span>
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#0d55a0]/5 rounded-full translate-x-10 -translate-y-10" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#5bb63a] mb-6 block">The Mission</span>
                         <h3 className="text-4xl font-black uppercase tracking-tighter leading-tight mb-6">Our Mission</h3>
                         <p className="text-sm md:text-base text-zinc-500 font-medium leading-relaxed">
                             To secure the highest value for all stakeholders while enriching lives through nutritious and tasty dairy and beverage choices, delivered with absolute purity and excellence.

@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
-import { Jost } from "next/font/google";
+// Removed Jost import to use Arial (system font) instead
 import "./globals.css";
 import NavbarWrapper from "./components/NavbarWrapper";
 import ChatBox from "./components/ChatBox";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const jost = Jost({
-  variable: "--font-jost",
-  subsets: ["latin"],
-});
+// Jost configuration removed
 
 export const metadata: Metadata = {
   title: "Inyange Industry Portfolio",
@@ -29,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${jost.variable} antialiased`}
+        className="antialiased"
       >
         <NavbarWrapper />
         {children}

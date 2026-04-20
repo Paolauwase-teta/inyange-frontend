@@ -74,7 +74,7 @@ export default function ServiceDetail() {
 
             {/* IPAC-Style Hero */}
             {/* This section is the primary themed banner (dark blue) */}
-            <section className="relative min-h-[85vh] flex flex-col justify-end overflow-hidden bg-[#1668b2]">
+            <section className="relative min-h-[85vh] flex flex-col justify-end overflow-hidden bg-[#0d55a0]">
                 {/* Giant background title */}
                 <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none px-12">
                     <motion.span
@@ -130,7 +130,7 @@ export default function ServiceDetail() {
                             </div>
 
                             {/* Explore Button → Contact */}
-                            <Link href="/reach-out" className="bg-[#1668b2] text-white text-[11px] font-black uppercase tracking-widest px-5 rounded-xl hover:bg-[#0b4a7d] transition-colors flex items-center">
+                            <Link href="/reach-out" className="bg-[#0d55a0] text-white text-[11px] font-black uppercase tracking-widest px-5 rounded-xl hover:bg-[#0b4a7d] transition-colors flex items-center">
                                 Explore
                             </Link>
                         </div>
@@ -144,14 +144,14 @@ export default function ServiceDetail() {
 
                     {/* Left: Section intro */}
                     <div className="md:w-1/3">
-                        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#00adef]/30 mb-4">How We Do It</p>
-                        <h2 className="text-4xl font-black uppercase tracking-tighter leading-tight mb-6 text-[#1668b2]">
+                        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#5bb63a]/30 mb-4">How We Do It</p>
+                        <h2 className="text-4xl font-black uppercase tracking-tighter leading-tight mb-6 text-[#0d55a0]">
                             Our Methodology
                         </h2>
                         <p className="text-[12px] font-medium text-zinc-500 leading-relaxed">
                             A refined, milestone-driven approach that keeps you in the loop at every stage of the process.
                         </p>
-                        <Link href="/services" className="inline-flex items-center gap-2 mt-8 text-[11px] font-black uppercase tracking-widest text-[#1668b2]/40 hover:text-[#1668b2] transition-colors">
+                        <Link href="/services" className="inline-flex items-center gap-2 mt-8 text-[11px] font-black uppercase tracking-widest text-[#0d55a0]/40 hover:text-[#0d55a0] transition-colors">
                             <span>← All Services</span>
                         </Link>
                     </div>
@@ -173,11 +173,11 @@ export default function ServiceDetail() {
                                 >
                                     {/* Dot + Year */}
                                     <div className="flex flex-col items-center pt-1">
-                                        <div className="w-3.5 h-3.5 rounded-full bg-[#00adef] border-4 border-white ring-1 ring-zinc-200 shrink-0 z-10" />
+                                        <div className="w-3.5 h-3.5 rounded-full bg-[#5bb63a] border-4 border-white ring-1 ring-zinc-200 shrink-0 z-10" />
                                     </div>
                                     <div className="pb-2">
                                         <p className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-300 mb-2">{step.year}</p>
-                                        <h3 className="text-lg font-black tracking-tight text-[#1668b2] mb-2">{step.title}</h3>
+                                        <h3 className="text-lg font-black tracking-tight text-[#0d55a0] mb-2">{step.title}</h3>
                                         <p className="text-[12px] font-medium text-zinc-500 leading-relaxed">{step.description}</p>
                                     </div>
                                 </motion.div>
@@ -188,7 +188,7 @@ export default function ServiceDetail() {
             </section>
 
             {/* CTA */}
-            <section className="bg-[#1668b2] py-24 px-8 text-center">
+            <section className="bg-[#0d55a0] py-24 px-8 text-center">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}

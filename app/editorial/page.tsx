@@ -45,7 +45,7 @@ export default function EditorialPage() {
         return (
             <main className="min-h-screen bg-[#fcfbf7] font-sans flex flex-col items-center justify-center">
                 <Navbar />
-                <p className="text-[#1668b2] font-black uppercase tracking-widest text-[10px]">Loading Newsroom...</p>
+                <p className="text-[#0d55a0] font-black uppercase tracking-widest text-[10px]">Loading Newsroom...</p>
             </main>
         );
     }
@@ -70,7 +70,7 @@ export default function EditorialPage() {
             <Navbar />
 
             {/* ── SECTION 1: HERO (LEADERS STYLE) ── */}
-            <section className="relative w-full h-[45vh] md:h-[55vh] bg-[#1668b2] overflow-hidden flex items-center justify-center">
+            <section className="relative w-full h-[45vh] md:h-[55vh] bg-[#0d55a0] overflow-hidden flex items-center justify-center">
                 {/* Background Watermark */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
                     <span className="font-black uppercase tracking-tighter leading-none whitespace-nowrap text-white/5 text-[15vw] md:text-[18vw]">
@@ -93,7 +93,7 @@ export default function EditorialPage() {
                             transition={{ delay: 0.1 }}
                             className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9]"
                         >
-                            NEWS & <br /> <span className="text-[#00adef]">EDITORIAL</span>.
+                            NEWS & <br /> <span className="text-[#33a4df]">EDITORIAL</span>.
                         </motion.h1>
                     </div>
                 </div>
@@ -109,7 +109,7 @@ export default function EditorialPage() {
                     {/* Main Column: Big News Card */}
                     <div className="lg:col-span-5">
                         <div className="flex items-center gap-3 mb-8">
-                            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#1668b2]">Featured Editorial</h3>
+                            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#0d55a0]">Featured Editorial</h3>
                             <div className="h-[1px] flex-1 bg-black/5" />
                         </div>
                         {feed_main && (
@@ -117,8 +117,8 @@ export default function EditorialPage() {
                                 <div className="relative aspect-video rounded-3xl overflow-hidden mb-8 bg-zinc-100 border border-black/5 shadow-md">
                                     <Image src={getCategoryImage(feed_main.category)} alt={feed_main.title} fill className="object-cover group-hover:scale-105 transition-transform duration-1000" />
                                 </div>
-                                <span className="text-[9px] font-black uppercase tracking-widest text-[#00adef] mb-3 block">{feed_main.category}</span>
-                                <h3 className="text-3xl font-black text-black uppercase tracking-tighter leading-none mb-6 group-hover:text-[#1668b2] transition-colors">
+                                <span className="text-[9px] font-black uppercase tracking-widest text-[#33a4df] mb-3 block">{feed_main.category}</span>
+                                <h3 className="text-3xl font-black text-black uppercase tracking-tighter leading-none mb-6 group-hover:text-[#0d55a0] transition-colors">
                                     {feed_main.title}
                                 </h3>
                                 <p className="text-sm text-zinc-500 font-medium leading-relaxed mb-8 line-clamp-4">
@@ -144,9 +144,9 @@ export default function EditorialPage() {
                                     </div>
                                     <div className="flex flex-col justify-center">
                                         <div className="flex items-center gap-2 mb-1.5">
-                                            <span className="text-[8px] font-black uppercase text-[#1668b2] tracking-widest">{post.category}</span>
+                                            <span className="text-[8px] font-black uppercase text-[#0d55a0] tracking-widest">{post.category}</span>
                                         </div>
-                                        <h4 className="text-[13px] font-black text-black leading-tight group-hover:text-[#1668b2] transition-colors line-clamp-2">
+                                        <h4 className="text-[13px] font-black text-black leading-tight group-hover:text-[#0d55a0] transition-colors line-clamp-2">
                                             {post.title}
                                         </h4>
                                     </div>
@@ -180,9 +180,9 @@ export default function EditorialPage() {
                 {/* ── SECTION 3: IN THE MEDIA (NEWSPAPERS, BLOGS) ── */}
                 <div className="mt-24 pt-20 border-t border-black/5">
                     <div className="flex flex-col items-center text-center mb-16">
-                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#1668b2] mb-4">In the Spotlight</span>
+                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0d55a0] mb-4">In the Spotlight</span>
                         <h2 className="text-3xl md:text-5xl font-black text-black tracking-tight uppercase">
-                            MEDIA & <span className="text-[#00adef]">PRESS</span>.
+                            MEDIA & <span className="text-[#33a4df]">PRESS</span>.
                         </h2>
                     </div>
 
@@ -195,13 +195,13 @@ export default function EditorialPage() {
                         ].map((media, i) => (
                             <div key={i} className="bg-white p-6 rounded-3xl border border-black/5 hover:shadow-xl transition-all group">
                                 <div className="flex items-center justify-between mb-4">
-                                    <span className="text-[9px] font-black uppercase tracking-widest text-[#00adef]">{media.type}</span>
+                                    <span className="text-[9px] font-black uppercase tracking-widest text-[#33a4df]">{media.type}</span>
                                     <span className="text-[10px] font-bold text-zinc-300">{media.date}</span>
                                 </div>
-                                <h4 className="text-lg font-black text-[#1668b2] leading-tight mb-6 group-hover:text-[#00adef] transition-colors">{media.title}</h4>
+                                <h4 className="text-lg font-black text-[#0d55a0] leading-tight mb-6 group-hover:text-[#33a4df] transition-colors">{media.title}</h4>
                                 <div className="flex items-center justify-between mt-auto">
                                     <span className="text-[10px] font-black text-black uppercase tracking-tighter">{media.source}</span>
-                                    <div className="w-8 h-8 rounded-full bg-zinc-50 flex items-center justify-center text-[#1668b2] group-hover:bg-[#1668b2] group-hover:text-white transition-all">
+                                    <div className="w-8 h-8 rounded-full bg-zinc-50 flex items-center justify-center text-[#0d55a0] group-hover:bg-[#0d55a0] group-hover:text-white transition-all">
                                         →
                                     </div>
                                 </div>

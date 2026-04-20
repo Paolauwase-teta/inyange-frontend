@@ -35,10 +35,10 @@ function MapMarkers({ selected, locations, onSelect }: ReachOutMapProps) {
                 html: `
                     <div class="relative flex items-center justify-center translate-y-[-50%] transition-transform duration-500 ${isActive ? 'scale-125' : 'hover:scale-110'}">
                         <svg width="34" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="${isActive ? '#1668b2' : 'rgba(22, 104, 178, 0.7)'}" stroke="white" stroke-width="1.5"/>
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="${isActive ? '#0d55a0' : 'rgba(13, 85, 160, 0.7)'}" stroke="white" stroke-width="1.5"/>
                             <circle cx="12" cy="10" r="3" fill="white"/>
                         </svg>
-                        <div class="absolute -bottom-2 w-1.5 h-1.5 bg-[#1668b2]/20 rounded-full blur-[2px]" />
+                        <div class="absolute -bottom-2 w-1.5 h-1.5 bg-[#0d55a0]/20 rounded-full blur-[2px]" />
                     </div>
                 `,
                 iconSize: [34, 42],

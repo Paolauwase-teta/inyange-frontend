@@ -43,7 +43,7 @@ export default function LeadersPage() {
     return (
         <main className="min-h-screen bg-[#fcfbf7] font-sans pb-24">
                         {/* ── SECTION 1: HERO ── */}
-            <section className="relative w-full h-[50vh] md:h-[65vh] bg-[#1668b2] overflow-hidden flex items-center justify-center">
+            <section className="relative w-full h-[50vh] md:h-[65vh] bg-[#0d55a0] overflow-hidden flex items-center justify-center">
                 {/* Background Watermark */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
                     <span className="font-black uppercase tracking-tighter leading-none whitespace-nowrap text-white/5 text-[15vw] md:text-[20vw]">
@@ -67,7 +67,7 @@ export default function LeadersPage() {
                             transition={{ delay: 0.1 }}
                             className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9]"
                         >
-                            OUR <br /> <span className="text-[#00adef]">LEADERS</span>.
+                            OUR <br /> <span className="text-[#33a4df]">LEADERS</span>.
                         </motion.h1>
                     </div>
                 </div>
@@ -80,7 +80,7 @@ export default function LeadersPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-[#1668b2] mb-6">Built on Integrity & Excellence</h2>
+                    <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-[#0d55a0] mb-6">Built on Integrity & Excellence</h2>
                     <p className="text-sm md:text-base text-zinc-500 font-medium leading-loose">
                         Our leadership team is composed of seasoned professionals dedicated to maintaining the highest standards of food safety and quality in Rwanda. Each individual brings a unique perspective, ensuring that Inyange remains at the forefront of the dairy and beverage industry through innovation and sustainable practices.
                     </p>
@@ -112,12 +112,12 @@ export default function LeadersPage() {
                                 <div className="absolute bottom-4 left-4 right-4 bg-white rounded-2xl p-4 shadow-xl translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                                     <div className="flex items-center justify-between gap-2">
                                         <div className="flex-1">
-                                            <h3 className="text-sm md:text-base font-black text-[#1668b2] mb-0.5 leading-tight">{leader.name}</h3>
+                                            <h3 className="text-sm md:text-base font-black text-[#0d55a0] mb-0.5 leading-tight">{leader.name}</h3>
                                             <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-tighter leading-tight">{leader.title}</p>
                                         </div>
                                         <a 
                                             href="https://linkedin.com" 
-                                            className="w-8 h-8 rounded-lg bg-[#1668b2]/5 flex items-center justify-center text-[#1668b2] hover:bg-[#1668b2] hover:text-white transition-all overflow-hidden"
+                                            className="w-8 h-8 rounded-lg bg-[#0d55a0]/5 flex items-center justify-center text-[#0d55a0] hover:bg-[#0d55a0] hover:text-white transition-all overflow-hidden"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >

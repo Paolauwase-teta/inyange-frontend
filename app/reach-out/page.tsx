@@ -56,7 +56,7 @@ export default function ReachOutPage() {
             <Navbar />
 
             {/* ── SECTION 1: HERO ── */}
-            <section className="relative w-full h-[40vh] md:h-[55vh] bg-[#1668b2] overflow-hidden flex items-center justify-center pt-20">
+            <section className="relative w-full h-[40vh] md:h-[55vh] bg-[#0d55a0] overflow-hidden flex items-center justify-center pt-20">
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
                     <span className="font-black uppercase tracking-tighter leading-none whitespace-nowrap text-white/5 text-[15vw] md:text-[20vw]">
                         REACH OUT
@@ -65,7 +65,7 @@ export default function ReachOutPage() {
                 <div className="relative z-10 w-full max-w-6xl mx-auto px-8">
                     <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] text-white/60 mb-4">Connection Points</motion.p>
                     <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9]">
-                        GET IN <span className="text-[#00adef]">TOUCH</span>.
+                        GET IN <span className="text-[#33a4df]">TOUCH</span>.
                     </motion.h1>
                 </div>
             </section>
@@ -75,7 +75,7 @@ export default function ReachOutPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-[450px_1fr] min-h-[500px]">
                     {/* Left: Project Locations List */}
                     <div className="p-8 md:p-16 border-r border-black/5 flex flex-col justify-center">
-                        <h2 className="text-2xl font-black text-[#1668b2] uppercase tracking-tighter mb-10">Our Physical Presence ({LOCATIONS.length})</h2>
+                        <h2 className="text-2xl font-black text-[#0d55a0] uppercase tracking-tighter mb-10">Our Physical Presence ({LOCATIONS.length})</h2>
                         <div className="space-y-12">
                             {LOCATIONS.map((loc, idx) => (
                                 <motion.div 
@@ -89,7 +89,7 @@ export default function ReachOutPage() {
                                     <div>
                                         <h3 className="text-sm font-black uppercase tracking-tighter mb-1">{loc.name}</h3>
                                         <p className="text-[11px] text-zinc-500 font-medium leading-relaxed mb-2">{loc.address}</p>
-                                        <p className="text-[10px] font-bold text-[#1668b2]">{loc.contact}</p>
+                                        <p className="text-[10px] font-bold text-[#0d55a0]">{loc.contact}</p>
                                     </div>
                                 </motion.div>
                             ))}
@@ -109,8 +109,8 @@ export default function ReachOutPage() {
             <section className="py-24 max-w-6xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-20">
                 {/* Left: FAQs */}
                 <div>
-                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#00adef] mb-4 block">Information Desk</span>
-                    <h2 className="text-3xl md:text-5xl font-black text-[#1668b2] uppercase tracking-tighter mb-12">Common <span className="text-[#00adef]">Inquiries</span>.</h2>
+                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#5bb63a] mb-4 block">Information Desk</span>
+                    <h2 className="text-3xl md:text-5xl font-black text-[#0d55a0] uppercase tracking-tighter mb-12">Common <span className="text-[#5bb63a]">Inquiries</span>.</h2>
                     
                     <div className="space-y-4">
                         {FAQS.map((faq, idx) => (
@@ -119,10 +119,10 @@ export default function ReachOutPage() {
                                     onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
                                     className="w-full flex items-center justify-between py-4 text-left group"
                                 >
-                                    <span className={`text-[13px] md:text-sm font-black uppercase tracking-tight transition-colors ${activeFaq === idx ? 'text-[#00adef]' : 'text-[#1668b2] group-hover:text-[#00adef]'}`}>
+                                    <span className={`text-[13px] md:text-sm font-black uppercase tracking-tight transition-colors ${activeFaq === idx ? 'text-[#5bb63a]' : 'text-[#0d55a0] group-hover:text-[#5bb63a]'}`}>
                                         {faq.q}
                                     </span>
-                                    <span className="text-xl font-light text-[#1668b2]/30">{activeFaq === idx ? '−' : '+'}</span>
+                                    <span className="text-xl font-light text-[#0d55a0]/30">{activeFaq === idx ? '−' : '+'}</span>
                                 </button>
                                 <AnimatePresence>
                                     {activeFaq === idx && (
@@ -145,12 +145,12 @@ export default function ReachOutPage() {
 
                 {/* Right: Socials & Quick Links */}
                 <div className="space-y-12">
-                    <div className="bg-[#1668b2] rounded-[2.5rem] p-8 text-white shadow-2xl">
-                        <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#00adef] mb-6 block">Quick Connect</span>
+                    <div className="bg-[#0d55a0] rounded-[2.5rem] p-8 text-white shadow-2xl">
+                        <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#5bb63a] mb-6 block">Quick Connect</span>
                         <h3 className="text-xl font-black uppercase tracking-tighter mb-8 italic">Follow us on Social Media:</h3>
                         <div className="flex flex-col gap-4">
                             {['Twitter', 'Instagram', 'LinkedIn', 'YouTube'].map(social => (
-                                <button key={social} className="flex items-center justify-between bg-white/10 hover:bg-white text-white hover:text-[#1668b2] transition-all px-5 py-3 rounded-xl group">
+                                <button key={social} className="flex items-center justify-between bg-white/10 hover:bg-white text-white hover:text-[#0d55a0] transition-all px-5 py-3 rounded-xl group">
                                     <span className="text-[11px] font-black uppercase tracking-widest">{social}</span>
                                     <span className="text-xs group-hover:translate-x-1 transition-transform">↗</span>
                                 </button>
@@ -159,7 +159,7 @@ export default function ReachOutPage() {
                     </div>
 
                     <div className="border border-black/5 rounded-[2.5rem] p-8 bg-white shadow-sm">
-                        <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#1668b2] mb-6 block">Direct Line</span>
+                        <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#0d55a0] mb-6 block">Direct Line</span>
                         <h3 className="text-xl font-black uppercase tracking-tighter mb-4">Message Us</h3>
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <input 

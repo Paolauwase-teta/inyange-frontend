@@ -47,7 +47,7 @@ export default function RecipesOverviewPage() {
                     <span className="text-[10px] md:text-sm font-black uppercase tracking-[0.3em] text-white/80 mb-3">
                         Inyange Culinary
                     </span>
-                    <h1 className="text-4xl md:text-6xl lg:text-[5rem] font-bold tracking-tight text-white mb-6 uppercase" style={{ fontFamily: 'var(--font-jost), sans-serif' }}>
+                    <h1 className="text-4xl md:text-6xl lg:text-[5rem] font-bold tracking-tight text-white mb-6 uppercase" style={{ fontFamily: 'Arial, sans-serif' }}>
                         All Recipes
                     </h1>
                     <div className="max-w-2xl mx-auto">
@@ -74,12 +74,12 @@ export default function RecipesOverviewPage() {
                     <div className="flex flex-wrap justify-center gap-6 md:gap-12 pt-8">
                         {CATEGORIES.map(cat => (
                             <Link key={cat.title} href={cat.link} className="group flex flex-col items-center gap-4">
-                                <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-full bg-[#f5f3ec] p-2 md:p-3 transition-all duration-300 ring-4 ring-transparent group-hover:ring-[#1668b2] group-hover:shadow-xl">
+                                <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-full bg-[#f5f3ec] p-2 md:p-3 transition-all duration-300 ring-4 ring-transparent group-hover:ring-[#0d55a0] group-hover:shadow-xl">
                                     <div className="relative w-full h-full rounded-full overflow-hidden">
                                         <Image src={cat.image} alt={cat.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
                                     </div>
                                 </div>
-                                <span className="text-xs md:text-sm font-bold text-[#0f2e5a] group-hover:text-[#1668b2] transition-colors tracking-wide">{cat.title}</span>
+                                <span className="text-xs md:text-sm font-bold text-[#0d55a0] group-hover:text-[#0d55a0] transition-colors tracking-wide">{cat.title}</span>
                             </Link>
                         ))}
                     </div>
@@ -87,7 +87,7 @@ export default function RecipesOverviewPage() {
 
                 {/* All Recipes Grid */}
                 <div className="mb-8">
-                    <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-[#0f2e5a] mb-10">Latest Recipes</h2>
+                    <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-[#0d55a0] mb-10">Latest Recipes</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                         {ALL_RECIPES.map((recipe) => (
                             <div key={recipe.id} className="group flex flex-col bg-transparent cursor-pointer">
@@ -100,14 +100,14 @@ export default function RecipesOverviewPage() {
                                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                                     />
                                     {/* Category pill */}
-                                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-[#0f2e5a] text-[10px] uppercase font-black tracking-widest px-3 py-1.5 rounded-full shadow-sm">
+                                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-[#0d55a0] text-[10px] uppercase font-black tracking-widest px-3 py-1.5 rounded-full shadow-sm">
                                         {recipe.category}
                                     </div>
                                 </div>
                                 {/* Card Details Placeholder */}
                                 <div className="px-2">
-                                    <h3 className="text-[#0f2e5a] font-bold text-lg mb-1 group-hover:text-[#1668b2] transition-colors">{recipe.title}</h3>
-                                    <p className="text-[#0f2e5a]/60 text-xs font-semibold">Ready in 30 mins</p>
+                                    <h3 className="text-[#0d55a0] font-bold text-lg mb-1 group-hover:text-[#0d55a0] transition-colors">{recipe.title}</h3>
+                                    <p className="text-[#0d55a0]/60 text-xs font-semibold">Ready in 30 mins</p>
                                 </div>
                             </div>
                         ))}
