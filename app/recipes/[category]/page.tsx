@@ -60,7 +60,7 @@ export default function RecipeCategoryPage() {
             <div className="relative z-10 -mt-10 md:-mt-16 w-full max-w-7xl mx-auto px-6">
                 
                 {/* Page Title */}
-                <h1 className="text-center text-5xl md:text-7xl lg:text-[5rem] font-bold tracking-tight text-[#0f2e5a] mb-8" style={{ fontFamily: 'var(--font-jost), sans-serif' }}>
+                <h1 className="text-center text-5xl md:text-7xl lg:text-[5rem] font-bold tracking-tight text-[#0d55a0] mb-8" style={{ fontFamily: 'Arial, sans-serif' }}>
                     {title}
                 </h1>
 
@@ -70,9 +70,9 @@ export default function RecipeCategoryPage() {
                         <input
                             type="text"
                             placeholder="Search..."
-                            className="w-full bg-[#f1f0fa] border border-[#c3c1e3] text-[#0f2e5a] text-sm md:text-base rounded-full py-3.5 md:py-4 px-6 shadow-[0_2px_10px_rgba(0,0,0,0.03)] outline-none focus:ring-2 focus:ring-[#1668b2]/30 transition-all placeholder:text-[#0f2e5a]/50"
+                            className="w-full bg-[#f1f0fa] border border-[#c3c1e3] text-[#0d55a0] text-sm md:text-base rounded-full py-3.5 md:py-4 px-6 shadow-[0_2px_10px_rgba(0,0,0,0.03)] outline-none focus:ring-2 focus:ring-[#0d55a0]/30 transition-all placeholder:text-[#0d55a0]/50"
                         />
-                        <button className="absolute right-6 flex items-center justify-center text-[#0f2e5a] hover:text-[#00adef] transition-colors">
+                        <button className="absolute right-6 flex items-center justify-center text-[#0d55a0] hover:text-[#5bb63a] transition-colors">
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35m1.35-6.65a8 8 0 11-16 0 8 8 0 0116 0z" />
                             </svg>
@@ -81,10 +81,10 @@ export default function RecipeCategoryPage() {
                 </div>
 
                 {/* Filters and Sorting Row */}
-                <div className="max-w-4xl mx-auto mt-12 mb-10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-semibold text-[#0f2e5a]">
+                <div className="max-w-4xl mx-auto mt-12 mb-10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-semibold text-[#0d55a0]">
                     
                     {/* Left: Filter */}
-                    <button className="flex items-center gap-2 hover:text-[#1668b2] transition-colors">
+                    <button className="flex items-center gap-2 hover:text-[#0d55a0] transition-colors">
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                         </svg>
@@ -92,14 +92,14 @@ export default function RecipeCategoryPage() {
                     </button>
 
                     {/* Center: Results Count */}
-                    <span className="text-[#0f2e5a]/60 text-xs font-bold tracking-wide">
+                    <span className="text-[#0d55a0]/60 text-xs font-bold tracking-wide">
                         {currentRecipes.length} results
                     </span>
 
                     {/* Right: Sort By */}
                     <div className="flex items-center gap-1 font-medium">
-                        <span className="text-[#0f2e5a]/60">Sort by:</span>
-                        <select className="bg-transparent font-bold text-[#0f2e5a] outline-none cursor-pointer hover:text-[#1668b2] transition-colors appearance-none">
+                        <span className="text-[#0d55a0]/60">Sort by:</span>
+                        <select className="bg-transparent font-bold text-[#0d55a0] outline-none cursor-pointer hover:text-[#0d55a0] transition-colors appearance-none">
                             <option>Popular Recipes</option>
                             <option>Newest</option>
                             <option>Alphabetical</option>
@@ -123,8 +123,8 @@ export default function RecipeCategoryPage() {
                             </div>
                             {/* Card Details Placeholder */}
                             <div className="px-2">
-                                <h3 className="text-[#0f2e5a] font-bold text-lg mb-1 group-hover:text-[#1668b2] transition-colors">{recipe.title}</h3>
-                                <p className="text-[#0f2e5a]/60 text-xs font-semibold">Ready in 30 mins</p>
+                                <h3 className="text-[#0d55a0] font-bold text-lg mb-1 group-hover:text-[#0d55a0] transition-colors">{recipe.title}</h3>
+                                <p className="text-[#0d55a0]/60 text-xs font-semibold">Ready in 30 mins</p>
                             </div>
                         </div>
                     ))}

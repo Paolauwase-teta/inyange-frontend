@@ -25,15 +25,15 @@ function NavLink({ label, href, dropdown }: NavLinkProps) {
             onMouseLeave={() => setIsOpen(false)}
         >
             {/* Top indicator (visible on hover) */}
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-[#00adef] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-[teal] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
 
             <Link
                 href={href}
-                className="text-[10px] font-black uppercase tracking-wider text-[#1668b2]/60 group-hover:text-[#00adef] transition-colors flex items-center gap-1"
+                className="text-[10px] font-black uppercase tracking-wider text-[navy]/60 group-hover:text-[teal] transition-colors flex items-center gap-1"
             >
                 {label}
                 {dropdown && (
-                    <svg width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className="group-hover:rotate-180 transition-transform duration-300 text-[#1668b2]/40">
+                    <svg width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className="group-hover:rotate-180 transition-transform duration-300 text-[navy]/40">
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                 )}
@@ -41,14 +41,14 @@ function NavLink({ label, href, dropdown }: NavLinkProps) {
 
             {/* Dropdown Menu */}
             {dropdown && (
-                <div className={`absolute top-full left-1/2 -translate-x-1/2 w-44 bg-white border border-[#1668b2]/20 shadow-xl rounded-lg overflow-hidden transition-all duration-300 z-[110] ${isOpen ? 'opacity-100 translate-y-2 visible' : 'opacity-0 translate-y-4 invisible'}`}>
-                    <div className="h-[2px] w-full bg-[#00adef]" />
+                <div className={`absolute top-full left-1/2 -translate-x-1/2 w-44 bg-white border border-[navy]/20 shadow-xl rounded-lg overflow-hidden transition-all duration-300 z-[110] ${isOpen ? 'opacity-100 translate-y-2 visible' : 'opacity-0 translate-y-4 invisible'}`}>
+                    <div className="h-[2px] w-full bg-[teal]" />
                     <div className="py-1">
                         {dropdown.map((item, idx) => (
                             <Link
                                 key={idx}
                                 href={item.href}
-                                className="block px-3 py-1.5 text-[9px] font-bold uppercase tracking-tight text-[#1668b2]/60 hover:text-[#00adef] hover:bg-[#00adef]/5 transition-all border-b border-[#1668b2]/[0.02] last:border-0"
+                                className="block px-3 py-1.5 text-[9px] font-bold uppercase tracking-tight text-[navy]/60 hover:text-[teal] hover:bg-[teal]/5 transition-all border-b border-[navy]/[0.02] last:border-0"
                             >
                                 {item.label}
                             </Link>
@@ -100,23 +100,22 @@ export default function Navbar() {
                 onClick={() => setIsMobileMenuOpen(false)}
             />
 
-            <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-[100] w-full max-w-4xl px-4 pointer-events-none">
-                <div className={`w-full bg-white/80 backdrop-blur-md border border-[#1668b2]/20 shadow-2xl pointer-events-auto flex flex-col relative transition-all duration-300 rounded-[22px]`}>
+            <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-[9999] w-full max-w-4xl px-4 pointer-events-none">
+                <div className={`w-full bg-white/80 backdrop-blur-md border border-[navy]/20 shadow-2xl pointer-events-auto flex flex-col relative transition-all duration-300 rounded-[22px]`}>
                     
                     {/* Top Bar Wrapper */}
                 <div className="flex items-center justify-between px-5 h-11 shrink-0 w-full">
                     {/* Left: Logo */}
-                    <Link href="/" className="flex items-center gap-2 group" onClick={() => setIsMobileMenuOpen(false)}>
-                        <div className="w-6 h-6 rounded-full overflow-hidden border-2 border-[#1668b2] bg-white flex items-center justify-center group-hover:border-[#00adef]/60 transition-all">
+                    <Link href="/" className="flex items-center group py-1" onClick={() => setIsMobileMenuOpen(false)}>
+                        <div className="relative w-14 h-14 transition-transform group-hover:scale-105 duration-300">
                             <Image
-                                src="/logo.png"
+                                src="/inyangelogo.png"
                                 alt="Inyange Logo"
-                                width={24}
-                                height={24}
-                                className="w-full h-full object-contain"
+                                fill
+                                className="object-contain"
+                                priority
                             />
                         </div>
-                        <span className="text-xs font-black tracking-tighter text-[#1668b2] uppercase">INYANGE</span>
                     </Link>
 
                     {/* Right: Desktop Links */}
@@ -129,7 +128,7 @@ export default function Navbar() {
                     {/* Right: Hamburger Menu (Mobile) */}
                     <button 
                         onClick={toggleMobileMenu}
-                        className="md:hidden text-[#1668b2] hover:text-[#00adef] focus:outline-none p-1"
+                        className="md:hidden text-[navy] hover:text-[teal] focus:outline-none p-1"
                     >
                         <svg className="w-5 h-5 flex shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             {isMobileMenuOpen ? (
@@ -143,22 +142,22 @@ export default function Navbar() {
 
                 {/* Mobile Menu Dropdown */}
                 <div className={`md:hidden overflow-hidden transition-all duration-300 w-full ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                    <div className="px-5 pb-5 pt-2 flex flex-col gap-3 border-t border-[#1668b2]/10 mt-2 overflow-y-auto">
+                    <div className="px-5 pb-5 pt-2 flex flex-col gap-3 border-t border-[navy]/10 mt-2 overflow-y-auto">
                         {NAV_ITEMS.map((item, idx) => (
                             <div key={idx} className="flex flex-col">
                                 {item.dropdown ? (
                                     <button 
                                         onClick={() => setExpandedMobileItem(expandedMobileItem === item.label ? null : item.label)}
-                                        className={`text-left text-xs font-black uppercase tracking-wider py-1 flex justify-between items-center transition-colors ${expandedMobileItem === item.label ? 'text-[#00adef]' : 'text-[#1668b2] hover:text-[#00adef]'}`}
+                                        className={`text-left text-xs font-black uppercase tracking-wider py-1 flex justify-between items-center transition-colors ${expandedMobileItem === item.label ? 'text-[teal]' : 'text-[navy] hover:text-[teal]'}`}
                                     >
                                         {item.label}
-                                        <svg className={`w-3 h-3 transition-transform ${expandedMobileItem === item.label ? 'rotate-180 text-[#00adef]' : 'text-[#1668b2]/40'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                        <svg className={`w-3 h-3 transition-transform ${expandedMobileItem === item.label ? 'rotate-180 text-[teal]' : 'text-[navy]/40'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </button>
                                 ) : (
                                     <Link 
                                         href={item.href} 
                                         onClick={() => setIsMobileMenuOpen(false)}
-                                        className="text-xs font-black uppercase tracking-wider text-[#1668b2] hover:text-[#00adef] py-1"
+                                        className="text-xs font-black uppercase tracking-wider text-[navy] hover:text-[teal] py-1"
                                     >
                                         {item.label}
                                     </Link>
@@ -166,13 +165,13 @@ export default function Navbar() {
                                 
                                 {item.dropdown && (
                                     <div className={`overflow-hidden transition-all duration-300 ${expandedMobileItem === item.label ? 'max-h-40 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
-                                        <div className="pl-4 flex flex-col gap-1 border-l-2 border-[#1668b2]/10">
+                                        <div className="pl-4 flex flex-col gap-1 border-l-2 border-[navy]/10">
                                             {item.dropdown.map((subItem, subIdx) => (
                                                 <Link 
                                                     key={subIdx} 
                                                     onClick={() => setIsMobileMenuOpen(false)}
                                                     href={subItem.href} 
-                                                    className="text-[10px] font-bold uppercase tracking-tight text-[#1668b2]/60 hover:text-[#00adef] py-1.5 border-b border-[#1668b2]/[0.02] last:border-0"
+                                                    className="text-[10px] font-bold uppercase tracking-tight text-[navy]/60 hover:text-[teal] py-1.5 border-b border-[navy]/[0.02] last:border-0"
                                                 >
                                                     {subItem.label}
                                                 </Link>

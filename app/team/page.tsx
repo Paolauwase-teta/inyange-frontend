@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -102,14 +101,14 @@ export default function TeamPage() {
                         transition={{ duration: 0.8 }}
                         className="mb-4"
                     >
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#1668b2]/70">The Crew</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#0d55a0]/70">The Crew</span>
                     </motion.div>
 
                     <motion.h1
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-                        className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-[#1668b2] leading-none mb-6"
+                        className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-[#0d55a0] leading-none mb-6"
                     >
                         MEET OUR<br /> EXPERTS
                     </motion.h1>
@@ -132,30 +131,30 @@ export default function TeamPage() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            className="rounded-3xl border border-[#1668b2]/20 bg-gradient-to-br from-[#00adef]/10 via-white to-[#1668b2]/10 p-4 md:p-6"
+                            className="rounded-3xl border border-[#0d55a0]/20 bg-gradient-to-br from-[#5bb63a]/10 via-white to-[#0d55a0]/10 p-4 md:p-6"
                         >
                             <div className="grid grid-cols-1 md:grid-cols-[120px_1fr_auto] gap-4 items-center">
-                                <div className="w-[110px] h-[110px] rounded-2xl overflow-hidden border border-[#1668b2]/20 bg-white">
+                                <div className="w-[110px] h-[110px] rounded-2xl overflow-hidden border border-[#0d55a0]/20 bg-white">
                                     {workerOfTheYear.imageUrl ? (
                                         <img src={workerOfTheYear.imageUrl} alt={workerOfTheYear.name} className="w-full h-full object-cover" />
                                     ) : (
-                                        <div className="w-full h-full flex items-center justify-center text-4xl font-black text-[#1668b2]/35">
+                                        <div className="w-full h-full flex items-center justify-center text-4xl font-black text-[#0d55a0]/35">
                                             {workerOfTheYear.name.charAt(0).toUpperCase()}
                                         </div>
                                     )}
                                 </div>
 
                                 <div>
-                                    <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#1668b2] mb-2">Worker of the Year</p>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#0d55a0] mb-2">Worker of the Year</p>
                                     <h2 className="text-2xl md:text-3xl font-black text-black leading-tight">{workerOfTheYear.name}</h2>
-                                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#1668b2]/70 mt-1">{workerOfTheYear.role}</p>
+                                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#0d55a0]/70 mt-1">{workerOfTheYear.role}</p>
                                     {workerOfTheYear.bio && (
                                         <p className="text-sm text-black/60 mt-2 max-w-2xl leading-relaxed">{workerOfTheYear.bio}</p>
                                     )}
                                 </div>
 
                                 <div className="self-start md:self-center">
-                                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1668b2] text-white text-[10px] font-black uppercase tracking-widest">
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0d55a0] text-white text-[10px] font-black uppercase tracking-widest">
                                         <span>*</span>
                                         2026 Highlight
                                     </span>
@@ -177,11 +176,11 @@ export default function TeamPage() {
                         return (
                             <section key={category.id} id={category.id} className="scroll-mt-32">
                                 <div className="flex items-center gap-4 mb-8">
-                                    <h2 className="text-xl font-black uppercase tracking-tight text-[#1668b2] flex-shrink-0">
+                                    <h2 className="text-xl font-black uppercase tracking-tight text-[#0d55a0] flex-shrink-0">
                                         {category.name}
                                     </h2>
-                                    <div className="h-[2px] w-full bg-[#1668b2]/20 flex-grow" />
-                                    <span className="text-[10px] font-bold text-[#1668b2]/50 flex-shrink-0">
+                                    <div className="h-[2px] w-full bg-[#0d55a0]/20 flex-grow" />
+                                    <span className="text-[10px] font-bold text-[#0d55a0]/50 flex-shrink-0">
                                         {categoryMembers.length} {categoryMembers.length === 1 ? 'member' : 'members'}
                                     </span>
                                 </div>
@@ -200,7 +199,7 @@ export default function TeamPage() {
                                             className="group"
                                         >
                                             {/* Avatar */}
-                                            <div className="relative w-full aspect-square mb-4 rounded-2xl overflow-hidden bg-zinc-100 border border-[#1668b2]/15">
+                                            <div className="relative w-full aspect-square mb-4 rounded-2xl overflow-hidden bg-zinc-100 border border-[#0d55a0]/15">
                                                 {member.imageUrl ? (
                                                     <img
                                                         src={member.imageUrl}
@@ -208,36 +207,36 @@ export default function TeamPage() {
                                                         className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500"
                                                     />
                                                 ) : (
-                                                    <div className="w-full h-full flex items-center justify-center text-4xl font-black text-[#1668b2]/35">
+                                                    <div className="w-full h-full flex items-center justify-center text-4xl font-black text-[#0d55a0]/35">
                                                         {member.name.charAt(0).toUpperCase()}
                                                     </div>
                                                 )}
 
                                                 {/* Social overlay on hover */}
-                                                <div className="absolute inset-0 bg-[#1668b2]/65 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                                                <div className="absolute inset-0 bg-[#0d55a0]/65 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
                                                     {member.socialLinks?.email && (
                                                         <a href={`mailto:${member.socialLinks.email}`} className="w-8 h-8 rounded-full bg-white flex items-center justify-center hover:scale-110 transition-transform">
-                                                            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="#1668b2" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                                            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="#0d55a0" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                                         </a>
                                                     )}
                                                     {member.socialLinks?.linkedin && (
                                                         <a href={member.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-white flex items-center justify-center hover:scale-110 transition-transform">
-                                                            <span className="text-[11px] font-bold text-[#1668b2]">in</span>
+                                                            <span className="text-[11px] font-bold text-[#0d55a0]">in</span>
                                                         </a>
                                                     )}
                                                     {member.socialLinks?.github && (
                                                         <a href={member.socialLinks.github} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-white flex items-center justify-center hover:scale-110 transition-transform">
-                                                            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="#1668b2" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                                            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="#0d55a0" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                                                         </a>
                                                     )}
                                                 </div>
                                             </div>
 
                                             {/* Info */}
-                                            <h3 className="text-sm font-bold text-[#1668b2] mb-0.5 leading-tight">
+                                            <h3 className="text-sm font-bold text-[#0d55a0] mb-0.5 leading-tight">
                                                 {member.name}
                                             </h3>
-                                            <p className="text-[10px] font-semibold tracking-wide text-[#1668b2]/55 uppercase mb-1.5">
+                                            <p className="text-[10px] font-semibold tracking-wide text-[#0d55a0]/55 uppercase mb-1.5">
                                                 {member.role}
                                             </p>
                                             {member.bio && (
@@ -254,7 +253,6 @@ export default function TeamPage() {
                 </div>
             </main>
 
-            <Footer />
         </div>
     );
 }
