@@ -35,7 +35,7 @@ export default function ServicesPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1668b2]/30 mb-4"
+          className="text-[10px] font-black uppercase tracking-[0.3em] text-[#0d55a0]/30 mb-4"
         >
           What We Process
         </motion.p>
@@ -44,7 +44,7 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-[13vw] md:text-[7vw] font-black uppercase tracking-tighter leading-none text-[#1668b2]"
+            className="text-[13vw] md:text-[7vw] font-black uppercase tracking-tighter leading-none text-[#0d55a0]"
           >
             Processing Lines
           </motion.h1>
@@ -52,7 +52,7 @@ export default function ServicesPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="text-[11px] font-bold text-[#1668b2]/30 uppercase tracking-widest max-w-[160px] text-right hidden md:block"
+            className="text-[11px] font-bold text-[#0d55a0]/30 uppercase tracking-widest max-w-[160px] text-right hidden md:block"
           >
             Click a line to explore our production flow
           </motion.p>
@@ -77,7 +77,7 @@ export default function ServicesPage() {
                   className="group flex items-center gap-6 py-5 border-b border-zinc-100 hover:border-zinc-300 transition-colors"
                 >
                   <span className="text-[11px] font-black text-zinc-300 w-6 shrink-0">{s.number}</span>
-                  <h2 className="text-lg md:text-2xl font-black uppercase tracking-tighter text-[#1668b2] group-hover:translate-x-2 transition-transform duration-300">
+                  <h2 className="text-lg md:text-2xl font-black uppercase tracking-tighter text-[#0d55a0] group-hover:translate-x-2 transition-transform duration-300">
                     {s.title}
                   </h2>
                   <p className="text-[11px] font-medium text-zinc-400 hidden md:block flex-1">{s.description}</p>

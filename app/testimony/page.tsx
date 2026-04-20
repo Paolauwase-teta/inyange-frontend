@@ -83,33 +83,33 @@ export default function TestimonyPage() {
                         {marqueeItems.map((item, idx) => (
                             <article
                                 key={`${item.clientName}-${idx}`}
-                                className="w-[240px] md:w-[260px] rounded-2xl border border-[#1668b2]/20 bg-white shadow-sm overflow-hidden"
+                                className="w-[240px] md:w-[260px] rounded-2xl border border-[#0d55a0]/15 bg-white shadow-sm overflow-hidden"
                             >
                                 <div className="h-[170px] overflow-hidden">
-                                    <img src={item.image} alt={item.clientName} className="w-full h-full object-cover" />
+                                    <img src={item.image} alt={item.product} className="w-full h-full object-cover" />
                                 </div>
                                 <div className="p-4">
-                                    <span className="inline-block mb-2 text-[9px] font-black uppercase tracking-wider text-[#1668b2] bg-[#00adef]/10 px-2 py-1 rounded-full">
+                                    <span className="inline-block mb-2 text-[9px] font-black uppercase tracking-wider text-[#0d55a0] bg-[#33a4df]/10 px-2 py-1 rounded-full">
                                         Client Experience
                                     </span>
                                     <div className="flex items-center gap-2 mb-3">
                                         <img
                                             src={item.clientImage}
                                             alt={item.clientName}
-                                            className="w-9 h-9 rounded-full object-cover border border-[#1668b2]/20"
+                                            className="w-9 h-9 rounded-full object-cover border border-[#0d55a0]/20"
                                         />
                                         <div>
                                             <p className="text-[12px] font-black text-black leading-tight">{item.clientName}</p>
                                             <p className="text-[10px] text-black/50 font-semibold leading-tight">{item.clientRole}</p>
                                         </div>
                                     </div>
-                                    <p className="text-[12px] font-bold uppercase tracking-wide text-[#1668b2]/70 mb-1">
+                                    <p className="text-[12px] font-bold uppercase tracking-wide text-[#0d55a0]/70 mb-1">
                                         {item.product}
                                     </p>
                                     <p className="text-[12px] text-black/70 leading-relaxed line-clamp-3 mb-2">
                                         "{item.quote}"
                                     </p>
-                                    <p className="text-[11px] text-[#1668b2]">
+                                    <p className="text-[11px] text-[#0d55a0]">
                                         {'★'.repeat(item.rating)}{'☆'.repeat(5 - item.rating)}
                                     </p>
                                 </div>

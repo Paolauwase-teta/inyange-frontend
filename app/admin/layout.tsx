@@ -322,7 +322,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                                 lineHeight: 1.4,
                             }}>View the docs or reach out.</p>
                             <Link
-                                href="/contact"
+                                href="/reach-out"
                                 style={{
                                     fontSize: '10px',
                                     fontWeight: 700,

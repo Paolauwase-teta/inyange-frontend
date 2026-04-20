@@ -55,15 +55,15 @@ export default function DistributorsPage() {
         <main className="min-h-screen bg-[#f7f8fa] pb-10">
             <section className="pt-32 px-8 md:px-12 max-w-6xl mx-auto">
                 <div className="mb-4 md:mb-6">
-                    <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#1668b2]/65 mb-2">Distributor Network</p>
+                    <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#0d55a0]/65 mb-2">Distributor Network</p>
                     <h1 className="text-2xl md:text-4xl font-black tracking-tight text-black">Find Inyange distributors across Rwanda</h1>
                 </div>
 
-                <div className="rounded-3xl border border-[#1668b2]/25 bg-white p-3 md:p-4 shadow-[0_20px_50px_rgba(22,104,178,0.08)]">
+                <div className="rounded-3xl border border-[#0d55a0]/25 bg-white p-3 md:p-4 shadow-[0_20px_50px_rgba(22,104,178,0.08)]">
                     <div className="rounded-2xl border border-black/10 bg-[#f8fbff] p-3 md:p-4 mb-3 md:mb-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <div>
-                                <p className="text-[10px] font-black uppercase tracking-widest text-[#1668b2]/80 mb-2">Where</p>
+                                <p className="text-[10px] font-black uppercase tracking-widest text-[#0d55a0]/80 mb-2">Where</p>
                                 <div className="flex flex-wrap gap-2">
                                     <span className="rounded-md border border-black/10 bg-white px-2.5 py-1.5 text-[11px] font-semibold text-black/70">Rwanda</span>
                                     <span className="rounded-md border border-black/10 bg-white px-2.5 py-1.5 text-[11px] font-semibold text-black/70">All provinces</span>
@@ -71,7 +71,7 @@ export default function DistributorsPage() {
                                 </div>
                             </div>
                             <div>
-                                <p className="text-[10px] font-black uppercase tracking-widest text-[#1668b2]/80 mb-2">Product Filters</p>
+                                <p className="text-[10px] font-black uppercase tracking-widest text-[#0d55a0]/80 mb-2">Product Filters</p>
                                 <div className="flex flex-wrap gap-2">
                                     {(['All', 'Dairy', 'Juice', 'Water'] as const).map((service) => {
                                         const active = selectedService === service;
@@ -80,8 +80,8 @@ export default function DistributorsPage() {
                                                 key={service}
                                                 onClick={() => setSelectedService(service)}
                                                 className={`text-[10px] font-black uppercase tracking-wide px-3 py-1.5 rounded-full border transition-colors ${active
-                                                    ? 'bg-[#1668b2] text-white border-[#1668b2]'
-                                                    : 'bg-white text-[#1668b2] border-[#1668b2]/25 hover:bg-[#00adef]/10'
+                                                    ? 'bg-[#0d55a0] text-white border-[#0d55a0]'
+                                                    : 'bg-white text-[#0d55a0] border-[#0d55a0]/25 hover:bg-[#5bb63a]/10'
                                                     }`}
                                             >
                                                 {service}
@@ -104,8 +104,8 @@ export default function DistributorsPage() {
                                             <div
                                                 key={d.id}
                                                 className={`rounded-xl border p-3 transition-colors ${active
-                                                    ? 'border-[#1668b2] bg-[#f2f9ff] shadow-sm'
-                                                    : 'border-black/10 bg-white hover:border-[#1668b2]/25'
+                                                    ? 'border-[#0d55a0] bg-[#f2f9ff] shadow-sm'
+                                                    : 'border-black/10 bg-white hover:border-[#0d55a0]/25'
                                                     }`}
                                             >
                                                 <div className="flex items-center justify-between mb-1.5">
@@ -116,8 +116,8 @@ export default function DistributorsPage() {
                                                 </div>
                                                 <h3 className="text-sm font-black text-black leading-tight">{d.name}</h3>
                                                 <p className="text-[11px] text-black/55 mb-1.5">{d.address}</p>
-                                                <p className="text-[10px] text-[#1668b2]/80 font-bold">{d.services.join(' • ')}</p>
-                                                <button onClick={() => setSelectedId(d.id)} className="mt-2 text-[10px] font-black px-3 py-1.5 rounded-md bg-[#1668b2] text-white hover:bg-[#0b4a7d] transition-colors">View location</button>
+                                                <p className="text-[10px] text-[#0d55a0]/80 font-bold">{d.services.join(' • ')}</p>
+                                                <button onClick={() => setSelectedId(d.id)} className="mt-2 text-[10px] font-black px-3 py-1.5 rounded-md bg-[#0d55a0] text-white hover:bg-[#0b4a7d] transition-colors">View location</button>
                                             </div>
                                         );
                                     })}
@@ -129,12 +129,12 @@ export default function DistributorsPage() {
                             {selected && <DistributorMap selected={selected} filtered={filtered} onSelect={setSelectedId} />}
 
                             {selected && (
-                                <div className="absolute left-4 bottom-4 z-[500] w-[320px] rounded-xl border border-[#1668b2]/20 bg-white/95 backdrop-blur p-3 shadow-lg">
-                                    <p className="text-[10px] font-black uppercase tracking-wider text-[#1668b2] mb-1">Selected distributor</p>
+                                <div className="absolute left-4 bottom-4 z-[500] w-[320px] rounded-xl border border-[#0d55a0]/20 bg-white/95 backdrop-blur p-3 shadow-lg">
+                                    <p className="text-[10px] font-black uppercase tracking-wider text-[#0d55a0] mb-1">Selected distributor</p>
                                     <h4 className="text-sm font-black text-black leading-tight">{selected.name}</h4>
                                     <p className="text-[11px] text-black/60 mt-1">{selected.address}</p>
                                     <p className="text-[11px] text-black/60">{selected.city} • {selected.hours}</p>
-                                    <p className="text-[10px] font-bold text-[#1668b2] mt-1.5">{selected.services.join(' • ')}</p>
+                                    <p className="text-[10px] font-bold text-[#0d55a0] mt-1.5">{selected.services.join(' • ')}</p>
                                 </div>
                             )}
                         </div>

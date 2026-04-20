@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
-import { Jost, Geist_Mono } from "next/font/google";
+// Removed Jost import to use Arial (system font) instead
 import "./globals.css";
 import NavbarWrapper from "./components/NavbarWrapper";
+import Footer from "./components/Footer";
+import ChatBox from "./components/ChatBox";
+import Preloader from "./components/Preloader";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const jostSans = Jost({
-  variable: "--font-jost-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// Jost configuration removed
 
 export const metadata: Metadata = {
   title: "Inyange Industry Portfolio",
@@ -33,10 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${jostSans.variable} ${geistMono.variable} antialiased`}
+        className="antialiased"
       >
+        <Preloader />
         <NavbarWrapper />
         {children}
+        <Footer />
+        <ChatBox />
         <ToastContainer position="bottom-right" theme="dark" />
       </body>
     </html>
