@@ -18,7 +18,7 @@ async function uploadFile(filePath) {
              use_filename: true,
              unique_filename: false,
              overwrite: true,
-             folder: "inyange", // All assets go to this folder on Cloudinar
+             folder: "inyange", // All assets go to this folder on Cloudina
              resource_type: "auto",
         });
         console.log(`✅ Uploaded ${path.basename(filePath)} -> ${result.secure_url}`);
