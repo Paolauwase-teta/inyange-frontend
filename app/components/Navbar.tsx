@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getAsset } from '@/lib/getAsset';
 
 interface DropdownItem {
     label: string;
@@ -74,12 +75,15 @@ const NAV_ITEMS: NavLinkProps[] = [
         { label: 'Baking', href: '/recipes/baking' },
         { label: 'Desserts', href: '/recipes/desserts' }
     ]},
-    { label: "About", href: "/about", dropdown: [
+    { label: "About", href: "/about-us", dropdown: [
         { label: 'About Us', href: '/about-us' },
         { label: 'Leaders', href: '/leaders' },
-        { label: 'Careers', href: '/careers' }
+        { label: 'Team', href: '/team' }
     ]},
-    { label: "Editorial", href: "/editorial" },
+    { label: "Editorial", href: "/editorial", dropdown: [
+        { label: 'Newsroom', href: '/editorial' },
+        { label: 'Blog', href: '/blog' }
+    ]},
     { label: "Reach Out", href: "/reach-out" }
 ];
 
@@ -109,7 +113,7 @@ export default function Navbar() {
                     <Link href="/" className="flex items-center group py-1" onClick={() => setIsMobileMenuOpen(false)}>
                         <div className="relative w-14 h-14 transition-transform group-hover:scale-105 duration-300">
                             <Image
-                                src="/inyangelogo.png"
+                                src={getAsset("/inyangelogo.png")}
                                 alt="Inyange Logo"
                                 fill
                                 className="object-contain"

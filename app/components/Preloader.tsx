@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { getAsset } from '@/lib/getAsset';
 
 export default function Preloader() {
     const [isVisible, setIsVisible] = useState(true);
@@ -56,7 +57,7 @@ export default function Preloader() {
                     {/* Background Subtle Pattern */}
                     <div 
                         className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.03] bg-repeat bg-[length:400px]"
-                        style={{ backgroundImage: "url('/pattern.png')" }}
+                        style={{ backgroundImage: `url('${getAsset('/pattern.png')}')` }}
                     />
 
                     <div className="relative z-10 flex flex-col items-center">
@@ -78,7 +79,7 @@ export default function Preloader() {
                             className="relative w-32 h-32 md:w-48 md:h-48 mb-8"
                         >
                             <Image
-                                src="/inyangelogo.png"
+                                src={getAsset("/inyangelogo.png")}
                                 alt="Inyange industries Loading"
                                 fill
                                 className="object-contain"

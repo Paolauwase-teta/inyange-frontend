@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import Navbar from '../components/Navbar';
 
 const MILESTONES = [
   {
@@ -14,7 +13,7 @@ const MILESTONES = [
     title: 'The Inyange Vision',
     description: 'Inyange Industries was founded as a private enterprise with a visionary goal: to become Rwanda\'s leading food and beverage processor.',
     cx: 100,
-    cy: 280,
+    cy: 320,
   },
   {
     id: 2,
@@ -22,8 +21,8 @@ const MILESTONES = [
     tag: 'DAIRY START',
     title: 'Pasteurized Milk & Yoghurt',
     description: 'Operations expanded to include processing and selling high-quality pasteurized milk and yoghurt for the Rwandan market.',
-    cx: 280,
-    cy: 220,
+    cx: 285,
+    cy: 200,
   },
   {
     id: 3,
@@ -31,8 +30,8 @@ const MILESTONES = [
     tag: 'WATER',
     title: 'Mineral Water Processing',
     description: 'The plant introduced mineral water processing and packaging, quickly becoming a standard for hygienic drinking water.',
-    cx: 460,
-    cy: 160,
+    cx: 470,
+    cy: 280,
   },
   {
     id: 4,
@@ -40,8 +39,8 @@ const MILESTONES = [
     tag: 'MASAKA PLANT',
     title: 'USD 27M Expansion',
     description: 'Construction of a state-of-the-art production plant in Masaka, increasing production capacity tenfold to meet rising domestic demand.',
-    cx: 640,
-    cy: 220,
+    cx: 655,
+    cy: 140,
   },
   {
     id: 5,
@@ -49,16 +48,16 @@ const MILESTONES = [
     tag: 'REGIONAL REACH',
     title: 'EAC Expansion',
     description: 'Leveraging Rwanda\'s position in the East African Community to export premium quality dairy, juices, and water to neighboring countries.',
-    cx: 820,
+    cx: 840,
     cy: 100,
   },
 ];
 
 const CERTIFICATIONS = [
-  { name: 'Quality Standard 01', image: '/certify/quality1.png' },
-  { name: 'Quality Standard 02', image: '/certify/quality2.jpg' },
-  { name: 'Quality Standard 03', image: '/certify/quality3.jpg' },
-  { name: 'Quality Standard 04', image: '/certify/quality4.png' },
+  { name: 'Quality Standard 01', image: '/quality1.png' },
+  { name: 'Quality Standard 02', image: '/quality2.jpg' },
+  { name: 'Quality Standard 03', image: '/quality3.jpg' },
+  { name: 'Quality Standard 04', image: '/quality4.png' },
 ];
 
 const VB_W = 900;
@@ -69,7 +68,6 @@ export default function AboutUsPage() {
 
     return (
         <main className="min-h-screen bg-[#fcfbf7] font-sans">
-            <Navbar />
 
             {/* ── SECTION 1: HERO ── */}
             <section className="relative w-full h-[50vh] md:h-[65vh] bg-[#0d55a0] overflow-hidden flex items-center justify-center">
@@ -163,7 +161,7 @@ export default function AboutUsPage() {
                     {/* SVG Path - Sleek Cubic Bezier */}
                     <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox={`0 0 ${VB_W} ${VB_H}`} fill="none">
                         <path 
-                            d="M 100 320 C 250 320, 300 180, 350 180 C 450 180, 500 280, 600 240 C 700 200, 750 100, 800 100" 
+                            d="M 100 320 C 192.5 320, 192.5 200, 285 200 C 377.5 200, 377.5 280, 470 280 C 562.5 280, 562.5 140, 655 140 C 747.5 140, 747.5 100, 840 100" 
                             stroke="rgba(0,0,0,0.05)" 
                             strokeWidth="3" 
                         />
@@ -172,7 +170,7 @@ export default function AboutUsPage() {
                             whileInView={{ pathLength: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 2, ease: "easeInOut" }}
-                            d="M 100 320 C 250 320, 300 180, 350 180 C 450 180, 500 280, 600 240 C 700 200, 750 100, 800 100" 
+                            d="M 100 320 C 192.5 320, 192.5 200, 285 200 C 377.5 200, 377.5 280, 470 280 C 562.5 280, 562.5 140, 655 140 C 747.5 140, 747.5 100, 840 100" 
                             stroke="#0d55a0" 
                             strokeWidth="3" 
                         />

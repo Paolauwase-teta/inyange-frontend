@@ -14,29 +14,29 @@ export default function RecipeCategoryPage() {
     // Mock recipes for the layout
     const MOCK_RECIPES_BY_CATEGORY: Record<string, { id: number, title: string, image: string }[]> = {
         'cooking': [
-            { id: 1, title: 'Lemon Basil Fish', image: '/food/cooked1.jpg' },
-            { id: 2, title: 'Spicy Grilled Chicken', image: '/food/cooked2.jpg' },
-            { id: 3, title: 'Garlic Butter Penne', image: '/food/cooked3.jpg' }
+            { id: 1, title: 'Lemon Basil Fish', image: '/cooked1.jpg' },
+            { id: 2, title: 'Spicy Grilled Chicken', image: '/cooked2.jpg' },
+            { id: 3, title: 'Garlic Butter Penne', image: '/cooked3.jpg' }
         ],
         'baking': [
-            { id: 4, title: 'Classic Banana Bread', image: '/food/baked1.jpg' },
-            { id: 5, title: 'Chocolate Chip Muffins', image: '/food/baked2.jpg' },
-            { id: 6, title: 'Artisan Sourdough', image: '/food/baked3.jpg' }
+            { id: 4, title: 'Classic Banana Bread', image: '/baked1.jpg' },
+            { id: 5, title: 'Chocolate Chip Muffins', image: '/baked2.jpg' },
+            { id: 6, title: 'Artisan Sourdough', image: '/baked3.jpg' }
         ],
         'desserts': [
-            { id: 7, title: 'Cream Cheese Frosting', image: '/food/topping1.jpg' },
-            { id: 8, title: 'Berries Jubilee', image: '/food/topping2.jpeg' },
-            { id: 9, title: 'Smooth Caramel Drizzle', image: '/food/topping3.jpg' }
+            { id: 7, title: 'Cream Cheese Frosting', image: '/topping1.jpg' },
+            { id: 8, title: 'Berries Jubilee', image: '/topping2.jpeg' },
+            { id: 9, title: 'Smooth Caramel Drizzle', image: '/topping3.jpg' }
         ],
         'breakfast': [
-            { id: 10, title: 'Morning Pancakes', image: '/food/breakfast1.jpg' },
-            { id: 11, title: 'Healthy Granola Bowl', image: '/food/breakfast2.jpg' },
-            { id: 12, title: 'Creamy Avocado Toast', image: '/food/breakfast3.jpg' }
+            { id: 10, title: 'Morning Pancakes', image: '/breakfast1.jpg' },
+            { id: 11, title: 'Healthy Granola Bowl', image: '/breakfast2.jpg' },
+            { id: 12, title: 'Creamy Avocado Toast', image: '/breakfast3.jpg' }
         ]
     };
 
     const currentRecipes = MOCK_RECIPES_BY_CATEGORY[category] || MOCK_RECIPES_BY_CATEGORY['cooking'];
-    const videoSrc = category === 'baking' ? '/videos/bread.mp4' : '/videos/cooking.mp4';
+    const videoSrc = category === 'baking' ? '/bread.mp4' : '/cooking.mp4';
 
     return (
         <main className="min-h-screen bg-[#fcfbf7] font-sans pb-24">
@@ -49,7 +49,7 @@ export default function RecipeCategoryPage() {
                     muted
                     playsInline
                     preload="metadata"
-                    poster="/food/cooked1.jpg"
+                    poster="/cooked1.jpg"
                     className="absolute inset-0 w-full h-full object-cover"
                 >
                     <source src={videoSrc} type="video/mp4" />
