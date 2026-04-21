@@ -1,9 +1,15 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const HERO_IMAGES = [
+    '/editorial_hero.png',
+    '/editorial_showcase_1.png',
+    '/editorial_showcase_2.png'
+];
 
 interface BlogPost {
     id: number;
@@ -15,10 +21,55 @@ interface BlogPost {
     readTime: string;
 }
 
+interface EventData {
+    id: number;
+    date: string;
+    day: string;
+    title: string;
+    excerpt: string;
+    image: string;
+}
+
+const EVENTS: EventData[] = [
+    {
+        id: 1,
+        title: 'Fête du village - Édition 2025',
+        excerpt: 'Repas champêtre, concert, bal en plein air et feu d\'artifice pour célébrer l\'été ensemble.',
+        date: 'Dimanche 25 Mai 2025',
+        day: '25 MAI',
+        image: '/editorial_event_village_fete.png'
+    },
+    {
+        id: 2,
+        title: 'Randonnée découverte',
+        excerpt: 'Sortie accompagnée par un guide local, accessible à tous. Prévoir de bonnes chaussures.',
+        date: 'Dimanche 15 Juin 2025',
+        day: '15 JUIN',
+        image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=800'
+    },
+    {
+        id: 3,
+        title: 'Marché des Producteurs',
+        excerpt: 'Découvrez les meilleurs produits locaux directement de nos fermes partenaires Inyange.',
+        date: 'Samedi 12 Juillet 2025',
+        day: '12 JUIL',
+        image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=800'
+    },
+];
+
 export default function EditorialPage() {
     const [posts, setPosts] = useState<BlogPost[]>([]);
     const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState('All');
+    const [currImg, setCurrImg] = useState(0);
+
+    // Auto-cycle background images
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrImg((prev) => (prev + 1) % HERO_IMAGES.length);
+        }, 6000);
+        return () => clearInterval(timer);
+    }, []);
 
     React.useEffect(() => {
         fetch('/api/blogs')
@@ -61,181 +112,272 @@ export default function EditorialPage() {
     return (
         <main className="min-h-screen bg-[#f7f8fa] font-sans">
 
-            {/* ── SECTION 1: HERO (PRESERVED) ── */}
-            <section className="relative w-full h-[45vh] md:h-[55vh] bg-[#0d55a0] overflow-hidden flex items-center justify-center">
-                <div 
-                    className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.03] bg-repeat bg-[length:400px]"
-                    style={{ backgroundImage: "url('/pattern.png')" }}
-                />
+            {/* ── SECTION 1: EDITORIAL HERO ── */}
+            <section className="relative w-full h-[50vh] md:h-[60vh] bg-black flex items-center justify-center">
+                
+                {/* Cinematic Background Slider */}
+                <div className="absolute inset-0 z-0 overflow-hidden">
+                    <AnimatePresence mode='wait'>
+                        <motion.div
+                            key={currImg}
+                            initial={{ opacity: 0, scale: 1.1 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 2, ease: "easeInOut" }}
+                            className="absolute inset-0"
+                        >
+                            <Image 
+                                src={HERO_IMAGES[currImg]} 
+                                alt={`Inyange Editorial Background ${currImg + 1}`} 
+                                fill 
+                                className="object-cover"
+                                priority
+                            />
+                        </motion.div>
+                    </AnimatePresence>
+                    
+                    {/* Dark Cinematic Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[#f7f8fa]" />
+                    <div className="absolute inset-0 bg-[#0d55a0]/10 mix-blend-multiply" />
+                </div>
 
-                <div className="relative z-10 w-full max-w-6xl mx-auto px-8">
-                    <div className="flex-1 text-left">
-                        <motion.p 
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] text-white/60 mb-4"
+                {/* Giant Background Typography - Watermark Layer */}
+                <div className="absolute inset-x-0 top-0 bottom-0 flex flex-col items-center justify-center pointer-events-none select-none z-10 overflow-hidden px-4">
+                    <motion.p 
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 0.85, y: 0 }}
+                        transition={{ delay: 0.5, duration: 0.8 }}
+                        className="text-[8px] font-black uppercase tracking-[0.4em] text-white mb-4 drop-shadow-md opacity-85"
+                    >
+                        The Inyange Newsroom
+                    </motion.p>
+                    <motion.h1 
+                        initial={{ opacity: 0, scale: 0.85, y: 30 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
+                        className="text-[10vw] font-black text-white/[0.98] uppercase tracking-tighter leading-none"
+                    >
+                        INSIGHT
+                    </motion.h1>
+                </div>
+
+                {/* Floating Search Card (Tied to the bottom edge) - Top Layer */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-xl px-6 z-30 translate-y-1/2">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3, duration: 0.8 }}
+                        className="bg-white rounded-xl md:rounded-2xl shadow-[0_15px_40px_rgba(13,85,160,0.1)] p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4 border border-white/50 backdrop-blur-sm"
+                    >
+                        <div className="flex-1">
+                            <p className="text-[8px] font-black uppercase tracking-widest text-[#0d55a0] mb-1">Editor's Note</p>
+                            <h3 className="text-[10px] md:text-xs font-bold text-black tracking-tight leading-tight">
+                                Give All You Need. <br /> <span className="text-zinc-400">Discover everything about Inyange.</span>
+                            </h3>
+                        </div>
+
+                        <div className="w-full md:w-[40%] relative">
+                            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[#0d55a0]/40">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            </div>
+                            <input 
+                                type="text"
+                                placeholder="Search..."
+                                className="w-full h-10 md:h-12 pl-10 pr-24 bg-zinc-50 rounded-xl text-[10px] font-bold focus:outline-none focus:ring-2 focus:ring-[#0d55a0]/10 border border-zinc-100 transition-all"
+                            />
+                            <button className="absolute right-1.5 top-1.5 bottom-1.5 bg-[#0d55a0] text-white px-4 rounded-lg text-[8px] font-black uppercase tracking-widest hover:bg-[#33a4df] transition-colors shadow-md">
+                                Search
+                            </button>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* ── SECTION 2: NEWSROOM (Actualités Style) ── */}
+            <section className="relative pt-24 md:pt-32 pb-12 md:pb-16 overflow-hidden bg-[#f7f8fa]">
+                {/* Organic Background Blobs */}
+                <div className="absolute top-5 -left-10 w-48 h-48 bg-[#fcfbf7] rounded-full blur-3xl opacity-60 z-0" />
+                <div className="absolute bottom-5 -right-10 w-[15rem] h-[15rem] bg-[#fcfbf7] rounded-full blur-3xl opacity-60 z-0" />
+
+                <div className="max-w-5xl mx-auto px-6 relative z-10">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+                        <div className="max-w-xl flex-1">
+                            <div className="flex items-center gap-3 mb-3">
+                                <span className="text-[8px] font-black uppercase tracking-[0.3em] text-[#0d55a0] opacity-40 whitespace-nowrap">Latest Insights</span>
+                                <div className="flex-1 h-[1px] bg-[#0d55a0]/10" />
+                            </div>
+                            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-[#0d55a0] leading-none mb-3">
+                                Inyange Stories
+                            </h2>
+                            <p className="text-zinc-500 text-[11px] leading-relaxed font-medium max-w-sm">
+                                Deep dives into our heritage, sustainability efforts, and the voices behind our products.
+                            </p>
+                        </div>
+                        <Link 
+                            href="/editorial/blog" 
+                            className="bg-[#0d55a0] text-white px-5 py-2 rounded-full text-[8px] font-black uppercase tracking-widest hover:bg-[#33a4df] transition-colors shadow-sm mb-1"
                         >
-                            The Inyange Newsroom
-                        </motion.p>
-                        <motion.p
-                            initial={{ opacity: 0, y: 8 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            className="text-[12px] font-medium text-zinc-500 leading-relaxed mb-6 max-w-xs"
-                        >
-                        </motion.p>
-                        <motion.h1 
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                            className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9]"
-                        >
-                            NEWS & <br /> <span className="text-[#33a4df]">EDITORIAL</span>.
-                        </motion.h1>
+                            View All News
+                        </Link>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                        {/* Left Column: Featured News (Overlapping Layout) */}
+                        <div className="lg:col-span-7 relative group">
+                            <div className="relative aspect-[16/9] rounded-xl md:rounded-2xl overflow-hidden shadow-md">
+                                <Image 
+                                    src={featuredPost ? getCategoryImage(featuredPost.category) : '/editorial_hero.png'}
+                                    alt={featuredPost?.title || 'Featured News'}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                />
+                            </div>
+                            
+                            {/* Overlapping Card */}
+                            <div className="mt-[-8%] ml-[4%] relative z-20 w-[90%] md:w-[65%]">
+                                <motion.div 
+                                    whileHover={{ y: -3 }}
+                                    className="bg-white p-4 md:p-5 rounded-xl md:rounded-2xl shadow-lg border border-zinc-50"
+                                >
+                                    <span className="bg-[#0d55a0] text-white px-2 py-0.5 rounded-full text-[6px] font-black uppercase tracking-widest mb-2 inline-block">
+                                        Published {featuredPost?.date || 'Today'}
+                                    </span>
+                                    <h3 className="text-base md:text-lg font-black text-black mb-1.5 leading-tight group-hover:text-[#0d55a0] transition-colors">
+                                        {featuredPost?.title}
+                                    </h3>
+                                    <p className="text-zinc-500 text-[10px] leading-relaxed mb-4 line-clamp-2">
+                                        {featuredPost?.excerpt}
+                                    </p>
+                                    <Link 
+                                        href={`/editorial/blog/${featuredPost?.id}`}
+                                        className="flex items-center gap-1.5 text-[#0d55a0] font-black text-[8px] uppercase tracking-widest group/link"
+                                    >
+                                        READ STORY
+                                        <div className="w-6 h-6 rounded-full bg-[#0d55a0]/5 text-[#0d55a0] flex items-center justify-center transition-all group-hover/link:bg-[#0d55a0] group-hover/link:text-white">
+                                            <span className="text-xs">→</span>
+                                        </div>
+                                    </Link>
+                                </motion.div>
+                            </div>
+                        </div>
+
+                        {/* Right Column: Secondary Stories (Timeline List) */}
+                        <div className="lg:col-span-5 space-y-6 pt-4 md:pt-0">
+                            {latestPosts.map((post, idx) => (
+                                <div key={post.id} className="relative pl-6 group">
+                                    {/* Timeline Marker Line */}
+                                    <div className="absolute top-0 left-0 w-[1px] h-full bg-zinc-200 group-hover:bg-[#0d55a0]/15 transition-colors" />
+                                    <div className="absolute top-0 left-[-2px] w-[5px] h-[5px] rounded-full bg-[#0d55a0] shadow-sm group-hover:scale-125 transition-transform border border-white" />
+                                    
+                                    <div className="pt-0">
+                                        <div className="flex items-center gap-2 mb-1.5">
+                                            <span className="bg-[#0d55a0]/5 text-[#0d55a0] px-1.5 py-0.5 rounded-full text-[6px] font-black uppercase tracking-widest">
+                                                {post.date}
+                                            </span>
+                                        </div>
+                                        <h4 className="text-[14px] font-bold text-black mb-1 leading-snug group-hover:text-[#0d55a0] transition-colors">
+                                            {post.title}
+                                        </h4>
+                                        <p className="text-zinc-500 text-[11px] leading-relaxed mb-2 line-clamp-2">
+                                            {post.excerpt}
+                                        </p>
+                                        <Link 
+                                            href={`/editorial/blog/${post.id}`}
+                                            className="inline-flex items-center gap-1 text-[#0d55a0] font-bold text-[7px] uppercase tracking-[0.2em] group/link"
+                                        >
+                                            Read More
+                                            <span className="text-xs group-hover/link:translate-x-0.5 transition-transform">→</span>
+                                        </Link>
+                                    </div>
+                                    {idx < latestPosts.length - 1 && <div className="mt-6 h-[1px] w-full bg-zinc-50" />}
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* ── SECTION 2: CONTENT FEED ── */}
-            <div className="max-w-6xl mx-auto px-8 py-10">
-                
-                {/* Redesigned Header & Filters */}
-                <div className="mb-8">
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#0d55a0]/50 mb-2">Inyange Newsroom</p>
-                    <h2 className="text-3xl md:text-4xl font-black text-black tracking-tighter mb-8">Latest stories and updates</h2>
-                    
-                    <div className="flex flex-wrap gap-2">
-                        {categories.map((cat) => (
-                            <button
-                                key={cat}
-                                onClick={() => setActiveCategory(cat)}
-                                className={`px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
-                                    activeCategory === cat 
-                                    ? 'bg-[#1668b2] text-white shadow-lg' 
-                                    : 'bg-white text-zinc-400 border border-black/5 hover:border-[#1668b2]/30'
-                                }`}
-                            >
-                                {cat}
-                            </button>
-                        ))}
-                    </div>
-                </div>
+            {/* ── SECTION 3: COMMUNITY AGENDA (Slider Design) ── */}
+            <section className="bg-white py-12 md:py-16 relative overflow-hidden">
+                {/* Organic Background Blob */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30rem] h-[30rem] bg-white rounded-full blur-[50px] opacity-40 z-0" />
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                    
-                    {/* Featured Column (Left) */}
-                    <div className="lg:col-span-8">
-                        {featuredPost ? (
-                            <Link href={`/blog/${featuredPost.slug}`} className="group block bg-white rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.04)] border border-black/5 transition-all hover:shadow-[0_40px_80px_rgba(13,85,160,0.1)]">
-                                <div className="relative aspect-[16/9] overflow-hidden">
-                                    <Image 
-                                        src={getCategoryImage(featuredPost.category)} 
-                                        alt={featuredPost.title} 
-                                        fill 
-                                        className="object-cover transition-transform duration-1000 group-hover:scale-105" 
-                                    />
-                                    <div className="absolute top-8 left-8">
-                                        <span className="px-5 py-2 bg-[#1668b2] text-white text-[9px] font-black uppercase tracking-[0.2em] rounded-full shadow-xl">
-                                            {featuredPost.category}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="p-6 md:p-10">
-                                    <h3 className="text-2xl md:text-4xl font-black text-[#0d55a0] uppercase tracking-tighter leading-[0.95] mb-6 group-hover:text-[#33a4df] transition-colors">
-                                        {featuredPost.title}
-                                    </h3>
-                                    <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-[#0d55a0]/40 mb-8">
-                                        <span>{featuredPost.date}</span>
-                                        <span className="w-1 h-1 rounded-full bg-zinc-200" />
-                                        <span>{featuredPost.readTime} read</span>
-                                    </div>
-                                    <div className="flex items-center text-[#1668b2] text-[11px] font-black uppercase tracking-[0.3em] group-hover:gap-5 gap-3 transition-all">
-                                        READ FULL STORY <span className="text-xl">→</span>
-                                    </div>
-                                </div>
-                            </Link>
-                        ) : (
-                            <div className="py-20 text-center border-2 border-dashed border-black/5 rounded-[2.5rem]">
-                                <p className="text-zinc-400 font-medium tracking-tight">No featured stories available in this category.</p>
+                <div className="max-w-5xl mx-auto px-6 relative z-10">
+                    <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+                        <div className="max-w-xl flex-1">
+                            <div className="flex items-center gap-3 mb-3">
+                                <span className="text-[8px] font-black uppercase tracking-[0.3em] text-[#0d55a0] opacity-40 whitespace-nowrap">Global Updates</span>
+                                <div className="flex-1 h-[1px] bg-[#0d55a0]/10" />
                             </div>
-                        )}
-                    </div>
-
-                    {/* Latest Posts Column (Right) */}
-                    <div className="lg:col-span-4 bg-white rounded-[2.5rem] p-6 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.04)] border border-black/5 flex flex-col h-fit">
-                        <div className="mb-6">
-                            <h3 className="text-lg font-black text-black tracking-tight flex items-center gap-3">
-                                Latest post
-                                <div className="h-[2px] flex-1 bg-black/5" />
-                            </h3>
+                            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-[#0d55a0] leading-none mb-3">
+                                Newsroom
+                            </h2>
+                            <p className="text-zinc-500 text-[11px] leading-relaxed font-medium max-w-sm">
+                                Stay connected with our community events, factory tours, and sustainable farming initiatives globally.
+                            </p>
                         </div>
                         
-                        <div className="flex flex-col gap-6">
-                            {latestPosts.length > 0 ? latestPosts.map((post) => (
-                                <Link href={`/blog/${post.slug}`} key={post.id} className="group flex gap-5">
-                                    <div className="relative w-20 h-20 shrink-0 rounded-2xl overflow-hidden bg-zinc-100 border border-black/5">
-                                        <Image src={getCategoryImage(post.category)} alt={post.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
-                                    </div>
-                                    <div className="flex flex-col justify-center">
-                                        <h4 className="text-[14px] font-black text-black leading-tight group-hover:text-[#1668b2] transition-colors mb-2 line-clamp-2">
-                                            {post.title}
-                                        </h4>
-                                        <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-[#1668b2]/60">
-                                            <span>{post.category}</span>
-                                            <span className="w-1 h-1 rounded-full bg-zinc-100" />
-                                            <span className="text-zinc-400">{post.date}</span>
-                                        </div>
-                                    </div>
-                                </Link>
-                            )) : (
-                                <p className="text-zinc-400 text-sm font-medium">No recent news available.</p>
-                            )}
-                        </div>
-
-                        {/* Optional See More link */}
-                        <div className="mt-auto pt-10">
-                            <button className="w-full py-4 rounded-2xl border border-black/5 text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:bg-[#f7f8fa] hover:text-[#0d55a0] transition-all">
-                                Load more articles
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-
-                {/* ── SECTION 3: IN THE MEDIA (MINIMAL VERSION) ── */}
-                <div className="mt-28 py-20 border-t border-black/5">
-                    <div className="flex flex-col mb-16">
-                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0d55a0]/50 mb-3 block">In the Spotlight</span>
-                        <h2 className="text-3xl md:text-5xl font-black text-black tracking-tight uppercase">
-                            MEDIA & <span className="text-[#1668b2]">PRESS</span>.
-                        </h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {[
-                          { source: 'The New Times', date: 'Dec 12, 2023', title: 'Inyange remains leader in dairy sector innovation', type: 'Newspaper' },
-                          { source: 'Rwanda Today', date: 'Nov 05, 2023', title: 'New processing plant to double Inyange juice production', type: 'Press' },
-                          { source: 'Agri-Business Blog', date: 'Oct 20, 2023', title: 'How Inyange is transforming local dairy farming', type: 'Blog' },
-                          { source: 'Forbes Africa', date: 'Sep 15, 2023', title: 'Sustainability at the core of Inyange industry', type: 'Magazine' },
-                        ].map((media, i) => (
-                            <div key={i} className="bg-white p-8 rounded-[2rem] border border-black/5 hover:shadow-xl transition-all group cursor-pointer">
-                                <div className="flex items-center justify-between mb-6">
-                                    <span className="text-[9px] font-black uppercase tracking-widest text-[#33a4df] bg-[#33a4df]/5 px-3 py-1 rounded-full">{media.type}</span>
-                                    <span className="text-[10px] font-bold text-zinc-300">{media.date}</span>
-                                </div>
-                                <h4 className="text-lg font-black text-[#0d55a0] leading-tight mb-8 group-hover:text-[#33a4df] transition-colors">{media.title}</h4>
-                                <div className="flex items-center justify-between mt-auto pt-6 border-t border-black/5">
-                                    <span className="text-[10px] font-black text-black uppercase tracking-tighter">{media.source}</span>
-                                    <div className="w-8 h-8 rounded-full bg-zinc-50 flex items-center justify-center text-[#0d55a0] group-hover:bg-[#0d55a0] group-hover:text-white transition-all text-sm">
-                                        →
-                                    </div>
-                                </div>
+                        <div className="flex items-center gap-3 mb-1">
+                            <Link 
+                                href="/editorial/newsroom" 
+                                className="bg-[#0d55a0] text-white px-4 py-1.5 rounded-full text-[7px] font-black uppercase tracking-widest hover:bg-[#33a4df] transition-colors shadow-sm"
+                            >
+                                All Events
+                            </Link>
+                            <div className="flex gap-1">
+                                <button className="w-7 h-7 rounded-full border border-zinc-200 flex items-center justify-center text-[#0d55a0] hover:bg-white transition-all text-[10px]">
+                                    ←
+                                </button>
+                                <button className="w-7 h-7 rounded-full bg-[#0d55a0] text-white flex items-center justify-center shadow-sm hover:bg-[#33a4df] transition-all text-[10px]">
+                                    →
+                                </button>
                             </div>
+                        </div>
+                    </div>
+
+                    {/* Horizontal Card Slider */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                        {EVENTS.map((event) => (
+                            <motion.div 
+                                key={event.id}
+                                whileHover={{ y: -4 }}
+                                className="flex flex-col group"
+                            >
+                                <div className="relative aspect-[16/10] rounded-xl md:rounded-2xl overflow-hidden mb-4 shadow-md">
+                                    <Image 
+                                        src={event.image}
+                                        alt={event.title}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                    {/* Date Sticker */}
+                                    <div className="absolute bottom-3 left-3 bg-[#0d55a0] text-white px-2 py-0.5 rounded-md text-[6px] font-black uppercase tracking-widest shadow-lg">
+                                        {event.day}
+                                    </div>
+                                </div>
+                                <div className="px-1">
+                                    <p className="text-[6px] font-black text-[#0d55a0] uppercase tracking-widest mb-1">
+                                        {event.date}
+                                    </p>
+                                    <h4 className="text-base font-bold text-black mb-1 leading-tight group-hover:text-[#0d55a0] transition-colors">
+                                        {event.title}
+                                    </h4>
+                                    <p className="text-zinc-500 text-[10px] leading-relaxed mb-3 line-clamp-2">
+                                        {event.excerpt}
+                                    </p>
+                                    <Link 
+                                        href="#" 
+                                        className="inline-flex items-center gap-1 text-[#0d55a0] font-black text-[7px] uppercase tracking-[0.1em] group/link"
+                                    >
+                                        Details
+                                        <span className="text-xs group-hover/link:translate-x-0.5 transition-transform">→</span>
+                                    </Link>
+                                </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
-
-            </div>
+            </section>
         </main>
     );
 }

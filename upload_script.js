@@ -18,7 +18,7 @@ async function uploadFile(filePath) {
              use_filename: true,
              unique_filename: false,
              overwrite: true,
-             folder: "inyange", // All assets go to this folder on Cloudinary
+             folder: "inyange", // All assets go to this folder on Cloudinar
              resource_type: "auto",
         });
         console.log(`✅ Uploaded ${path.basename(filePath)} -> ${result.secure_url}`);
@@ -35,7 +35,7 @@ async function bulkUpload() {
 
     console.log("Starting bulk upload to Cloudinary...");
     const files = fs.readdirSync(publicDir);
-    
+
     // Filter for valid media files
     const mediaFiles = files.filter(file => {
          const ext = path.extname(file).toLowerCase();
@@ -48,7 +48,7 @@ async function bulkUpload() {
             await uploadFile(filePath);
         }
     }
-    
+
     console.log("🎉 Bulk upload complete.");
 }
 
