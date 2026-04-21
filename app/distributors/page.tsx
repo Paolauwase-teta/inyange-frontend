@@ -25,6 +25,9 @@ const DISTRIBUTORS: Distributor[] = [
     { id: 4, name: 'Huye Southern Partner', city: 'Huye', address: 'Ruhande Rd, Huye', lat: -2.5967, lng: 29.7394, availability: 'High', services: ['Dairy', 'Juice'], hours: '8:00 - 17:00' },
     { id: 5, name: 'Nyagatare East Route', city: 'Nyagatare', address: 'Sun City Road, Nyagatare', lat: -1.2990, lng: 30.3260, availability: 'Low', services: ['Water'], hours: '8:30 - 16:30' },
     { id: 6, name: 'Rusizi Border Outlet', city: 'Rusizi', address: 'Kamembe Center, Rusizi', lat: -2.4846, lng: 28.9075, availability: 'Medium', services: ['Dairy', 'Juice', 'Water'], hours: '8:00 - 17:30' },
+    { id: 7, name: 'Ali DISTRIBUTOR Nyarugenge', city: 'Kigali', address: 'CHIC Building, Kigali District', lat: -1.953, lng: 30.058, availability: 'High', services: ['Water'], hours: '7:30 - 18:00' },
+    { id: 8, name: 'Majyambere DISTRIBUTOR Kicukiro', city: 'Kigali', address: 'Gikondo, Kicukiro', lat: -1.970, lng: 30.080, availability: 'High', services: ['Water'], hours: '7:30 - 18:00' },
+    { id: 9, name: 'Byagatonda DISTRIBUTOR Gasabo', city: 'Kigali', address: 'Kimirongo near the market, Gasabo District', lat: -1.940, lng: 30.100, availability: 'High', services: ['Water'], hours: '7:30 - 18:00' }
 ];
 
 function availabilityClasses(level: Availability) {
