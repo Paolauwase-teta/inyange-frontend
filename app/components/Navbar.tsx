@@ -82,7 +82,7 @@ const NAV_ITEMS: NavLinkProps[] = [
     ]},
     { label: "Editorial Page", href: "/editorial", dropdown: [
         { label: 'Newsroom', href: '/editorial' },
-        { label: 'Blog', href: '/blog' }
+        { label: 'Blog', href: '/editorial/blog' }
     ]},
     { label: "Reach Out", href: "/reach-out" }
 ];
