@@ -76,6 +76,14 @@ const HERO_SLIDES = [
   },
   {
     video: getAsset("/fruity_juice.mp4"),
+    giantText: "VIBRANT REFRESHMENT",
+    tagline: "Tropical Goodness",
+    heading: "FLAVOR IN HARMONY",
+    cardTitle: "Natural Fruit Harvests",
+    cardText: "Experience the essence of Rwanda's finest fruits in our range of refreshing, vitamin-packed juices."
+  },
+  {
+    video: getAsset("/cooking.mp4"),
     giantText: "EVERYDAY MEALS",
     tagline: "Versatile Ingredients",
     heading: "ELEVATE YOUR COOKING",
@@ -108,12 +116,9 @@ const CERTIFICATIONS = [
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 8000); // Rotate every 8 seconds
-    return () => clearInterval(timer);
-  }, []);
+  const handleVideoEnded = () => {
+    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+  };
 
 
 
@@ -129,9 +134,9 @@ export default function Home() {
             <video
               key={slide.video}
               autoPlay
-              loop
               muted
               playsInline
+              onEnded={handleVideoEnded}
               preload="auto"
               className="absolute inset-0 w-full h-full object-cover"
             >
