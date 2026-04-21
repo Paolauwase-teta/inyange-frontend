@@ -33,28 +33,28 @@ interface EventData {
 const EVENTS: EventData[] = [
     {
         id: 1,
-        date: "Dimanche 25 mai 2025",
-        day: "25 MAI",
-        title: "Fête du village - Édition 2025",
-        excerpt: "Repas champêtre, concert, bal en plein air et feu d'artifice pour célébrer l'été ensemble.",
-        image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=80"
+        title: 'Fête du village - Édition 2025',
+        excerpt: 'Repas champêtre, concert, bal en plein air et feu d\'artifice pour célébrer l\'été ensemble.',
+        date: 'Dimanche 25 Mai 2025',
+        day: '25 MAI',
+        image: '/editorial_event_village_fete.png'
     },
     {
         id: 2,
-        date: "Dimanche 15 juin 2025",
-        day: "15 JUIN",
-        title: "Randonnée découverte",
-        excerpt: "Sortie accompagnée par un guide local, accessible à tous. Prévoir de bonnes...",
-        image: "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=80"
+        title: 'Randonnée découverte',
+        excerpt: 'Sortie accompagnée par un guide local, accessible à tous. Prévoir de bonnes chaussures.',
+        date: 'Dimanche 15 Juin 2025',
+        day: '15 JUIN',
+        image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=800'
     },
     {
         id: 3,
-        date: "Samedi 12 juillet 2025",
-        day: "12 JUIL",
-        title: "Marché des Producteurs",
-        excerpt: "Découvrez les meilleurs produits locaux directement de nos fermes partenaires Inyange.",
-        image: "https://images.unsplash.com/photo-1488459739019-19e53f17822d?auto=format&fit=crop&w=800&q=80"
-    }
+        title: 'Marché des Producteurs',
+        excerpt: 'Découvrez les meilleurs produits locaux directement de nos fermes partenaires Inyange.',
+        date: 'Samedi 12 Juillet 2025',
+        day: '12 JUIL',
+        image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=800'
+    },
 ];
 
 export default function EditorialPage() {
@@ -214,7 +214,7 @@ export default function EditorialPage() {
                             </p>
                         </div>
                         <Link 
-                            href="/newsroom" 
+                            href="/editorial/blog" 
                             className="bg-[#0d55a0] text-white px-5 py-2 rounded-full text-[8px] font-black uppercase tracking-widest hover:bg-[#33a4df] transition-colors shadow-sm mb-1"
                         >
                             View All News
@@ -249,7 +249,7 @@ export default function EditorialPage() {
                                         {featuredPost?.excerpt}
                                     </p>
                                     <Link 
-                                        href={`/editorial/post/${featuredPost?.slug}`}
+                                        href={`/editorial/blog/${featuredPost?.id}`}
                                         className="flex items-center gap-1.5 text-[#0d55a0] font-black text-[8px] uppercase tracking-widest group/link"
                                     >
                                         READ STORY
@@ -282,7 +282,7 @@ export default function EditorialPage() {
                                             {post.excerpt}
                                         </p>
                                         <Link 
-                                            href={`/editorial/post/${post.slug}`}
+                                            href={`/editorial/blog/${post.id}`}
                                             className="inline-flex items-center gap-1 text-[#0d55a0] font-bold text-[7px] uppercase tracking-[0.2em] group/link"
                                         >
                                             Read More
@@ -306,11 +306,11 @@ export default function EditorialPage() {
                     <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
                         <div className="max-w-xl flex-1">
                             <div className="flex items-center gap-3 mb-3">
-                                <span className="text-[8px] font-black uppercase tracking-[0.3em] text-[#0d55a0] opacity-40 whitespace-nowrap">Calendar</span>
+                                <span className="text-[8px] font-black uppercase tracking-[0.3em] text-[#0d55a0] opacity-40 whitespace-nowrap">Global Updates</span>
                                 <div className="flex-1 h-[1px] bg-[#0d55a0]/10" />
                             </div>
                             <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-[#0d55a0] leading-none mb-3">
-                                Agenda
+                                Newsroom
                             </h2>
                             <p className="text-zinc-500 text-[11px] leading-relaxed font-medium max-w-sm">
                                 Stay connected with our community events, factory tours, and sustainable farming initiatives globally.
