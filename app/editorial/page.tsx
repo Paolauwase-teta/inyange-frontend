@@ -4,11 +4,12 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getAsset } from '@/lib/getAsset';
 
 const HERO_IMAGES = [
-    '/editorial_hero.png',
-    '/editorial_showcase_1.png',
-    '/editorial_showcase_2.png'
+    getAsset('/editorial_hero.png'),
+    getAsset('/editorial_showcase_1.png'),
+    getAsset('/editorial_showcase_2.png')
 ];
 
 interface BlogPost {
@@ -37,7 +38,7 @@ const EVENTS: EventData[] = [
         excerpt: 'Repas champêtre, concert, bal en plein air et feu d\'artifice pour célébrer l\'été ensemble.',
         date: 'Dimanche 25 Mai 2025',
         day: '25 MAI',
-        image: '/editorial_event_village_fete.png'
+        image: getAsset('/editorial_event_village_fete.png')
     },
     {
         id: 2,
@@ -226,7 +227,7 @@ export default function EditorialPage() {
                         <div className="lg:col-span-7 relative group">
                             <div className="relative aspect-[16/9] rounded-xl md:rounded-2xl overflow-hidden shadow-md">
                                 <Image 
-                                    src={featuredPost ? getCategoryImage(featuredPost.category) : '/editorial_hero.png'}
+                                    src={featuredPost ? getCategoryImage(featuredPost.category) : getAsset('/editorial_hero.png')}
                                     alt={featuredPost?.title || 'Featured News'}
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-105"

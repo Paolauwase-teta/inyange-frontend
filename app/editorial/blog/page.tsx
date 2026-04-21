@@ -45,7 +45,7 @@ function BlogHubContent() {
                 {/* Brand Pattern Overlay */}
                 <div 
                     className="absolute inset-0 bg-repeat bg-[length:400px] z-0 opacity-[0.08]"
-                    style={{ backgroundImage: "url('/pattern.png')" }}
+                    style={{ backgroundImage: `url('${getAsset('/pattern.png')}')` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-[#0d55a0]/10 to-[#0d55a0]/40 z-10" />
                 
