@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
@@ -33,10 +33,88 @@ const FAQS = [
 ];
 
 export default function ReachOutPage() {
-    const [selectedLoc, setSelectedLoc] = useState(LOCATIONS[0]);
+    const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null);
+    const [isLocating, setIsLocating] = useState(false);
+    const [mapAction, setMapAction] = useState<{ type: 'center-user' | 'fit-bounds', timestamp: number } | null>(null);
+    const watchIdRef = useRef<number | null>(null);
+    const hasAutoSelectedRef = useRef(false);
+
+    const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
+        const R = 6371;
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                  Math.sin(dLon/2) * Math.sin(dLon/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return R * c;
+    };
+
+    const handleFindNearMe = () => {
+        if (!navigator.geolocation) return;
+        setIsLocating(true);
+        if (watchIdRef.current !== null) {
+            navigator.geolocation.clearWatch(watchIdRef.current);
+        }
+        watchIdRef.current = navigator.geolocation.watchPosition(
+            (position) => {
+                setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+                setIsLocating(false);
+            },
+            (error) => {
+                setIsLocating(false);
+            },
+            { enableHighAccuracy: true }
+        );
+    };
+
+    const stopFindingNearMe = () => {
+        if (watchIdRef.current !== null) {
+            navigator.geolocation.clearWatch(watchIdRef.current);
+            watchIdRef.current = null;
+        }
+        setUserLocation(null);
+        setIsLocating(false);
+        setMapAction(null);
+        hasAutoSelectedRef.current = false;
+    };
+
+    useEffect(() => {
+        return () => {
+            if (watchIdRef.current !== null) navigator.geolocation.clearWatch(watchIdRef.current);
+        };
+    }, []);
+
+    const sortedLocations = useMemo(() => {
+        let result = [...LOCATIONS] as (typeof LOCATIONS[0] & { distance?: number })[];
+        if (userLocation) {
+            result = result.map(loc => ({
+                ...loc,
+                distance: calculateDistance(userLocation.lat, userLocation.lng, loc.lat, loc.lng)
+            }));
+            return result.sort((a, b) => (a.distance || 0) - (b.distance || 0));
+        }
+        return result;
+    }, [userLocation]);
+
+    const [selectedId, setSelectedId] = useState<number>(LOCATIONS[0].id);
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [loading, setLoading] = useState(false);
     const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
+    const selectedLoc = useMemo(() => 
+        sortedLocations.find(l => l.id === selectedId) || sortedLocations[0],
+    [selectedId, sortedLocations]);
+
+    // Keep selected location stable if list order changes
+    useEffect(() => {
+        if (userLocation && sortedLocations.length > 0 && !hasAutoSelectedRef.current) {
+            // Only auto-select the closest one ONCE when location is first found
+            const closest = sortedLocations[0];
+            setSelectedId(closest.id);
+            hasAutoSelectedRef.current = true;
+        }
+    }, [userLocation, sortedLocations]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -70,21 +148,53 @@ export default function ReachOutPage() {
             {/* ── SECTION 2: AESOP-STYLE PLANT MAP ── */}
             <section className="bg-white border-b border-black/5">
                 <div className="grid grid-cols-1 lg:grid-cols-[450px_1fr] min-h-[500px]">
-                    {/* Left: Project Locations List */}
                     <div className="p-8 md:p-16 border-r border-black/5 flex flex-col justify-center">
-                        <h2 className="text-2xl font-black text-[#0d55a0] uppercase tracking-tighter mb-10">Our Physical Presence ({LOCATIONS.length})</h2>
+                        <h2 className="text-2xl font-black text-[#0d55a0] uppercase tracking-tighter mb-6">Our Physical Presence ({LOCATIONS.length})</h2>
+                        
+                        <button 
+                            onClick={() => {
+                                handleFindNearMe();
+                                setMapAction({ type: 'fit-bounds', timestamp: Date.now() });
+                            }}
+                            disabled={isLocating}
+                            className="w-full flex items-center justify-between p-5 mb-10 rounded-2xl border border-[#0d55a0]/20 bg-[#f4f9ff] transition-all hover:bg-[#0d55a0] hover:border-[#0d55a0] shadow-sm hover:shadow-lg group"
+                        >
+                            <div className="flex items-center gap-4">
+                                <div className="bg-white p-3 rounded-full shadow-sm text-[#0d55a0] group-hover:text-white group-hover:bg-[#0b4a7d] transition-colors">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={isLocating ? 'animate-spin' : ''}>
+                                        {isLocating ? <path d="M21 12a9 9 0 1 1-6.219-8.56"/> : <><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></>}
+                                    </svg>
+                                </div>
+                                <div className="text-left">
+                                    <h4 className="text-[15px] font-black text-[#0d55a0] group-hover:text-white transition-colors uppercase tracking-tight">
+                                        {isLocating ? 'Locating...' : 'Find nearest center'}
+                                    </h4>
+                                    <p className="text-[10px] font-bold text-[#0d55a0]/60 group-hover:text-white/80 transition-colors uppercase tracking-widest">
+                                        Sort by actual distance
+                                    </p>
+                                </div>
+                            </div>
+                        </button>
+
                         <div className="space-y-12">
-                            {LOCATIONS.map((loc, idx) => (
+                            {sortedLocations.map((loc, idx) => (
                                 <motion.div 
                                     key={loc.id}
-                                    onClick={() => setSelectedLoc(loc)}
-                                    className={`cursor-pointer group flex gap-6 ${selectedLoc.id === loc.id ? 'opacity-100' : 'opacity-40 hover:opacity-100'} transition-all`}
+                                    onClick={() => setSelectedId(loc.id)}
+                                    className={`cursor-pointer group flex gap-6 ${selectedId === loc.id ? 'opacity-100' : 'opacity-40 hover:opacity-100'} transition-all`}
                                 >
-                                    <div className={`w-8 h-8 rounded-full border border-black flex items-center justify-center text-xs font-black shrink-0 ${selectedLoc.id === loc.id ? 'bg-black text-white' : ''}`}>
+                                    <div className={`w-8 h-8 rounded-full border border-black flex items-center justify-center text-xs font-black shrink-0 ${selectedId === loc.id ? 'bg-black text-white' : ''}`}>
                                         {idx + 1}
                                     </div>
                                     <div>
-                                        <h3 className="text-sm font-black uppercase tracking-tighter mb-1">{loc.name}</h3>
+                                        <div className="flex items-center justify-between gap-4 mb-1">
+                                            <h3 className="text-sm font-black uppercase tracking-tighter">{loc.name}</h3>
+                                            {loc.distance !== undefined && (
+                                                <span className="text-[10px] font-black text-[#0d55a0] whitespace-nowrap bg-[#0d55a0]/5 px-2 py-0.5 rounded-full">
+                                                    {loc.distance.toFixed(1)} KM
+                                                </span>
+                                            )}
+                                        </div>
                                         <p className="text-[11px] text-zinc-500 font-medium leading-relaxed mb-2">{loc.address}</p>
                                         <p className="text-[10px] font-bold text-[#0d55a0]">{loc.contact}</p>
                                     </div>
@@ -93,10 +203,28 @@ export default function ReachOutPage() {
                         </div>
                     </div>
 
-                    {/* Right: Map - Compact & Rounded */}
                     <div className="p-4 md:p-12 flex items-center justify-center bg-[#fdfdfd]">
-                        <div className="relative w-full h-[350px] md:h-[450px] rounded-[2.5rem] overflow-hidden border-8 border-white">
-                            <ReachOutMap selected={selectedLoc} locations={LOCATIONS} onSelect={(id) => setSelectedLoc(LOCATIONS.find(l => l.id === id) || LOCATIONS[0])} />
+                        <div className="relative w-full h-[350px] md:h-[450px] rounded-[2.5rem] overflow-hidden border-8 border-white group">
+                            <ReachOutMap 
+                                selected={selectedLoc} 
+                                locations={sortedLocations} 
+                                onSelect={setSelectedId} 
+                                userLocation={userLocation}
+                                mapAction={mapAction}
+                            />
+
+                            <button 
+                                onClick={() => {
+                                    handleFindNearMe();
+                                    setMapAction({ type: 'center-user', timestamp: Date.now() });
+                                }}
+                                className={`absolute top-6 right-6 z-[500] flex items-center justify-center p-4 rounded-2xl shadow-2xl transition-all hover:scale-105 border border-black/5 ${isLocating ? 'bg-white/90 text-black/20 cursor-wait' : 'bg-white text-[#0d55a0] hover:bg-[#0d55a0] hover:text-white'}`}
+                                title="My Location"
+                            >
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={isLocating ? 'animate-spin' : ''}>
+                                    {isLocating ? <path d="M21 12a9 9 0 1 1-6.219-8.56"/> : <><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></>}
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -146,11 +274,16 @@ export default function ReachOutPage() {
                         <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#5bb63a] mb-6 block">Quick Connect</span>
                         <h3 className="text-xl font-black uppercase tracking-tighter mb-8 italic">Follow us on Social Media:</h3>
                         <div className="flex flex-col gap-4">
-                            {['Twitter', 'Instagram', 'LinkedIn', 'YouTube'].map(social => (
-                                <button key={social} className="flex items-center justify-between bg-white/10 hover:bg-white text-white hover:text-[#0d55a0] transition-all px-5 py-3 rounded-xl group">
-                                    <span className="text-[11px] font-black uppercase tracking-widest">{social}</span>
+                            {[
+                                { label: 'Twitter', href: 'https://x.com/AlwaysInyange/status/1976684468493803553' },
+                                { label: 'Instagram', href: 'https://www.instagram.com/alwaysinyange?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+                                { label: 'LinkedIn', href: 'https://www.linkedin.com/company/inyange-industries-ltd/?originalSubdomain=rw' },
+                                { label: 'YouTube', href: 'https://www.youtube.com/@AlwaysInyange' },
+                            ].map(item => (
+                                <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between bg-white/10 hover:bg-white text-white hover:text-[#0d55a0] transition-all px-5 py-3 rounded-xl group">
+                                    <span className="text-[11px] font-black uppercase tracking-widest">{item.label}</span>
                                     <span className="text-xs group-hover:translate-x-1 transition-transform">↗</span>
-                                </button>
+                                </a>
                             ))}
                         </div>
                     </div>
