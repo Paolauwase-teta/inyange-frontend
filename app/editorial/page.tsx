@@ -319,7 +319,7 @@ export default function EditorialPage() {
                         
                         <div className="flex items-center gap-3 mb-1">
                             <Link 
-                                href="/events" 
+                                href="/editorial/newsroom" 
                                 className="bg-[#0d55a0] text-white px-4 py-1.5 rounded-full text-[7px] font-black uppercase tracking-widest hover:bg-[#33a4df] transition-colors shadow-sm"
                             >
                                 All Events
