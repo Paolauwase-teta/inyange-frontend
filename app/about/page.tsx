@@ -4,13 +4,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Target, Award, Play } from 'lucide-react';
 import Image from 'next/image';
-
-const LEADERS = [
-  { name: 'Marcus Mango', title: 'CEO', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=500' },
-  { name: 'Sarah Chen', title: 'CFO', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=500' },
-  { name: 'Jean-Paul Kagabo', title: 'COO', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=500' },
-  { name: 'Elena Rodriguez', title: 'CMO', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400&h=500' },
-];
+import { LEADERS } from '@/lib/data/leaders';
+import Link from 'next/link';
 
 export default function AboutPage() {
   const heroImages = [
@@ -150,27 +145,28 @@ export default function AboutPage() {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {LEADERS.map((leader, i) => (
-                    <motion.div
-                        key={i}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.1 }}
-                        className="group flex flex-col"
-                    >
-                        <div className="relative aspect-[4/5] rounded-3xl overflow-hidden mb-4 shadow-sm group-hover:shadow-xl transition-all duration-500">
-                            <Image 
-                                src={leader.image} 
-                                alt={leader.name} 
-                                fill 
-                                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
-                            />
-                            <div className="absolute inset-0 bg-[#0d55a0]/10 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
-                        <h3 className="text-xs font-black text-[#1a1a1a] uppercase tracking-tighter">{leader.name}</h3>
-                        <span className="text-[10px] font-bold text-[#5bb63a] uppercase tracking-widest">{leader.title}</span>
-                    </motion.div>
+                {LEADERS.slice(0, 4).map((leader, i) => (
+                    <Link href={`/leaders/${leader.slug}`} key={i}>
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.1 }}
+                            className="group flex flex-col cursor-pointer"
+                        >
+                            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden mb-4 shadow-sm group-hover:shadow-xl transition-all duration-500">
+                                <Image 
+                                    src={leader.image} 
+                                    alt={leader.name} 
+                                    fill 
+                                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
+                                />
+                                <div className="absolute inset-0 bg-[#0d55a0]/10 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </div>
+                            <h3 className="text-xs font-black text-[#1a1a1a] uppercase tracking-tighter">{leader.name}</h3>
+                            <span className="text-[10px] font-bold text-[#5bb63a] uppercase tracking-widest">{leader.title}</span>
+                        </motion.div>
+                    </Link>
                 ))}
             </div>
         </div>
