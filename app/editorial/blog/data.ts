@@ -62,6 +62,58 @@ export const BLOG_POSTS = [
             <p>By providing fair prices, technical assistance, and stable market access to thousands of smallholder farmers, we are creating a ripple effect of prosperity that extends far beyond the factory gates.</p>
         `
     },
+    {
+        id: 5,
+        title: 'The Art of Pure Water: Our Filtration Process',
+        excerpt: 'Discover the advanced multi-stage purification technology that makes Inyange Water a regional gold standard.',
+        category: 'Innovation',
+        date: 'July 15, 2025',
+        author: 'Michael Bizimana',
+        image: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=800',
+        content: `
+            <p>Discover the advanced multi-stage purification technology that makes Inyange Water a regional gold standard. Our process goes beyond simple filtration, utilizing reverse osmosis and UV sterilization to ensure unparalleled purity.</p>
+            <p>Every drop of Inyange water tells a story of precision and care. In this feature, we take you inside our bottling facility to witness the science of hydration.</p>
+        `
+    },
+    {
+        id: 6,
+        title: 'Preserving Rwandan Culture through Traditional Flavors',
+        excerpt: 'How Inyange is reimagining traditional Rwandan beverages for the modern, health-conscious consumer.',
+        category: 'Culture',
+        date: 'August 02, 2025',
+        author: 'Gloria Mutoni',
+        image: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=800',
+        content: `
+            <p>How Inyange is reimagining traditional Rwandan beverages for the modern, health-conscious consumer. Our latest line of fermented dairy products draws inspiration from centuries-old family recipes while meeting modern nutritional standards.</p>
+            <p>Cultural heritage is a living thing. By bringing these flavors to the mainstream, we are ensuring that the essence of Rwandan hospitality continues to thrive in the 21st century.</p>
+        `
+    },
+    {
+        id: 7,
+        title: 'Sustainability: Our Goal for Zero Plastic Waste',
+        excerpt: 'Inyange announces a new initiative to recycle 100% of its plastic packaging by 2030 through partnership with local startups.',
+        category: 'Sustainability',
+        date: 'September 10, 2025',
+        author: 'Eric Wilson',
+        image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=800',
+        content: `
+            <p>Inyange announces a new initiative to recycle 100% of its plastic packaging by 2030. This ambitious project involves the creation of a closed-loop system in collaboration with local waste management startups.</p>
+            <p>We believe that industry leaders have a responsibility to protect the environment. Our "Bottle-to-Benefit" program will turn discarded packaging into construction materials for schools and community centers.</p>
+        `
+    },
+    {
+        id: 8,
+        title: 'Modernizing Rwandan Farming: The Inyange Academy',
+        excerpt: 'Our new training center is equipping thousands of local farmers with modern agricultural techniques to boost yields and quality.',
+        category: 'Farming',
+        date: 'October 12, 2025',
+        author: 'Dr. Agnes Kalibata',
+        image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800',
+        content: `
+            <p>Our new training center is equipping thousands of local farmers with modern agricultural techniques to boost yields and quality. The Inyange Academy serves as a hub for knowledge exchange and technical support.</p>
+            <p>By investing in the skills of our farmers, we are investing in the long-term food security of the nation. Modern agriculture is the key to unlocking Rwanda's economic potential.</p>
+        `
+    },
 ];
 
 export const TOP_POSTS = [
