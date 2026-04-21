@@ -38,11 +38,57 @@ const DistributorMap = dynamic(() => import('./DistributorMap'), { ssr: false })
 export default function DistributorsPage() {
     const [selectedService, setSelectedService] = useState<'All' | 'Dairy' | 'Juice' | 'Water'>('All');
     const [selectedId, setSelectedId] = useState<number>(DISTRIBUTORS[0].id);
+    const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null);
+    const [isLocating, setIsLocating] = useState(false);
+    const watchIdRef = React.useRef<number | null>(null);
 
-    const filtered = useMemo(
-        () => DISTRIBUTORS.filter((d) => selectedService === 'All' || d.services.includes(selectedService)),
-        [selectedService]
-    );
+    const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
+        const R = 6371;
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                  Math.sin(dLon/2) * Math.sin(dLon/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return R * c;
+    };
+
+    const handleFindNearMe = () => {
+        if (!navigator.geolocation) return;
+        setIsLocating(true);
+        if (watchIdRef.current !== null) {
+            navigator.geolocation.clearWatch(watchIdRef.current);
+        }
+        watchIdRef.current = navigator.geolocation.watchPosition(
+            (position) => {
+                setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+                setIsLocating(false);
+            },
+            (error) => {
+                setIsLocating(false);
+            },
+            { enableHighAccuracy: true }
+        );
+    };
+
+    useEffect(() => {
+        return () => {
+            if (watchIdRef.current !== null) navigator.geolocation.clearWatch(watchIdRef.current);
+        };
+    }, []);
+
+    const filtered = useMemo(() => {
+        let result = DISTRIBUTORS.filter((d) => selectedService === 'All' || d.services.includes(selectedService)) as (Distributor & { distance?: number })[];
+        
+        if (userLocation) {
+            result = result.map(d => ({
+                ...d,
+                distance: calculateDistance(userLocation.lat, userLocation.lng, d.lat, d.lng)
+            }));
+            return result.sort((a, b) => Math.abs(a.distance || 0) - Math.abs(b.distance || 0));
+        }
+        return result;
+    }, [selectedService, userLocation]);
 
     const selected = filtered.find((d) => d.id === selectedId) || filtered[0];
 
@@ -96,7 +142,28 @@ export default function DistributorsPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-4 md:gap-5">
                         <div className="space-y-3">
                             <div>
-                                <p className="text-[13px] font-bold text-black/80 mb-2">We found {filtered.length} distributor points near you</p>
+                                <p className="text-[13px] font-bold text-black/80 mb-3">We found {filtered.length} distributor points</p>
+                                
+                                {!userLocation && (
+                                    <button 
+                                        onClick={handleFindNearMe}
+                                        disabled={isLocating}
+                                        className="w-full flex items-center justify-between p-4 mb-4 rounded-xl border border-[#0d55a0]/20 bg-[#f4f9ff] transition-all hover:bg-[#0d55a0] hover:border-[#0d55a0] shadow-sm hover:shadow-lg group"
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className="bg-white p-3 rounded-full shadow-sm text-[#0d55a0] group-hover:text-white group-hover:bg-[#0b4a7d] transition-colors">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={isLocating ? 'animate-spin' : ''}>
+                                                    {isLocating ? <path d="M21 12a9 9 0 1 1-6.219-8.56"/> : <><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></>}
+                                                </svg>
+                                            </div>
+                                            <div className="text-left">
+                                                <h4 className="text-[15px] font-black text-[#0d55a0] group-hover:text-white transition-colors">{isLocating ? 'Locating you...' : 'Find nearest to me'}</h4>
+                                                <p className="text-[11px] font-bold text-[#0d55a0]/60 group-hover:text-white/80 transition-colors">Sort list and map by actual distance</p>
+                                            </div>
+                                        </div>
+                                    </button>
+                                )}
+
                                 <div className="space-y-2 max-h-[560px] overflow-y-auto pr-1">
                                     {filtered.map((d) => {
                                         const active = selected?.id === d.id;
@@ -112,7 +179,11 @@ export default function DistributorsPage() {
                                                     <span className={`text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full border ${availabilityClasses(d.availability)}`}>
                                                         {d.availability} Availability
                                                     </span>
-                                                    <span className="text-[10px] text-black/45 font-semibold">{d.hours}</span>
+                                                    {d.distance !== undefined ? (
+                                                        <span className="text-[10px] text-[#0d55a0] font-black">{d.distance.toFixed(1)} km away</span>
+                                                    ) : (
+                                                        <span className="text-[10px] text-black/45 font-semibold">{d.hours}</span>
+                                                    )}
                                                 </div>
                                                 <h3 className="text-sm font-black text-black leading-tight">{d.name}</h3>
                                                 <p className="text-[11px] text-black/55 mb-1.5">{d.address}</p>
@@ -126,7 +197,18 @@ export default function DistributorsPage() {
                         </div>
 
                         <div className="rounded-2xl overflow-hidden border border-black/10 bg-[#f5f7fb] min-h-[640px] relative">
-                            {selected && <DistributorMap selected={selected} filtered={filtered} onSelect={setSelectedId} />}
+                            {selected && <DistributorMap selected={selected} filtered={filtered} onSelect={setSelectedId} userLocation={userLocation} />}
+
+                            <button 
+                                onClick={handleFindNearMe}
+                                className={`absolute top-4 right-4 z-[500] flex items-center justify-center p-3.5 rounded-2xl shadow-xl transition-all hover:scale-105 ${isLocating ? 'bg-[#f0f0f0] text-black/40 cursor-wait' : 'bg-white text-[#0d55a0] hover:bg-[#0d55a0] hover:text-white border border-black/5'}`}
+                                aria-label="Find my location"
+                                title="My Location"
+                            >
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`${isLocating ? 'animate-spin' : ''}`}>
+                                    {isLocating ? <path d="M21 12a9 9 0 1 1-6.219-8.56" /> : <><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="3" /></>}
+                                </svg>
+                            </button>
 
                             {selected && (
                                 <div className="absolute left-4 bottom-4 z-[500] w-[320px] rounded-xl border border-[#0d55a0]/20 bg-white/95 backdrop-blur p-3 shadow-lg">

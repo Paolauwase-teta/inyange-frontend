@@ -28,12 +28,14 @@ interface DistributorMapProps {
     selected: Distributor;
     filtered: Distributor[];
     onSelect: (id: number) => void;
+    userLocation?: { lat: number; lng: number } | null;
 }
 
-function MapMarkers({ selected, filtered, onSelect }: DistributorMapProps) {
+function MapMarkers({ selected, filtered, onSelect, userLocation }: DistributorMapProps) {
     const RL = require('react-leaflet') as any;
     const useMap = RL.useMap as () => any;
     const map = useMap();
+    const initialFit = React.useRef(false);
 
     React.useEffect(() => {
         const layers: L.Layer[] = [];
@@ -59,12 +61,42 @@ function MapMarkers({ selected, filtered, onSelect }: DistributorMapProps) {
             layers.push(marker);
         });
 
-        map.setView([selected.lat, selected.lng], 8, { animate: true });
+        if (!initialFit.current) {
+            map.setView([selected.lat, selected.lng], 8, { animate: true });
+        }
 
         return () => {
             layers.forEach((layer) => map.removeLayer(layer));
         };
     }, [map, selected, filtered, onSelect]);
+
+    React.useEffect(() => {
+        if (!userLocation) return;
+
+        const userIcon = L.divIcon({
+            className: 'custom-user-pin',
+            html: `
+                <div class="relative flex items-center justify-center">
+                    <div class="absolute w-12 h-12 bg-[#0d55a0]/20 rounded-full animate-ping"></div>
+                    <div class="w-[14px] h-[14px] bg-[#33a4df] border-2 border-white rounded-full shadow-[0_0_10px_rgba(51,164,223,0.8)] z-[600]"></div>
+                </div>
+            `,
+            iconSize: [24, 24],
+            iconAnchor: [12, 12],
+        });
+        const userMarker = L.marker([userLocation.lat, userLocation.lng], { icon: userIcon, zIndexOffset: 1000 }).addTo(map);
+
+        if (!initialFit.current && filtered.length > 0) {
+            initialFit.current = true;
+            const bounds = L.latLngBounds(
+                [userLocation.lat, userLocation.lng],
+                [filtered[0].lat, filtered[0].lng]
+            );
+            map.fitBounds(bounds, { padding: [60, 60], animate: true, maxZoom: 12 });
+        }
+
+        return () => { map.removeLayer(userMarker); };
+    }, [map, userLocation, filtered]);
 
     return null;
 }
@@ -101,7 +133,7 @@ function TrackpadScroll() {
     return null;
 }
 
-export default function DistributorMap({ selected, filtered, onSelect }: DistributorMapProps) {
+export default function DistributorMap({ selected, filtered, onSelect, userLocation }: DistributorMapProps) {
     const RL = require('react-leaflet') as any;
     const MapContainer = RL.MapContainer as React.ComponentType<any>;
     const TileLayer = RL.TileLayer as React.ComponentType<any>;
@@ -118,7 +150,7 @@ export default function DistributorMap({ selected, filtered, onSelect }: Distrib
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <MapMarkers selected={selected} filtered={filtered} onSelect={onSelect} />
+            <MapMarkers selected={selected} filtered={filtered} onSelect={onSelect} userLocation={userLocation} />
         </MapContainer>
     );
 }
