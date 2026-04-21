@@ -16,6 +16,12 @@ export function getAsset(path: string): string {
     // Ignore already remote URLs
     if (cleanPath.startsWith('http')) return path;
 
+    // LOCAL FALLBACK: If we're in development or if Cloudinary isn't preferred
+    // we return the local public path.
+    if (process.env.NODE_ENV === 'development') {
+        return path.startsWith('/') ? path : `/${path}`;
+    }
+
     // Check if the asset is a video type
     const isVideo = cleanPath.toLowerCase().match(/\.(mp4|mov|webm|ogg)$/);
     const resourceType = isVideo ? "video" : "image";

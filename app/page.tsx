@@ -75,7 +75,7 @@ const HERO_SLIDES = [
     cardText: "We transform the finest ingredients into refreshing dairy and beverage products your family can trust."
   },
   {
-    video: getAsset("/cooking.mp4"),
+    video: getAsset("/fruity_juice.mp4"),
     giantText: "EVERYDAY MEALS",
     tagline: "Versatile Ingredients",
     heading: "ELEVATE YOUR COOKING",
@@ -635,7 +635,7 @@ export default function Home() {
               transition={{ delay: 0.1 }}
               className="w-24 md:w-36 h-[320px] md:h-[420px] rounded-[5rem] overflow-hidden shadow-xl relative"
             >
-              <Image src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=400" fill className="object-cover" alt="Lifestyle" />
+              <Image src={getAsset("/home_about_middle.jpg")} fill className="object-cover" alt="Refreshing Orange Juice" />
               <div className="absolute inset-0 bg-[#33a4df]/10" />
             </motion.div>
 

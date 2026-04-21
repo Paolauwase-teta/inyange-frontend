@@ -27,26 +27,37 @@ async function uploadFile(filePath) {
     }
 }
 
+async function getAllFiles(dirPath, arrayOfFiles) {
+    const files = fs.readdirSync(dirPath);
+    arrayOfFiles = arrayOfFiles || [];
+
+    for (const file of files) {
+        if (fs.statSync(dirPath + "/" + file).isDirectory()) {
+            arrayOfFiles = await getAllFiles(dirPath + "/" + file, arrayOfFiles);
+        } else {
+            arrayOfFiles.push(path.join(dirPath, "/", file));
+        }
+    }
+    return arrayOfFiles;
+}
+
 async function bulkUpload() {
     if (!process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
          console.error("ERROR: Cloudinary credentials not found. Please make sure .env.local is filled out correctly.");
          process.exit(1);
     }
 
-    console.log("Starting bulk upload to Cloudinary...");
-    const files = fs.readdirSync(publicDir);
+    console.log("Starting recursive bulk upload to Cloudinary...");
+    const allFiles = await getAllFiles(publicDir);
 
     // Filter for valid media files
-    const mediaFiles = files.filter(file => {
-         const ext = path.extname(file).toLowerCase();
+    const mediaFiles = allFiles.filter(filePath => {
+         const ext = path.extname(filePath).toLowerCase();
          return ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.mp4', '.mov'].includes(ext);
     });
 
-    for (const file of mediaFiles) {
-        const filePath = path.join(publicDir, file);
-        if (fs.statSync(filePath).isFile()) {
-            await uploadFile(filePath);
-        }
+    for (const filePath of mediaFiles) {
+        await uploadFile(filePath);
     }
 
     console.log("🎉 Bulk upload complete.");
