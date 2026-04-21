@@ -27,6 +27,17 @@ const ALL_RECIPES = [
     { id: 9, title: 'Smooth Caramel Drizzle', image: getAsset('/topping3.jpg'), category: 'Desserts' }
 ];
 
+const SectionHeader = ({ label, title, light = false }: { label: string; title: string; light?: boolean }) => (
+    <div className="mb-6">
+        <div className="flex items-center gap-3 mb-1.5">
+            <span className={`text-[7px] font-black uppercase tracking-[0.3em] ${light ? 'text-white/60' : 'text-[#0d55a0] opacity-40'} whitespace-nowrap`}>{label}</span>
+        </div>
+        <h2 className={`text-xl md:text-3xl font-black uppercase tracking-tighter leading-none ${light ? 'text-white' : 'text-[#0d55a0]'}`}>
+            {title}
+        </h2>
+    </div>
+);
+
 export default function RecipesOverviewPage() {
     return (
         <main className="min-h-screen bg-[#fcfbf7] font-sans pb-24">
@@ -70,7 +81,7 @@ export default function RecipesOverviewPage() {
                 </div>
             </div>
 
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-10">
+            <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 pt-10">
                 
                 {/* Circle Categories */}
                 <div className="mb-20">
@@ -90,12 +101,12 @@ export default function RecipesOverviewPage() {
 
                 {/* All Recipes Grid */}
                 <div className="mb-8">
-                    <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-[#0d55a0] mb-10">Latest Recipes</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                    <SectionHeader label="Culinary Collection" title="Latest Recipes" />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mt-8">
                         {ALL_RECIPES.map((recipe) => (
                             <div key={recipe.id} className="group flex flex-col bg-transparent cursor-pointer">
                                 {/* Card Image */}
-                                <div className="w-full relative h-[250px] md:h-[280px] rounded-3xl overflow-hidden bg-zinc-200 mb-4 shadow-sm group-hover:shadow-md transition-all duration-300">
+                                <div className="w-full relative h-[200px] rounded-2xl overflow-hidden bg-zinc-200 mb-3 shadow-sm group-hover:shadow-md transition-all duration-300">
                                     <Image
                                         src={recipe.image}
                                         alt={recipe.title}
@@ -103,14 +114,14 @@ export default function RecipesOverviewPage() {
                                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                                     />
                                     {/* Category pill */}
-                                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-[#0d55a0] text-[10px] uppercase font-black tracking-widest px-3 py-1.5 rounded-full shadow-sm">
+                                    <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[#0d55a0] text-[8px] uppercase font-black tracking-widest px-2.5 py-1 rounded-full shadow-sm">
                                         {recipe.category}
                                     </div>
                                 </div>
                                 {/* Card Details Placeholder */}
-                                <div className="px-2">
-                                    <h3 className="text-[#0d55a0] font-bold text-lg mb-1 group-hover:text-[#0d55a0] transition-colors">{recipe.title}</h3>
-                                    <p className="text-[#0d55a0]/60 text-xs font-semibold">Ready in 30 mins</p>
+                                <div className="px-1">
+                                    <h3 className="text-[#0d55a0] font-bold text-sm mb-0.5 group-hover:text-[#0d55a0] transition-colors line-clamp-1">{recipe.title}</h3>
+                                    <p className="text-[#0d55a0]/60 text-[9px] font-semibold tracking-tight">Ready in 30 mins</p>
                                 </div>
                             </div>
                         ))}
