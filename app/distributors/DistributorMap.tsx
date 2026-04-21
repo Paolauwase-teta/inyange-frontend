@@ -69,6 +69,38 @@ function MapMarkers({ selected, filtered, onSelect }: DistributorMapProps) {
     return null;
 }
 
+function TrackpadScroll() {
+    const RL = require('react-leaflet') as any;
+    const map = RL.useMap();
+
+    React.useEffect(() => {
+        const container = map.getContainer();
+        
+        map.scrollWheelZoom.disable();
+        map.options.zoomSnap = 0;
+
+        const handleWheel = (e: WheelEvent) => {
+            e.preventDefault();
+            if (e.ctrlKey || e.metaKey) {
+                const rect = container.getBoundingClientRect();
+                const mousePoint = L.point(e.clientX - rect.left, e.clientY - rect.top);
+                const zoomDelta = -(e.deltaY * 0.01);
+                map.setZoomAround(mousePoint, map.getZoom() + zoomDelta, { animate: false });
+            } else {
+                map.panBy([e.deltaX, e.deltaY], { animate: false });
+            }
+        };
+
+        container.addEventListener('wheel', handleWheel, { passive: false });
+
+        return () => {
+            container.removeEventListener('wheel', handleWheel);
+        };
+    }, [map]);
+
+    return null;
+}
+
 export default function DistributorMap({ selected, filtered, onSelect }: DistributorMapProps) {
     const RL = require('react-leaflet') as any;
     const MapContainer = RL.MapContainer as React.ComponentType<any>;
@@ -78,9 +110,10 @@ export default function DistributorMap({ selected, filtered, onSelect }: Distrib
         <MapContainer
             center={[selected.lat, selected.lng] as [number, number]}
             zoom={8}
-            scrollWheelZoom={true}
+            scrollWheelZoom={false}
             style={{ height: '100%', width: '100%' }}
         >
+            <TrackpadScroll />
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
