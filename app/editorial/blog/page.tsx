@@ -150,7 +150,7 @@ function BlogHubContent() {
 
                     {/* RIGHT COLUMN: BLOG FEED (2/3) */}
                     <div className="lg:w-[72%] order-2 lg:order-2">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <AnimatePresence mode="popLayout">
                                 {filteredPosts.length > 0 ? filteredPosts.map((post, idx) => (
                                     <motion.div 
@@ -162,15 +162,15 @@ function BlogHubContent() {
                                         transition={{ duration: 0.3 }}
                                         className="group flex flex-col"
                                     >
-                                        <Link href={`/editorial/blog/${post.id}`} className="relative aspect-[5/4] rounded-3xl overflow-hidden mb-8 bg-zinc-100 block shadow-[0_20px_50px_rgba(0,0,0,0.05)]">
+                                        <Link href={`/editorial/blog/${post.id}`} className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-6 bg-zinc-100 block shadow-md">
                                             <Image 
                                                 src={post.image} 
                                                 alt={post.title} 
                                                 fill 
                                                 className="object-cover group-hover:scale-105 transition-transform duration-700" 
                                             />
-                                            <div className="absolute top-6 left-6">
-                                                <span className="bg-white/90 backdrop-blur-sm text-[#0d55a0] text-[9px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-sm">
+                                            <div className="absolute top-4 left-4">
+                                                <span className="bg-white/90 backdrop-blur-sm text-[#0d55a0] text-[7px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">
                                                     {post.category}
                                                 </span>
                                             </div>
@@ -183,14 +183,14 @@ function BlogHubContent() {
                                                 <span className="text-[8px] font-bold text-zinc-400 uppercase tracking-wider">{post.author}</span>
                                             </div>
                                             <Link href={`/editorial/blog/${post.id}`}>
-                                                <h3 className="text-base font-black text-black leading-tight mb-2 group-hover:text-[#0d55a0] transition-colors line-clamp-2 uppercase tracking-tighter">
+                                                <h3 className="text-sm font-black text-black leading-tight mb-2 group-hover:text-[#0d55a0] transition-colors line-clamp-2 uppercase tracking-tight">
                                                     {post.title}
                                                 </h3>
                                             </Link>
-                                            <p className="text-[10px] text-zinc-500 font-medium leading-relaxed mb-4 line-clamp-2">
+                                            <p className="text-[9px] text-zinc-500 font-medium leading-relaxed mb-4 line-clamp-2">
                                                 {post.excerpt}
                                             </p>
-                                            <Link href={`/editorial/blog/${post.id}`} className="text-[9px] font-black uppercase tracking-widest text-[#0d55a0] hover:text-[#33a4df] transition-colors inline-flex items-center gap-1.5">
+                                            <Link href={`/editorial/blog/${post.id}`} className="text-[8px] font-black uppercase tracking-widest text-[#0d55a0] hover:text-[#33a4df] transition-colors inline-flex items-center gap-1.5">
                                                 Read More <span>→</span>
                                             </Link>
                                         </div>
