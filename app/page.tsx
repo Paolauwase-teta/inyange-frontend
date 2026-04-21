@@ -249,7 +249,7 @@ export default function Home() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-[#0d55a0] leading-[0.85] mb-8"
+                  className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-[#0d55a0] leading-[0.95] mb-8"
                 >
                   OUR <span className="text-[#33a4df]">BRAND</span> <br /> RANGE.
                 </motion.h2>
@@ -353,28 +353,28 @@ export default function Home() {
 
       {/* ── SECTION 3: RECIPES (OVERVIEW) ── */}
       <section id="recipes-overview" className="bg-white pt-10 pb-20 relative overflow-hidden">
-        <div className="max-w-screen-2xl mx-auto px-8 md:px-16 lg:px-24 mb-12">
+        <div className="max-w-screen-2xl mx-auto px-12 md:px-24 xl:px-32 mb-12">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
             {/* Left Side: Editorial Heading (Matches Brand Range Style) */}
             <div className="max-w-xl">
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="flex items-center gap-3 mb-6"
-              >
-                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#33a4df]">Our Selection</span>
-                <div className="flex-1 h-[1px] bg-[#0d55a0]/10" />
-              </motion.div>
+               <motion.div 
+                 initial={{ opacity: 0, y: 10 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+                 className="flex items-center gap-3 mb-6"
+               >
+                 <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#0d55a0] opacity-40 whitespace-nowrap">Our Selection</span>
+                 <div className="flex-1 h-[1px] bg-[#0d55a0]/10" />
+               </motion.div>
 
-              <motion.h2 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-[#0d55a0] leading-[0.85] mb-8"
-              >
-                OUR <span className="text-[#33a4df]">PICKS</span>
-              </motion.h2>
+               <motion.h2 
+                 initial={{ opacity: 0, x: -20 }}
+                 whileInView={{ opacity: 1, x: 0 }}
+                 viewport={{ once: true }}
+                 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-[#0d55a0] leading-[0.95] mb-8"
+               >
+                 OUR <span className="text-[#33a4df]">PICKS</span>
+               </motion.h2>
 
               <motion.p 
                 initial={{ opacity: 0, x: -20 }}
@@ -461,27 +461,35 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 4: TRUSTED BY WORLDWIDE (NEW) ── */}
-      <section id="certifications" className="bg-white py-24 overflow-hidden relative">
-        <div className="max-w-6xl mx-auto px-8 mb-16 text-left">
+      <section id="certifications" className="bg-white py-16 md:py-24 overflow-hidden relative">
+        {/* Soft Background Depth */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#f2f9ff_0%,_#ffffff_70%)] opacity-70" />
+
+        <div className="max-w-3xl mx-auto px-8 mb-16 text-center relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-[#33a4df] mb-4">Quality & Standards</p>
-              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-[#0d55a0] mb-6 leading-tight">
-                TRUSTED BY PEOPLE <span className="text-[#33a4df]">WORLDWIDE</span>
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <div className="w-12 h-[1px] bg-[#0d55a0]/10" />
+                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#0d55a0] opacity-40 whitespace-nowrap">Quality & Standards</span>
+                <div className="w-12 h-[1px] bg-[#0d55a0]/10" />
+              </div>
+
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-[#0d55a0] mb-6 leading-[0.95]">
+                TRUSTED BY PEOPLE <br /> <span className="text-[#33a4df]">WORLDWIDE</span>
               </h2>
-              <p className="text-zinc-500 font-medium text-sm max-w-2xl leading-relaxed">
-                Inyange Industries operates with uncompromising dedication to international food safety and quality management standards.
-              </p>
             </motion.div>
         </div>
 
-        {/* Global Certifications Carousel */}
-        <div className="relative w-full overflow-hidden py-10">
+        {/* Hanging Cards Carousel Wrapper */}
+        <div className="relative w-full py-10">
+            {/* Subtle Arc / String decoration */}
+            <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-zinc-100 -translate-y-1/2 hidden md:block" />
+
             <motion.div 
-                className="flex gap-16 w-fit items-center"
+                className="flex gap-8 md:gap-10 w-fit px-[10vw]"
                 animate={{ 
                     x: [0, -1000],
                 }}
@@ -489,41 +497,57 @@ export default function Home() {
                     x: {
                         repeat: Infinity,
                         repeatType: "loop",
-                        duration: 30,
+                        duration: 35,
                         ease: "linear",
                     },
                 }}
             >
-                {/* Duplicate items for infinite effect */}
+                {/* Quadruple items for perfectly seamless infinite effect */}
                 {[...CERTIFICATIONS, ...CERTIFICATIONS, ...CERTIFICATIONS, ...CERTIFICATIONS].map((cert, idx) => (
                     <div 
                         key={idx}
-                        className="flex flex-col items-center gap-6 shrink-0 w-36"
+                        className={`relative p-4 md:p-5 bg-white rounded-2xl md:rounded-[2rem] shadow-[0_15px_50px_rgba(13,85,160,0.06)] border border-white/50 shrink-0 w-40 md:w-52 transition-transform duration-700 hover:scale-105 hover:z-20 group cursor-pointer ${
+                            idx % 4 === 0 ? 'rotate-[-2deg] -translate-y-3' : 
+                            idx % 4 === 1 ? 'rotate-[1deg] translate-y-2' : 
+                            idx % 4 === 2 ? 'rotate-[-1deg] translate-y-4' : 
+                            'rotate-[2deg] -translate-y-1'
+                        }`}
                     >
-                        <div className="relative w-24 h-24 bg-white rounded-3xl p-4 shadow-sm border border-black/5 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group cursor-pointer">
+                        {/* Hanging Clip decoration */}
+                        <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-4 h-6 md:w-4 md:h-7 bg-[#5bb63a] rounded-b-md shadow-md z-10 flex flex-col items-center justify-center gap-0.5">
+                            <div className="w-0.5 h-0.5 rounded-full bg-white/40" />
+                            <div className="w-0.5 h-0.5 rounded-full bg-white/40" />
+                        </div>
+
+                        {/* Polaroid Body */}
+                        <div className="relative w-full aspect-square bg-zinc-50 rounded-xl md:rounded-[1.2rem] overflow-hidden mb-4">
                             <Image 
                                 src={cert.image} 
                                 alt={cert.name} 
                                 fill 
-                                className="object-contain p-2 grayscale hover:grayscale-0 transition-all opacity-40 hover:opacity-100" 
+                                className="object-contain p-6 md:p-8 grayscale group-hover:grayscale-0 transition-all opacity-40 group-hover:opacity-100 group-hover:scale-110 duration-700" 
                             />
                         </div>
-                        <span className="text-[8px] font-black uppercase tracking-widest text-[#0d55a0] text-center opacity-40 hover:opacity-100 transition-all">
-                            {cert.name}
-                        </span>
+                        
+                        <div className="text-center px-4">
+                            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-tighter text-[#0d55a0]">
+                                {cert.name}
+                            </span>
+                        </div>
                     </div>
                 ))}
             </motion.div>
             
-            {/* Gradient Fades for Smooth Edges */}
-            <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-            <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+            {/* Gradient Fades for depth and focus */}
+            <div className="absolute inset-y-0 left-0 w-32 md:w-56 bg-gradient-to-r from-white via-white/50 to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-32 md:w-56 bg-gradient-to-l from-white via-white/50 to-transparent z-10 pointer-events-none" />
         </div>
       </section>
 
+
       {/* ── SECTION 5: ABOUT US (NEW) ── */}
-      <section id="about" className="bg-[#fcfbf7] py-16 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-8 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+      <section id="about" className="bg-white py-16 md:py-24 overflow-hidden relative border-t border-[#0d55a0]/5">
+        <div className="max-w-screen-2xl mx-auto px-12 md:px-24 xl:px-32 flex flex-col lg:flex-row items-center gap-16 lg:gap-32 relative z-10">
           
           {/* Left: Content */}
           <motion.div 
@@ -532,26 +556,29 @@ export default function Home() {
             viewport={{ once: true }}
             className="lg:w-1/2"
           >
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#33a4df] mb-4 block">About Us</span>
-            <h2 className="text-3xl md:text-5xl font-black text-[#0d55a0] uppercase tracking-tighter leading-[0.95] mb-6">
+            <div className="flex items-center gap-3 mb-6">
+                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#0d55a0] opacity-40 whitespace-nowrap">About Us</span>
+                <div className="flex-1 h-[1px] bg-[#0d55a0]/10" />
+            </div>
+
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0d55a0] uppercase tracking-tighter leading-[0.95] mb-8">
               The Pride of Rwanda's <br /> <span className="text-[#33a4df]">Beverage Industry</span>.
             </h2>
-            <div className="w-16 h-1 bg-[#0d55a0]/10 mb-6" />
             
-            <p className="text-zinc-500 font-medium leading-relaxed mb-8 max-w-lg text-sm">
+            <p className="text-zinc-500 font-medium leading-relaxed mb-10 max-w-lg text-xs md:text-sm">
               Inyange Industries is a leading food processing company in Rwanda, manufacturing a wide range of products under its household brand name—"Inyange". Known for high-quality mineral water, fruit juices, and dairy products, we have become the regional standard for modern and hygienic production.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12">
               <div>
-                <h3 className="text-[#0d55a0] font-black uppercase tracking-widest text-[11px] mb-3">Vision</h3>
-                <p className="text-[11px] text-zinc-400 font-medium leading-relaxed">
+                <h3 className="text-[#0d55a0] font-black uppercase tracking-widest text-[9px] mb-3">Vision</h3>
+                <p className="text-[10px] md:text-[11px] text-zinc-400 font-medium leading-relaxed italic opacity-80">
                   To be the leading East and Central African dairy and beverage brand, producing high quality products while enhancing shareholder value.
                 </p>
               </div>
               <div>
-                <h3 className="text-[#0d55a0] font-black uppercase tracking-widest text-[11px] mb-3">Mission</h3>
-                <p className="text-[11px] text-zinc-400 font-medium leading-relaxed">
+                <h3 className="text-[#0d55a0] font-black uppercase tracking-widest text-[9px] mb-3">Mission</h3>
+                <p className="text-[10px] md:text-[11px] text-zinc-400 font-medium leading-relaxed italic opacity-80">
                   To secure the highest value for all stakeholders while enriching lives through nutritious and tasty dairy and beverage choices.
                 </p>
               </div>
@@ -581,7 +608,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <Link href="/about" className="group inline-flex items-center gap-3 bg-[#5bb63a] text-white px-6 py-3 rounded-xl hover:bg-[#5bb63a]/90 transition-all shadow-lg shadow-[#5bb63a]/10">
+              <Link href="/about" className="group inline-flex items-center gap-3 bg-[#0d55a0] text-white px-6 py-3 rounded-xl hover:bg-[#0d55a0]/90 transition-all shadow-lg shadow-[#0d55a0]/10">
                 <span className="text-[9px] font-black uppercase tracking-widest">Learn More About Inyange</span>
                 <span className="text-xs group-hover:translate-x-1 transition-transform">→</span>
               </Link>
@@ -627,16 +654,43 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 7: EDITORIAL (OVERVIEW) ── */}
-      <section id="editorial-overview" className="bg-white py-24">
-        <div className="max-w-6xl mx-auto px-8">
-          <div className="flex flex-col gap-6 mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-black tracking-tight leading-none">
-              From our <span className="text-[#0d55a0]">newsroom</span>.
-            </h2>
-            <Link href="/editorial" className="group flex items-center gap-3 bg-black text-white px-6 py-2.5 rounded-full w-fit hover:bg-[#0d55a0] transition-all">
-              <span className="text-[10px] font-black uppercase tracking-widest">News Room</span>
-              <span className="text-sm group-hover:translate-x-1 transition-transform">→</span>
-            </Link>
+      <section id="editorial-overview" className="bg-white py-16 md:py-24 relative overflow-hidden">
+        <div className="max-w-screen-2xl mx-auto px-12 md:px-24 xl:px-32 relative z-10">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-16">
+            {/* Left Sides Heading */}
+            <div className="max-w-xl">
+               <motion.div 
+                 initial={{ opacity: 0, y: 10 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+                 className="flex items-center gap-3 mb-6"
+               >
+                 <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#0d55a0] opacity-40 whitespace-nowrap">Inyange Stories</span>
+                 <div className="flex-1 h-[1px] bg-[#0d55a0]/10" />
+               </motion.div>
+
+               <motion.h2 
+                 initial={{ opacity: 0, x: -20 }}
+                 whileInView={{ opacity: 1, x: 0 }}
+                 viewport={{ once: true }}
+                 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-[#0d55a0] leading-[0.95]"
+               >
+                 FROM OUR <br /> <span className="text-[#33a4df]">NEWSROOM</span>.
+               </motion.h2>
+            </div>
+
+            {/* Right Side: CTA */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex items-center"
+            >
+              <Link href="/editorial" className="group inline-flex items-center gap-3 bg-[#0d55a0] text-white px-6 py-3 rounded-xl hover:bg-[#0d55a0]/90 transition-all shadow-lg shadow-[#0d55a0]/10">
+                <span className="text-[9px] font-black uppercase tracking-widest">Explore Newsroom</span>
+                <span className="text-sm group-hover:translate-x-1 transition-transform">→</span>
+              </Link>
+            </motion.div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -706,7 +760,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 8: REACH OUT (OVERVIEW) ── */}
-      <section id="reach-out-overview" className="relative py-20 bg-[#0d55a0] overflow-hidden">
+      <section id="reach-out-overview" className="relative py-16 bg-[#0d55a0] overflow-hidden">
         {/* Background Pattern Overlay */}
         <div 
             className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.03] bg-repeat bg-[length:400px]"
@@ -718,23 +772,23 @@ export default function Home() {
             <div className="absolute bottom-0 left-0 w-[300px] h-[300px] border-[30px] border-white rounded-full translate-y-1/2 -translate-x-1/2" />
         </div>
         
-        <div className="max-w-4xl mx-auto px-8 text-center relative z-10">
+        <div className="max-w-3xl mx-auto px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-8 leading-none">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tighter mb-6 leading-none">
               WANT TO GET <br /> <span className="text-[#33a4df]">IN TOUCH?</span>
             </h2>
-            <p className="text-white/70 font-medium mb-10 max-w-2xl mx-auto leading-loose text-sm md:text-base">
+            <p className="text-white/70 font-medium mb-8 max-w-xl mx-auto leading-relaxed text-[11px] md:text-[13px]">
               Whether you're a customer, a potential partner, or looking for a career, we're here to listen and grow together. Reach out to our dedicated support teams today.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/reach-out" className="bg-[#5bb63a] text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white hover:text-[#0d55a0] transition-all">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link href="/reach-out" className="bg-[#5bb63a] text-white px-8 py-4 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-white hover:text-[#0d55a0] transition-all">
                 Contact Us Now
               </Link>
-              <Link href="/about/careers" className="bg-transparent border-2 border-white/20 text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:border-white transition-all">
+              <Link href="/about/careers" className="bg-transparent border-2 border-white/20 text-white px-8 py-4 rounded-xl font-black text-[10px] uppercase tracking-widest hover:border-white transition-all">
                 Join Our Team
               </Link>
             </div>
