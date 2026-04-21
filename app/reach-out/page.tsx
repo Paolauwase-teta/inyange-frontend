@@ -268,14 +268,13 @@ export default function ReachOutPage() {
                     </div>
                 </div>
 
-                {/* Right: Socials & Quick Links */}
                 <div className="space-y-12">
                     <div className="bg-[#0d55a0] rounded-[2.5rem] p-8 text-white shadow-2xl">
                         <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#5bb63a] mb-6 block">Quick Connect</span>
                         <h3 className="text-xl font-black uppercase tracking-tighter mb-8 italic">Follow us on Social Media:</h3>
                         <div className="flex flex-col gap-4">
                             {[
-                                { label: 'Twitter', href: 'https://x.com/AlwaysInyange/status/1976684468493803553' },
+                                { label: 'Twitter', href: 'https://x.com/AlwaysInyange' },
                                 { label: 'Instagram', href: 'https://www.instagram.com/alwaysinyange?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
                                 { label: 'LinkedIn', href: 'https://www.linkedin.com/company/inyange-industries-ltd/?originalSubdomain=rw' },
                                 { label: 'YouTube', href: 'https://www.youtube.com/@AlwaysInyange' },

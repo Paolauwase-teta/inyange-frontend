@@ -75,6 +75,14 @@ const HERO_SLIDES = [
     cardText: "We transform the finest ingredients into refreshing dairy and beverage products your family can trust."
   },
   {
+    video: getAsset("/fruity_juice.mp4"),
+    giantText: "VIBRANT REFRESHMENT",
+    tagline: "Tropical Goodness",
+    heading: "FLAVOR IN HARMONY",
+    cardTitle: "Natural Fruit Harvests",
+    cardText: "Experience the essence of Rwanda's finest fruits in our range of refreshing, vitamin-packed juices."
+  },
+  {
     video: getAsset("/cooking.mp4"),
     giantText: "EVERYDAY MEALS",
     tagline: "Versatile Ingredients",
@@ -108,12 +116,9 @@ const CERTIFICATIONS = [
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 8000); // Rotate every 8 seconds
-    return () => clearInterval(timer);
-  }, []);
+  const handleVideoEnded = () => {
+    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+  };
 
 
 
@@ -129,9 +134,9 @@ export default function Home() {
             <video
               key={slide.video}
               autoPlay
-              loop
               muted
               playsInline
+              onEnded={handleVideoEnded}
               preload="auto"
               className="absolute inset-0 w-full h-full object-cover"
             >
@@ -635,7 +640,7 @@ export default function Home() {
               transition={{ delay: 0.1 }}
               className="w-24 md:w-36 h-[320px] md:h-[420px] rounded-[5rem] overflow-hidden shadow-xl relative"
             >
-              <Image src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=400" fill className="object-cover" alt="Lifestyle" />
+              <Image src={getAsset("/home_about_middle.jpg")} fill className="object-cover" alt="Refreshing Orange Juice" />
               <div className="absolute inset-0 bg-[#33a4df]/10" />
             </motion.div>
 
