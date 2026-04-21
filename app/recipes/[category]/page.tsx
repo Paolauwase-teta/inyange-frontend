@@ -59,7 +59,7 @@ export default function RecipeCategoryPage() {
             </div>
 
             {/* Content Section */}
-            <div className="relative z-10 -mt-10 md:-mt-16 w-full max-w-7xl mx-auto px-6">
+            <div className="relative z-10 -mt-10 md:-mt-16 w-full max-w-6xl mx-auto px-6 md:px-12">
                 
                 {/* Page Title */}
                 <h1 className="text-center text-5xl md:text-7xl lg:text-[5rem] font-bold tracking-tight text-[#0d55a0] mb-8" style={{ fontFamily: 'Arial, sans-serif' }}>

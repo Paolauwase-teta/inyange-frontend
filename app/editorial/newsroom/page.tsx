@@ -90,13 +90,13 @@ export default function NewsroomPage() {
                             </div>
                             
                             {/* Overlapping Card */}
-                            <div className="mt-[-15%] ml-[5%] relative z-20 w-[92%] md:w-[70%] md:ml-[8%]">
+                            <div className="mt-[-15%] ml-[5%] relative z-20 w-[92%] md:w-[65%] md:ml-[8%]">
                                 <motion.div 
                                     whileHover={{ y: -3 }}
-                                    className="bg-white p-5 md:p-6 rounded-xl md:rounded-[24px] shadow-[0_15px_40px_rgba(13,85,160,0.1)] border border-white/50 backdrop-blur-sm"
+                                    className="bg-white p-4 md:p-5 rounded-xl md:rounded-[24px] shadow-[0_15px_40px_rgba(13,85,160,0.1)] border border-white/50 backdrop-blur-sm"
                                 >
-                                    <div className="flex items-center gap-2 mb-3">
-                                        <span className="bg-[#0d55a0] text-white px-2 py-0.5 rounded-full text-[6px] font-black uppercase tracking-widest">
+                                    <div className="flex items-center gap-2 mb-2.5">
+                                        <span className="bg-[#0d55a0] text-white px-1.5 py-0.5 rounded-full text-[5px] font-black uppercase tracking-widest">
                                             {featured.category}
                                         </span>
                                         <span className="text-[7px] font-bold text-zinc-300 uppercase tracking-widest">{featured.date}</span>
@@ -123,22 +123,22 @@ export default function NewsroomPage() {
                         {/* SECONDARY FEED */}
                         <section className="space-y-10">
                             <SectionHeader label="More Stories" title="Inyange Updates" />
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {secondary.map(post => (
                                     <Link key={post.id} href={`/editorial/blog/${post.id}`} className="group flex flex-col">
-                                        <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-5 shadow-lg">
+                                        <div className="relative aspect-[16/11] rounded-xl overflow-hidden mb-4 shadow-md">
                                             <Image src={post.image} fill className="object-cover transition-transform duration-700 group-hover:scale-105" alt={post.title} />
-                                            <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2 py-0.5 rounded-lg">
-                                                <span className="text-[#0d55a0] text-[6px] font-black uppercase tracking-widest">{post.category}</span>
+                                            <div className="absolute top-2.5 left-2.5 bg-white/90 backdrop-blur-md px-1.5 py-0.5 rounded-md">
+                                                <span className="text-[#0d55a0] text-[5px] font-black uppercase tracking-[0.1em]">{post.category}</span>
                                             </div>
                                         </div>
-                                        <h4 className="text-base font-black text-black mb-2 leading-tight group-hover:text-[#0d55a0] transition-colors uppercase tracking-tight">
+                                        <h4 className="text-[13px] font-black text-black mb-1.5 leading-tight group-hover:text-[#0d55a0] transition-colors uppercase tracking-tight">
                                             {post.title}
                                         </h4>
-                                        <p className="text-zinc-500 text-[10px] leading-relaxed mb-3 line-clamp-2">
+                                        <p className="text-zinc-500 text-[9px] leading-relaxed mb-3 line-clamp-2">
                                             {post.excerpt}
                                         </p>
-                                        <div className="flex items-center gap-2 text-[#0d55a0] font-black text-[7px] uppercase tracking-[0.2em]">
+                                        <div className="flex items-center gap-1.5 text-[#0d55a0] font-black text-[6px] uppercase tracking-[0.2em]">
                                             Full Story <span className="text-xs">→</span>
                                         </div>
                                     </Link>
