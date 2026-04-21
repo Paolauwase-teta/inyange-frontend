@@ -80,9 +80,9 @@ const NAV_ITEMS: NavLinkProps[] = [
         { label: 'Leaders', href: '/leaders' },
         { label: 'Team', href: '/team' }
     ]},
-    { label: "Editorial", href: "/editorial", dropdown: [
+    { label: "Editorial Page", href: "/editorial", dropdown: [
         { label: 'Newsroom', href: '/editorial' },
-        { label: 'Blog', href: '/blog' }
+        { label: 'Blog', href: '/editorial/blog' }
     ]},
     { label: "Reach Out", href: "/reach-out" }
 ];
