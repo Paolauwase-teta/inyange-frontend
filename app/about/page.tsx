@@ -1,160 +1,176 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Users, Target, Award, Play } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Users, Target, Award, Play, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { LEADERS } from '@/lib/data/leaders';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+
+const HERO_SLIDES = [
+  "/Inyange_Industry.jpg",
+  "/about_processing.png",
+  "/editorial_showcase_2.png"
+];
 
 export default function AboutPage() {
-  const heroImages = [
-    { src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600", alt: "Team" },
-    { src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600", alt: "Specialist" },
-    { src: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=600", alt: "Collaboration" },
-    { src: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600", alt: "Leadership" }
-  ];
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 8000);
+    return () => clearInterval(timer);
+  }, []);
 
   const coreValues = [
     {
-      icon: <Users className="w-5 h-5 text-[#0d55a0]" />,
+      icon: <Users className="w-6 h-6 text-white" />,
       title: "People First",
-      desc: "Empowering our team and community.",
-      bgColor: "bg-white"
+      desc: "Empowering our team and the Rwandan community.",
+      color: "from-[#0d55a0] to-[#1565c0]"
     },
     {
-      icon: <Target className="w-5 h-5 text-[#0d55a0]" />,
+      icon: <Target className="w-6 h-6 text-white" />,
       title: "Integrity",
-      desc: "Unhindered commitment to purity.",
-      bgColor: "bg-white"
+      desc: "An unhindered commitment to purity in every drop.",
+      color: "from-[#5bb63a] to-[#7ac25d]"
     },
     {
-      icon: <Award className="w-5 h-5 text-[#0d55a0]" />,
+      icon: <Award className="w-6 h-6 text-white" />,
       title: "Excellence",
-      desc: "Setting the standard for quality.",
-      bgColor: "bg-white"
+      desc: "Setting the global standard for quality and taste.",
+      color: "from-[#33a4df] to-[#5ec1f1]"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-white font-sans overflow-x-hidden">
+    <main className="min-h-screen bg-[#fcfbf7] font-sans overflow-x-hidden relative pb-40">
+      {/* ── BACKGROUND TEXTURE ── */}
+      <div 
+          className="absolute inset-0 pointer-events-none z-0 opacity-10 mix-blend-overlay"
+          style={{ 
+              backgroundImage: "url('https://www.transparenttextures.com/patterns/cardboard.png')",
+              backgroundRepeat: 'repeat'
+          }}
+      />
 
-      {/* ── SECTION 1: HERO (REFINED SPACING & OVERLAP) ── */}
-      <section className="relative pt-32 md:pt-40 pb-0 flex flex-col items-center">
-        {/* Theme Background Pattern Overlay */}
-        <div 
-            className="absolute inset-x-0 top-0 h-[380px] md:h-[450px] pointer-events-none select-none z-0 opacity-[0.04] bg-repeat bg-[length:400px]"
-            style={{ backgroundImage: "url('/pattern.png')" }}
-        />
-        {/* Background color (Off-white theme) */}
-        <div className="absolute top-0 left-0 w-full h-[380px] md:h-[450px] bg-[#fcfbf7] z-[-1]" />
-        
-        <div className="max-w-7xl mx-auto px-8 relative z-10 flex flex-col items-center">
-          <h1 className="text-4xl md:text-5xl font-black text-[#0d55a0] mb-4 tracking-tight text-center uppercase tracking-tighter">
-            About us
-          </h1>
-          <p className="text-zinc-500 max-w-lg mx-auto mb-8 leading-relaxed text-xs md:text-sm text-center">
-            Inyange Industries: Rwanda's leading food processor, delivering premium dairy and beverages built on purity and excellence.
-          </p>
-
-          {/* Horizontal Image Row (Uniform & Scaled Down) */}
-          <div className="flex flex-row items-center justify-center gap-4 md:gap-6 w-full mb-[-60px] md:mb-[-100px]">
-            {heroImages.map((img, idx) => (
-              <div
-                key={idx}
-                className="relative overflow-hidden shadow-xl bg-white rounded-2xl w-20 md:w-36 h-28 md:h-48"
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Spacer for overlap */}
-      <div className="h-20 md:h-32" />
-
-      {/* ── SECTION 2: COMPANY BRIEF (COMPACT) ── */}
-      <section className="py-16 max-w-6xl mx-auto px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+      {/* ── SECTION 1: HERO (TRANSFORMED COZY) ── */}
+      <section className="relative w-full h-[65vh] md:h-[80vh] flex items-center justify-center overflow-hidden rounded-b-[4rem] md:rounded-b-[8rem] shadow-2xl">
+          <AnimatePresence mode="wait">
             <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="md:col-span-1"
+              key={currentSlide}
+              initial={{ opacity: 0, scale: 1 }}
+              animate={{ opacity: 1, scale: 1.15 }}
+              exit={{ opacity: 0 }}
+              transition={{ 
+                opacity: { duration: 2, ease: "easeInOut" },
+                scale: { duration: 8, ease: "linear" } 
+              }}
+              className="absolute inset-0 z-0"
             >
-                <h2 className="text-3xl font-black text-[#0d55a0] leading-tight mb-4">
-                    Purity & <span className="text-[#5bb63a]">Innovation</span>
-                </h2>
-                <div className="w-12 h-1 bg-[#5bb63a] rounded-full mb-6" />
-                <p className="text-zinc-500 text-xs leading-loose">
-                    Founded in 1997, Inyange Industries has become Rwanda's most trusted name in nutrition, leveraging modern technology to deliver nature's best to your table.
-                </p>
+              <Image 
+                src={HERO_SLIDES[currentSlide]} 
+                alt="About Inyange"
+                fill
+                className="object-cover"
+              />
+              {/* Editorial Style Overlays */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[#fcfbf7]" />
+              <div className="absolute inset-0 bg-[#0d55a0]/10 mix-blend-multiply" />
             </motion.div>
+          </AnimatePresence>
 
-            {/* Core Values / Briefing */}
-            <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-6">
-                {coreValues.map((val, i) => (
-                    <motion.div
-                        key={i}
-                        initial={{ opacity: 0, y: 15 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.1 }}
-                        className={`p-6 rounded-3xl ${val.bgColor} border border-black/10 shadow-sm relative overflow-hidden`}
-                    >
-                        {/* Subtle pattern for cards */}
-                        <div 
-                            className="absolute inset-0 pointer-events-none opacity-[0.02] bg-repeat bg-[length:200px]"
-                            style={{ backgroundImage: "url('/pattern.png')" }}
-                        />
-                        <div className="relative z-10">
-                            <div className="mb-4">{val.icon}</div>
-                            <h3 className="text-sm font-black text-[#1a1a1a] mb-2 uppercase tracking-tighter">{val.title}</h3>
-                            <p className="text-[10px] text-zinc-400 font-medium leading-relaxed">{val.desc}</p>
-                        </div>
-                    </motion.div>
-                ))}
-            </div>
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-8 flex flex-col items-center justify-center text-center">
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-block px-6 py-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full mb-8"
+            >
+                <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.5em] text-white">Rwanda's Heritage</span>
+            </motion.div>
+            
+            <motion.h1 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-6xl md:text-[10rem] font-black text-white uppercase tracking-tighter leading-[0.8] mb-10"
+            >
+                THE <br/> <span className="text-[#33a4df]">STORY</span><span className="text-[#5bb63a]">.</span>
+            </motion.h1>
+            
+            <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="text-white/70 text-sm md:text-xl font-medium max-w-xl leading-relaxed"
+            >
+                Founded in 1997, Inyange Industries has become the pulse of Rwanda's nutrition, building a legacy of purity and trust.
+            </motion.p>
+          </div>
+      </section>
+
+      {/* ── SECTION 2: VALUES GRID (COZY CARDS) ── */}
+      <section className="py-32 max-w-7xl mx-auto px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
+          {coreValues.map((val, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="group relative"
+            >
+                <div className={`absolute -inset-1 bg-gradient-to-r ${val.color} rounded-[3rem] blur-xl opacity-0 group-hover:opacity-20 transition duration-1000`} />
+                <div className="relative bg-white p-12 rounded-[3.5rem] shadow-xl border border-black/5 flex flex-col items-center text-center h-full">
+                    <div className={`w-20 h-20 bg-gradient-to-br ${val.color} rounded-3xl flex items-center justify-center shadow-2xl mb-10 group-hover:scale-110 transition-transform duration-700`}>
+                        {val.icon}
+                    </div>
+                    <h3 className="text-2xl font-black text-[#0d55a0] uppercase tracking-tighter mb-4">{val.title}</h3>
+                    <p className="text-zinc-400 font-bold text-sm leading-relaxed uppercase tracking-widest">{val.desc}</p>
+                </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* ── SECTION 3: LEADERSHIP (THE BRIEF) ── */}
-      <section className="py-16 bg-[#fcfbf7] relative overflow-hidden">
-        {/* Theme Background Pattern Overlay */}
-        <div 
-            className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.03] bg-repeat bg-[length:400px]"
-            style={{ backgroundImage: "url('/pattern.png')" }}
-        />
-        <div className="max-w-6xl mx-auto px-8 relative z-10">
-            <div className="flex justify-between items-end mb-10">
-                <div>
-                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0d55a0] mb-2 block">The Team</span>
-                    <h2 className="text-3xl font-black text-[#0d55a0] uppercase tracking-tighter">Visionary <span className="text-[#5bb63a]">Leaders</span></h2>
+      {/* ── SECTION 3: LEADERSHIP PREVIEW (REVERTED CARD STYLES) ── */}
+      <section className="py-40 bg-white/40 backdrop-blur-3xl border-y border-black/[0.03] relative z-10">
+        <div className="max-w-7xl mx-auto px-8">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-10">
+                <div className="max-w-2xl">
+                    <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-1 bg-[#33a4df] rounded-full" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#33a4df]">Executive Stewardship</span>
+                    </div>
+                    <h2 className="text-5xl md:text-8xl font-black text-[#0d55a0] uppercase tracking-tighter leading-[0.85]">
+                        Visionary <br/> <span className="text-[#5bb63a]">Leadership</span>
+                    </h2>
                 </div>
-                <div className="hidden md:block">
-                    <p className="text-zinc-400 text-[10px] max-w-[200px] leading-relaxed">
-                        Driving Rwandan excellence through strategic vision and uncompromising quality.
-                    </p>
-                </div>
+                <Link href="/leaders">
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-10 py-5 bg-[#0d55a0] text-white rounded-[2rem] font-black uppercase tracking-[0.2em] text-[10px] flex items-center gap-4 shadow-2xl"
+                    >
+                        View Full Team <ArrowRight className="w-4 h-4" />
+                    </motion.button>
+                </Link>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
                 {LEADERS.slice(0, 4).map((leader, i) => (
                     <Link href={`/leaders/${leader.slug}`} key={i}>
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
+                            initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
                             className="group flex flex-col cursor-pointer"
                         >
-                            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden mb-4 shadow-sm group-hover:shadow-xl transition-all duration-500">
+                            <div className="relative aspect-[3/4] rounded-3xl overflow-hidden mb-4 shadow-sm group-hover:shadow-xl transition-all duration-500">
                                 <Image 
                                     src={leader.image} 
                                     alt={leader.name} 
@@ -172,75 +188,54 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── SECTION 4: IMPACT & EMPOWERMENT (RESTORED) ── */}
-      <section className="py-20 max-w-6xl mx-auto px-8 relative">
-        <div className="flex flex-col lg:flex-row items-center gap-16">
-          {/* Image/Video Side */}
+      {/* ── SECTION 4: IMPACT (REFINED) ── */}
+      <section className="py-40 max-w-7xl mx-auto px-8 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-24">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="lg:w-1/2 relative w-full aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl group"
+            className="lg:w-[55%] relative w-full aspect-[16/10] rounded-[5rem] overflow-hidden shadow-[0_60px_100px_-30px_rgba(0,0,0,0.3)] group"
           >
             <Image
-              src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800"
-              alt="Making an impact"
+              src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=1200"
+              alt="Leadership impact"
               fill
-              className="object-cover"
+              className="object-cover group-hover:scale-105 transition-transform duration-2000"
             />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
-            
-            {/* Play Button Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#0d55a0]/40 to-transparent" />
             <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
+                <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-2xl cursor-pointer"
+                    className="w-24 h-24 bg-white/20 backdrop-blur-3xl border border-white/30 rounded-full flex items-center justify-center shadow-2xl transition-all hover:bg-white group"
                 >
-                    <Play className="w-6 h-6 text-[#0d55a0] fill-[#0d55a0]" />
-                </motion.div>
+                    <Play className="w-8 h-8 text-white group-hover:text-[#0d55a0] fill-white group-hover:fill-[#0d55a0] transition-colors" />
+                </motion.button>
             </div>
-
-            {/* Floating Quote Card */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="absolute bottom-6 left-6 right-6 md:left-auto md:right-8 md:w-64 bg-white rounded-2xl p-6 shadow-2xl"
-            >
-                <p className="text-[#1a1a1a] font-black text-xs italic mb-3 leading-relaxed">
-                    "Making an impact, together"
-                </p>
-                <div className="flex flex-col">
-                    <span className="text-[10px] font-black text-[#0d55a0] uppercase tracking-widest">Inyange Leadership</span>
-                    <span className="text-[8px] text-zinc-400 font-bold uppercase tracking-widest">Vision for Excellence</span>
-                </div>
-            </motion.div>
           </motion.div>
 
-          {/* Text Content */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:w-1/2"
+            className="lg:w-[45%] space-y-10"
           >
-            <h2 className="text-3xl md:text-5xl font-black text-[#0d55a0] mb-6 leading-tight uppercase tracking-tighter">
-              We empower small business owners
-            </h2>
-            <p className="text-zinc-500 text-xs md:text-sm leading-loose mb-8">
-              At Inyange, we recognize that our success is deeply intertwined with the prosperity of our local partners. We actively support small business owners across our supply chain—from local farmers to regional distributors.
-            </p>
-            <div className="pl-6 border-l-4 border-[#5bb63a]">
-                <p className="text-zinc-600 text-xs md:text-sm italic font-medium leading-relaxed">
-                    "Our commitment goes beyond processing; it's about building a sustainable ecosystem where every partner can thrive and contribute to Rwanda's growth."
+            <div>
+                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#5bb63a] mb-6 block">Our Impact</span>
+                <h2 className="text-4xl md:text-7xl font-black text-[#0d55a0] mb-8 leading-[0.85] uppercase tracking-tighter">
+                  Empowering <br/> <span className="text-[#33a4df]">Communities</span>
+                </h2>
+                <p className="text-zinc-500 text-base md:text-lg font-medium leading-relaxed italic border-l-4 border-[#33a4df] pl-8">
+                  "At Inyange, we believe that true leadership is measured by the growth of our partners and the prosperity of Rwanda."
                 </p>
             </div>
+            <p className="text-zinc-400 text-sm md:text-base font-bold leading-loose uppercase tracking-widest">
+              From local farmers to regional distributors, we are building a sustainable ecosystem where excellence is the only standard.
+            </p>
           </motion.div>
         </div>
       </section>
-
-    </div>
+    </main>
   );
 }
