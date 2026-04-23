@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Message {
@@ -11,7 +12,12 @@ interface Message {
 }
 
 export default function ChatBox() {
+    const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
+
+    if (pathname.startsWith('/admin')) {
+        return null;
+    }
     const [activeTab, setActiveTab] = useState<'ASSISTANT' | 'FAQS'>('ASSISTANT');
     const [inputValue, setInputValue] = useState('');
     const [isTyping, setIsTyping] = useState(false);

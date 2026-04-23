@@ -42,11 +42,11 @@ export const modalBodyStyle: React.CSSProperties = {
 export const sectionTitleStyle: React.CSSProperties = {
     fontSize: '14px',
     fontWeight: 800,
-    color: '#000',
+    color: '#0d55a0',
     margin: '0 0 16px',
     letterSpacing: '-0.01em',
     paddingBottom: '10px',
-    borderBottom: '1px solid rgba(0,0,0,0.06)',
+    borderBottom: '1px solid rgba(13, 85, 160, 0.08)',
 };
 
 export const fieldGroupStyle: React.CSSProperties = {
@@ -134,7 +134,7 @@ export const cancelBtnStyle: React.CSSProperties = {
 
 export const submitBtnStyle: React.CSSProperties = {
     padding: '12px 28px',
-    background: '#000',
+    background: '#0d55a0',
     color: '#fff',
     border: 'none',
     borderRadius: '10px',
@@ -163,8 +163,8 @@ export const closeBtnStyle: React.CSSProperties = {
 /* ─── CSS for focus states (inject in pages) ─── */
 export const modalCSS = `
     .modal-input:focus {
-        border-color: #000 !important;
-        box-shadow: 0 0 0 3px rgba(0,0,0,0.06) !important;
+        border-color: #0d55a0 !important;
+        box-shadow: 0 0 0 3px rgba(13, 85, 160, 0.1) !important;
     }
     .modal-input::placeholder {
         color: #bbb;

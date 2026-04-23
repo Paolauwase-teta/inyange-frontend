@@ -92,7 +92,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                         fontWeight: 600,
                         letterSpacing: '0.12em',
                         textTransform: 'uppercase',
-                        color: 'rgba(0,0,0,0.3)',
+                        color: '#0d55a0',
                     }}>Loading...</div>
                 </div>
             </div>
@@ -158,10 +158,10 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                 }
                 .admin-nav-item:hover { background: rgba(0,0,0,0.04); }
                 .admin-nav-item.active {
-                    background: #000;
+                    background: #0d55a0;
                     color: #fff !important;
                     font-weight: 700;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                    box-shadow: 0 2px 8px rgba(13, 85, 160, 0.25);
                 }
                 .admin-nav-item.active svg { stroke: #fff; }
 
@@ -195,7 +195,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                     className="admin-mobile-toggle"
                     onClick={() => setSidebarOpen(!sidebarOpen)}
                 >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2" strokeLinecap="round">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0d55a0" strokeWidth="2" strokeLinecap="round">
                         <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
                     </svg>
                 </button>
@@ -228,7 +228,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                                     fontSize: '15px',
                                     fontWeight: 800,
                                     letterSpacing: '-0.02em',
-                                    color: '#000',
+                                    color: '#0d55a0',
                                     margin: 0,
                                     lineHeight: 1.2,
                                 }}>Inyange Industries</h1>
@@ -312,7 +312,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                             <p style={{
                                 fontSize: '11px',
                                 fontWeight: 700,
-                                color: '#000',
+                                color: '#0d55a0',
                                 margin: '0 0 2px',
                             }}>Need help?</p>
                             <p style={{
@@ -326,7 +326,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                                 style={{
                                     fontSize: '10px',
                                     fontWeight: 700,
-                                    color: '#000',
+                                    color: '#0d55a0',
                                     textDecoration: 'none',
                                     display: 'inline-flex',
                                     alignItems: 'center',
@@ -350,7 +350,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                             width: '36px',
                             height: '36px',
                             borderRadius: '10px',
-                            background: '#000',
+                            background: '#0d55a0',
                             color: '#fff',
                             display: 'flex',
                             alignItems: 'center',
@@ -363,7 +363,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                             <div style={{
                                 fontSize: '13px',
                                 fontWeight: 700,
-                                color: '#000',
+                                color: '#0d55a0',
                                 whiteSpace: 'nowrap',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',

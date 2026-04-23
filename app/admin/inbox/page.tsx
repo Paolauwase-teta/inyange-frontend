@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthProvider';
 import {
     modalOverlayStyle, modalBoxStyle,
     modalFooterStyle, cancelBtnStyle, submitBtnStyle, closeBtnStyle, modalCSS,
+    textareaStyle, labelStyle,
 } from '../components/ModalStyles';
 import { toast } from 'react-toastify';
 
@@ -22,6 +23,9 @@ export default function InboxAdmin() {
     const [contacts, setContacts] = useState<Contact[]>([]);
     const [loading, setLoading] = useState(true);
     const [selected, setSelected] = useState<Contact | null>(null);
+    const [replyText, setReplyText] = useState('');
+    const [isReplying, setIsReplying] = useState(false);
+    const [sendingReply, setSendingReply] = useState(false);
 
     const headers = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
 
@@ -67,6 +71,30 @@ export default function InboxAdmin() {
     const openMessage = (c: Contact) => {
         setSelected(c);
         markAsRead(c);
+        setIsReplying(false);
+        setReplyText('');
+    };
+
+    const handleSendReply = async () => {
+        if (!selected || !replyText.trim()) return;
+        setSendingReply(true);
+        try {
+            const res = await fetch(`/api/contacts/${selected.id}/reply`, {
+                method: 'POST',
+                headers,
+                body: JSON.stringify({ reply: replyText }),
+            });
+            if (res.ok) {
+                toast.success('Reply sent successfully');
+                setIsReplying(false);
+                setReplyText('');
+            } else {
+                toast.error('Failed to send reply');
+            }
+        } catch {
+            toast.error('Network error');
+        }
+        setSendingReply(false);
     };
 
     const formatDate = (d: string) => {
@@ -85,7 +113,7 @@ export default function InboxAdmin() {
                         <h1 style={{ fontSize: '24px', fontWeight: 900, letterSpacing: '-0.03em', margin: 0 }}>Inbox</h1>
                         <p style={{ fontSize: '12px', color: 'rgba(0,0,0,0.4)', marginTop: '2px' }}>
                             Contact form submissions ({contacts.length})
-                            {unreadCount > 0 && <span style={{ marginLeft: '8px', padding: '2px 8px', background: '#000', color: '#fff', borderRadius: '10px', fontSize: '10px', fontWeight: 800 }}>{unreadCount} new</span>}
+                            {unreadCount > 0 && <span style={{ marginLeft: '8px', padding: '2px 8px', background: '#0d55a0', color: '#fff', borderRadius: '10px', fontSize: '10px', fontWeight: 800 }}>{unreadCount} new</span>}
                         </p>
                     </div>
                 </div>
@@ -104,11 +132,11 @@ export default function InboxAdmin() {
                                 <div>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
                                         <div style={{
-                                            width: '36px', height: '36px', borderRadius: '10px', background: '#000', color: '#fff',
+                                            width: '36px', height: '36px', borderRadius: '10px', background: '#0d55a0', color: '#fff',
                                             display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '15px', fontWeight: 800, flexShrink: 0,
                                         }}>{selected.name.charAt(0).toUpperCase()}</div>
                                         <div>
-                                            <h2 style={{ fontSize: '18px', fontWeight: 900, color: '#000', margin: 0, letterSpacing: '-0.02em' }}>{selected.name}</h2>
+                                            <h2 style={{ fontSize: '18px', fontWeight: 900, color: '#0d55a0', margin: 0, letterSpacing: '-0.02em' }}>{selected.name}</h2>
                                             <p style={{ fontSize: '11px', color: 'rgba(0,0,0,0.4)', margin: 0 }}>{selected.email}</p>
                                         </div>
                                     </div>
@@ -121,7 +149,53 @@ export default function InboxAdmin() {
                                 <div style={{
                                     padding: '20px', background: '#fafafa', borderRadius: '12px',
                                     fontSize: '13px', lineHeight: 1.7, color: '#333', whiteSpace: 'pre-wrap',
+                                    marginBottom: '20px',
                                 }}>{selected.message}</div>
+
+                                {isReplying ? (
+                                    <div style={{ marginBottom: '20px', animation: 'fadeUp 0.3s ease' }}>
+                                        <label style={{ ...labelStyle, display: 'block', marginBottom: '8px', color: '#0d55a0' }}>Your Reply</label>
+                                        <textarea
+                                            className="modal-input"
+                                            style={{ ...textareaStyle, minHeight: '120px', marginBottom: '12px' }}
+                                            value={replyText}
+                                            onChange={e => setReplyText(e.target.value)}
+                                            placeholder="Type your response here..."
+                                            autoFocus
+                                        />
+                                        <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
+                                            <button onClick={() => setIsReplying(false)} style={cancelBtnStyle}>Cancel</button>
+                                            <button 
+                                                onClick={handleSendReply} 
+                                                disabled={sendingReply || !replyText.trim()} 
+                                                style={{ ...submitBtnStyle, opacity: (sendingReply || !replyText.trim()) ? 0.6 : 1 }}
+                                            >
+                                                {sendingReply ? 'Sending...' : 'Send Reply'}
+                                            </button>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <button 
+                                        onClick={() => setIsReplying(true)}
+                                        style={{
+                                            width: '100%',
+                                            padding: '12px',
+                                            background: '#f0f7ff',
+                                            color: '#0d55a0',
+                                            border: '1px dashed #0d55a0',
+                                            borderRadius: '10px',
+                                            fontSize: '13px',
+                                            fontWeight: 700,
+                                            cursor: 'pointer',
+                                            marginBottom: '20px',
+                                            transition: 'all 0.2s',
+                                        }}
+                                        onMouseEnter={e => (e.currentTarget.style.background = '#e1effe')}
+                                        onMouseLeave={e => (e.currentTarget.style.background = '#f0f7ff')}
+                                    >
+                                        + Click to write a reply
+                                    </button>
+                                )}
 
                                 <div style={modalFooterStyle}>
                                     <button onClick={() => handleDelete(selected)} style={{ ...cancelBtnStyle, color: '#991b1b', background: '#fef2f2', border: '1px solid #fecaca' }}>Delete</button>
@@ -152,14 +226,14 @@ export default function InboxAdmin() {
                             onMouseLeave={e => (e.currentTarget.style.background = c.isRead ? 'transparent' : 'rgba(0,0,0,0.015)')}
                         >
                             <div style={{
-                                width: '36px', height: '36px', borderRadius: '50%', background: '#000', color: '#fff',
+                                width: '36px', height: '36px', borderRadius: '50%', background: '#0d55a0', color: '#fff',
                                 display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 800, flexShrink: 0,
                             }}>{c.name.charAt(0).toUpperCase()}</div>
                             <div style={{ flex: 1, minWidth: 0 }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2px' }}>
-                                    <span style={{ fontSize: '13px', color: '#000', fontWeight: c.isRead ? 600 : 800 }}>{c.name}</span>
+                                    <span style={{ fontSize: '13px', color: '#0d55a0', fontWeight: c.isRead ? 600 : 800 }}>{c.name}</span>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                        {!c.isRead && <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#000' }} />}
+                                        {!c.isRead && <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#0d55a0' }} />}
                                         <span style={{ fontSize: '10px', color: 'rgba(0,0,0,0.3)' }}>{formatDate(c.createdAt)}</span>
                                     </div>
                                 </div>
