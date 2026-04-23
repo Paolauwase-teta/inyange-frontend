@@ -349,7 +349,7 @@ export default function AdminDashboard() {
                             <h3 style={{
                                 fontSize: '14px',
                                 fontWeight: 800,
-                                color: '#000',
+                                color: '#0d55a0',
                                 margin: '0 0 16px',
                                 letterSpacing: '-0.01em',
                             }}>Quick Actions</h3>
