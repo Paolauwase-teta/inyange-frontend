@@ -156,7 +156,7 @@ export default function AdminDashboard() {
                     align-items: center;
                     gap: 6px;
                     padding: 10px 18px;
-                    background: #000;
+                    background: #0d55a0;
                     color: #fff;
                     border-radius: 10px;
                     font-size: 12px;
@@ -164,7 +164,7 @@ export default function AdminDashboard() {
                     text-decoration: none;
                     transition: all 0.2s;
                 }
-                .action-pill:hover { background: #222; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+                .action-pill:hover { background: #33a4df; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(13, 85, 160, 0.2); }
 
                 .timeline-item {
                     display: flex;
@@ -201,7 +201,7 @@ export default function AdminDashboard() {
                         fontSize: '28px',
                         fontWeight: 900,
                         letterSpacing: '-0.03em',
-                        color: '#000',
+                        color: '#0d55a0',
                         margin: 0,
                     }}>{getGreeting()}, {user?.name || 'Admin'} 👋</h1>
                 </div>
@@ -217,7 +217,7 @@ export default function AdminDashboard() {
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                         {/* Hero Banner */}
                         <div className="dash-card" style={{
-                            background: 'linear-gradient(135deg, #000 0%, #1a1a1a 50%, #2d2d2d 100%)',
+                            background: 'linear-gradient(135deg, #0d55a0 0%, #1e67b5 50%, #33a4df 100%)',
                             border: 'none',
                             padding: '36px 32px',
                             position: 'relative',
@@ -287,7 +287,7 @@ export default function AdminDashboard() {
                                         gap: '8px',
                                         padding: '12px 24px',
                                         background: '#fff',
-                                        color: '#000',
+                                        color: '#0d55a0',
                                         borderRadius: '10px',
                                         fontSize: '12px',
                                         fontWeight: 800,
@@ -326,7 +326,7 @@ export default function AdminDashboard() {
                                         <p style={{
                                             fontSize: '24px',
                                             fontWeight: 900,
-                                            color: '#000',
+                                            color: '#0d55a0',
                                             margin: 0,
                                             letterSpacing: '-0.03em',
                                             lineHeight: 1,
@@ -349,7 +349,7 @@ export default function AdminDashboard() {
                             <h3 style={{
                                 fontSize: '14px',
                                 fontWeight: 800,
-                                color: '#000',
+                                color: '#0d55a0',
                                 margin: '0 0 16px',
                                 letterSpacing: '-0.01em',
                             }}>Quick Actions</h3>
@@ -378,7 +378,7 @@ export default function AdminDashboard() {
                                 <h3 style={{
                                     fontSize: '14px',
                                     fontWeight: 800,
-                                    color: '#000',
+                                    color: '#0d55a0',
                                     margin: 0,
                                     letterSpacing: '-0.01em',
                                 }}>Recent Posts</h3>
@@ -399,7 +399,7 @@ export default function AdminDashboard() {
                                         width: '8px',
                                         height: '8px',
                                         borderRadius: '50%',
-                                        background: i === 0 ? '#000' : '#e0e0e0',
+                                        background: i === 0 ? '#0d55a0' : '#e0e0e0',
                                         marginTop: '5px',
                                         flexShrink: 0,
                                     }} />
@@ -407,7 +407,7 @@ export default function AdminDashboard() {
                                         <p style={{
                                             fontSize: '13px',
                                             fontWeight: 700,
-                                            color: '#000',
+                                            color: '#0d55a0',
                                             margin: '0 0 4px',
                                             whiteSpace: 'nowrap',
                                             overflow: 'hidden',
@@ -443,7 +443,7 @@ export default function AdminDashboard() {
                                 <h3 style={{
                                     fontSize: '14px',
                                     fontWeight: 800,
-                                    color: '#000',
+                                    color: '#0d55a0',
                                     margin: 0,
                                     letterSpacing: '-0.01em',
                                 }}>Latest Message</h3>
@@ -469,7 +469,7 @@ export default function AdminDashboard() {
                                             width: '32px',
                                             height: '32px',
                                             borderRadius: '8px',
-                                            background: '#000',
+                                            background: '#0d55a0',
                                             color: '#fff',
                                             display: 'flex',
                                             alignItems: 'center',
@@ -479,7 +479,7 @@ export default function AdminDashboard() {
                                             flexShrink: 0,
                                         }}>{latestMessage.name.charAt(0).toUpperCase()}</div>
                                         <div>
-                                            <p style={{ fontSize: '13px', fontWeight: 700, color: '#000', margin: 0 }}>{latestMessage.name}</p>
+                                            <p style={{ fontSize: '13px', fontWeight: 700, color: '#0d55a0', margin: 0 }}>{latestMessage.name}</p>
                                             <p style={{ fontSize: '10px', color: 'rgba(0,0,0,0.35)', margin: 0 }}>{latestMessage.email}</p>
                                         </div>
                                         <span style={{
@@ -509,7 +509,7 @@ export default function AdminDashboard() {
                                 <h3 style={{
                                     fontSize: '14px',
                                     fontWeight: 800,
-                                    color: '#000',
+                                    color: '#0d55a0',
                                     margin: 0,
                                     letterSpacing: '-0.01em',
                                 }}>Team</h3>
@@ -554,7 +554,7 @@ export default function AdminDashboard() {
                                                 )}
                                             </div>
                                             <div>
-                                                <p style={{ fontSize: '12px', fontWeight: 700, color: '#000', margin: 0 }}>{member.name}</p>
+                                                <p style={{ fontSize: '12px', fontWeight: 700, color: '#0d55a0', margin: 0 }}>{member.name}</p>
                                                 <p style={{ fontSize: '10px', color: 'rgba(0,0,0,0.35)', margin: 0 }}>{member.role}</p>
                                             </div>
                                         </div>

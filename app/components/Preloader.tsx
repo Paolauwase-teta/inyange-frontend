@@ -1,12 +1,18 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { getAsset } from '@/lib/getAsset';
 
 export default function Preloader() {
     const [isVisible, setIsVisible] = useState(true);
+    const pathname = usePathname();
+
+    if (pathname.startsWith('/admin')) {
+        return null;
+    }
 
     useEffect(() => {
         // We wait for the entire page to load (including videos and images)

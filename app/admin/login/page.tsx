@@ -70,13 +70,13 @@ export default function LoginPage() {
                 }
                 .login-input::placeholder { color: #aaa; }
                 .login-input:focus {
-                    border-color: #000;
-                    box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
+                    border-color: #0d55a0;
+                    box-shadow: 0 0 0 3px rgba(13, 85, 160, 0.1);
                 }
                 .login-btn {
                     width: 100%;
                     padding: 15px;
-                    background: #000;
+                    background: #0d55a0;
                     color: #fff;
                     border: none;
                     border-radius: 10px;
@@ -88,7 +88,7 @@ export default function LoginPage() {
                 }
                 .login-btn:hover {
                     transform: translateY(-2px);
-                    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+                    box-shadow: 0 8px 24px rgba(13, 85, 160, 0.2);
                 }
                 .login-btn:active { transform: translateY(0); }
                 .login-btn:disabled {
@@ -121,7 +121,7 @@ export default function LoginPage() {
                     border-radius: 24px;
                     overflow: hidden;
                     position: relative;
-                    background: #222;
+                    background: #0d55a0;
                     min-height: calc(100vh - 64px);
                 }
 
@@ -180,7 +180,7 @@ export default function LoginPage() {
                             <h1 style={{
                                 fontSize: '28px',
                                 fontWeight: 900,
-                                color: '#000',
+                                color: '#0d55a0',
                                 margin: '0 0 6px',
                                 letterSpacing: '-0.03em',
                             }}>Welcome back</h1>
