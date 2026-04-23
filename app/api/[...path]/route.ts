@@ -518,9 +518,12 @@ function tryGetMockResponse(method: string, segments: string[], bodyJson: any): 
       return NextResponse.json({ message: 'Mock message received', contact: newContact }, { status: 200 });
     }
 
-    if ((method === 'PATCH' || method === 'DELETE') && second) {
+    if ((method === 'PATCH' || method === 'DELETE' || method === 'POST') && second) {
       if (method === 'PATCH') MOCK_CONTACTS = MOCK_CONTACTS.map(c => (c.id === second ? { ...c, isRead: true } : c));
       if (method === 'DELETE') MOCK_CONTACTS = MOCK_CONTACTS.filter(c => c.id !== second);
+      if (method === 'POST' && segments[2] === 'reply') {
+        return NextResponse.json({ message: 'Reply sent successfully (Mock)' }, { status: 200 });
+      }
       return NextResponse.json({ message: 'Mock update ok' }, { status: 200 });
     }
   }

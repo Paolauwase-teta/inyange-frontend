@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthProvider';
 import {
     modalOverlayStyle, modalBoxStyle,
     modalFooterStyle, cancelBtnStyle, submitBtnStyle, closeBtnStyle, modalCSS,
+    textareaStyle, labelStyle,
 } from '../components/ModalStyles';
 import { toast } from 'react-toastify';
 
@@ -22,6 +23,9 @@ export default function InboxAdmin() {
     const [contacts, setContacts] = useState<Contact[]>([]);
     const [loading, setLoading] = useState(true);
     const [selected, setSelected] = useState<Contact | null>(null);
+    const [replyText, setReplyText] = useState('');
+    const [isReplying, setIsReplying] = useState(false);
+    const [sendingReply, setSendingReply] = useState(false);
 
     const headers = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
 
@@ -67,6 +71,30 @@ export default function InboxAdmin() {
     const openMessage = (c: Contact) => {
         setSelected(c);
         markAsRead(c);
+        setIsReplying(false);
+        setReplyText('');
+    };
+
+    const handleSendReply = async () => {
+        if (!selected || !replyText.trim()) return;
+        setSendingReply(true);
+        try {
+            const res = await fetch(`/api/contacts/${selected.id}/reply`, {
+                method: 'POST',
+                headers,
+                body: JSON.stringify({ reply: replyText }),
+            });
+            if (res.ok) {
+                toast.success('Reply sent successfully');
+                setIsReplying(false);
+                setReplyText('');
+            } else {
+                toast.error('Failed to send reply');
+            }
+        } catch {
+            toast.error('Network error');
+        }
+        setSendingReply(false);
     };
 
     const formatDate = (d: string) => {
@@ -121,7 +149,53 @@ export default function InboxAdmin() {
                                 <div style={{
                                     padding: '20px', background: '#fafafa', borderRadius: '12px',
                                     fontSize: '13px', lineHeight: 1.7, color: '#333', whiteSpace: 'pre-wrap',
+                                    marginBottom: '20px',
                                 }}>{selected.message}</div>
+
+                                {isReplying ? (
+                                    <div style={{ marginBottom: '20px', animation: 'fadeUp 0.3s ease' }}>
+                                        <label style={{ ...labelStyle, display: 'block', marginBottom: '8px', color: '#0d55a0' }}>Your Reply</label>
+                                        <textarea
+                                            className="modal-input"
+                                            style={{ ...textareaStyle, minHeight: '120px', marginBottom: '12px' }}
+                                            value={replyText}
+                                            onChange={e => setReplyText(e.target.value)}
+                                            placeholder="Type your response here..."
+                                            autoFocus
+                                        />
+                                        <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
+                                            <button onClick={() => setIsReplying(false)} style={cancelBtnStyle}>Cancel</button>
+                                            <button 
+                                                onClick={handleSendReply} 
+                                                disabled={sendingReply || !replyText.trim()} 
+                                                style={{ ...submitBtnStyle, opacity: (sendingReply || !replyText.trim()) ? 0.6 : 1 }}
+                                            >
+                                                {sendingReply ? 'Sending...' : 'Send Reply'}
+                                            </button>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <button 
+                                        onClick={() => setIsReplying(true)}
+                                        style={{
+                                            width: '100%',
+                                            padding: '12px',
+                                            background: '#f0f7ff',
+                                            color: '#0d55a0',
+                                            border: '1px dashed #0d55a0',
+                                            borderRadius: '10px',
+                                            fontSize: '13px',
+                                            fontWeight: 700,
+                                            cursor: 'pointer',
+                                            marginBottom: '20px',
+                                            transition: 'all 0.2s',
+                                        }}
+                                        onMouseEnter={e => (e.currentTarget.style.background = '#e1effe')}
+                                        onMouseLeave={e => (e.currentTarget.style.background = '#f0f7ff')}
+                                    >
+                                        + Click to write a reply
+                                    </button>
+                                )}
 
                                 <div style={modalFooterStyle}>
                                     <button onClick={() => handleDelete(selected)} style={{ ...cancelBtnStyle, color: '#991b1b', background: '#fef2f2', border: '1px solid #fecaca' }}>Delete</button>
