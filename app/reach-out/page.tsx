@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
+import { getAsset } from '@/lib/getAsset';
 
 const ReachOutMap = dynamic(() => import('./ReachOutMap'), { ssr: false });
 
@@ -135,7 +136,7 @@ export default function ReachOutPage() {
                 {/* Background Pattern Overlay */}
                 <div 
                     className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.03] bg-repeat bg-[length:400px]"
-                    style={{ backgroundImage: "url('/pattern.png')" }}
+                    style={{ backgroundImage: `url('${getAsset('/pattern.png')}')` }}
                 />
                 <div className="relative z-10 w-full max-w-6xl mx-auto px-8">
                     <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] text-white/60 mb-4">Connection Points</motion.p>

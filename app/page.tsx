@@ -279,7 +279,7 @@ export default function Home() {
                 className="relative w-full aspect-[4/3] max-w-[400px]"
               >
                 <Image 
-                  src="/inyangebrand.png" 
+                  src={getAsset("/inyangebrand.png")} 
                   alt="Inyange Brands Collection" 
                   fill 
                   className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.05)]"
@@ -348,7 +348,7 @@ export default function Home() {
           className="absolute bottom-6 right-6 w-20 h-20 pointer-events-none grayscale opacity-30"
         >
           <Image 
-            src="/decorations/decobird.png" 
+            src={getAsset("/decorations/decobird.png")} 
             alt="Decoration" 
             fill 
             className="object-contain"

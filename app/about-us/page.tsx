@@ -6,58 +6,58 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const MILESTONES = [
-  {
-    id: 1,
-    year: '1997',
-    tag: 'FOUNDATION',
-    title: 'The Inyange Vision',
-    description: 'Inyange Industries was founded as a private enterprise with a visionary goal: to become Rwanda\'s leading food and beverage processor.',
-    cx: 100,
-    cy: 320,
-  },
-  {
-    id: 2,
-    year: '1999',
-    tag: 'DAIRY START',
-    title: 'Pasteurized Milk & Yoghurt',
-    description: 'Operations expanded to include processing and selling high-quality pasteurized milk and yoghurt for the Rwandan market.',
-    cx: 285,
-    cy: 200,
-  },
-  {
-    id: 3,
-    year: '2001',
-    tag: 'WATER',
-    title: 'Mineral Water Processing',
-    description: 'The plant introduced mineral water processing and packaging, quickly becoming a standard for hygienic drinking water.',
-    cx: 470,
-    cy: 280,
-  },
-  {
-    id: 4,
-    year: '2010',
-    tag: 'MASAKA PLANT',
-    title: 'USD 27M Expansion',
-    description: 'Construction of a state-of-the-art production plant in Masaka, increasing production capacity tenfold to meet rising domestic demand.',
-    cx: 655,
-    cy: 140,
-  },
-  {
-    id: 5,
-    year: 'PRESENT',
-    tag: 'REGIONAL REACH',
-    title: 'EAC Expansion',
-    description: 'Leveraging Rwanda\'s position in the East African Community to export premium quality dairy, juices, and water to neighboring countries.',
-    cx: 840,
-    cy: 100,
-  },
+    {
+        id: 1,
+        year: '1997',
+        tag: 'FOUNDATION',
+        title: 'The Inyange Vision',
+        description: 'Inyange Industries was founded as a private enterprise with a visionary goal: to become Rwanda\'s leading food and beverage processor.',
+        cx: 100,
+        cy: 320,
+    },
+    {
+        id: 2,
+        year: '1999',
+        tag: 'DAIRY START',
+        title: 'Pasteurized Milk & Yoghurt',
+        description: 'Operations expanded to include processing and selling high-quality pasteurized milk and yoghurt for the Rwandan market.',
+        cx: 285,
+        cy: 200,
+    },
+    {
+        id: 3,
+        year: '2001',
+        tag: 'WATER',
+        title: 'Mineral Water Processing',
+        description: 'The plant introduced mineral water processing and packaging, quickly becoming a standard for hygienic drinking water.',
+        cx: 470,
+        cy: 280,
+    },
+    {
+        id: 4,
+        year: '2010',
+        tag: 'MASAKA PLANT',
+        title: 'USD 27M Expansion',
+        description: 'Construction of a state-of-the-art production plant in Masaka, increasing production capacity tenfold to meet rising domestic demand.',
+        cx: 655,
+        cy: 140,
+    },
+    {
+        id: 5,
+        year: 'PRESENT',
+        tag: 'REGIONAL REACH',
+        title: 'EAC Expansion',
+        description: 'Leveraging Rwanda\'s position in the East African Community to export premium quality dairy, juices, and water to neighboring countries.',
+        cx: 840,
+        cy: 100,
+    },
 ];
 
 const CERTIFICATIONS = [
-  { name: 'Quality Standard 01', image: '/quality1.png' },
-  { name: 'Quality Standard 02', image: '/quality2.jpg' },
-  { name: 'Quality Standard 03', image: '/quality3.jpg' },
-  { name: 'Quality Standard 04', image: '/quality4.png' },
+    { name: 'Quality Standard 01', image: '/quality1.png' },
+    { name: 'Quality Standard 02', image: '/quality2.jpg' },
+    { name: 'Quality Standard 03', image: '/quality3.jpg' },
+    { name: 'Quality Standard 04', image: '/quality4.png' },
 ];
 
 const VB_W = 900;
@@ -73,20 +73,20 @@ export default function AboutUsPage() {
             <section className="relative w-full h-[50vh] md:h-[65vh] bg-[#0d55a0] overflow-hidden flex items-center justify-center">
                 {/* Background Watermark */}
                 {/* Background Pattern Overlay */}
-                <div 
+                <div
                     className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.03] bg-repeat bg-[length:400px]"
                     style={{ backgroundImage: "url('/pattern.png')" }}
                 />
 
                 <div className="relative z-10 w-full max-w-6xl mx-auto px-8 flex flex-col items-start">
-                    <motion.p 
+                    <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] text-white/60 mb-4"
                     >
                         Legacy of Excellence
                     </motion.p>
-                    <motion.h1 
+                    <motion.h1
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
@@ -122,17 +122,17 @@ export default function AboutUsPage() {
                         </div>
                     </div>
                 </motion.div>
-                
+
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl"
                 >
-                    <Image 
-                        src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=800&q=80" 
-                        alt="Inyange Industry" 
-                        fill 
+                    <Image
+                        src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=800&q=80"
+                        alt="Inyange Industry"
+                        fill
                         className="object-cover"
                     />
                     <div className="absolute inset-0 bg-[#0d55a0]/10 mix-blend-overlay" />
@@ -143,7 +143,7 @@ export default function AboutUsPage() {
             <section className="bg-white py-32 overflow-hidden relative border-y border-black/5">
                 {/* Evolution Watermark - Background */}
                 {/* Background Pattern Overlay */}
-                <div 
+                <div
                     className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.03] bg-repeat bg-[length:400px]"
                     style={{ backgroundImage: "url('/pattern.png')" }}
                 />
@@ -160,29 +160,29 @@ export default function AboutUsPage() {
                 <div className="max-w-6xl mx-auto px-8 relative h-[500px]">
                     {/* SVG Path - Sleek Cubic Bezier */}
                     <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox={`0 0 ${VB_W} ${VB_H}`} fill="none">
-                        <path 
-                            d="M 100 320 C 192.5 320, 192.5 200, 285 200 C 377.5 200, 377.5 280, 470 280 C 562.5 280, 562.5 140, 655 140 C 747.5 140, 747.5 100, 840 100" 
-                            stroke="rgba(0,0,0,0.05)" 
-                            strokeWidth="3" 
+                        <path
+                            d="M 100 320 C 192.5 320, 192.5 200, 285 200 C 377.5 200, 377.5 280, 470 280 C 562.5 280, 562.5 140, 655 140 C 747.5 140, 747.5 100, 840 100"
+                            stroke="rgba(0,0,0,0.05)"
+                            strokeWidth="3"
                         />
-                        <motion.path 
+                        <motion.path
                             initial={{ pathLength: 0 }}
                             whileInView={{ pathLength: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 2, ease: "easeInOut" }}
-                            d="M 100 320 C 192.5 320, 192.5 200, 285 200 C 377.5 200, 377.5 280, 470 280 C 562.5 280, 562.5 140, 655 140 C 747.5 140, 747.5 100, 840 100" 
-                            stroke="#0d55a0" 
-                            strokeWidth="3" 
+                            d="M 100 320 C 192.5 320, 192.5 200, 285 200 C 377.5 200, 377.5 280, 470 280 C 562.5 280, 562.5 140, 655 140 C 747.5 140, 747.5 100, 840 100"
+                            stroke="#0d55a0"
+                            strokeWidth="3"
                         />
                     </svg>
 
                     {/* Milestone Points */}
                     {MILESTONES.map((milestone) => (
-                        <div 
+                        <div
                             key={milestone.id}
                             className="absolute z-20 group cursor-pointer"
-                            style={{ 
-                                left: `${(milestone.cx / VB_W) * 100}%`, 
+                            style={{
+                                left: `${(milestone.cx / VB_W) * 100}%`,
                                 top: `${(milestone.cy / VB_H) * 100}%`,
                                 transform: 'translate(-50%, -50%)'
                             }}
@@ -199,9 +199,9 @@ export default function AboutUsPage() {
                             {/* Dot */}
                             <div className={`relative w-4 h-4 rounded-full transition-all duration-500 ${activeMilestone.id === milestone.id ? 'bg-[#0d55a0] scale-150 shadow-[0_0_20px_rgba(22,104,178,0.2)]' : 'bg-white border-2 border-[#0d55a0]/20 group-hover:border-[#0d55a0]'}`}>
                                 {activeMilestone.id === milestone.id && (
-                                    <motion.div 
+                                    <motion.div
                                         layoutId="glow"
-                                        className="absolute inset-0 rounded-full bg-[#0d55a0] blur-md opacity-30" 
+                                        className="absolute inset-0 rounded-full bg-[#0d55a0] blur-md opacity-30"
                                     />
                                 )}
                             </div>
@@ -209,7 +209,7 @@ export default function AboutUsPage() {
                             {/* Floating Popup Card */}
                             <AnimatePresence>
                                 {activeMilestone.id === milestone.id && (
-                                    <motion.div 
+                                    <motion.div
                                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
@@ -223,7 +223,7 @@ export default function AboutUsPage() {
                                             <p className="text-[11px] text-zinc-500 font-medium leading-relaxed">
                                                 {milestone.description}
                                             </p>
-                                            
+
                                             {/* Pointer/Tail - White for light theme */}
                                             <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.1)]" />
                                         </div>
@@ -247,12 +247,12 @@ export default function AboutUsPage() {
 
                     {/* Moving Carousel Wrapper */}
                     <div className="relative w-full overflow-hidden py-10">
-                        <motion.div 
+                        <motion.div
                             className="flex gap-12 w-fit"
-                            animate={{ 
+                            animate={{
                                 x: [0, -1000],
                             }}
-                            transition={{ 
+                            transition={{
                                 x: {
                                     repeat: Infinity,
                                     repeatType: "loop",
@@ -263,16 +263,16 @@ export default function AboutUsPage() {
                         >
                             {/* Duplicate items for infinite effect */}
                             {[...CERTIFICATIONS, ...CERTIFICATIONS, ...CERTIFICATIONS, ...CERTIFICATIONS].map((cert, idx) => (
-                                <div 
+                                <div
                                     key={idx}
                                     className="flex flex-col items-center gap-6 shrink-0 w-32"
                                 >
                                     <div className="relative w-24 h-24 bg-white rounded-3xl p-4 shadow-sm border border-black/5 hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
-                                        <Image 
-                                            src={cert.image} 
-                                            alt={cert.name} 
-                                            fill 
-                                            className="object-contain p-2 grayscale hover:grayscale-0 transition-all" 
+                                        <Image
+                                            src={cert.image}
+                                            alt={cert.name}
+                                            fill
+                                            className="object-contain p-2 grayscale hover:grayscale-0 transition-all"
                                         />
                                     </div>
                                     <span className="text-[8px] font-black uppercase tracking-widest text-[#0d55a0] text-center opacity-40 hover:opacity-100 transition-all">
@@ -281,7 +281,7 @@ export default function AboutUsPage() {
                                 </div>
                             ))}
                         </motion.div>
-                        
+
                         {/* Gradient Fades for Smooth Edges */}
                         <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#fcfbf7] to-transparent z-10 pointer-events-none" />
                         <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#fcfbf7] to-transparent z-10 pointer-events-none" />
@@ -292,7 +292,7 @@ export default function AboutUsPage() {
             {/* ── SECTION 5: VISION & MISSION ── */}
             <section className="py-24 bg-white">
                 <div className="max-w-6xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <motion.div 
+                    <motion.div
                         whileHover={{ y: -10 }}
                         className="bg-[#0d55a0] p-12 rounded-[3rem] text-white shadow-2xl relative overflow-hidden"
                     >
@@ -304,7 +304,7 @@ export default function AboutUsPage() {
                         </p>
                     </motion.div>
 
-                    <motion.div 
+                    <motion.div
                         whileHover={{ y: -10 }}
                         className="bg-[#fcfbf7] p-12 rounded-[3rem] border border-[#0d55a0]/10 shadow-xl relative overflow-hidden text-[#0d55a0]"
                     >

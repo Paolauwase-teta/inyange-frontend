@@ -72,10 +72,10 @@ export default function Footer() {
                     <div className="flex flex-col gap-2">
                         <span className="text-[9px] font-black uppercase tracking-[0.2em] text-zinc-300 mb-1">Explore</span>
                         {[
-                            { label: 'Services', href: '/services' },
-                            { label: 'Team', href: '/team' },
-                            { label: 'FAQ', href: '/reach-out#faq' },
-                            { label: 'Factsheet', href: '/factsheet' }
+                            { label: 'About Us', href: '/about' },
+                            { label: 'Careers', href: '/Careers' },
+                            { label: 'Leaders', href: '/leaders' },
+                            { label: 'FAQ', href: '/reach-out#faq' }
                         ].map(item => (
                             <a key={item.label} href={item.href} className="text-[11px] font-bold uppercase text-zinc-600 hover:text-[#33a4df] transition-colors">{item.label}</a>
                         ))}
