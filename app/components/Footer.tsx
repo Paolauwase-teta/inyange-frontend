@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 const HillPath = ({ d, fill, delay }: { d: string, fill: string, delay: number }) => (
     <motion.path
@@ -22,6 +23,12 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+    const pathname = usePathname();
+
+    if (pathname.startsWith('/admin')) {
+        return null;
+    }
+
     return (
         <footer className="w-full relative overflow-hidden bg-white pb-8">
             {/* Background Pattern Overlay */}

@@ -134,17 +134,17 @@ export default function ProjectsAdmin() {
             <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
                     <div>
-                        <h1 style={{ fontSize: '24px', fontWeight: 900, letterSpacing: '-0.03em', color: '#000', margin: 0 }}>Projects</h1>
+                        <h1 style={{ fontSize: '24px', fontWeight: 900, letterSpacing: '-0.03em', color: '#0d55a0', margin: 0 }}>Projects</h1>
                         <p style={{ fontSize: '12px', color: 'rgba(0,0,0,0.4)', marginTop: '2px' }}>Manage your portfolio projects</p>
                     </div>
-                    <button onClick={openCreate} style={{ padding: '10px 20px', background: '#000', color: '#fff', border: 'none', borderRadius: '10px', fontSize: '12px', fontWeight: 700, cursor: 'pointer' }}>+ New Project</button>
+                    <button onClick={openCreate} style={{ padding: '10px 20px', background: '#0d55a0', color: '#fff', border: 'none', borderRadius: '10px', fontSize: '12px', fontWeight: 700, cursor: 'pointer' }}>+ New Project</button>
                 </div>
 
                 {showForm && (
                     <div style={modalOverlayStyle} onClick={() => setShowForm(false)}>
                         <div className="modal-box" style={modalBoxStyle} onClick={e => e.stopPropagation()}>
                             <div style={modalHeaderStyle}>
-                                <h2 style={{ fontSize: '20px', fontWeight: 900, color: '#000', margin: 0, letterSpacing: '-0.02em' }}>
+                                <h2 style={{ fontSize: '20px', fontWeight: 900, color: '#0d55a0', margin: 0, letterSpacing: '-0.02em' }}>
                                     {editing ? 'Edit Project' : 'New Project'}
                                 </h2>
                                 <button style={closeBtnStyle} onClick={() => setShowForm(false)}>✕</button>
@@ -197,7 +197,7 @@ export default function ProjectsAdmin() {
 
                                     {/* Mirrored checkbox */}
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', padding: '12px 14px', background: '#fafafa', borderRadius: '10px' }}>
-                                        <input type="checkbox" checked={form.mirrored} onChange={e => setForm({ ...form, mirrored: e.target.checked })} id="mirrored" style={{ width: '16px', height: '16px', accentColor: '#000' }} />
+                                        <input type="checkbox" checked={form.mirrored} onChange={e => setForm({ ...form, mirrored: e.target.checked })} id="mirrored" style={{ width: '16px', height: '16px', accentColor: '#0d55a0' }} />
                                         <label htmlFor="mirrored" style={{ fontSize: '13px', fontWeight: 600, color: '#333', cursor: 'pointer' }}>Mirrored Layout</label>
                                     </div>
 
@@ -254,12 +254,12 @@ export default function ProjectsAdmin() {
                             ) : projects.map(p => (
                                 <tr key={p.id} style={{ borderBottom: '1px solid rgba(0,0,0,0.04)' }}>
                                     <td style={{ padding: '12px 16px', fontSize: '12px', fontWeight: 800, color: 'rgba(0,0,0,0.3)' }}>{p.projectId || '—'}</td>
-                                    <td style={{ padding: '12px 16px', fontSize: '13px', fontWeight: 600, color: '#000' }}>{p.title}</td>
+                                    <td style={{ padding: '12px 16px', fontSize: '13px', fontWeight: 600, color: '#0d55a0' }}>{p.title}</td>
                                     <td style={{ padding: '12px 16px', fontSize: '12px', color: 'rgba(0,0,0,0.5)' }}>{p.category || '—'}</td>
                                     <td style={{ padding: '12px 16px', fontSize: '12px', color: 'rgba(0,0,0,0.5)' }}>{p.tag || '—'}</td>
                                     <td style={{ padding: '12px 16px' }}>
                                         <div style={{ display: 'flex', gap: '6px' }}>
-                                            <button onClick={() => openEdit(p)} style={{ padding: '6px 14px', background: '#f5f5f5', color: '#000', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '8px', fontSize: '11px', fontWeight: 700, cursor: 'pointer' }}>Edit</button>
+                                            <button onClick={() => openEdit(p)} style={{ padding: '6px 14px', background: '#f5f5f5', color: '#0d55a0', border: '1px solid rgba(13, 85, 160, 0.1)', borderRadius: '8px', fontSize: '11px', fontWeight: 700, cursor: 'pointer' }}>Edit</button>
                                             <button onClick={() => handleDelete(p)} style={{ padding: '6px 14px', background: '#fef2f2', border: '1px solid #fecaca', borderRadius: '8px', fontSize: '11px', fontWeight: 700, cursor: 'pointer', color: '#991b1b' }}>Delete</button>
                                         </div>
                                     </td>

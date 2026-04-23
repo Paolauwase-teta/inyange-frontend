@@ -85,7 +85,7 @@ export default function InboxAdmin() {
                         <h1 style={{ fontSize: '24px', fontWeight: 900, letterSpacing: '-0.03em', margin: 0 }}>Inbox</h1>
                         <p style={{ fontSize: '12px', color: 'rgba(0,0,0,0.4)', marginTop: '2px' }}>
                             Contact form submissions ({contacts.length})
-                            {unreadCount > 0 && <span style={{ marginLeft: '8px', padding: '2px 8px', background: '#000', color: '#fff', borderRadius: '10px', fontSize: '10px', fontWeight: 800 }}>{unreadCount} new</span>}
+                            {unreadCount > 0 && <span style={{ marginLeft: '8px', padding: '2px 8px', background: '#0d55a0', color: '#fff', borderRadius: '10px', fontSize: '10px', fontWeight: 800 }}>{unreadCount} new</span>}
                         </p>
                     </div>
                 </div>
@@ -104,11 +104,11 @@ export default function InboxAdmin() {
                                 <div>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
                                         <div style={{
-                                            width: '36px', height: '36px', borderRadius: '10px', background: '#000', color: '#fff',
+                                            width: '36px', height: '36px', borderRadius: '10px', background: '#0d55a0', color: '#fff',
                                             display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '15px', fontWeight: 800, flexShrink: 0,
                                         }}>{selected.name.charAt(0).toUpperCase()}</div>
                                         <div>
-                                            <h2 style={{ fontSize: '18px', fontWeight: 900, color: '#000', margin: 0, letterSpacing: '-0.02em' }}>{selected.name}</h2>
+                                            <h2 style={{ fontSize: '18px', fontWeight: 900, color: '#0d55a0', margin: 0, letterSpacing: '-0.02em' }}>{selected.name}</h2>
                                             <p style={{ fontSize: '11px', color: 'rgba(0,0,0,0.4)', margin: 0 }}>{selected.email}</p>
                                         </div>
                                     </div>
@@ -152,14 +152,14 @@ export default function InboxAdmin() {
                             onMouseLeave={e => (e.currentTarget.style.background = c.isRead ? 'transparent' : 'rgba(0,0,0,0.015)')}
                         >
                             <div style={{
-                                width: '36px', height: '36px', borderRadius: '50%', background: '#000', color: '#fff',
+                                width: '36px', height: '36px', borderRadius: '50%', background: '#0d55a0', color: '#fff',
                                 display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 800, flexShrink: 0,
                             }}>{c.name.charAt(0).toUpperCase()}</div>
                             <div style={{ flex: 1, minWidth: 0 }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2px' }}>
-                                    <span style={{ fontSize: '13px', color: '#000', fontWeight: c.isRead ? 600 : 800 }}>{c.name}</span>
+                                    <span style={{ fontSize: '13px', color: '#0d55a0', fontWeight: c.isRead ? 600 : 800 }}>{c.name}</span>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                        {!c.isRead && <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#000' }} />}
+                                        {!c.isRead && <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#0d55a0' }} />}
                                         <span style={{ fontSize: '10px', color: 'rgba(0,0,0,0.3)' }}>{formatDate(c.createdAt)}</span>
                                     </div>
                                 </div>
