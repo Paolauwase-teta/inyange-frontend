@@ -4,26 +4,75 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --navy: #0d55a0;
-  --teal: #5bb63a;
-  --sky: #33a4df;
+  
+  /* Inyange Rebuild Specific Colors */
+  --inyange-blue: #006BA6; /* PANTONE 307 C */
+  --inyange-yellow: #F4D414;
+  --inyange-lime: #CBDB2A;
+  --inyange-cream: #F3EEDD;
+  --inyange-card-cream: #FBF7E6;
+  --inyange-gray: #5B6B7A;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-navy: var(--navy);
-  --color-teal: var(--teal);
-  --color-sky: var(--sky);
-  --font-sans: Arial, Helvetica, sans-serif;
+  --color-inyange-blue: var(--inyange-blue);
+  --color-inyange-yellow: var(--inyange-yellow);
+  --color-inyange-lime: var(--inyange-lime);
+  --color-inyange-cream: var(--inyange-cream);
+  --color-inyange-card-cream: var(--inyange-card-cream);
+  --color-inyange-gray: var(--inyange-gray);
+
+  --font-voyager: "The Voyager", "Impact", sans-serif;
+  --font-gothic: "Gothic 821 Condensed BT", "Arial Narrow", sans-serif;
+  --font-gill: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+  --font-calibre: "Calibre", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: var(--font-calibre);
 }
 
-/* Remove dark mode override to maintain consistent light branding */
+/* Fallback Font Faces mapped to local system names for now */
+/* Place your actual .woff files in public/fonts and update the src if available */
+@font-face {
+  font-family: 'The Voyager';
+  src: local('The Voyager Bold'), local('The Voyager');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gothic 821 Condensed BT';
+  src: local('Gothic 821 Condensed BT Regular'), local('Gothic 821 Condensed BT');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Calibre';
+  src: local('Calibre Regular'), local('Calibre');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Calibre';
+  src: local('Calibre Medium');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Calibre';
+  src: local('Calibre Bold');
+  font-weight: 700;
+  font-style: normal;
+}
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  color: var(--inyange-gray);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
 }
 
 @layer utilities {
@@ -32,8 +81,29 @@ body {
     100% { transform: translateX(-50%); }
   }
   .animate-marquee {
-    animation: marquee 120s linear infinite;
+    animation: marquee 20s linear infinite;
   }
+  
+  @keyframes fall {
+    0% {
+      transform: translateY(-100px) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(120vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  .animate-fall {
+    animation: fall linear infinite;
+  }
+
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }

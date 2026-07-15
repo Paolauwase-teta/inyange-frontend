@@ -2,7 +2,7 @@
 
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 import dynamic from 'next/dynamic';
-const Spline = dynamic(() => import('@splinetool/react-spline'), { ssr: false });
+import Spline from '@splinetool/react-spline/next';
 import Lottie from 'lottie-react';
 import contactAnimation from '../../public/Contact-us.json';
 

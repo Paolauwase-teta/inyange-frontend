@@ -19,13 +19,13 @@ const fadeUp = {
   transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as any }
 };
 
-const marqueeVariants = {
+const marqueeVariants: any = {
   animate: {
     x: [0, -1035],
     transition: {
       x: {
         repeat: Infinity,
-        repeatType: "loop" as any,
+        repeatType: "loop",
         duration: 25,
         ease: "linear",
       },

@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { toast } from 'react-toastify';
 
-const Spline = dynamic(() => import('@splinetool/react-spline'), { ssr: false });
+import Spline from '@splinetool/react-spline/next';
 
 // ── Error Boundary for Spline ──
 class SplineErrorBoundary extends Component<

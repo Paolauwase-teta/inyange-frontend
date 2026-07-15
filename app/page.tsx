@@ -1,807 +1,374 @@
-"use client";
+'use client';
 
 import React, { useState } from 'react';
-import { motion, Variants, AnimatePresence } from 'framer-motion';
-import dynamic from 'next/dynamic';
-const OnboardingGuide = dynamic(() => import('./components/OnboardingGuide'), { ssr: false });
-import Link from 'next/link';
 import Image from 'next/image';
-import { getAsset } from '@/lib/getAsset';
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.5,
-    },
-  },
-};
-
-const letterVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      damping: 15,
-      stiffness: 100,
-    },
-  },
-};
-
-const titleVariants: Variants = {
-  hidden: { opacity: 0, x: -30 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 1, ease: "easeOut", delay: 0.2 }
-  }
-};
-
-const PATH_D_SERVICES =
-  "M 180 120 C 350 120, 350 120, 480 120 C 600 120, 750 120, 820 120 C 950 120, 950 320, 820 320 C 700 320, 600 320, 480 320 C 350 320, 150 320, 180 320 C 50 320, 50 520, 340 520 C 450 520, 500 520, 660 520";
-
-// SVG viewBox dimensions for references if needed
-const VB_W_REF = 900;
-const VB_H_REF = 340;
-
-// Milestone and Service interfaces
-interface Milestone {
-  id: number;
-  label: string;
-  year: string;
-  title: string;
-  description: string;
-}
-
-interface Service {
-  id: number;
-  slug: string;
-  title: string;
-  description: string;
-  number: string;
-}
-
-const HERO_SLIDES = [
-  {
-    video: getAsset("/milkpouring.mp4"),
-    giantText: "INYANGE INDUSTRIES",
-    tagline: "Premium Dairy & Beverages",
-    heading: "PURITY IN EVERY DROP",
-    cardTitle: "Crafted for Quality",
-    cardText: "We transform the finest ingredients into refreshing dairy and beverage products your family can trust."
-  },
-  {
-    video: getAsset("/fruity_juice.mp4"),
-    giantText: "VIBRANT REFRESHMENT",
-    tagline: "Tropical Goodness",
-    heading: "FLAVOR IN HARMONY",
-    cardTitle: "Natural Fruit Harvests",
-    cardText: "Experience the essence of Rwanda's finest fruits in our range of refreshing, vitamin-packed juices."
-  },
-  {
-    video: getAsset("/cooking.mp4"),
-    giantText: "EVERYDAY MEALS",
-    tagline: "Versatile Ingredients",
-    heading: "ELEVATE YOUR COOKING",
-    cardTitle: "Perfect for Every Recipe",
-    cardText: "From breakfast to baking, our products are the perfect companion to use in your everyday meals."
-  }
-];
-
-const FEATURED_RECIPES = [
-  { title: 'French Onion Soup', image: getAsset('/recipe_soup.png'), desc: 'Delicious classic comfort', stats: { prep: '1h', serves: '4', skill: 'Easy' } },
-  { title: 'Chicken Corn Chowder', image: getAsset('/recipe_chowder.png'), desc: 'Creamy and hearty delight', stats: { prep: '30m', serves: '6', skill: 'Easy' } },
-  { title: 'Lemon Basil Fish', image: getAsset('/recipe_fish.png'), desc: 'Fresh and zesty grilled fillet', stats: { prep: '20m', serves: '2', skill: 'Medium' } },
-  { title: 'Classic Banana Bread', image: getAsset('/recipe_bread.png'), desc: 'Perfectly moist homemade treat', stats: { prep: '1h 15m', serves: '10', skill: 'Easy' } },
-];
-
-const HOME_LEADERS = [
-  { name: 'Marcus Mango', title: 'CEO', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=500' },
-  { name: 'Sarah Chen', title: 'CFO', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=500' },
-  { name: 'Jean-Paul Kagabo', title: 'COO', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=500' },
-  { name: 'Elena Rodriguez', title: 'CMO', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400&h=500' },
-];
-
-const CERTIFICATIONS = [
-  { name: 'Quality Standard 01', image: getAsset('/quality1.png') },
-  { name: 'Quality Standard 02', image: getAsset('/quality2.jpg') },
-  { name: 'Quality Standard 03', image: getAsset('/quality3.jpg') },
-  { name: 'Quality Standard 04', image: getAsset('/quality4.png') },
-];
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function Home() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeBrand, setActiveBrand] = useState('Milk Products');
 
-  const handleVideoEnded = () => {
-    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-  };
+  const brandCategories = ['Milk', 'Milk Products', 'Juice', 'Water'];
 
+  const recipeCards = [
+    { title: 'Classic Banana Bread', desc: 'Perfectly moist homemade treat', img: '/recipe_bread.webp' },
+    { title: 'French Onion Soup', desc: 'Delicious classic comfort', img: '/recipe_soup.webp' },
+    { title: 'Lemon Basil Fish', desc: 'Fresh and zesty grilled fillet', img: '/recipe_fish.webp' },
+    { title: 'Chicken Corn Chowder', desc: 'Creamy and hearty delight', img: '/recipe_chowder.webp' },
+  ];
 
+  const newsCards = [
+    { title: 'Sustainable Farming: Our Commitment to the Future', desc: 'Inyange remains at the forefront of agricultural innovation, supporting local farmers with modern techniques.', img: '/photo-1500382017468-9049fed747ef.webp' },
+    { title: 'Awarded Best Beverage Producer of the Year', desc: 'We are honored to receive the 2023 Excellence Award for our consistent quality and safety standards.', img: '/photo-1550989460-0adf9ea622e2.webp' },
+    { title: 'New Fortified Milk Range: Nutrition Redefined', desc: 'Introducing our latest product line designed to meet the growing nutritional needs of the East African market.', img: '/photo-1550583724-b2692b85b150.webp' },
+    { title: 'Community Outreach: Supporting Local Schools', desc: 'Our recent initiative provided nutritional dairy products to school children across Rwanda villages.', img: '/photo-1488521787991-ed7bbaae773c.webp' },
+  ];
 
+  const leaders = [
+    { name: 'John Doe', img: '/headshot-portrait-security-guard-work-smiling.jpg', bg: 'bg-[#F4A261]' },
+    { name: 'Jane Doe', img: '/african-teenage-girl-portrait-happy-smiling-face.jpg', bg: 'bg-[#F48498]' },
+    { name: 'Jane Doe', img: '/confident-business-woman-portrait-smiling-face.jpg', bg: 'bg-[#9D88B3]' },
+    { name: 'John Doe', img: '/black-man-posing.jpg', bg: 'bg-[#3D8C8C]' },
+  ];
 
   return (
-    <div className="bg-white min-h-screen">
-
-      {/* ── SECTION 1: HERO ── */}
-      <section id="hero" className="relative min-h-[85vh] flex flex-col justify-end overflow-hidden bg-black">
-        {/* Background Videos Slider: Optimized to render only the active video for performance */}
-        {HERO_SLIDES.map((slide, index) => (
-          currentSlide === index && (
-            <video
-              key={slide.video}
-              autoPlay
-              muted
-              playsInline
-              onEnded={handleVideoEnded}
-              preload="auto"
-              className="absolute inset-0 w-full h-full object-cover"
-            >
-              <source src={slide.video} type="video/mp4" />
-            </video>
-          )
-        ))}
+    <main className="w-full font-calibre overflow-x-hidden flex flex-col items-center">
+      
+      {/* --- 3. Hero Section --- */}
+      <section className="relative w-full h-[100vh] min-h-[800px] flex items-end justify-center overflow-hidden">
+        {/* Background Photo */}
+        <div className="absolute inset-0 z-0">
+           <Image src="/freepik__enhance__29647.jpg" alt="Football, Friends, and Inyange" fill className="object-cover object-center" priority />
+           <div className="absolute inset-0 bg-black/20" />
+        </div>
         
-        {/* Dark overlay for lower brightness - reduced opacity to make it less dim */}
-        <div className="absolute inset-0 bg-black/45 z-10" />
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentSlide}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-            className="absolute inset-0 flex flex-col justify-end"
-          >
-            {/* Giant background title */}
-            <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none px-12 z-20 opacity-90 md:opacity-20">
-                <motion.span
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1.2, ease: 'easeOut' }}
-                    className="text-[9vw] lg:text-[11vw] font-black uppercase text-white/30 leading-none tracking-tighter text-center"
-                >
-                    {HERO_SLIDES[currentSlide].giantText}
-                </motion.span>
-            </div>
-
-            {/* Floating White Card and Title */}
-            <div className="relative z-10 px-8 pb-10 md:pb-16 pt-32 md:pt-40 max-w-6xl mx-auto w-full flex flex-col md:flex-row items-center md:items-end justify-center md:justify-between gap-8 pointer-events-auto">
-                {/* Left: Title */}
-                <div className="flex-1">
-                    <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3, duration: 0.6 }}
-                        className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.3em] text-white/70 mb-4"
-                    >
-                        {HERO_SLIDES[currentSlide].tagline}
-                    </motion.p>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4, duration: 0.8 }}
-                        className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-tight max-w-2xl"
-                    >
-                        {HERO_SLIDES[currentSlide].heading}
-                    </motion.h1>
-                </div>
-
-                {/* Right: Floating Utility Card - Hidden on Mobile to prioritize video and lead title */}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6, duration: 0.9, ease: 'easeOut' }}
-                    className="hidden md:block w-full md:w-[420px] bg-white rounded-[2rem] p-8 shadow-[0_30px_80px_rgba(0,0,0,0.6)]"
-                >
-                    <h2 className="text-xl font-black tracking-tighter mb-2 text-[#0d55a0]">{HERO_SLIDES[currentSlide].cardTitle}</h2>
-                    <p className="text-[13px] font-medium text-zinc-500 mb-8 leading-relaxed">
-                        {HERO_SLIDES[currentSlide].cardText}
-                    </p>
-
-                    <div className="flex gap-3">
-                        <div className="flex-1 flex items-center gap-2 bg-zinc-50 border border-zinc-100 rounded-xl px-4 py-3">
-                            <svg className="w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
-                            </svg>
-                            <input 
-                                type="text" 
-                                placeholder="Find a product..." 
-                                className="bg-transparent border-none outline-none text-[12px] font-medium text-zinc-600 w-full placeholder:text-zinc-400"
-                            />
-                        </div>
-                        <Link href="/services" className="bg-[#5bb63a] text-white text-[10px] md:text-[12px] font-black uppercase tracking-widest px-6 rounded-xl hover:bg-[#5bb63a]/90 transition-colors flex items-center justify-center">
-                            Explore
-                        </Link>
-
-                    </div>
-                </motion.div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </section>
-
-      {/* ── SECTION 2: OUR BRANDS (REFINED & ALIGNED) ── */}
-      <section id="brands" className="bg-white pt-20 pb-12 md:pt-24 md:pb-12 overflow-hidden relative">
-        {/* Giant Subtle Background Typography - Even lighter */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none opacity-[0.03]">
-            <span className="text-[20vw] font-black uppercase text-[#0d55a0] leading-none tracking-tighter">
-                BRANDS
-            </span>
+        {/* Falling Chips Particle Animation Layer */}
+        <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+          {[...Array(15)].map((_, i) => (
+             <div 
+               key={i} 
+               className="absolute animate-fall"
+               style={{ 
+                 left: `${Math.random() * 100}%`, 
+                 animationDuration: `${10 + Math.random() * 15}s`,
+                 animationDelay: `-${Math.random() * 10}s`,
+                 width: '40px', height: '40px',
+                 backgroundColor: '#F4D414',
+                 clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)', // Triangle chip shape
+                 opacity: 0.8
+               }}
+             />
+          ))}
         </div>
 
-        <div className="relative z-10 px-12 md:px-24 xl:px-32 w-full">
-          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
-            
-            {/* Left Side: Editorial Narrative */}
-            <div className="lg:w-[45%] flex flex-col gap-10">
-              <div className="max-w-sm">
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="flex items-center gap-3 mb-6"
-                >
-                  <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#0d55a0] opacity-40">Inyange Universe</span>
-                  <div className="flex-1 h-[1px] bg-[#0d55a0]/10" />
-                </motion.div>
+        {/* Foreground Product Shot */}
+        <div className="absolute bottom-[-5%] left-1/2 -translate-x-1/2 z-20 w-[90vw] md:w-[800px] h-[300px] md:h-[400px] pointer-events-none">
+           {/* Fallback to Products.jpeg or generic transparent overlay if this image has a background. Using wqety.jpg as placeholder if Products doesn't work well */}
+           <Image src="/021.png" alt="Foreground Products" fill className="object-contain object-bottom drop-shadow-2xl" />
+        </div>
 
-                <motion.h2 
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-[#0d55a0] leading-[0.95] mb-8"
-                >
-                  OUR <span className="text-[#33a4df]">BRAND</span> <br /> RANGE.
-                </motion.h2>
+        {/* Headline */}
+        <div className="relative z-30 w-full max-w-7xl px-8 md:px-12 pb-32 md:pb-48">
+          <h1 className="font-voyager text-5xl md:text-7xl lg:text-[110px] leading-[0.85] text-white tracking-wide uppercase drop-shadow-lg">
+            FOOTBALL,<br/>
+            FRIENDS, AND<br/>
+            INYANGE
+          </h1>
+        </div>
+      </section>
 
-                <motion.p 
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                  className="text-zinc-500 font-medium text-xs md:text-sm leading-relaxed"
-                >
-                  Experience Rwanda's pure essence through our premium selection of dairy, juices, and essential hydration.
-                </motion.p>
-              </div>
+      {/* --- 4. Our Brand Range Section --- */}
+      <section className="w-full py-24 md:py-32 relative flex flex-col items-center">
+        {/* Background Pattern */}
+        <div 
+          className="absolute inset-0 z-0 opacity-10 bg-repeat bg-[length:20px]"
+          style={{ backgroundImage: "url('/pattern.png')" }}
+        />
+        {/* Background Color Overlay */}
+        <div className="absolute inset-0 z-0 bg-[#F6F5F2] opacity-90 mix-blend-multiply" />
 
-              {/* Heroes Visual */}
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-                className="relative w-full aspect-[4/3] max-w-[400px]"
+        {/* Decorative Fruits (Left and Right) spanning the section boundary */}
+        <div className="absolute left-[-5%] bottom-[-150px] md:bottom-[-200px] w-[200px] md:w-[350px] h-[350px] md:h-[500px] z-30 pointer-events-none">
+          <Image src="/apples.png" alt="Apples" fill className="object-contain object-bottom mix-blend-multiply" />
+        </div>
+        <div className="absolute right-[-5%] bottom-[-100px] md:bottom-[-150px] w-[250px] md:w-[400px] h-[250px] md:h-[400px] z-30 pointer-events-none">
+          <Image src="/orange.png" alt="Orange" fill className="object-contain object-bottom mix-blend-multiply" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl w-full px-8 flex flex-col items-center text-center">
+          <h2 className="font-voyager text-5xl md:text-6xl text-[var(--inyange-blue)] mb-3 tracking-wide uppercase">OUR BRAND RANGE</h2>
+          <p className="text-[#5B6B7A] text-sm md:text-base font-medium max-w-lg mb-12 leading-snug">
+            Experience Rwanda&apos;s pure essence through our premium selection of dairy, juices, and essential hydration.
+          </p>
+
+          {/* Filter Pills */}
+          <div className="flex flex-wrap justify-center gap-4 mb-20 bg-white/50 backdrop-blur-md p-1.5 rounded-full shadow-sm border border-black/5">
+            {brandCategories.map(cat => (
+              <button 
+                key={cat}
+                onClick={() => setActiveBrand(cat)}
+                className={`px-6 py-2 rounded-full font-gill text-sm md:text-base font-bold tracking-widest transition-all duration-300
+                  ${activeBrand === cat 
+                    ? 'bg-[var(--inyange-lime)] text-[var(--inyange-blue)] shadow-md' 
+                    : 'bg-transparent text-[var(--inyange-blue)] hover:bg-white/60'
+                  }`}
               >
-                <Image 
-                  src={getAsset("/inyangebrand.png")} 
-                  alt="Inyange Brands Collection" 
-                  fill 
-                  className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.05)]"
-                  priority
-                />
-              </motion.div>
-            </div>
-
-            {/* Right Side: Compact Methodology Timeline - Widened to allow text to flow horizontally */}
-            <div className="lg:w-[55%] flex justify-start">
-              <div className="relative pl-10 w-full max-w-xl">
-                {/* Thin Vertical Axis Line - Positioned precisely at 20px from left (centered on points) */}
-                <div className="absolute left-[20px] top-6 bottom-6 w-[1px] bg-zinc-200" />
-                
-                <div className="flex flex-col gap-6 md:gap-8 relative font-inter">
-                  {[
-                    { id: '01', title: 'Milk', desc: 'Sourced directly from local farmers and processed using state-of-the-art technology for pure, natural quality.' },
-                    { id: '02', title: 'Milk Products', desc: 'Our diverse dairy range, including yogurts and butter, captures the authentic essence of Rwanda.' },
-                    { id: '03', title: 'Juice', desc: "Refreshing tropical flavors made from the finest local fruit harvests, packed with natural vitamins." },
-                    { id: '04', title: 'Water', desc: 'Bottled at the source, Inyange Water provides pure refreshment with a mineral-rich purification process.' }
-                  ].map((brand, i) => (
-                    <motion.div 
-                      key={brand.id}
-                      initial={{ opacity: 0, x: 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
-                      className="relative group"
-                    >
-                      {/* Methodology Stylized Node - Center aligned with line at 20px left of container start */}
-                      <div className="absolute -left-[27px] top-[14px] w-[14px] h-[14px] rounded-full bg-white border border-zinc-200 flex items-center justify-center transition-all duration-500 group-hover:border-black group-hover:scale-110 shadow-sm z-20">
-                          <div className="w-[4px] h-[4px] rounded-full bg-black group-hover:bg-[#33a4df] transition-colors" />
-                      </div>
-
-                      <div className="flex flex-col">
-                        <span className="text-[9px] font-bold text-zinc-300 tracking-[0.2em] mb-1 uppercase group-hover:text-black transition-colors">{brand.id}</span>
-                        <h3 className="text-base md:text-lg font-black text-[#0d55a0] uppercase tracking-tighter leading-none mb-1.5 group-hover:text-[#33a4df] transition-colors">{brand.title}</h3>
-                        <p className="text-[10px] md:text-[11px] text-zinc-500 font-medium max-w-lg leading-relaxed italic opacity-80">{brand.desc}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 }}
-                  className="mt-14"
-                >
-                  <Link href="/brands" className="group flex items-center gap-4 text-[#0d55a0]/40 hover:text-[#33a4df] transition-all">
-                    <span className="text-[9px] font-black uppercase tracking-[0.4em]">Explore collection →</span>
-                  </Link>
-                </motion.div>
-              </div>
-            </div>
-
+                {cat}
+              </button>
+            ))}
           </div>
-        </div>
 
-        {/* Decorative Element: Minimalist Bird */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.15 }}
-          viewport={{ once: true }}
-          className="absolute bottom-6 right-6 w-20 h-20 pointer-events-none grayscale opacity-30"
-        >
-          <Image 
-            src={getAsset("/decorations/decobird.png")} 
-            alt="Decoration" 
-            fill 
-            className="object-contain"
-          />
-        </motion.div>
-      </section>
+          {/* Product Carousel */}
+          <div className="relative w-full max-w-6xl h-[450px] md:h-[600px] flex items-center justify-center">
 
-      {/* ── SECTION 3: RECIPES (OVERVIEW) ── */}
-      <section id="recipes-overview" className="bg-white pt-10 pb-20 relative overflow-hidden">
-        <div className="max-w-screen-2xl mx-auto px-12 md:px-24 xl:px-32 mb-12">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
-            {/* Left Side: Editorial Heading (Matches Brand Range Style) */}
-            <div className="max-w-xl">
-               <motion.div 
-                 initial={{ opacity: 0, y: 10 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 className="flex items-center gap-3 mb-6"
-               >
-                 <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#0d55a0] opacity-40 whitespace-nowrap">Our Selection</span>
-                 <div className="flex-1 h-[1px] bg-[#0d55a0]/10" />
-               </motion.div>
+             {/* Left Nav Arrow */}
+             <button className="absolute left-[5%] md:left-[15%] z-30 w-10 h-10 bg-[var(--inyange-blue)] rounded-full text-white flex items-center justify-center shadow-md hover:scale-110 transition-transform">
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+             </button>
 
-               <motion.h2 
-                 initial={{ opacity: 0, x: -20 }}
-                 whileInView={{ opacity: 1, x: 0 }}
-                 viewport={{ once: true }}
-                 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-[#0d55a0] leading-[0.95] mb-8"
-               >
-                 OUR <span className="text-[#33a4df]">PICKS</span>
-               </motion.h2>
+             {/* Left Item (Desaturated & Scaled Down) */}
+             <div className="absolute left-[15%] md:left-[22%] w-[120px] md:w-[180px] h-[300px] md:h-[400px] z-10 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer flex justify-center items-center">
+               <div className="relative w-full h-full">
+                 <Image src="/milk1.png" alt="Milk Left" fill className="object-contain" />
+                 {/* Faint icon badge */}
+                 <div className="absolute top-4 right-4 w-6 h-6 rounded-full border border-black/20 flex items-center justify-center bg-white/20 backdrop-blur-sm opacity-50">
+                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                 </div>
+               </div>
+             </div>
 
-              <motion.p 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-zinc-500 font-medium text-[11px] leading-relaxed max-w-sm"
-              >
-                Signature recipes crafted to elevate your everyday meals.
-              </motion.p>
-            </div>
+             {/* Center Item (Focus) */}
+             <div className="relative z-20 w-[220px] md:w-[320px] h-[400px] md:h-[550px]">
+               {/* Soft blue glow */}
+               <div className="absolute inset-0 bg-[#00AEEF]/20 blur-[80px] rounded-full scale-125 translate-y-10" />
+               <Image src="/Low fat milk.png" alt="Whole Milk Center" fill className="object-contain drop-shadow-2xl" priority />
+               {/* Faint icon badge */}
+               <div className="absolute top-10 right-4 w-8 h-8 rounded-full border border-black/20 flex items-center justify-center bg-white/40 backdrop-blur-sm shadow-sm hover:scale-110 transition-transform cursor-pointer">
+                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+               </div>
+             </div>
 
-            {/* Right Side: CTA Button - Integrated into header for cleaner mobile flow */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="mb-2 w-fit"
-            >
-              <Link href="/recipes" className="group flex items-center gap-2.5 bg-[#0d55a0] text-white px-6 py-3 md:px-7 md:py-3.5 rounded-xl hover:bg-[#0d55a0]/90 transition-all shadow-lg shadow-[#0d55a0]/10">
-                <span className="text-[8px] md:text-[9px] font-black uppercase tracking-widest">See More Recipes</span>
-                <span className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-white/20 flex items-center justify-center text-[9px] md:text-[10px] font-bold transition-transform group-hover:translate-x-1">→</span>
-              </Link>
-            </motion.div>
-          </div>
-        </div>
+             {/* Right Item (Desaturated & Scaled Down) */}
+             <div className="absolute right-[15%] md:right-[22%] w-[120px] md:w-[180px] h-[300px] md:h-[400px] z-10 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer flex justify-center items-center">
+               <div className="relative w-full h-full">
+                 <Image src="/Low fat milk.png" alt="Mango Juice Right" fill className="object-contain" />
+                 {/* Faint icon badge */}
+                 <div className="absolute top-4 right-4 w-6 h-6 rounded-full border border-black/20 flex items-center justify-center bg-white/20 backdrop-blur-sm opacity-50">
+                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                 </div>
+               </div>
+             </div>
 
-        {/* Full-Width Carousel Wrapper */}
-        <div className="relative w-full overflow-hidden">
-          <motion.div 
-              className="flex gap-4 md:gap-6 whitespace-nowrap py-6"
-              animate={{ x: [0, -1136] }} // Perfect loop logic: 4 cards * (260px + 24px gap)
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 35,
-                  ease: "linear",
-                },
-              }}
-              style={{ width: "fit-content" }}
-              whileHover={{ x: -1136, transition: { duration: 180, ease: "linear" } }} // Slow down significantly on hover
-            >
-              {[...FEATURED_RECIPES, ...FEATURED_RECIPES, ...FEATURED_RECIPES, ...FEATURED_RECIPES].map((recipe, idx) => (
-                <motion.div 
-                  key={idx}
-                  className="inline-flex flex-col w-[220px] md:w-[260px] bg-white border border-[#0d55a0]/5 rounded-[1.5rem] p-4 shadow-xl shadow-black/5 hover:shadow-2xl hover:border-[#0d55a0]/20 transition-all cursor-pointer group"
-                >
-                  {/* Rounded Image Container */}
-                  <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden mb-5 bg-zinc-50">
-                    <Image src={recipe.image} alt={recipe.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
-                    <div className="absolute top-2.5 left-2.5">
-                      <span className="bg-white/90 backdrop-blur-sm text-[#0d55a0] text-[6.5px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shadow-sm">
-                        {recipe.stats.skill}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex flex-col text-left whitespace-normal">
-                    <h3 className="text-base font-black text-[#0d55a0] mb-1 uppercase tracking-tight">{recipe.title}</h3>
-                    <p className="text-[9px] font-medium text-zinc-500 leading-relaxed mb-5 line-clamp-2">{recipe.desc}</p>
-                    
-                    {/* Simplified Stats Footer */}
-                    <div className="flex items-center gap-4 pt-4 border-t border-[#0d55a0]/5">
-                      <div className="flex items-center gap-1.5">
-                        <div className="w-1 h-1 rounded-full bg-[#33a4df]" />
-                        <span className="text-[7.5px] font-black uppercase text-zinc-400 tracking-tighter">Prep: <span className="text-[#0d55a0]">{recipe.stats.prep}</span></span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <div className="w-1 h-1 rounded-full bg-[#5bb63a]" />
-                        <span className="text-[7.5px] font-black uppercase text-zinc-400 tracking-tighter">Serves: <span className="text-[#0d55a0]">{recipe.stats.serves}</span></span>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          {/* Edge Gradient Fades for Infinite Look */}
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-        </div>
-      </section>
-
-      {/* ── SECTION 4: TRUSTED BY WORLDWIDE (NEW) ── */}
-      <section id="certifications" className="bg-white py-16 md:py-24 overflow-hidden relative">
-        {/* Soft Background Depth */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#f2f9ff_0%,_#ffffff_70%)] opacity-70" />
-
-        <div className="max-w-3xl mx-auto px-8 mb-16 text-center relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex items-center justify-center gap-4 mb-6">
-                <div className="w-12 h-[1px] bg-[#0d55a0]/10" />
-                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#0d55a0] opacity-40 whitespace-nowrap">Quality & Standards</span>
-                <div className="w-12 h-[1px] bg-[#0d55a0]/10" />
-              </div>
-
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-[#0d55a0] mb-6 leading-[0.95]">
-                TRUSTED BY PEOPLE <br /> <span className="text-[#33a4df]">WORLDWIDE</span>
-              </h2>
-            </motion.div>
-        </div>
-
-        {/* Hanging Cards Carousel Wrapper */}
-        <div className="relative w-full py-10">
-            {/* Subtle Arc / String decoration */}
-            <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-zinc-100 -translate-y-1/2 hidden md:block" />
-
-            <motion.div 
-                className="flex gap-8 md:gap-10 w-fit px-[10vw]"
-                animate={{ 
-                    x: [0, -1000],
-                }}
-                transition={{ 
-                    x: {
-                        repeat: Infinity,
-                        repeatType: "loop",
-                        duration: 35,
-                        ease: "linear",
-                    },
-                }}
-            >
-                {/* Quadruple items for perfectly seamless infinite effect */}
-                {[...CERTIFICATIONS, ...CERTIFICATIONS, ...CERTIFICATIONS, ...CERTIFICATIONS].map((cert, idx) => (
-                    <div 
-                        key={idx}
-                        className={`relative p-4 md:p-5 bg-white rounded-2xl md:rounded-[2rem] shadow-[0_15px_50px_rgba(13,85,160,0.06)] border border-white/50 shrink-0 w-40 md:w-52 transition-transform duration-700 hover:scale-105 hover:z-20 group cursor-pointer ${
-                            idx % 4 === 0 ? 'rotate-[-2deg] -translate-y-3' : 
-                            idx % 4 === 1 ? 'rotate-[1deg] translate-y-2' : 
-                            idx % 4 === 2 ? 'rotate-[-1deg] translate-y-4' : 
-                            'rotate-[2deg] -translate-y-1'
-                        }`}
-                    >
-                        {/* Hanging Clip decoration */}
-                        <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-4 h-6 md:w-4 md:h-7 bg-[#5bb63a] rounded-b-md shadow-md z-10 flex flex-col items-center justify-center gap-0.5">
-                            <div className="w-0.5 h-0.5 rounded-full bg-white/40" />
-                            <div className="w-0.5 h-0.5 rounded-full bg-white/40" />
-                        </div>
-
-                        {/* Polaroid Body */}
-                        <div className="relative w-full aspect-square bg-zinc-50 rounded-xl md:rounded-[1.2rem] overflow-hidden mb-4">
-                            <Image 
-                                src={cert.image} 
-                                alt={cert.name} 
-                                fill 
-                                className="object-contain p-6 md:p-8 grayscale group-hover:grayscale-0 transition-all opacity-40 group-hover:opacity-100 group-hover:scale-110 duration-700" 
-                            />
-                        </div>
-                        
-                        <div className="text-center px-4">
-                            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-tighter text-[#0d55a0]">
-                                {cert.name}
-                            </span>
-                        </div>
-                    </div>
-                ))}
-            </motion.div>
-            
-            {/* Gradient Fades for depth and focus */}
-            <div className="absolute inset-y-0 left-0 w-32 md:w-56 bg-gradient-to-r from-white via-white/50 to-transparent z-10 pointer-events-none" />
-            <div className="absolute inset-y-0 right-0 w-32 md:w-56 bg-gradient-to-l from-white via-white/50 to-transparent z-10 pointer-events-none" />
-        </div>
-      </section>
-
-
-      {/* ── SECTION 5: ABOUT US (NEW) ── */}
-      <section id="about" className="bg-white py-16 md:py-24 overflow-hidden relative border-t border-[#0d55a0]/5">
-        <div className="max-w-screen-2xl mx-auto px-12 md:px-24 xl:px-32 flex flex-col lg:flex-row items-center gap-16 lg:gap-32 relative z-10">
-          
-          {/* Left: Content */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:w-1/2"
-          >
-            <div className="flex items-center gap-3 mb-6">
-                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#0d55a0] opacity-40 whitespace-nowrap">About Us</span>
-                <div className="flex-1 h-[1px] bg-[#0d55a0]/10" />
-            </div>
-
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0d55a0] uppercase tracking-tighter leading-[0.95] mb-8">
-              The Pride of Rwanda's <br /> <span className="text-[#33a4df]">Beverage Industry</span>.
-            </h2>
-            
-            <p className="text-zinc-500 font-medium leading-relaxed mb-10 max-w-lg text-xs md:text-sm">
-              Inyange Industries is a leading food processing company in Rwanda, manufacturing a wide range of products under its household brand name—"Inyange". Known for high-quality mineral water, fruit juices, and dairy products, we have become the regional standard for modern and hygienic production.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12">
-              <div>
-                <h3 className="text-[#0d55a0] font-black uppercase tracking-widest text-[9px] mb-3">Vision</h3>
-                <p className="text-[10px] md:text-[11px] text-zinc-400 font-medium leading-relaxed italic opacity-80">
-                  To be the leading East and Central African dairy and beverage brand, producing high quality products while enhancing shareholder value.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-[#0d55a0] font-black uppercase tracking-widest text-[9px] mb-3">Mission</h3>
-                <p className="text-[10px] md:text-[11px] text-zinc-400 font-medium leading-relaxed italic opacity-80">
-                  To secure the highest value for all stakeholders while enriching lives through nutritious and tasty dairy and beverage choices.
-                </p>
-              </div>
-            </div>
-
-            {/* Visionary Leaders Subsection */}
-            <div className="pt-8 border-t border-[#0d55a0]/5">
-              <h3 className="text-[#0d55a0] font-black uppercase tracking-widest text-[10px] mb-6 block opacity-50">Visionary Leaders</h3>
-              <div className="grid grid-cols-4 gap-4 mb-10">
-                {HOME_LEADERS.map((leader, i) => (
-                  <motion.div 
-                    key={leader.name}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="flex flex-col gap-2"
-                  >
-                    <div className="relative aspect-square rounded-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500 border-2 border-white shadow-lg">
-                      <Image src={leader.image} alt={leader.name} fill className="object-cover" />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[9px] font-black text-[#0d55a0] truncate">{leader.name}</span>
-                      <span className="text-[7px] font-bold text-zinc-400 uppercase tracking-tighter">{leader.title}</span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <Link href="/about" className="group inline-flex items-center gap-3 bg-[#0d55a0] text-white px-6 py-3 rounded-xl hover:bg-[#0d55a0]/90 transition-all shadow-lg shadow-[#0d55a0]/10">
-                <span className="text-[9px] font-black uppercase tracking-widest">Learn More About Inyange</span>
-                <span className="text-xs group-hover:translate-x-1 transition-transform">→</span>
-              </Link>
-            </div>
-          </motion.div>
-
-          {/* Right: Capsule Images */}
-          <div className="lg:w-1/2 flex items-center justify-center gap-3 md:gap-4 pt-6">
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="w-24 md:w-36 h-[280px] md:h-[380px] rounded-[5rem] overflow-hidden shadow-xl relative translate-y-8"
-            >
-              <Image src={getAsset("/about_processing.png")} fill className="object-cover" alt="Processing" />
-              <div className="absolute inset-0 bg-[#0d55a0]/10" />
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, y: -40 }}
-              whileInView={{ opacity: 1, y: -40 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="w-24 md:w-36 h-[320px] md:h-[420px] rounded-[5rem] overflow-hidden shadow-xl relative"
-            >
-              <Image src={getAsset("/home_about_middle.jpg")} fill className="object-cover" alt="Refreshing Orange Juice" />
-              <div className="absolute inset-0 bg-[#33a4df]/10" />
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="w-24 md:w-36 h-[250px] md:h-[350px] rounded-[5rem] overflow-hidden shadow-xl relative translate-y-16"
-            >
-              <Image src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=400" fill className="object-cover" alt="Water Flowing" />
-              <div className="absolute inset-0 bg-[#0d55a0]/10" />
-            </motion.div>
+             {/* Right Nav Arrow */}
+             <button className="absolute right-[5%] md:right-[15%] z-30 w-10 h-10 bg-[var(--inyange-blue)] rounded-full text-white flex items-center justify-center shadow-md hover:scale-110 transition-transform">
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+             </button>
           </div>
         </div>
       </section>
 
-      {/* ── SECTION 7: EDITORIAL (OVERVIEW) ── */}
-      <section id="editorial-overview" className="bg-white py-16 md:py-24 relative overflow-hidden">
-        <div className="max-w-screen-2xl mx-auto px-12 md:px-24 xl:px-32 relative z-10">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-16">
-            {/* Left Sides Heading */}
-            <div className="max-w-xl">
-               <motion.div 
-                 initial={{ opacity: 0, y: 10 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 className="flex items-center gap-3 mb-6"
-               >
-                 <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#0d55a0] opacity-40 whitespace-nowrap">Inyange Stories</span>
-                 <div className="flex-1 h-[1px] bg-[#0d55a0]/10" />
-               </motion.div>
+      {/* --- 5. Our Picks Section --- */}
+      <section className="w-full bg-[#EAE8E1] pt-12 pb-32 relative flex flex-col items-center border-t border-black/5">
+        <div className="relative z-10 max-w-7xl w-full px-4 md:px-8 flex flex-col items-center text-center mt-20">
+          <h2 className="font-voyager text-5xl md:text-6xl text-[var(--inyange-blue)] mb-3 tracking-wide uppercase">OUR PICKS</h2>
+          <p className="text-[#5B6B7A] text-sm md:text-base font-medium max-w-lg mb-16 leading-snug">
+            Signature recipes crafted to elevate your everyday meals.
+          </p>
 
-               <motion.h2 
-                 initial={{ opacity: 0, x: -20 }}
-                 whileInView={{ opacity: 1, x: 0 }}
-                 viewport={{ once: true }}
-                 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-[#0d55a0] leading-[0.95]"
-               >
-                 FROM OUR <br /> <span className="text-[#33a4df]">NEWSROOM</span>.
-               </motion.h2>
-            </div>
-
-            {/* Right Side: CTA */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="flex items-center"
-            >
-              <Link href="/editorial" className="group inline-flex items-center gap-3 bg-[#0d55a0] text-white px-6 py-3 rounded-xl hover:bg-[#0d55a0]/90 transition-all shadow-lg shadow-[#0d55a0]/10">
-                <span className="text-[9px] font-black uppercase tracking-widest">Explore Newsroom</span>
-                <span className="text-sm group-hover:translate-x-1 transition-transform">→</span>
-              </Link>
-            </motion.div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl">
             {[
-              { 
-                date: 'Oct 12, 2023', 
-                title: 'Sustainable Farming: Our Commitment to the Future', 
-                excerpt: 'Inyange remains at the forefront of agricultural innovation, supporting local farmers with modern techniques.',
-                image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=600',
-                tag: 'Sustainability' 
-              },
-              { 
-                date: 'Sep 28, 2023', 
-                title: 'Awarded Best Beverage Producer of the Year', 
-                excerpt: 'We are honored to receive the 2023 Excellence Award for our consistent quality and safety standards.',
-                image: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=600',
-                tag: 'Awards' 
-              },
-              { 
-                date: 'Sep 15, 2023', 
-                title: 'New Fortified Milk Range: Nutrition Redefined', 
-                excerpt: 'Introducing our latest product line designed to meet the growing nutritional needs of the East African market.',
-                image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?q=80&w=800',
-                tag: 'Innovation' 
-              },
-              { 
-                date: 'Aug 30, 2023', 
-                title: 'Community Outreach: Supporting Local Schools', 
-                excerpt: 'Our recent initiative provided nutritional dairy products to school children across Rwanda villages.',
-                image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=600',
-                tag: 'Community' 
-              },
-            ].map((news, idx) => (
-              <motion.div
-                key={news.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="group flex flex-col cursor-pointer"
-              >
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-zinc-100">
-                  <Image 
-                    src={news.image} 
-                    alt={news.title} 
-                    fill 
-                    className="object-cover group-hover:scale-105 transition-transform duration-700" 
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-white/90 backdrop-blur-sm text-[#0d55a0] text-[8px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">
-                      {news.tag}
-                    </span>
-                  </div>
-                </div>
-                
-                <span className="text-[10px] font-bold text-zinc-400 mb-2">{news.date}</span>
-                <h3 className="text-lg font-black text-black leading-tight mb-3 group-hover:text-[#0d55a0] transition-colors line-clamp-2">
-                  {news.title}
-                </h3>
-                <p className="text-[11px] text-zinc-500 font-medium leading-relaxed line-clamp-3">
-                  {news.excerpt}
-                </p>
-              </motion.div>
+              { title: 'Classic Banana Bread', desc: 'Perfectly moist homemade treat', img: '/recipe_bread.png' },
+              { title: 'French Onion Soup', desc: 'Delicious classic comfort', img: '/recipe_soup.png' },
+              { title: 'Lemon Basil Fish', desc: 'Fresh and zesty grilled fillet', img: '/recipe_fish.png' },
+              { title: 'Chicken Corn Chowder', desc: 'Creamy and hearty delight', img: '/recipe_chowder.png' },
+            ].map((card, idx) => (
+              <div key={idx} className="flex flex-col items-center">
+                 {/* Card Container */}
+                 <div className="bg-white rounded-[2rem] p-4 pb-12 w-full flex flex-col items-center shadow-sm hover:shadow-xl transition-all duration-300 relative border border-black/5">
+                   {/* Food Image */}
+                   <div className="relative w-full aspect-square rounded-full overflow-hidden p-2">
+                     <div className="relative w-full h-full rounded-full overflow-hidden shadow-inner">
+                       <Image src={card.img} alt={card.title} fill className="object-cover hover:scale-105 transition-transform duration-500" />
+                     </div>
+                   </div>
+                   
+                   {/* Floating Title Pill */}
+                   <div className="absolute bottom-[-15px] bg-[var(--inyange-blue)] text-white px-5 py-2.5 rounded-full shadow-lg whitespace-nowrap border-2 border-[#EAE8E1]">
+                     <span className="font-calibre text-[11px] md:text-xs font-bold tracking-widest uppercase text-center leading-none">{card.title}</span>
+                   </div>
+                 </div>
+                 
+                 {/* Description below card */}
+                 <p className="text-[#5B6B7A] text-xs font-medium mt-8 max-w-[80%]">{card.desc}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── SECTION 8: REACH OUT (OVERVIEW) ── */}
-      <section id="reach-out-overview" className="relative py-16 bg-[#0d55a0] overflow-hidden">
-        {/* Background Pattern Overlay */}
-        <div 
-            className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.03] bg-repeat bg-[length:400px]"
-            style={{ backgroundImage: `url('${getAsset('/pattern.png')}')` }}
-        />
-
-        <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] border-[50px] border-white rounded-full -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] border-[30px] border-white rounded-full translate-y-1/2 -translate-x-1/2" />
+      {/* --- 6. Milk Brand Banner --- */}
+      <section className="w-full bg-[#006BA6] relative overflow-hidden flex flex-col items-center pt-10 min-h-[400px] md:min-h-[500px]">
+        {/* Splash Graphic (Background Layer) */}
+        <div className="absolute bottom-[-50px] left-1/2 -translate-x-1/2 w-[900px] h-[900px] z-0 opacity-100 pointer-events-none mix-blend-lighten">
+          <Image src="/decorations/decosplash.png" alt="Milk Splash" fill className="object-contain" />
         </div>
         
-        <div className="max-w-3xl mx-auto px-8 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tighter mb-6 leading-none">
-              WANT TO GET <br /> <span className="text-[#33a4df]">IN TOUCH?</span>
-            </h2>
-            <p className="text-white/70 font-medium mb-8 max-w-xl mx-auto leading-relaxed text-[11px] md:text-[13px]">
-              Whether you're a customer, a potential partner, or looking for a career, we're here to listen and grow together. Reach out to our dedicated support teams today.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link href="/reach-out" className="bg-[#5bb63a] text-white px-8 py-4 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-white hover:text-[#0d55a0] transition-all">
-                Contact Us Now
-              </Link>
-              <Link href="/about/careers" className="bg-transparent border-2 border-white/20 text-white px-8 py-4 rounded-xl font-black text-[10px] uppercase tracking-widest hover:border-white transition-all">
-                Join Our Team
-              </Link>
-            </div>
-          </motion.div>
+        {/* Woman Photo (Foreground Layer) */}
+        <div className="relative z-10 w-full max-w-2xl h-[350px] md:h-[450px] mt-auto">
+          {/* We use quality1.png or a generic placeholder since the exact image name isn't clear, but let's try milk1.png or just assume they have one named correctly. The user said 'images are in the public folder search there' */}
+          <Image src="/Inyange_Industry.jpg" alt="Woman drinking milk" fill className="object-contain object-bottom drop-shadow-2xl" />
         </div>
       </section>
 
-      <OnboardingGuide />
-    </div>
+      {/* Ticker 1 */}
+      <div className="w-full bg-[#00AEEF] overflow-hidden py-4 border-y border-white/20">
+        <div className="flex w-[200%] animate-marquee">
+           <span className="font-gothic text-3xl md:text-4xl lg:text-[40px] text-[var(--inyange-yellow)] whitespace-nowrap tracking-tight uppercase flex-1">
+             TRUSTED BY PEOPLE WORLDWIDE&nbsp;&nbsp;&nbsp;&nbsp;TRUSTED BY PEOPLE WORLDWIDE&nbsp;&nbsp;&nbsp;&nbsp;TRUSTED BY PEOPLE WORLDWIDE&nbsp;&nbsp;&nbsp;&nbsp;TRUSTED BY PEOPLE WORLDWIDE
+           </span>
+        </div>
+      </div>
+
+      {/* --- 7. The Pride of Rwanda's Beverage Industry --- */}
+      <section className="w-full">
+        {/* Ticker 2 (Sticky/Repeating) */}
+        <div className="w-full bg-[#00AEEF] overflow-hidden py-4 border-b border-white/20">
+          <div className="flex w-[200%] animate-marquee" style={{ animationDirection: 'reverse' }}>
+             <span className="font-gothic text-3xl md:text-4xl lg:text-[40px] text-[var(--inyange-yellow)] whitespace-nowrap tracking-tight uppercase flex-1">
+               TRUSTED BY PEOPLE WORLDWIDE&nbsp;&nbsp;&nbsp;&nbsp;TRUSTED BY PEOPLE WORLDWIDE&nbsp;&nbsp;&nbsp;&nbsp;TRUSTED BY PEOPLE WORLDWIDE&nbsp;&nbsp;&nbsp;&nbsp;TRUSTED BY PEOPLE WORLDWIDE
+             </span>
+          </div>
+        </div>
+
+        {/* Lime Section */}
+        <div className="w-full bg-[var(--inyange-lime)] py-24 md:py-32 relative overflow-hidden">
+          {/* Decorative mango cutout */}
+          <div className="absolute bottom-[-10px] left-[-40px] w-[200px] h-[200px] z-0 opacity-90 pointer-events-none">
+            <Image src="/quality2.jpg" alt="Mango" fill className="object-contain mix-blend-multiply rounded-full" />
+          </div>
+
+          <div className="max-w-7xl mx-auto px-8 md:px-12 flex flex-col lg:flex-row items-center gap-16 relative z-10">
+             <div className="lg:w-1/2">
+                <h2 className="font-voyager text-5xl md:text-[70px] leading-[0.9] text-white uppercase tracking-wide mb-8 drop-shadow-md">
+                  THE PRIDE<br/>
+                  OF RWANDA&apos;S<br/>
+                  BEVERAGE INDUSTRY
+                </h2>
+                <p className="text-[#1B3629] text-base md:text-lg font-medium leading-relaxed max-w-md">
+                  Inyange Industries is a leading food processing company in Rwanda, manufacturing a wide range of products under its household brand name&mdash;&quot;Inyange&quot;. Known for high-quality mineral water, fruit juices, and dairy products, we have become the regional standard for modern and hygienic production.
+                </p>
+             </div>
+             
+             <div className="lg:w-1/2 relative flex justify-center">
+                {/* Hand drawn swoosh behind */}
+                <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] z-0 text-[var(--inyange-blue)] opacity-40" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 100 Q50 20 100 100 T190 100" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                {/* Mother and son image */}
+                <div className="relative z-10 w-full max-w-[500px] aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white/50">
+                   <Image src="/wqety.jpg" alt="Mother and son drinking milk" fill className="object-cover" />
+                </div>
+             </div>
+          </div>
+        </div>
+
+        {/* Vision & Mission Cards */}
+        <div className="w-full bg-white py-24 px-8 md:px-12">
+           <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-32">
+             <div className="bg-[var(--inyange-card-cream)] rounded-[2rem] p-10 md:p-14 border border-[var(--inyange-blue)]/10 shadow-lg shadow-black/5 relative overflow-hidden group">
+                <div className="w-16 h-16 text-[var(--inyange-blue)] mb-6 opacity-80 group-hover:scale-110 transition-transform">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <h3 className="font-gill font-bold text-3xl text-[var(--inyange-blue)] uppercase tracking-wide mb-4">VISION</h3>
+                <p className="text-[var(--inyange-blue)] font-medium text-lg leading-relaxed">
+                  To be the leading East and Central African dairy and beverage brand, producing high quality products while enhancing shareholder value.
+                </p>
+             </div>
+             
+             <div className="bg-[var(--inyange-card-cream)] rounded-[2rem] p-10 md:p-14 border border-[var(--inyange-blue)]/10 shadow-lg shadow-black/5 relative overflow-hidden group">
+                <div className="w-16 h-16 text-[var(--inyange-blue)] mb-6 opacity-80 group-hover:scale-110 transition-transform">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                </div>
+                <h3 className="font-gill font-bold text-3xl text-[var(--inyange-blue)] uppercase tracking-wide mb-4">MISSION</h3>
+                <p className="text-[var(--inyange-blue)] font-medium text-lg leading-relaxed">
+                  To secure the highest value for all stakeholders while enriching lives through nutritious and tasty dairy and beverage choices.
+                </p>
+             </div>
+           </div>
+
+           {/* Visionary Leaders */}
+           <div className="max-w-7xl mx-auto flex flex-col items-center relative">
+              <h2 className="font-voyager text-5xl md:text-6xl text-[var(--inyange-blue)] uppercase tracking-wide mb-6">VISIONARY LEADERS</h2>
+              <p className="text-[var(--inyange-gray)] text-center text-lg md:text-xl font-medium max-w-3xl mb-16">
+                Inyange Industries is a leading food processing company in Rwanda, manufacturing a wide range of products under its household brand name&mdash;&quot;Inyange&quot;. Known for high-quality mineral water, fruit juices, and dairy products, we have become the regional standard for modern and hygienic production.
+              </p>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 w-full max-w-4xl z-10">
+                {leaders.map((leader, i) => (
+                  <div key={i} className="flex flex-col items-center group cursor-pointer">
+                    <div className={`w-32 h-32 md:w-40 md:h-40 rounded-full ${leader.bg} mb-4 relative overflow-hidden shadow-lg border-4 border-white group-hover:scale-105 transition-transform duration-300`}>
+                       {/* Note: Placeholder Stock Headshots */}
+                       <Image src={leader.img} alt={leader.name} fill className="object-cover" />
+                    </div>
+                    <span className="font-calibre font-semibold text-lg text-[var(--inyange-blue)]">{leader.name}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Decorative passion fruit cutout */}
+              <div className="absolute bottom-[-150px] right-[-50px] w-[300px] h-[300px] z-0 opacity-90 pointer-events-none">
+                <Image src="/quality3.jpg" alt="Passion fruit" fill className="object-contain mix-blend-multiply rounded-full" />
+              </div>
+           </div>
+        </div>
+      </section>
+
+      {/* --- 8. From Our Newsroom Section --- */}
+      <section className="w-full bg-[#00AEEF] py-24 md:py-32 relative overflow-hidden flex flex-col items-center">
+        {/* Decorative passion fruit peek from top right */}
+        <div className="absolute top-[-50px] right-[20px] w-[150px] h-[150px] z-0 opacity-90 pointer-events-none">
+           <Image src="/quality3.jpg" alt="Passion fruit" fill className="object-contain mix-blend-multiply rounded-full" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-8 md:px-12 w-full flex flex-col items-center z-10">
+          <h2 className="font-voyager text-5xl md:text-6xl text-[var(--inyange-yellow)] uppercase tracking-wide mb-16 drop-shadow-md">FROM OUR NEWSROOM</h2>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+            {newsCards.map((news, idx) => (
+              <div key={idx} className="bg-white rounded-[1.5rem] flex flex-col overflow-hidden shadow-xl hover:-translate-y-2 transition-transform duration-300">
+                <div className="relative w-full aspect-square">
+                  <Image src={news.img} alt={news.title} fill className="object-cover" />
+                </div>
+                <div className="p-6 flex flex-col flex-1 bg-white">
+                  <h3 className="font-calibre font-bold text-xl leading-tight text-[var(--inyange-blue)] mb-3">{news.title}</h3>
+                  <p className="font-calibre font-medium text-[var(--inyange-gray)] text-[15px] leading-relaxed">{news.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- 9. Want to Get in Touch CTA Section --- */}
+      <section className="w-full bg-[#F9FAFB] py-24 md:py-32 flex flex-col items-center relative z-20">
+         <div className="max-w-3xl mx-auto px-8 text-center flex flex-col items-center">
+            <h2 className="font-voyager text-5xl md:text-6xl text-[var(--inyange-blue)] leading-[0.9] uppercase tracking-wide mb-6">
+              WANT TO GET<br/>IN TOUCH?
+            </h2>
+            <p className="font-calibre text-lg md:text-xl font-medium text-[#5B6B7A] max-w-2xl mb-12">
+              Whether you&apos;re a customer, a potential partner, or looking for a career, we&apos;re here to listen and grow together. Reach out to our dedicated support teams today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6">
+               <Link href="/reach-out" className="bg-[var(--inyange-lime)] text-[var(--inyange-blue)] px-10 py-4 rounded-full font-gill font-bold text-sm uppercase tracking-widest hover:bg-[var(--inyange-yellow)] transition-colors shadow-lg">
+                 CONTACT US NOW
+               </Link>
+               <Link href="/about/careers" className="bg-transparent border-2 border-[var(--inyange-blue)] text-[var(--inyange-blue)] px-10 py-4 rounded-full font-gill font-bold text-sm uppercase tracking-widest hover:bg-[var(--inyange-blue)] hover:text-white transition-colors">
+                 JOIN US NOW
+               </Link>
+            </div>
+         </div>
+      </section>
+
+    </main>
   );
 }
