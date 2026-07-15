@@ -1,0 +1,268 @@
+Package Report
+
+-----------------------------------------------------------------------------
+Document:
+Name: Website-2.ai
+Color Mode: CMYK color
+Color Profile: U.S. Web Coated (SWOP) v2
+Ruler Units: pixels
+Artboard Dimensions: 1440 px x 6204.3828 px
+Show Images in Outline Mode: OFF
+Highlight Substituted Fonts: OFF
+Highlight Substituted Glyphs: OFF
+Preserve Text Editability
+Simulate Colored Paper: OFF
+
+-----------------------------------------------------------------------------
+Spot Color Objects:
+PANTONE 307 C (Lab)
+
+-----------------------------------------------------------------------------
+Missing Fonts:NONE
+
+-----------------------------------------------------------------------------
+Protected Fonts that were not packaged:NONE
+
+-----------------------------------------------------------------------------
+Fonts:
+Calibre-Regular (TrueType)
+Calibre-Medium (TrueType)
+Calibre-Bold (TrueType)
+Gill Sans SemiBold (TrueType)
+The Voyager Bold (OTF)
+Gothic 821 Condensed BT Regular (OTF)
+
+-----------------------------------------------------------------------------
+Embedded Fonts:
+NONE
+
+-----------------------------------------------------------------------------
+Missing Links:
+NONE
+
+-----------------------------------------------------------------------------
+Linked Images:
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/76f13207-fe84-417a-9465-09e1b187bc19.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 58593K, 3000 by 5000 pixels
+Dimensions: 266.477 by 444.128 points 
+Resolution: 810.577 by 810.577 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/021.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 42656K, 4000 by 2730 pixels
+Dimensions: 433.777 by 296.053 points 
+Resolution: 663.936 by 663.936 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/39c47b5b-da43-450b-a291-121698b428ab.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 33937K, 3000 by 2896 pixels
+Dimensions: 523.851 by 505.691 points 
+Resolution: 412.331 by 412.331 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/0ba61e09-2f8d-4cdc-bdb4-294ca6207f29.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 24414K, 2500 by 2500 pixels
+Dimensions: 373.952 by 373.952 points 
+Resolution: 481.345 by 481.345 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/d950bdb4-9cec-421e-96bd-c31ceb5530db.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 68359K, 5000 by 3500 pixels
+Dimensions: 619.069 by 433.348 points 
+Resolution: 581.518 by 581.518 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/portrait-calcium-black-woman-drinking-milk-healthy-diet-wellness-isolated-white-studio-background-face-african-person-model-with-glass-nutrition-organic-dairy-with-mockup-space.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 25693K, 2631 by 2500 pixels
+Dimensions: 461.712 by 438.723 points 
+Resolution: 410.281 by 410.282 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/realistic_milk_splash_02.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 35156K, 3000 by 3000 pixels
+Dimensions: 620.242 by 620.242 points 
+Resolution: 348.251 by 348.251 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/headshot-portrait-security-guard-work-smiling.jpg
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 87813K, 7300 by 4106 pixels
+Dimensions: 377.437 by 212.295 points 
+Resolution: 1392.55 by 1392.55 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/african-teenage-girl-portrait-happy-smiling-face.jpg
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 14667K, 2502 by 2001 pixels
+Dimensions: 248.629 by 198.844 points 
+Resolution: 724.548 by 724.548 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/confident-business-woman-portrait-smiling-face.jpg
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 14661K, 2501 by 2001 pixels
+Dimensions: 248.591 by 198.892 points 
+Resolution: 724.371 by 724.371 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/black-man-posing.jpg
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 78959K, 4239 by 6358 pixels
+Dimensions: 176.606 by 264.888 points 
+Resolution: 1728.185 by 1728.185 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/wqety.jpg
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 4608K, 1536 by 1024 pixels
+Dimensions: 1487.997 by 991.998 points 
+Resolution: 74.323 by 74.323 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/PRODUCTS/Low fat milk-bw.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 32871K, 2550 by 3300 pixels
+Dimensions: 208.359 by 269.641 points 
+Resolution: 881.173 by 881.173 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/PRODUCTS/Low fat milk-bw.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 32871K, 2550 by 3300 pixels
+Dimensions: 208.359 by 269.641 points 
+Resolution: 881.173 by 881.173 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/PRODUCTS/Low fat milk.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 32871K, 2550 by 3300 pixels
+Dimensions: 346.625 by 448.574 points 
+Resolution: 529.679 by 529.679 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/photo-1488521787991-ed7bbaae773c.webp
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 703K, 600 by 400 pixels
+Dimensions: 413.421 by 275.614 points 
+Resolution: 104.494 by 104.494 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/photo-1550583724-b2692b85b150.webp
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 2812K, 800 by 1200 pixels
+Dimensions: 244.548 by 366.822 points 
+Resolution: 235.537 by 235.537 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/photo-1550989460-0adf9ea622e2.webp
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 1582K, 600 by 900 pixels
+Dimensions: 240.011 by 360.016 points 
+Resolution: 179.992 by 179.992 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/photo-1500382017468-9049fed747ef.webp
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 594K, 600 by 338 pixels
+Dimensions: 501.774 by 282.666 points 
+Resolution: 86.095 by 86.095 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/PRODUCTS/yoghurt apricot.png
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 32871K, 2550 by 3300 pixels
+Dimensions: 126.254 by 163.387 points 
+Resolution: 1454.212 by 1454.212 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/FEB/social media/materials/freepik__enhance__29647.jpg
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 72393K, 4752 by 5200 pixels
+Dimensions: 527.999 by 577.777 points 
+Resolution: 648.001 by 648.001 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/recipe_chowder.webp
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 3072K, 1024 by 1024 pixels
+Dimensions: 233.27 by 233.27 points 
+Resolution: 316.063 by 316.063 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/recipe_fish.webp
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 3072K, 1024 by 1024 pixels
+Dimensions: 233.27 by 233.27 points 
+Resolution: 316.063 by 316.063 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/recipe_soup.webp
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 3072K, 1024 by 1024 pixels
+Dimensions: 233.27 by 233.27 points 
+Resolution: 316.063 by 316.063 pixels per inch
+
+
+/Users/mubirutwaha/Desktop/TWAHER/CLIENTS/INYANGE/2026/MAY/WEBSITE/materials/recipe_bread.webp
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 3072K, 1024 by 1024 pixels
+Dimensions: 233.27 by 233.27 points 
+Resolution: 316.063 by 316.063 pixels per inch
